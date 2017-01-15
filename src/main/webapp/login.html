@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<script type="text/javascript" src="script/jquery.min.js"></script>
+<title>Insert title here</title>
+</head>
+<body>
+	<span>登录:</span>
+	<input type="text"></input>
+	<span>游戏名称：</span>
+	<span id="gameName"></span>
+	<script type="text/javascript">
+	$.ajax({
+		url:'game/showallgame.do',
+		method:'POST',
+		dataType:'JSON',
+		data: "",
+		success:function(result){
+			var data = result.data;
+			var gameName="";
+			if(result.state == 0){
+				for(var i = 0; i < data.length; i++){
+					gameName = gameName + "  " + data[i].gameName;
+				}
+				$("#gameName").text(gameName);
+			}else{
+				alert(result.message);
+			}
+		}
+		
+		
+	});
+	</script>
+</body>
+</html>
