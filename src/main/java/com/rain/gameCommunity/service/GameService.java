@@ -10,4 +10,6 @@ import com.rain.gameCommunity.entity.GameEntity;
 public interface GameService {
 
 	public List<GameEntity> showAllGame();
+
+	public GameEntity showGame(String gameName);
 }

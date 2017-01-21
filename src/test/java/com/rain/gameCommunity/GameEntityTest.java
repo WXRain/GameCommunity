@@ -1,8 +1,5 @@
 package com.rain.gameCommunity;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
@@ -24,8 +21,8 @@ public class GameEntityTest {
 
 	@Test
 	public void test1() {
-		List<GameEntity> games = new ArrayList<GameEntity>();
-		games = gs.showAllGame();
-		System.out.println(games);
+		GameEntity game = new GameEntity();
+		game = gs.showGame("¼¢»Ä");
+		System.out.println(game);
 	}
 }

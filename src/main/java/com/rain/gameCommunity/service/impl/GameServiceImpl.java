@@ -23,4 +23,11 @@ public class GameServiceImpl implements GameService {
 		return games;
 	}
 
+	@Override
+	public GameEntity showGame(String gameName) {
+		GameEntity game = new GameEntity();
+		game = dao.queryGameByName(gameName);
+		return game;
+	}
+
 }

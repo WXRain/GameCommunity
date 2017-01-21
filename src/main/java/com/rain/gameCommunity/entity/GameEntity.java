@@ -14,10 +14,10 @@ public class GameEntity implements Serializable {
 	private int gameNum;
 
 	// 游戏大小
-	private double size;
+	private String size;
 
 	// 创建时间
-	private long buildDate;
+	private String buildDate;
 
 	// 游戏名称
 	private String gameName;
@@ -46,20 +46,21 @@ public class GameEntity implements Serializable {
 	// 游戏路径
 	private String path;
 
-	private SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+	// 系统支持
+	private SystemSupport systemSupport;
 
-	// 格式化后的日期
-	private String bDate;
+	private SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
 
 	public GameEntity() {
 		super();
 		this.cutOff = 1;
 		this.version = "1.0.0";
+
 	}
 
-	public GameEntity(int gameNum, double size, long buildDate, String gameName, List<CommentEntity> comments,
+	public GameEntity(int gameNum, String size, String buildDate, String gameName, List<CommentEntity> comments,
 			String introduce, double price, double cutOff, int systemTypeNum, List<File> pictures, String version,
-			String path) {
+			String path, SystemSupport systemSupport) {
 		super();
 		this.gameNum = gameNum;
 		this.size = size;
@@ -73,14 +74,14 @@ public class GameEntity implements Serializable {
 		this.pictures = pictures;
 		this.version = version;
 		this.path = path;
-		this.bDate = sdf.format(buildDate);
+		this.systemSupport = systemSupport;
 	}
 
-	public double getSize() {
+	public String getSize() {
 		return size;
 	}
 
-	public void setSize(double size) {
+	public void setSize(String size) {
 		this.size = size;
 	}
 
@@ -92,11 +93,11 @@ public class GameEntity implements Serializable {
 		this.gameNum = gameNum;
 	}
 
-	public long getBuildDate() {
+	public String getBuildDate() {
 		return buildDate;
 	}
 
-	public void setBuildDate(long buildDate) {
+	public void setBuildDate(String buildDate) {
 		this.buildDate = buildDate;
 	}
 
@@ -209,18 +210,18 @@ public class GameEntity implements Serializable {
 	}
 
 	/**
-	 * @return the bDate
+	 * @return the systemSupport
 	 */
-	public String getbDate() {
-		return bDate;
+	public SystemSupport getSystemSupport() {
+		return systemSupport;
 	}
 
 	/**
-	 * @param bDate
-	 *            the bDate to set
+	 * @param systemSupport
+	 *            the systemSupport to set
 	 */
-	public void setbDate(String bDate) {
-		this.bDate = bDate;
+	public void setSystemSupport(SystemSupport systemSupport) {
+		this.systemSupport = systemSupport;
 	}
 
 	/*
@@ -233,7 +234,7 @@ public class GameEntity implements Serializable {
 		return "GameEntity [gameNum=" + gameNum + ", size=" + size + ", buildDate=" + buildDate + ", gameName="
 				+ gameName + ", comments=" + comments + ", introduce=" + introduce + ", price=" + price + ", cutOff="
 				+ cutOff + ", systemTypeNum=" + systemTypeNum + ", pictures=" + pictures + ", version=" + version
-				+ ", path=" + path + ",bDate=" + bDate + "]";
+				+ ", path=" + path + ", systemSupport=" + systemSupport + "]";
 	}
 
 }

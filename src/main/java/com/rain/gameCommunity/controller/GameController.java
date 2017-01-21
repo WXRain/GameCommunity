@@ -17,10 +17,34 @@ public class GameController {
 	@Autowired
 	private GameService gameService;
 
+	private String gameName;
+
+	/**
+	 * @return the gameName
+	 */
+	public String getGameName() {
+		return gameName;
+	}
+
+	/**
+	 * @param gameName
+	 *            the gameName to set
+	 */
+	public void setGameName(String gameName) {
+		this.gameName = gameName;
+	}
+
 	@RequestMapping("/showallgame.do")
 	@ResponseBody
 	public JsonResult<List<GameEntity>> showAllGame() {
 		List<GameEntity> games = gameService.showAllGame();
 		return new JsonResult<List<GameEntity>>(games);
+	}
+
+	@RequestMapping("/showGame.do")
+	@ResponseBody
+	public JsonResult<GameEntity> showGame(String gameName) {
+		GameEntity game = gameService.showGame(gameName);
+		return new JsonResult<GameEntity>(game);
 	}
 }

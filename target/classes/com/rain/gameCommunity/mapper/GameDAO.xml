@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+ <mapper namespace="com.rain.gameCommunity.dao.GameDAO">
+ 
+ <resultMap id="queryGameMap" type="com.rain.gameCommunity.entity.GameEntity">
+        <id column="gamenum" property="gameNum" jdbcType="INTEGER"/>
+        <result column="gamename" property="gameName" jdbcType="VARCHAR"/>
+        <result column="size" property="size" jdbcType="VARCHAR"/>
+        <result column="buildDate" property="buildDate" jdbcType="DATE"/>
+        <result column="introduce" property="introduce" jdbcType="VARCHAR"/>
+        <result column="price" property="price" jdbcType="DOUBLE"/>
+        <result column="cutoff" property="cutOff" jdbcType="DOUBLE"/>
+        <result column="systemTypeNum" property="systemTypeNum" jdbcType="INTEGER"/>
+        <result column="version" property="version" jdbcType="VARCHAR"/>
+        <result column="path" property="path" jdbcType="VARCHAR"/>
+        <collection property="systemSupport" ofType="com.rain.gameCommunity.entity.SystemSupport">
+            <id column="systemTypeNum" property="systemTypeNum" jdbcType="BIGINT" />
+            <result column="memoria" property="memoria" jdbcType="VARCHAR" />
+            <result column="system" property="system" jdbcType="VARCHAR" />
+            <result column="disk" property="disk" jdbcType="VARCHAR" />
+            <result column="voice" property="voice" jdbcType="INTEGER" />
+            <result column="cpu" property="cpu" jdbcType="VARCHAR" />
+            <result column="network" property="network" jdbcType="TINYINT"/>
+            <result column="display" property="display" jdbcType="VARCHAR"/>
+            <result column="note" property="note" jdbcType="VARCHAR"/>
+        </collection>
+    </resultMap>
+    
+	<select id="queryAllGame" resultMap="queryGameMap">
+		select
+			g.gamenum,
+			g.gamename,
+			g.size,
+			g.buildDate,
+			g.introduce,
+			g.price,
+			g.cutoff,
+			g.systemTypeNum,
+			g.version,
+			g.path,
+			s.systemTypeNum,
+			s.memoria,
+			s.disk,
+			s.system,
+			s.cpu,
+			s.display,
+			s.voice,
+			s.network,
+			s.note
+		from 
+			game g,systemsupport s
+		where 
+			g.systemTypeNum = s.systemTypeNum
+	</select>
+	
+	<select id="queryGameByName" resultMap="queryGameMap">
+		select * from game g,systemsupport s where gamename=#{gameName} and g.systemTypeNum = s.systemTypeNum
+	</select>
+ </mapper>

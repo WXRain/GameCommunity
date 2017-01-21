@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<script type="text/javascript" src="../script/jquery.min.js"></script>
+<script type="text/javascript" src="../script/jquerySession.js"></script>
+<title>Insert title here</title>
+</head>
+<body>
+	<ol id="gameName" style="line-height:50px"></ol>
+	
+	
+	
+	
+	
+	<script type="text/javascript">
+	$.ajax({
+		url:'showallgame.do',
+		method:'POST',
+		dataType:'JSON',
+		data: "",
+		success:function(result){
+			var data = result.data;
+			var gameName="";
+			if(result.state == 0){
+				for(var i = 0; i < data.length; i++){
+ 					gameName = "<li><a href='javascript:' onclick=showGame('" + data[i].gameName +
+ 							"')>" + data[i].gameName + "</a></li>";
+					$("#gameName").append(gameName);
+				}
+				
+			}else{
+				alert(result.message);
+			}
+		}
+		
+		
+	});
+	
+	function showGame(gameName){
+		$.session.set("gameName",gameName);
+		location.href="showGame.html?gameName=" + gameName;
+	}
+	</script>
+</body>
+</html>

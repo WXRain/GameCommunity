@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>showGame</title>
+<script type="text/javascript" src="../script/jquery.min.js"></script>
+<script type="text/javascript" src="../script/jquerySession.js"></script>
+</head>
+<body>
+
+
+
+<script type="text/javascript">
+var gameName = $.session.get("gameName");
+$.ajax({
+	url:'showGame.do',
+	method:'POST',
+	dataType:'JSON',
+	data: {"gameName":gameName},
+	success:function(result){
+		if(result.state == 0){
+			data = result.data;
+			alert(data.gameName);
+		}else{
+			alert(result.message);
+		}
+	}
+	
+	
+});
+</script>
+</body>
+</html>
