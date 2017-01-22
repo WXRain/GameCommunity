@@ -8,7 +8,7 @@
 </head>
 <body>
 
-
+<span id ="time"></span>
 
 <script type="text/javascript">
 var gameName = $.session.get("gameName");
@@ -20,6 +20,7 @@ $.ajax({
 	success:function(result){
 		if(result.state == 0){
 			data = result.data;
+			$("#time").text(data.buildDate);
 			alert(data.gameName);
 		}else{
 			alert(result.message);

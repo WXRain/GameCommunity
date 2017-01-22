@@ -37,14 +37,24 @@ public class GameController {
 	@RequestMapping("/showallgame.do")
 	@ResponseBody
 	public JsonResult<List<GameEntity>> showAllGame() {
-		List<GameEntity> games = gameService.showAllGame();
+		List<GameEntity> games;
+		try {
+			games = gameService.showAllGame();
+		} catch (Exception e) {
+			return new JsonResult<List<GameEntity>>(e.getMessage());
+		}
 		return new JsonResult<List<GameEntity>>(games);
 	}
 
 	@RequestMapping("/showGame.do")
 	@ResponseBody
 	public JsonResult<GameEntity> showGame(String gameName) {
-		GameEntity game = gameService.showGame(gameName);
+		GameEntity game;
+		try {
+			game = gameService.showGame(gameName);
+		} catch (Exception e) {
+			return new JsonResult<GameEntity>(e.getMessage());
+		}
 		return new JsonResult<GameEntity>(game);
 	}
 }

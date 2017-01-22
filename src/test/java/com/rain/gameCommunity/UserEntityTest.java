@@ -5,24 +5,22 @@ import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import com.rain.gameCommunity.entity.GameEntity;
-import com.rain.gameCommunity.service.impl.GameServiceImpl;
+import com.rain.gameCommunity.service.impl.UserServiceImpl;
 
-public class GameEntityTest {
+public class UserEntityTest {
 
 	private ApplicationContext ac;
-	private GameServiceImpl gs;
+	private UserServiceImpl us;
 
 	@Before
 	public void init() {
 		ac = new ClassPathXmlApplicationContext("root-context.xml", "service-context.xml");
-		gs = ac.getBean("gameServiceImpl", GameServiceImpl.class);
+		us = ac.getBean("userServiceImpl", UserServiceImpl.class);
 	}
 
 	@Test
-	public void test1() throws Exception {
-		GameEntity game = new GameEntity();
-		game = gs.showGame("¼¢»Ä");
-		System.out.println(game);
+	public void test() throws Exception {
+		System.out.println(us.showAllUsers());
 	}
+
 }

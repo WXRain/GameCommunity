@@ -9,7 +9,7 @@ import com.rain.gameCommunity.entity.GameEntity;
 @Repository
 public interface GameService {
 
-	public List<GameEntity> showAllGame();
+	public List<GameEntity> showAllGame() throws Exception;
 
-	public GameEntity showGame(String gameName);
+	public GameEntity showGame(String gameName) throws Exception;
 }

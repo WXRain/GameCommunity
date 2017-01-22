@@ -57,4 +57,8 @@
 	<select id="queryGameByName" resultMap="queryGameMap">
 		select * from game g,systemsupport s where gamename=#{gameName} and g.systemTypeNum = s.systemTypeNum
 	</select>
+	
+	<select id="queryGameById" resultMap="queryGameMap">
+		select * from game g, systemsupport s where gamenum=#{gameNum} and g.systemTypeNum = s.systemTypeNum
+	</select>
  </mapper>

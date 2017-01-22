@@ -14,19 +14,19 @@ import com.rain.gameCommunity.service.GameService;
 public class GameServiceImpl implements GameService {
 
 	@Autowired
-	private GameDAO dao;
+	private GameDAO gameDao;
 
-	public List<GameEntity> showAllGame() {
+	public List<GameEntity> showAllGame() throws Exception {
 
 		List<GameEntity> games = new ArrayList<GameEntity>();
-		games = dao.queryAllGame();
+		games = gameDao.queryAllGame();
 		return games;
 	}
 
 	@Override
-	public GameEntity showGame(String gameName) {
+	public GameEntity showGame(String gameName) throws Exception {
 		GameEntity game = new GameEntity();
-		game = dao.queryGameByName(gameName);
+		game = gameDao.queryGameByName(gameName);
 		return game;
 	}
 
