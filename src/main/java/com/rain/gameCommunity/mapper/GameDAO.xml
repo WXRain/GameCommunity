@@ -4,18 +4,19 @@
  <mapper namespace="com.rain.gameCommunity.dao.GameDAO">
  
  <resultMap id="queryGameMap" type="com.rain.gameCommunity.entity.GameEntity">
-        <id column="gamenum" property="gameNum" jdbcType="INTEGER"/>
+        <id column="id" property="id" jdbcType="BIGINT"/>
         <result column="gamename" property="gameName" jdbcType="VARCHAR"/>
         <result column="size" property="size" jdbcType="VARCHAR"/>
-        <result column="buildDate" property="buildDate" jdbcType="DATE"/>
+        <result column="buildDate" property="buildDate" jdbcType="TIMESTAMP"/>
         <result column="introduce" property="introduce" jdbcType="VARCHAR"/>
         <result column="price" property="price" jdbcType="DOUBLE"/>
         <result column="cutoff" property="cutOff" jdbcType="DOUBLE"/>
         <result column="systemTypeNum" property="systemTypeNum" jdbcType="INTEGER"/>
         <result column="version" property="version" jdbcType="VARCHAR"/>
         <result column="path" property="path" jdbcType="VARCHAR"/>
-        <collection property="systemSupport" ofType="com.rain.gameCommunity.entity.SystemSupport">
-            <id column="systemTypeNum" property="systemTypeNum" jdbcType="BIGINT" />
+        <result column="sectionId" property="sectionId" jdbcType="INTEGER"/>
+        <collection property="systemSupport" ofType="com.rain.gameCommunity.entity.SystemSupportEntity">
+            <id column="id" property="id" jdbcType="BIGINT" />
             <result column="memoria" property="memoria" jdbcType="VARCHAR" />
             <result column="system" property="system" jdbcType="VARCHAR" />
             <result column="disk" property="disk" jdbcType="VARCHAR" />
@@ -29,7 +30,7 @@
     
 	<select id="queryAllGame" resultMap="queryGameMap">
 		select
-			g.gamenum,
+			g.id,
 			g.gamename,
 			g.size,
 			g.buildDate,
@@ -39,7 +40,8 @@
 			g.systemTypeNum,
 			g.version,
 			g.path,
-			s.systemTypeNum,
+			g.sectionId,
+			s.id,
 			s.memoria,
 			s.disk,
 			s.system,
@@ -51,14 +53,14 @@
 		from 
 			game g,systemsupport s
 		where 
-			g.systemTypeNum = s.systemTypeNum
+			g.systemTypeNum = s.id
 	</select>
 	
 	<select id="queryGameByName" resultMap="queryGameMap">
-		select * from game g,systemsupport s where gamename=#{gameName} and g.systemTypeNum = s.systemTypeNum
+		select * from game g,systemsupport s where gamename=#{gameName} and g.systemTypeNum = s.id
 	</select>
 	
 	<select id="queryGameById" resultMap="queryGameMap">
-		select * from game g, systemsupport s where gamenum=#{gameNum} and g.systemTypeNum = s.systemTypeNum
+		select * from game g, systemsupport s where gamenum=#{gameNum} and g.systemTypeNum = s.id
 	</select>
  </mapper>

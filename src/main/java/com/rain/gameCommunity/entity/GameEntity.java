@@ -7,47 +7,50 @@ import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
-@Repository("GameEntity")
+@Repository
 public class GameEntity implements Serializable {
 
-	// 游戏编号
-	private int gameNum;
+	// 娓告垙ID
+	private long id;
 
-	// 游戏大小
+	// 娓告垙澶у皬
 	private String size;
 
-	// 创建时间
+	// 娓告垙鍒涘缓鏃堕棿
 	private String buildDate;
 
-	// 游戏名称
+	// 娓告垙鍚嶇О
 	private String gameName;
 
-	// 游戏评论
+	// 娓告垙璇勮
 	private List<CommentEntity> comments;
 
-	// 游戏介绍
+	// 娓告垙浠嬬粛
 	private String introduce;
 
-	// 游戏价格
+	// 娓告垙浠锋牸
 	private double price;
 
-	// 游戏打折
+	// 娓告垙鎶樻墸
 	private double cutOff;
 
-	// 系统支持
+	// 绯荤粺鏀寔绫诲瀷
 	private int systemTypeNum;
 
-	// 游戏图片
+	// 娓告垙灏侀潰
 	private List<File> pictures;
 
-	// 游戏版本
+	// 娓告垙鐗堟湰
 	private String version;
 
-	// 游戏路径
+	// 娓告垙璺緞
 	private String path;
 
-	// 系统支持
-	private SystemSupport systemSupport;
+	// 绯荤粺鏀寔瀵硅薄
+	private SystemSupportEntity systemSupport;
+
+	// 瀵瑰簲鐨勬澘鍧桰D
+	private int sectionId;
 
 	private SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
 
@@ -58,11 +61,11 @@ public class GameEntity implements Serializable {
 
 	}
 
-	public GameEntity(int gameNum, String size, String buildDate, String gameName, List<CommentEntity> comments,
+	public GameEntity(long id, String size, String buildDate, String gameName, List<CommentEntity> comments,
 			String introduce, double price, double cutOff, int systemTypeNum, List<File> pictures, String version,
-			String path, SystemSupport systemSupport) {
+			String path, SystemSupportEntity systemSupport, int sectionId) {
 		super();
-		this.gameNum = gameNum;
+		this.id = id;
 		this.size = size;
 		this.buildDate = buildDate;
 		this.gameName = gameName;
@@ -75,76 +78,153 @@ public class GameEntity implements Serializable {
 		this.version = version;
 		this.path = path;
 		this.systemSupport = systemSupport;
+		this.sectionId = sectionId;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "GameEntity [id=" + id + ", size=" + size + ", buildDate=" + buildDate + ", gameName=" + gameName
+				+ ", comments=" + comments + ", introduce=" + introduce + ", price=" + price + ", cutOff=" + cutOff
+				+ ", systemTypeNum=" + systemTypeNum + ", pictures=" + pictures + ", version=" + version + ", path="
+				+ path + ", systemSupport=" + systemSupport + ", sectionId=" + sectionId + "]";
+	}
+
+	/**
+	 * @return the gameNum
+	 */
+	public long getId() {
+		return id;
+	}
+
+	/**
+	 * @param gameNum
+	 *            the gameNum to set
+	 */
+	public void setGameNum(long id) {
+		this.id = id;
+	}
+
+	/**
+	 * @return the size
+	 */
 	public String getSize() {
 		return size;
 	}
 
+	/**
+	 * @param size
+	 *            the size to set
+	 */
 	public void setSize(String size) {
 		this.size = size;
 	}
 
-	public int getGameNum() {
-		return gameNum;
-	}
-
-	public void setGameNum(int gameNum) {
-		this.gameNum = gameNum;
-	}
-
+	/**
+	 * @return the buildDate
+	 */
 	public String getBuildDate() {
 		return buildDate;
 	}
 
+	/**
+	 * @param buildDate
+	 *            the buildDate to set
+	 */
 	public void setBuildDate(String buildDate) {
 		this.buildDate = buildDate;
 	}
 
+	/**
+	 * @return the gameName
+	 */
 	public String getGameName() {
 		return gameName;
 	}
 
+	/**
+	 * @param gameName
+	 *            the gameName to set
+	 */
 	public void setGameName(String gameName) {
 		this.gameName = gameName;
 	}
 
+	/**
+	 * @return the comments
+	 */
 	public List<CommentEntity> getComments() {
 		return comments;
 	}
 
+	/**
+	 * @param comments
+	 *            the comments to set
+	 */
 	public void setComments(List<CommentEntity> comments) {
 		this.comments = comments;
 	}
 
+	/**
+	 * @return the introduce
+	 */
 	public String getIntroduce() {
 		return introduce;
 	}
 
+	/**
+	 * @param introduce
+	 *            the introduce to set
+	 */
 	public void setIntroduce(String introduce) {
 		this.introduce = introduce;
 	}
 
+	/**
+	 * @return the price
+	 */
 	public double getPrice() {
 		return price;
 	}
 
+	/**
+	 * @param price
+	 *            the price to set
+	 */
 	public void setPrice(double price) {
 		this.price = price;
 	}
 
+	/**
+	 * @return the cutOff
+	 */
 	public double getCutOff() {
 		return cutOff;
 	}
 
+	/**
+	 * @param cutOff
+	 *            the cutOff to set
+	 */
 	public void setCutOff(double cutOff) {
 		this.cutOff = cutOff;
 	}
 
+	/**
+	 * @return the systemTypeNum
+	 */
 	public int getSystemTypeNum() {
 		return systemTypeNum;
 	}
 
+	/**
+	 * @param systemTypeNum
+	 *            the systemTypeNum to set
+	 */
 	public void setSystemTypeNum(int systemTypeNum) {
 		this.systemTypeNum = systemTypeNum;
 	}
@@ -195,24 +275,9 @@ public class GameEntity implements Serializable {
 	}
 
 	/**
-	 * @return the sdf
-	 */
-	public SimpleDateFormat getSdf() {
-		return sdf;
-	}
-
-	/**
-	 * @param sdf
-	 *            the sdf to set
-	 */
-	public void setSdf(SimpleDateFormat sdf) {
-		this.sdf = sdf;
-	}
-
-	/**
 	 * @return the systemSupport
 	 */
-	public SystemSupport getSystemSupport() {
+	public SystemSupportEntity getSystemSupport() {
 		return systemSupport;
 	}
 
@@ -220,21 +285,23 @@ public class GameEntity implements Serializable {
 	 * @param systemSupport
 	 *            the systemSupport to set
 	 */
-	public void setSystemSupport(SystemSupport systemSupport) {
+	public void setSystemSupport(SystemSupportEntity systemSupport) {
 		this.systemSupport = systemSupport;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.lang.Object#toString()
+	/**
+	 * @return the sectionId
 	 */
-	@Override
-	public String toString() {
-		return "GameEntity [gameNum=" + gameNum + ", size=" + size + ", buildDate=" + buildDate + ", gameName="
-				+ gameName + ", comments=" + comments + ", introduce=" + introduce + ", price=" + price + ", cutOff="
-				+ cutOff + ", systemTypeNum=" + systemTypeNum + ", pictures=" + pictures + ", version=" + version
-				+ ", path=" + path + ", systemSupport=" + systemSupport + "]";
+	public int getSectionId() {
+		return sectionId;
+	}
+
+	/**
+	 * @param sectionId
+	 *            the sectionId to set
+	 */
+	public void setSectionId(int sectionId) {
+		this.sectionId = sectionId;
 	}
 
 }

@@ -3,42 +3,45 @@ package com.rain.gameCommunity.entity;
 import java.io.Serializable;
 import java.util.List;
 
+import org.springframework.stereotype.Repository;
+
+@Repository
 public class UserEntity implements Serializable {
 
-	// id
+	// ç”¨æˆ·id
 	private long id;
 
-	// ÓÃ»§Ãû
+	// ç”¨æˆ·å
 	private String username;
 
-	// ÃÜÂë
+	// å¯†ç 
 	private String password;
 
-	// ×¢²áÊ±¼ä
+	// æ³¨å†Œæ—¶é—´
 	private String registeTime;
 
-	// ĞÔ±ğ
+	// æ€§åˆ«
 	private int sex;
 
-	// ¼¶±ğ
+	// ç­‰çº§
 	private int level;
 
-	// ¾­Ñé
+	// ç»éªŒ
 	private int exp;
 
-	// ÊÇ·ñÊÇ¹ÜÀíÔ±
+	// æ˜¯å¦æ˜¯ç®¡ç†å‘˜
 	private int isManager;
 
-	// ½éÉÜ
+	// ä»‹ç»
 	private String introduce;
 
-	// Í·ÏñÂ·¾¶
+	// å¤´åƒè·¯å¾„
 	private String head;
 
-	// ÒÑ¹ºÂòµÄÓÎÏ·£¨ÒÔ,·Ö¸ô£©
+	// å·²ç»ä¹°çš„æ¸¸æˆ
 	private String games;
 
-	// ÓÎÏ·ÊµÌå
+	// å·²ç»è´­ä¹°çš„æ¸¸æˆçš„åˆ—è¡¨
 	private List<GameEntity> hasBuyedGames;
 
 	public UserEntity() {

@@ -2,48 +2,51 @@ package com.rain.gameCommunity.entity;
 
 import java.io.Serializable;
 
-public class SystemSupport implements Serializable {
+import org.springframework.stereotype.Repository;
 
-	// ÏµÍ³Ö§³Ö±àºÅ
-	private int systemTypeNum;
+@Repository
+public class SystemSupportEntity implements Serializable {
 
-	// ÄÚ´æ´óĞ¡
+	// ç³»ç»Ÿæ”¯æŒID
+	private int id;
+
+	// å†…å­˜
 	private String memoria;
 
-	// ÏµÍ³ĞÍºÅ
+	// æ”¯æŒç³»ç»Ÿ
 	private String system;
 
-	// Ó²ÅÌ¿Õ¼ä
+	// ç£ç›˜ç©ºé—´
 	private String disk;
 
-	// Éù¿¨
+	// å£°å¡
 	private String voice;
 
-	// ÍøÂç
+	// æ˜¯å¦éœ€è¦ç½‘ç»œ
 	private boolean network;
 
 	// CPU
 	private String cpu;
 
-	// ÏÔ¿¨
+	// æ˜¾å¡
 	private String display;
 
-	// ±¸×¢
+	// å¤‡æ³¨
 	private String note;
 
 	/**
 	 * @return the systemTypeNum
 	 */
-	public int getSystemTypeNum() {
-		return systemTypeNum;
+	public int getId() {
+		return id;
 	}
 
 	/**
 	 * @param systemTypeNum
 	 *            the systemTypeNum to set
 	 */
-	public void setSystemTypeNum(int systemTypeNum) {
-		this.systemTypeNum = systemTypeNum;
+	public void setSystemTypeNum(int id) {
+		this.id = id;
 	}
 
 	/**
@@ -173,15 +176,14 @@ public class SystemSupport implements Serializable {
 	 */
 	@Override
 	public String toString() {
-		return "SystemSupport [systemTypeNum=" + systemTypeNum + ", memoria=" + memoria + ", System=" + system
-				+ ", disk=" + disk + ", voice=" + voice + ", network=" + network + ", cpu=" + cpu + ", display="
-				+ display + ", note=" + note + "]";
+		return "SystemSupport [id=" + id + ", memoria=" + memoria + ", System=" + system + ", disk=" + disk + ", voice="
+				+ voice + ", network=" + network + ", cpu=" + cpu + ", display=" + display + ", note=" + note + "]";
 	}
 
-	public SystemSupport(int systemTypeNum, String memoria, String system, String disk, String voice, boolean network,
+	public SystemSupportEntity(int id, String memoria, String system, String disk, String voice, boolean network,
 			String cpu, String display, String note) {
 		super();
-		this.systemTypeNum = systemTypeNum;
+		this.id = id;
 		this.memoria = memoria;
 		this.system = system;
 		this.disk = disk;
@@ -192,7 +194,7 @@ public class SystemSupport implements Serializable {
 		this.note = note;
 	}
 
-	public SystemSupport() {
+	public SystemSupportEntity() {
 	}
 
 }

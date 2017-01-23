@@ -1,16 +1,19 @@
 package com.rain.gameCommunity.entity;
 
+import org.springframework.stereotype.Repository;
+
+@Repository
 public class ConstantUtil {
 
-	// ĞÔ±ğÊÇÄĞ
+	// ç”¨æˆ·æ€§åˆ«ä¸ºç”·
 	public static final int USER_MAN = 1;
 
-	// ĞÔ±ğÊÇÅ®
+	// ç”¨æˆ·æ€§åˆ«ä¸ºå¥³
 	public static final int USER_WOMAN = 0;
 
-	// ÓÃ»§ÊÇ¹ÜÀíÔ±
+	// ç”¨æˆ·æ˜¯ç®¡ç†å‘˜
 	public static final int USER_MANAGER = 1;
 
-	// ÓÃ»§²»ÊÇ¹ÜÀíÔ±
+	// ç”¨æˆ·ä¸æ˜¯ç®¡ç†å‘˜
 	public static final int USER_NOT_MANAGER = 0;
 }
