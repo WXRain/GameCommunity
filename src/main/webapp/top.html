@@ -1,0 +1,72 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+  	<script type="text/javascript" src="./script/jquery.min.js"></script>
+  	<script type="text/javascript" src="./script/jquerySession.js"></script>
+	<script type="text/javascript">
+	function nowTime(){
+		var today = new Date();
+		var year = today.getFullYear();
+		var month = today.getMonth() + 1;
+		var date = today.getDate();
+		var hour = today.getHours();
+		var minute = today.getMinutes();
+		var second = today.getSeconds();
+		
+		var weekday = 0;
+		switch(today.getDay()){
+			case 0:
+			weekday = "星期日";break;
+			case 1:
+			weekday = "星期一";break;
+			case 2:
+			weekday = "星期二";break;
+			case 3:
+			weekday = "星期三";break;
+			case 4:
+			weekday = "星期四";break;
+			case 5:
+			weekday = "星期五";break;
+			case 6:
+			weekday = "星期六";break;
+		}
+		document.getElementById("time").innerHTML = "" + year + "年" + month + "月"+ date + "日&nbsp" 
+												  + hour + ":" + minute + ":" + second + "&nbsp" 
+												  + weekday;
+		setTimeout("nowTime()", 1000);
+	}
+	</script>
+
+  </head>
+  
+  <body onload="nowTime()">
+  	<table border="0" cellpadding="0" cellspacing="0">
+			<tr>
+				<td>
+					<a href="http:\\localhost:8080\gameCommunity\index.html">XX论坛</a><span id="loginOrRegiste"></span>
+				</td>
+				<td align="right"><div id="time"></td>
+			</tr>
+	</table>
+     <hr/>
+     <script type="text/javascript">
+     	var username = $.session.get("username");
+     	if(username == null || username=="" || username.length == 0){
+     		$("#loginOrRegiste").append("<form action = 'servlet/Login'  method = 'post' style = 'display:inline'>"
+   		 								+"  用户名 "
+		 								+ "<input type='text' name=username>"
+		 								+" 密码  "
+		 								+"<input type='password' name=password>"
+										 +"<input type='submit' value=' 登录 '>"
+										 +"<a href='page/register.jsp'>注册 </a>"
+										 +"</form>");
+     	}else{
+     		showUsername(username);
+     	}
+     	
+     	function showUsername(username){
+     		alert("username");
+     	}
+     </script>
+  </body>
+</html>
