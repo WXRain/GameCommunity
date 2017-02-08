@@ -18,7 +18,7 @@ public class UserEntity implements Serializable {
 	private String password;
 
 	// 注册时间
-	private String registeTime;
+	private String registerTime;
 
 	// 性别
 	private int sex;
@@ -48,13 +48,13 @@ public class UserEntity implements Serializable {
 		super();
 	}
 
-	public UserEntity(long id, String username, String password, String registeTime, int sex, int level, int exp,
+	public UserEntity(long id, String username, String password, String registerTime, int sex, int level, int exp,
 			int isManager, String introduce, String head, String games, List<GameEntity> hasBuyedGames) {
 		super();
 		this.id = id;
 		this.username = username;
 		this.password = password;
-		this.registeTime = registeTime;
+		this.registerTime = registerTime;
 		this.sex = sex;
 		this.level = level;
 		this.exp = exp;
@@ -72,8 +72,8 @@ public class UserEntity implements Serializable {
 	 */
 	@Override
 	public String toString() {
-		return "UserEntity [id=" + id + ", username=" + username + ", password=" + password + ", registeTime="
-				+ registeTime + ", sex=" + sex + ", level=" + level + ", exp=" + exp + ", isManager=" + isManager
+		return "UserEntity [id=" + id + ", username=" + username + ", password=" + password + ", registerTime="
+				+ registerTime + ", sex=" + sex + ", level=" + level + ", exp=" + exp + ", isManager=" + isManager
 				+ ", introduce=" + introduce + ", head=" + head + ", games=" + games + ", hasBuyedGames="
 				+ hasBuyedGames + "]";
 	}
@@ -124,18 +124,18 @@ public class UserEntity implements Serializable {
 	}
 
 	/**
-	 * @return the registeTime
+	 * @return the registerTime
 	 */
-	public String getRegisteTime() {
-		return registeTime;
+	public String getRegisterTime() {
+		return registerTime;
 	}
 
 	/**
-	 * @param registeTime
-	 *            the registeTime to set
+	 * @param registerTime
+	 *            the registerTime to set
 	 */
-	public void setRegisteTime(String registeTime) {
-		this.registeTime = registeTime;
+	public void setRegisterTime(String registerTime) {
+		this.registerTime = registerTime;
 	}
 
 	/**

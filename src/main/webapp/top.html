@@ -43,7 +43,7 @@
   	<table border="0" cellpadding="0" cellspacing="0">
 			<tr>
 				<td>
-					<a href="http:\\localhost:8080\gameCommunity\index.html">XX论坛</a><span id="loginOrRegiste"></span>
+					<a href="http:\\localhost:8080\gameCommunity\index.html">XX论坛</a><span id="loginOrRegister"></span>
 				</td>
 				<td align="right"><div id="time"></td>
 			</tr>
@@ -52,13 +52,13 @@
      <script type="text/javascript">
      	var username = $.session.get("username");
      	if(username == null || username=="" || username.length == 0){
-     		$("#loginOrRegiste").append("<form action = 'servlet/Login'  method = 'post' style = 'display:inline'>"
+     		$("#loginOrRegister").append("<form action = 'servlet/Login'  method = 'post' style = 'display:inline'>"
    		 								+"  用户名 "
 		 								+ "<input type='text' name=username>"
 		 								+" 密码  "
 		 								+"<input type='password' name=password>"
 										 +"<input type='submit' value=' 登录 '>"
-										 +"<a href='page/register.jsp'>注册 </a>"
+										 +"<a onclick='registerClick()'>注册 </a>"
 										 +"</form>");
      	}else{
      		showUsername(username);
@@ -67,6 +67,11 @@
      	function showUsername(username){
      		alert("username");
      	}
+     	
+     	function registerClick(){
+     		parent.location.replace("./register.html");
+     	}
+     	
      </script>
   </body>
 </html>

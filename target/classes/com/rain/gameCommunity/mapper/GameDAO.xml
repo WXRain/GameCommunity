@@ -57,10 +57,10 @@
 	</select>
 	
 	<select id="queryGameByName" resultMap="queryGameMap">
-		select * from game g,systemsupport s where gamename=#{gameName} and g.systemTypeNum = s.id
+		select * from game g,systemsupport s where g.gamename=#{gameName} and g.systemTypeNum = s.id
 	</select>
 	
 	<select id="queryGameById" resultMap="queryGameMap">
-		select * from game g, systemsupport s where gamenum=#{gameNum} and g.systemTypeNum = s.id
+		select * from game g, systemsupport s where g.id=#{id} and g.systemTypeNum = s.id
 	</select>
  </mapper>

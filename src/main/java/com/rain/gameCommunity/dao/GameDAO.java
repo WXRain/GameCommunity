@@ -12,5 +12,5 @@ public interface GameDAO {
 
 	public GameEntity queryGameByName(@Param("gameName") String gameName);
 
-	public GameEntity queryGameById(@Param("gameNum") int gameNum);
+	public GameEntity queryGameById(@Param("id") int id);
 }
