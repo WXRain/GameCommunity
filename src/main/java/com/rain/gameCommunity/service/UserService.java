@@ -10,4 +10,6 @@ import com.rain.gameCommunity.entity.UserEntity;
 public interface UserService {
 
 	public List<UserEntity> showAllUsers() throws Exception;
+	
+	public UserEntity checkUser(String username, String password) throws Exception;
 }

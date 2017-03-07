@@ -20,4 +20,13 @@
 			user
 	</select>
 	
+	<select id="queryUserByUsername" parameterType="String" resultType="com.rain.gameCommunity.entity.UserEntity">
+		select 
+			*
+		from
+			user
+		where
+			username = #{username};
+	</select>
+	
  </mapper>

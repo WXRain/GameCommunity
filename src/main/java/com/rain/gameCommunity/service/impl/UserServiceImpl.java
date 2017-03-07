@@ -10,6 +10,9 @@ import com.rain.gameCommunity.dao.GameDAO;
 import com.rain.gameCommunity.dao.UserDAO;
 import com.rain.gameCommunity.entity.GameEntity;
 import com.rain.gameCommunity.entity.UserEntity;
+import com.rain.gameCommunity.exception.UserNotExitException;
+import com.rain.gameCommunity.exception.UserPasswordNotCorrectException;
+import com.rain.gameCommunity.exception.UsernameOrPasswordIsNullException;
 import com.rain.gameCommunity.service.UserService;
 
 @Service
@@ -35,6 +38,45 @@ public class UserServiceImpl implements UserService {
 			user.setHasBuyedGames(hasBuyedGames);
 		}
 		return users;
+	}
+
+	@Override
+	public UserEntity checkUser(String username, String password) throws Exception {
+		
+		//检查账号密码是否为空
+		if(username == null){
+			throw new UsernameOrPasswordIsNullException("用户名不能为空");
+		}
+		
+		if(password == null){
+			throw new UsernameOrPasswordIsNullException("密码不能为空");
+		}
+		
+		username = username.trim();
+		password = password.trim();
+		
+		if(username.length() == 0){
+			throw new UsernameOrPasswordIsNullException("用户名不能为空");
+		}
+		
+		if(password.length() == 0){
+			throw new UsernameOrPasswordIsNullException("密码不能为空");
+		}
+		
+		UserEntity user = userDao.queryUserByUsername(username);
+		
+		//用户不存在
+		if(user == null || !username.equals(user.getUsername())){
+			throw new UserNotExitException("用户不存在");
+		}
+		
+		//用户密码不正确
+		if(!password.equals(user.getPassword())){
+			throw new UserPasswordNotCorrectException("用户名或者密码不正确");
+		}
+		
+		user.setPassword(null);
+		return user;
 	}
 
 }
