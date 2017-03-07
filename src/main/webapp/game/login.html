@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
@@ -24,9 +23,10 @@
 			var gameName="";
 			if(result.state == 0){
 				for(var i = 0; i < data.length; i++){
- 					gameName = "<li><a href='javascript:' onclick=showGame('" + data[i].gameName +
- 							"')>" + data[i].gameName + "</a></li>";
+ 					gameName = "<li><a id=abc href=javascript:void(0);>" 
+ 					+ data[i].gameName + "</a></li>";
 					$("#gameName").append(gameName);
+					$("#abc").attr("onclick", "showGame('" + data[i].gameName + "')");
 				}
 				
 			}else{
