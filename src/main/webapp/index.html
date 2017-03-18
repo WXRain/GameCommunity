@@ -5,8 +5,9 @@
 <title>Insert title here</title>
 <script type="text/javascript" src="./script/jquery.min.js"></script>
 <script type="text/javascript" src="./script/jquerySession.js"></script>
+<script type="text/javascript" src="./script/getRootPath.js"></script>
 <script type="text/javascript">
-	var path = window.document.location.href; 
+	var path = getRootPath(); 
 </script>
 </head>
 <body>
@@ -15,13 +16,13 @@
 	<table>
 		<tr>
 			<td><span class="text">账号:</span></td>
-			<td><input type="text" id="username" class="input"/></td>
-			<td><span id="usernameMessage"></span></td>
+			<td><input type="text" id="username" class="input" onblur="checkUsername()"/></td>
+			<td><span id="usernameMessage" class="message"></span></td>
 		</tr>
 		<tr>
 			<td><span class="text">密码:</span></td>
-			<td><input type="password" id="password" class="input"/></td>
-			<td><span id="passwordMessage"></span></td>
+			<td><input type="password" id="password" class="input" onblur="checkPassword()"/></td>
+			<td><span id="passwordMessage" class="message"></span></td>
 		</tr>
 		<tr>
 			<td><input type="submit" value="登录"/></td>
@@ -32,6 +33,31 @@
 </form>
 
 <script type="text/javascript">
+
+	$(function(){
+		$(".message").css({color:"red"});
+	});
+	
+	//检查用户名和密码是否为空
+	function checkUsername(){
+		var username = $("#username").val();
+		if(username == null || username.length == 0 || username.trim().length == 0){
+			$("#usernameMessage").text("用户名不能为空");
+		}else{
+			$("#usernameMessage").text("");
+		}
+	}
+	
+	function checkPassword(){
+		var password = $("#password").val();
+		if(password == null || password.length == 0 || password.trim().length == 0){
+			$("#passwordMessage").text("密码不能为空");
+		}else{
+			$("#passwordMessage").text("");
+		}
+	}
+
+	//检查用户名和密码是否正确
 	function checkUser(){
 		var username = $("#username").val();
 		var password = $("#password").val();
@@ -47,7 +73,7 @@
 			success: function(result){
 				if(result.state == 0){
 					//login pages
-					window.location.href = path + "game/login.html";
+					window.location.href = path + "/game/login.html";
 				}else{
 					alert(result.message);
 				}

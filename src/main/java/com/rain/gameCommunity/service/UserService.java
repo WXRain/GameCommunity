@@ -12,4 +12,8 @@ public interface UserService {
 	public List<UserEntity> showAllUsers() throws Exception;
 	
 	public UserEntity checkUser(String username, String password) throws Exception;
+	
+	public UserEntity checkOnlyUser(String username) throws Exception;
+	
+	public void addUser(UserEntity user) throws Exception;
 }

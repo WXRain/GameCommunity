@@ -13,4 +13,7 @@ public interface UserDAO {
 	public List<UserEntity> queryAllUser();
 	
 	public UserEntity queryUserByUsername(@Param("username") String username);
+	
+	public void addUser(@Param("user") UserEntity user);
+	
 }

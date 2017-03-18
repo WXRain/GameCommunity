@@ -7,9 +7,9 @@
 		select
 			user.id,
 			user.username,
-			user.password,
+			user.passwords,
 			user.sex,
-			user.level,
+			user.levels,
 			user.exp,
 			user.isManager,
 			user.introduce,
@@ -28,5 +28,13 @@
 		where
 			username = #{username};
 	</select>
+	
+	<insert id="addUser" parameterType="com.rain.gameCommunity.entity.UserEntity">
+		insert into user 
+		 (username, passwords, sex, levels, exp, isManager, introduce, head, games, registerTime)
+		 values
+		 (#{user.username}, #{user.password}, #{user.sex}, #{user.level}, #{user.exp}, #{user.isManager}, 
+		 #{user.introduce}, #{user.head}, #{user.games}, #{user.registerTime})
+	</insert>
 	
  </mapper>

@@ -79,4 +79,21 @@ public class UserServiceImpl implements UserService {
 		return user;
 	}
 
+	@Override
+	public UserEntity checkOnlyUser(String username) {
+		UserEntity user = userDao.queryUserByUsername(username);
+		if(user == null){
+			return null;
+		}else{
+			return user;
+		}
+	}
+
+	@Override
+	public void addUser(UserEntity user) throws Exception {
+		
+		System.out.println(user);
+		userDao.addUser(user);
+	}
+
 }

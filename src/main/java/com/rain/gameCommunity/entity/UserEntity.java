@@ -1,6 +1,8 @@
 package com.rain.gameCommunity.entity;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.stereotype.Repository;
@@ -18,37 +20,44 @@ public class UserEntity implements Serializable {
 	private String password;
 
 	// 注册时间
-	private String registerTime;
+	private Date registerTime;
 
 	// 性别
-	private int sex;
+	private int sex = -1;
 
 	// 等级
-	private int level;
+	private int level = 0;
 
 	// 经验
-	private int exp;
+	private int exp = 0;
 
 	// 是否是管理员
-	private int isManager;
+	private int isManager = 0;
 
 	// 介绍
-	private String introduce;
+	private String introduce = "";
 
 	// 头像路径
-	private String head;
+	private String head = "";
 
 	// 已经买的游戏
-	private String games;
+	private String games = "";
 
 	// 已经购买的游戏的列表
-	private List<GameEntity> hasBuyedGames;
+	private List<GameEntity> hasBuyedGames = null;
+	
+	//日期格式化
+	private SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
+	public String formatDate(long time){
+		return sdf.format(time);
+	}
+	
 	public UserEntity() {
 		super();
 	}
 
-	public UserEntity(long id, String username, String password, String registerTime, int sex, int level, int exp,
+	public UserEntity(long id, String username, String password, Date registerTime, int sex, int level, int exp,
 			int isManager, String introduce, String head, String games, List<GameEntity> hasBuyedGames) {
 		super();
 		this.id = id;
@@ -126,7 +135,7 @@ public class UserEntity implements Serializable {
 	/**
 	 * @return the registerTime
 	 */
-	public String getRegisterTime() {
+	public Date getRegisterTime() {
 		return registerTime;
 	}
 
@@ -134,7 +143,7 @@ public class UserEntity implements Serializable {
 	 * @param registerTime
 	 *            the registerTime to set
 	 */
-	public void setRegisterTime(String registerTime) {
+	public void setRegisterTime(Date registerTime) {
 		this.registerTime = registerTime;
 	}
 

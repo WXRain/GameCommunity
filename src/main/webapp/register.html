@@ -3,8 +3,87 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript" src="./script/jquery.min.js"></script>
+<script type="text/javascript" src="./script/jquerySession.js"></script>
+<script type="text/javascript" src="./script/getRootPath.js"></script>
+<script type="text/javascript">
+	var path = getRootPath(); 
+</script>
 </head>
 <body>
-	<h1>this is register page.</h1>
+	<form onsubmit="registerUser()" method="POST">
+		<table>
+			<tr>
+				<td>用户名：</td>
+				<td><input type="text" id="username" onblur="checkUsername()"/></td>
+				<td><span id="usernameMessage" class="message"></span></td>
+			</tr>
+			<tr>
+				<td>密码：</td>
+				<td><input type="password" id="password" onblur="checkPassword()"/></td>
+				<td><span id="passwordMessage" class="message"></span></td>
+			</tr>
+			<tr>
+				<td><input type="submit" value="注册"></input></td>
+				<td><input type="submit" value="重置"></input></td>
+				<td></td>
+			</tr>
+		</table>
+	</form>
+	
+	
+	<script type="text/javascript">
+		function checkUsername(){
+			var username = $("#username").val();
+			$.ajax({
+				url: "user/checkOnlyUsername.do",
+				method: "POST",
+				dataType: "JSON",
+				data: {"username":username},
+				success: function(result){
+					if(result.state != 0){
+						$("#usernameMessage").text(result.message);
+					}else{
+						$("#usernameMessage").text("");
+					}
+				}
+			});
+		}
+		
+		function checkPassword(){
+			var password = $("#password").val();
+			if(password == null || password.trim().length <= 2 || password.trim().length >= 16){
+				$("#passwordMessage").text("密码规则为2-16位字母数字组合");
+			}else{
+				$("#passwordMessage").text("");
+			}
+		}
+		
+		$(function(){
+			$(".message").css({color:"red"});
+		});
+		
+		function registerUser(){
+			var username = $("#username").val();
+			var password = $("#password").val();
+			
+			$.ajax({
+				url: "user/registerUser.do",
+				method: "POST",
+				dataType: "JSON",
+				data: {
+					"username":username,
+					"password":password,
+					},
+				success: function(result){
+					if(result.state == 0){
+						window.location.href = path + "/index.html";
+					}else{
+						alert(result.message);
+					}
+				}
+			});
+		}
+	</script>
 </body>
 </html>
