@@ -50,7 +50,7 @@ public class UserCotroller {
 		UserEntity user = new UserEntity();
 		try{
 			user.setUsername(username);
-			user.setPassword(password);
+			user.setPasswords(password);
 			user.setRegisterTime(new Date());
 			userService.addUser(user);
 			System.out.println("success");

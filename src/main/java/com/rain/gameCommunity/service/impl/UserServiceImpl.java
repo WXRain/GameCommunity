@@ -71,11 +71,11 @@ public class UserServiceImpl implements UserService {
 		}
 		
 		//用户密码不正确
-		if(!password.equals(user.getPassword())){
+		if(!password.equals(user.getPasswords())){
 			throw new UserPasswordNotCorrectException("用户名或者密码不正确");
 		}
 		
-		user.setPassword(null);
+		user.setPasswords(null);
 		return user;
 	}
 

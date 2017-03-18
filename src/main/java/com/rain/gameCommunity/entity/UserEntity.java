@@ -17,7 +17,7 @@ public class UserEntity implements Serializable {
 	private String username;
 
 	// 密码
-	private String password;
+	private String passwords;
 
 	// 注册时间
 	private Date registerTime;
@@ -26,7 +26,7 @@ public class UserEntity implements Serializable {
 	private int sex = -1;
 
 	// 等级
-	private int level = 0;
+	private int levels = 0;
 
 	// 经验
 	private int exp = 0;
@@ -57,15 +57,15 @@ public class UserEntity implements Serializable {
 		super();
 	}
 
-	public UserEntity(long id, String username, String password, Date registerTime, int sex, int level, int exp,
+	public UserEntity(long id, String username, String passwords, Date registerTime, int sex, int levels, int exp,
 			int isManager, String introduce, String head, String games, List<GameEntity> hasBuyedGames) {
 		super();
 		this.id = id;
 		this.username = username;
-		this.password = password;
+		this.passwords = passwords;
 		this.registerTime = registerTime;
 		this.sex = sex;
-		this.level = level;
+		this.levels = levels;
 		this.exp = exp;
 		this.isManager = isManager;
 		this.introduce = introduce;
@@ -81,8 +81,8 @@ public class UserEntity implements Serializable {
 	 */
 	@Override
 	public String toString() {
-		return "UserEntity [id=" + id + ", username=" + username + ", password=" + password + ", registerTime="
-				+ registerTime + ", sex=" + sex + ", level=" + level + ", exp=" + exp + ", isManager=" + isManager
+		return "UserEntity [id=" + id + ", username=" + username + ", passwords=" + passwords + ", registerTime="
+				+ registerTime + ", sex=" + sex + ", levels=" + levels + ", exp=" + exp + ", isManager=" + isManager
 				+ ", introduce=" + introduce + ", head=" + head + ", games=" + games + ", hasBuyedGames="
 				+ hasBuyedGames + "]";
 	}
@@ -120,16 +120,16 @@ public class UserEntity implements Serializable {
 	/**
 	 * @return the password
 	 */
-	public String getPassword() {
-		return password;
+	public String getPasswords() {
+		return passwords;
 	}
 
 	/**
 	 * @param password
 	 *            the password to set
 	 */
-	public void setPassword(String password) {
-		this.password = password;
+	public void setPasswords(String passwords) {
+		this.passwords = passwords;
 	}
 
 	/**
@@ -165,16 +165,16 @@ public class UserEntity implements Serializable {
 	/**
 	 * @return the level
 	 */
-	public int getLevel() {
-		return level;
+	public int getLevels() {
+		return levels;
 	}
 
 	/**
 	 * @param level
 	 *            the level to set
 	 */
-	public void setLevel(int level) {
-		this.level = level;
+	public void setLevels(int levels) {
+		this.levels = levels;
 	}
 
 	/**

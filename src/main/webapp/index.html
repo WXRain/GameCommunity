@@ -73,6 +73,9 @@
 			success: function(result){
 				if(result.state == 0){
 					//login pages
+					$.session.set("username", result.data.username);
+					$.session.set("userId", result.data.id);
+					$.session.set("isManager", result.data.isManager);
 					window.location.href = path + "/game/login.html";
 				}else{
 					alert(result.message);

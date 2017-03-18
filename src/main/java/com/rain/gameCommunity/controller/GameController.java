@@ -18,6 +18,16 @@ public class GameController {
 	private GameService gameService;
 
 	private String gameName;
+	
+	
+
+	public GameService getGameService() {
+		return gameService;
+	}
+
+	public void setGameService(GameService gameService) {
+		this.gameService = gameService;
+	}
 
 	/**
 	 * @return the gameName

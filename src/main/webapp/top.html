@@ -3,6 +3,10 @@
   <head>
   	<script type="text/javascript" src="./script/jquery.min.js"></script>
   	<script type="text/javascript" src="./script/jquerySession.js"></script>
+  	<script type="text/javascript" src="./script/getRootPath.js"></script>
+	<script type="text/javascript">
+		var path = getRootPath(); 
+	</script>
 	<script type="text/javascript">
 	function nowTime(){
 		var today = new Date();
@@ -40,23 +44,24 @@
   </head>
   
   <body onload="nowTime()">
-  	<table border="0" cellpadding="0" cellspacing="0">
+  	<table border="0" cellpadding="0" cellspacing="0" width=100%>
 			<tr>
-				<td>
-					<a href="http:\\localhost:8080\gameCommunity\index.html">XX论坛</a><span id="loginOrRegister"></span>
-				</td>
-				<td align="right"><div id="time"></td>
+				<td width=10%>
+					<a href="http:\\localhost:8080\gameCommunity\index.html">XX论坛</a>
+				<td id="loginOrRegister" width=50%></td>
+				<td width=20%><div id="time"></div></td>
+				<td width=20% id="quit"></td>
 			</tr>
 	</table>
      <hr/>
      <script type="text/javascript">
      	var username = $.session.get("username");
      	if(username == null || username=="" || username.length == 0){
-     		$("#loginOrRegister").append("<form action = 'servlet/Login'  method = 'post' style = 'display:inline'>"
+     		$("#loginOrRegister").append("<form onsubmit=login()  method = 'post' style = 'display:inline'>"
    		 								+"  用户名 "
-		 								+ "<input type='text' name=username>"
+		 								+ "<input type='text' name=username id=username>"
 		 								+" 密码  "
-		 								+"<input type='password' name=password>"
+		 								+"<input type='password' name=password id=password>"
 										 +"<input type='submit' value=' 登录 '>"
 										 +"<a href='javascript:void()' onclick='registerClick()'>注册 </a>"
 										 +"</form>");
@@ -65,11 +70,43 @@
      	}
      	
      	function showUsername(username){
-     		alert("username");
+     		$("#loginOrRegister").append("欢迎您,  " + $.session.get("username"));
+     		$("#quit").append("<a href=javascript:void() onclick=quit()>退出</a>");
      	}
      	
      	function registerClick(){
      		parent.location.replace("./register.html");
+     	}
+     	
+     	function quit(){
+     		$.session.clear();
+     		window.location.href = path + "/top.html";
+     	}
+     	
+     	function login(){
+     		var username = $("#username").val();
+    		var password = $("#password").val();
+    		var userdata = {
+    				"username" : username,
+    				"password" : password
+    		}
+    		$.ajax({
+    			url: "user/checkUser.do",
+    			method: "POST",
+    			dataType: "JSON",
+    			data: userdata,
+    			success: function(result){
+    				if(result.state == 0){
+    					//login pages
+    					$.session.set("username", result.data.username);
+    					$.session.set("userId", result.data.id);
+    					$.session.set("isManager", result.data.isManager);
+    					window.location.href = path + "/top.html";
+    				}else{
+    					alert(result.message);
+    				}
+    			}
+    		});
      	}
      	
      </script>
