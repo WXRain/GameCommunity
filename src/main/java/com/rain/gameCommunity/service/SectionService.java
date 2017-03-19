@@ -10,4 +10,6 @@ import com.rain.gameCommunity.entity.SectionEntity;
 public interface SectionService {
 
 	public List<SectionEntity> showAllSection() throws Exception;
+	
+	public List<SectionEntity> showSectionsByGameTypeId(long id) throws Exception;
 }

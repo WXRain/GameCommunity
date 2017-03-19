@@ -46,4 +46,11 @@ public class SectionServiceImpl implements SectionService {
 		return sections;
 	}
 
+	@Override
+	public List<SectionEntity> showSectionsByGameTypeId(long id) throws Exception {
+		List<SectionEntity> sections = sectionDao.querySectionsByGameTypeId(id);
+		sections = changeManagerToString(sections);
+		return sections;
+	}
+
 }

@@ -8,4 +8,9 @@
 		from
 			section
 	</select>
+	
+	<select id="querySectionsByGameTypeId" parameterType="Long" resultType="com.rain.gameCommunity.entity.SectionEntity">
+		select * from section where
+		    gameType = #{id}
+	</select>
  </mapper>

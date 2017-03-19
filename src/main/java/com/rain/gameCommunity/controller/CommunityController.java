@@ -37,9 +37,9 @@ public class CommunityController {
 	
 	@RequestMapping("/initGameType.do")
 	@ResponseBody
-	public JsonResult<List<SectionEntity>> initGameType(){
+	public JsonResult<List<SectionEntity>> initGameType(String gameTypeId){
 		try{
-			List<SectionEntity> sections = sectionService.showAllSection();
+			List<SectionEntity> sections = sectionService.showSectionsByGameTypeId(Long.parseLong(gameTypeId));
 			return new JsonResult<List<SectionEntity>>(sections);
 		}catch(Exception e){
 			return new JsonResult<List<SectionEntity>>(e.getMessage());
