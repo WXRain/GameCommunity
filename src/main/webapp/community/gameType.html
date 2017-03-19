@@ -13,7 +13,9 @@
 </head>
 <body>
 	<div><iframe align="center" width="100%" height="100" src="../top.html" frameborder="no" border="0" marginwidth="0" marginheight="0" scrolling="no"></iframe></div>
-	
+	<center><h2 id="gameTypeName"></h2></center><br/>
+	<div><center><h3 id="introduce"></h3></center></div>
+	<br/><br/>
 	<table width="100%" id="table">
        <tr>
            <td width="25%">游戏名</td>
@@ -38,25 +40,50 @@
 			data: {"gameTypeId" : gameTypeId},
 			success: function(result){
 				if(result.state == 0){
-					console.log(result.data);
 					createTable(result.data);
 				}else{
 					alert(result.message);
 				}
 			}
 		});
+		
+		$.ajax({
+			url: "showGameType.do",
+			method: "POST",
+			dataType: "JSON",
+			data: {"gameTypeId" : gameTypeId},
+			success: function(result){
+				if(result.state == 0){
+					$("#gameTypeName").text(result.data.typeName);
+					$("#introduce").text("介绍：" + result.data.introduce);
+				}else{
+					alert(result.message);
+				}
+			}
+		});
+		
 	});		
    
    function createTable(data){
-	   for(var i = 0; i < data.length; i++){
+	   if(data == null || data.length <= 0){
+		   $("#table").append("<tr><td colspan='4'><center>该板块无内容</center></td></tr>");
+	   }else{
+		   for(var i = 0; i < data.length; i++){
 		   $("#table").append(
-					"<tr><td>" + data[i].name + "</td>" + 
+					"<tr><td><a href=javascript:void() onclick=clickSection("+ data[i].id +")>" + data[i].name + "</a></td>" + 
 					"<td>" + data[i].introduce + "</td>" + 
 					"<td>" + data[i].createTime + "</td>" + 
 					"<td>" + data[i].sectionManager + "</td></tr><tr><td colspan='4'><hr/></td></tr>"
 				   );
+	   		}
 	   }
+	  
 	   
+	   
+   }
+   
+   function clickSection(sectionId){
+	   alert(sectionId);
    }
    
    </script>

@@ -46,7 +46,16 @@ public class CommunityController {
 		}
 	}
 	
-	
+	@RequestMapping("/showGameType.do")
+	@ResponseBody
+	public JsonResult<GameTypeEntity> showGameType(String gameTypeId){
+		try{
+			GameTypeEntity gameTypeEntity = gameTypeService.queryGameTypeById(Long.parseLong(gameTypeId));
+			return new JsonResult<GameTypeEntity>(gameTypeEntity);
+		}catch(Exception e){
+			return new JsonResult<GameTypeEntity>(e.getMessage());
+		}
+	}
 	
 	
 	
