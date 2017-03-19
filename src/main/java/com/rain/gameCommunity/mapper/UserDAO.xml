@@ -37,4 +37,11 @@
 		 #{user.introduce}, #{user.head}, #{user.games}, #{user.registerTime})
 	</insert>
 	
+	<select id="queryUsersById" parameterType="java.util.List" resultType="com.rain.gameCommunity.entity.UserEntity">
+		select * from user where id in
+		<foreach collection="id" index="index" item="item" open="(" close=")" separator=",">  
+            #{item}  
+        </foreach>  
+	</select>
+	
  </mapper>

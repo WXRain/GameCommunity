@@ -91,9 +91,10 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public void addUser(UserEntity user) throws Exception {
-		
-		System.out.println(user);
 		userDao.addUser(user);
 	}
 
+	public List<UserEntity> queryUsersById(List<Long> ids) throws Exception{
+		return userDao.queryUsersById(ids);
+	}
 }

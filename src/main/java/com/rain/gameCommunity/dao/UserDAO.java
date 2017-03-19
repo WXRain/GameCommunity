@@ -16,4 +16,6 @@ public interface UserDAO {
 	
 	public void addUser(@Param("user") UserEntity user);
 	
+	public List<UserEntity> queryUsersById(@Param("id") List<Long> id);
+	
 }

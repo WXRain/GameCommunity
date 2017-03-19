@@ -16,4 +16,6 @@ public interface UserService {
 	public UserEntity checkOnlyUser(String username) throws Exception;
 	
 	public void addUser(UserEntity user) throws Exception;
+	
+	public List<UserEntity> queryUsersById(List<Long> ids) throws Exception;
 }
