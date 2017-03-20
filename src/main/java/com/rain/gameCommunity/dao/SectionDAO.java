@@ -11,4 +11,6 @@ public interface SectionDAO {
 	public List<SectionEntity> queryAllSections();
 	
 	public List<SectionEntity> querySectionsByGameTypeId(@Param("id") long id);
+	
+	public List<SectionEntity> querySectionsBySectionId(@Param("id") List<Long> id);
 }

@@ -53,4 +53,16 @@ public class SectionServiceImpl implements SectionService {
 		return sections;
 	}
 
+	@Override
+	public List<SectionEntity> showSectionsBySectionId(String id) throws Exception {
+		List<Long> ids = new ArrayList<Long>();
+		String[] idsString = id.split(",");
+		for(int i = 0; i < idsString.length; i++){
+			ids.add(Long.parseLong(idsString[i]));
+		}
+		List<SectionEntity> sections = sectionDao.querySectionsBySectionId(ids);
+		sections = changeManagerToString(sections);
+		return sections;
+	}
+
 }

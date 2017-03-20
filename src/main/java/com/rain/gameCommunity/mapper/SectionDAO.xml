@@ -13,4 +13,11 @@
 		select * from section where
 		    gameType = #{id}
 	</select>
+	
+	<select id="querySectionsBySectionId" parameterType="java.util.List" resultType="com.rain.gameCommunity.entity.SectionEntity">
+		select * from section where id in
+		<foreach collection="id" index="index" item="item" open="(" close=")" separator=",">
+			#{item}
+		</foreach>
+	</select>
  </mapper>

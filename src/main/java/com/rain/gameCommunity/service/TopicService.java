@@ -10,4 +10,6 @@ import com.rain.gameCommunity.entity.TopicEntity;
 public interface TopicService {
 
 	public List<TopicEntity> showAllTopic() throws Exception;
+	
+	public List<TopicEntity> showTopicsBySectionId(String id) throws Exception;
 }

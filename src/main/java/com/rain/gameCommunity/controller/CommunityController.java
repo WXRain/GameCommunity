@@ -9,8 +9,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.rain.gameCommunity.entity.GameTypeEntity;
 import com.rain.gameCommunity.entity.SectionEntity;
+import com.rain.gameCommunity.entity.TopicEntity;
 import com.rain.gameCommunity.service.GameTypeService;
 import com.rain.gameCommunity.service.SectionService;
+import com.rain.gameCommunity.service.TopicService;
 
 @Controller
 @RequestMapping("/community")
@@ -21,6 +23,9 @@ public class CommunityController {
 	
 	@Autowired
 	private SectionService sectionService;
+	
+	@Autowired
+	private TopicService topicService;
 	
 	private String gameTypeName;
 	
@@ -57,7 +62,29 @@ public class CommunityController {
 		}
 	}
 	
+	@RequestMapping("/initSection.do")
+	@ResponseBody
+	public JsonResult<List<TopicEntity>> initSection(String sectionId){
+		try{
+			List<TopicEntity> topics = topicService.showTopicsBySectionId(sectionId);
+			return new JsonResult<List<TopicEntity>>(topics);
+		}catch(Exception e){
+			return new JsonResult<List<TopicEntity>>(e.getMessage());
+		}
+	}
 	
+	@RequestMapping("/showSection.do")
+	@ResponseBody
+	public JsonResult<SectionEntity> showSection(String sectionId){
+		try{
+			List<SectionEntity> sections = sectionService.showSectionsBySectionId(sectionId);
+			if(sections == null || sections.size() <= 0) throw new Exception("系统错误");
+			SectionEntity section = sectionService.showSectionsBySectionId(sectionId).get(0);
+			return new JsonResult<SectionEntity>(section);
+		}catch(Exception e){
+			return new JsonResult<SectionEntity>(e.getMessage());
+		}
+	}
 	
 
 	public GameTypeService getGameTypeService() {

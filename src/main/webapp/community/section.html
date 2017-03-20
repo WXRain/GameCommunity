@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>游戏板块</title>
+<title>游戏帖子</title>
 <script type="text/javascript" src="../script/jquery.min.js"></script>
 <script type="text/javascript" src="../script/jquerySession.js"></script>
 <script type="text/javascript" src="../script/getRootPath.js"></script>
@@ -13,7 +13,7 @@
 </head>
 <body>
 	<div><iframe align="center" width="100%" height="100" src="../top.html" frameborder="no" border="0" marginwidth="0" marginheight="0" scrolling="no"></iframe></div>
-	<center><h2 id="gameTypeName"></h2></center><br/>
+	<center><h2 id="sectionName"></h2></center><br/>
 	<div><center><h3 id="introduce"></h3></center></div>
 	<br/><br/>
 	<table width="100%" id="table">
@@ -21,7 +21,7 @@
            <td width="25%">游戏名</td>
            <td width="25%">介绍</td>
            <td width="25%">创建时间</td>
-           <td width="25%">管理员</td>
+           <td width="25%">发帖人</td>
            
        </tr>
        <tr>
@@ -32,12 +32,12 @@
    <script type="text/javascript">
    		
    $(function(){
-	   var gameTypeId = getParam("gameTypeId");
+	   var sectionId = getParam("sectionId");
 		$.ajax({
-			url: "initGameType.do",
+			url: "initSection.do",
 			method: "POST",
 			dataType: "JSON",
-			data: {"gameTypeId" : gameTypeId},
+			data: {"sectionId" : sectionId},
 			success: function(result){
 				if(result.state == 0){
 					createTable(result.data);
@@ -48,13 +48,13 @@
 		});
 		
 		$.ajax({
-			url: "showGameType.do",
+			url: "showSection.do",
 			method: "POST",
 			dataType: "JSON",
-			data: {"gameTypeId" : gameTypeId},
+			data: {"sectionId" : sectionId},
 			success: function(result){
 				if(result.state == 0){
-					$("#gameTypeName").text(result.data.typeName);
+					$("#sectionName").text(result.data.name);
 					$("#introduce").text("介绍：" + result.data.introduce);
 				}else{
 					alert(result.message);
@@ -68,12 +68,13 @@
 	   if(data == null || data.length <= 0){
 		   $("#table").append("<tr><td colspan='4'><center>该板块无内容</center></td></tr>");
 	   }else{
+		   console.log(data);
 		   for(var i = 0; i < data.length; i++){
 		   $("#table").append(
-					"<tr><td><a href=javascript:void() onclick=clickSection("+ data[i].id +")>" + data[i].name + "</a></td>" + 
-					"<td>" + data[i].introduce + "</td>" + 
+					"<tr><td><a href=javascript:void() onclick=clickTopic("+ data[i].id +")>" + data[i].topicName + "</a></td>" + 
+					"<td>" + data[i].topicText + "</td>" + 
 					"<td>" + data[i].createTime + "</td>" + 
-					"<td>" + data[i].sectionManager + "</td></tr><tr><td colspan='4'><hr/></td></tr>"
+					"<td>" + data[i].username + "</td></tr><tr><td colspan='4'><hr/></td></tr>"
 				   );
 	   		}
 	   }
@@ -82,8 +83,8 @@
 	   
    }
    
-   function clickSection(sectionId){
-	   window.location.href = path + "/community/section.html?sectionId=" + sectionId;
+   function clickTopic(topicId){
+	  	alert(topicId);
    }
    
    </script>

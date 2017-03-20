@@ -12,4 +12,6 @@ public interface SectionService {
 	public List<SectionEntity> showAllSection() throws Exception;
 	
 	public List<SectionEntity> showSectionsByGameTypeId(long id) throws Exception;
+	
+	public List<SectionEntity> showSectionsBySectionId(String id) throws Exception;
 }

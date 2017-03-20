@@ -8,4 +8,8 @@
 		from
 			topic
 	</select>
+	
+	<select id="queryTopicsBySectionId" parameterType="Long" resultType="com.rain.gameCommunity.entity.TopicEntity">
+		select * from topic where sectionId = #{id}
+	</select>
  </mapper>

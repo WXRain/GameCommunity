@@ -12,6 +12,8 @@ public class TopicEntity implements Serializable {
 
 	// 用户id
 	private long userId;
+	
+	private String username;
 
 	// 板块id
 	private long sectionId;
@@ -70,6 +72,15 @@ public class TopicEntity implements Serializable {
 		return "TopicEntity [id=" + id + ", userId=" + userId + ", sectionId=" + sectionId + ", clickNum=" + clickNum
 				+ ", replyNum=" + replyNum + ", topicName=" + topicName + ", topicText=" + topicText + ", createTime="
 				+ createTime + ", lastReplyTime=" + lastReplyTime + ", isTop=" + isTop + ", isFine=" + isFine + "]";
+	}
+
+	
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
 	/**
