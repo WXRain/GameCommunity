@@ -90,19 +90,14 @@ public class CommunityController {
 	@ResponseBody
 	public JsonResult<TopicEntity> initTopic(String topicId){
 		try{
-			TopicEntity topic = topicService.showTopicsByTopicId(topicId);
+			List<TopicEntity> topics = topicService.showTopicsByTopicId(topicId);
+			TopicEntity topic = new TopicEntity();
+			if(topics == null || topics.size() <= 0) throw new Exception("系统错误");
+			topic = topics.get(0);
 			return new JsonResult<TopicEntity>(topic);
 		}catch(Exception e){
 			return new JsonResult<TopicEntity>(e.getMessage());
 		}
-	}
-
-	public GameTypeService getGameTypeService() {
-		return gameTypeService;
-	}
-
-	public void setGameTypeService(GameTypeService gameTypeService) {
-		this.gameTypeService = gameTypeService;
 	}
 
 	public String getGameTypeName() {

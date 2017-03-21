@@ -59,8 +59,15 @@ public class TopicServiceImpl implements TopicService {
 
 	@Override
 	public List<TopicEntity> showTopicsByTopicId(String id) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		String[] topicIdString = id.split(",");
+		List<Long> ids = new ArrayList<Long>();
+		for(int i = 0; i < topicIdString.length; i++){
+			ids.add(Long.parseLong(topicIdString[i]));
+		}
+		List<TopicEntity> topics = topicDao.queryTopicsByTopicId(ids);
+		topics = changeUserIdToString(topics);
+		return topics;
+		
 	}
 
 }
