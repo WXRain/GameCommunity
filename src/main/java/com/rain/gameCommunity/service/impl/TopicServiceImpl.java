@@ -55,4 +55,12 @@ public class TopicServiceImpl implements TopicService {
 		return topics;
 	}
 
+
+
+	@Override
+	public List<TopicEntity> showTopicsByTopicId(String id) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

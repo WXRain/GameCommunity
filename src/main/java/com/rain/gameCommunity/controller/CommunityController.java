@@ -86,6 +86,16 @@ public class CommunityController {
 		}
 	}
 	
+	@RequestMapping("/initTopic.do")
+	@ResponseBody
+	public JsonResult<TopicEntity> initTopic(String topicId){
+		try{
+			TopicEntity topic = topicService.showTopicsByTopicId(topicId);
+			return new JsonResult<TopicEntity>(topic);
+		}catch(Exception e){
+			return new JsonResult<TopicEntity>(e.getMessage());
+		}
+	}
 
 	public GameTypeService getGameTypeService() {
 		return gameTypeService;

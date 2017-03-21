@@ -13,4 +13,6 @@ public interface TopicDAO {
 	public List<TopicEntity> queryAllTopics();
 	
 	public List<TopicEntity> queryTopicsBySectionId(@Param("id") long id);
+	
+	public List<TopicEntity> queryTopicsByTopicId(@Param("id") List<Long> id);
 }

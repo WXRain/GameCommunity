@@ -12,4 +12,11 @@
 	<select id="queryTopicsBySectionId" parameterType="Long" resultType="com.rain.gameCommunity.entity.TopicEntity">
 		select * from topic where sectionId = #{id}
 	</select>
+	
+	<select id="queryTopicsByTopicId" parameterType="java.util.List" resultType="com.rain.gameCommunity.entity.TopicEntity">
+		select * from topic where id in
+		<foreach collection="id" index="index" separator="," item="item" open="(" close=")">
+			#{item}
+		</foreach>
+	</select>
  </mapper>

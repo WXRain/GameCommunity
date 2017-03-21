@@ -68,7 +68,6 @@
 	   if(data == null || data.length <= 0){
 		   $("#table").append("<tr><td colspan='4'><center>该板块无内容</center></td></tr>");
 	   }else{
-		   console.log(data);
 		   for(var i = 0; i < data.length; i++){
 		   $("#table").append(
 					"<tr><td><a href=javascript:void() onclick=clickTopic("+ data[i].id +")>" + data[i].topicName + "</a></td>" + 
@@ -84,7 +83,7 @@
    }
    
    function clickTopic(topicId){
-	  	alert(topicId);
+	   window.location.href = path + "/community/topic.html?topicId=" + topicId;
    }
    
    </script>
