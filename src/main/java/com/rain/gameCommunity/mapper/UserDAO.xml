@@ -33,7 +33,7 @@
 		insert into user 
 		 (username, passwords, sex, levels, exp, isManager, introduce, head, games, registerTime)
 		 values
-		 (#{user.username}, #{user.password}, #{user.sex}, #{user.level}, #{user.exp}, #{user.isManager}, 
+		 (#{user.username}, #{user.passwords}, #{user.sex}, #{user.levels}, #{user.exp}, #{user.isManager}, 
 		 #{user.introduce}, #{user.head}, #{user.games}, #{user.registerTime})
 	</insert>
 	

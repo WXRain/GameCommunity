@@ -19,15 +19,6 @@ public class GameController {
 
 	private String gameName;
 	
-	
-
-	public GameService getGameService() {
-		return gameService;
-	}
-
-	public void setGameService(GameService gameService) {
-		this.gameService = gameService;
-	}
 
 	/**
 	 * @return the gameName
@@ -58,10 +49,10 @@ public class GameController {
 
 	@RequestMapping("/showGame.do")
 	@ResponseBody
-	public JsonResult<GameEntity> showGame(String gameName) {
+	public JsonResult<GameEntity> showGame(String gameId) {
 		GameEntity game;
 		try {
-			game = gameService.showGame(gameName);
+			game = gameService.showGameById(gameId);
 		} catch (Exception e) {
 			return new JsonResult<GameEntity>(e.getMessage());
 		}

@@ -30,4 +30,11 @@ public class GameServiceImpl implements GameService {
 		return game;
 	}
 
+	@Override
+	public GameEntity showGameById(String id) throws Exception {
+		long idLong = Long.parseLong(id);
+		GameEntity game = gameDao.queryGameById(idLong);
+		return game;
+	}
+
 }

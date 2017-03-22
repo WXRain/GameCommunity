@@ -31,7 +31,7 @@
  					gameName = "<li><a id="+ data[i].id +" href=javascript:void(0);>" 
  					+ data[i].gameName + "</a></li>";
 					$("#gameName").append(gameName);
-					$("#" + data[i].id).attr("onclick", "showGame('" + data[i].gameName + "')");
+					$("#" + data[i].id).attr("onclick", "showGame('" + data[i].id + "')");
 				}
 				
 			}else{
@@ -42,9 +42,8 @@
 		
 	});
 	
-	function showGame(gameName){
-		$.session.set("gameName",gameName);
-		location.href="showGame.html?gameName=" + gameName;
+	function showGame(gameId){
+		location.href="showGame.html?gameId=" + gameId;
 	}
 	</script>
 </body>

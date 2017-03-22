@@ -6,9 +6,10 @@
 <script type="text/javascript" src="../script/jquery.min.js"></script>
 <script type="text/javascript" src="../script/jquerySession.js"></script>
 <script type="text/javascript" src="../script/getRootPath.js"></script>
-<script type="text/javascript" src="../script/getParam.js"></script>
+<script type="text/javascript" src="../script/getParam.js" charset="utf=8"></script>
 <script type="text/javascript">
 	var path = getRootPath(); 
+	var gameId = getParam("gameId");
 </script>
 </head>
 <body>
@@ -58,12 +59,11 @@ function jumpToCommunity(){
 	alert("跳转到论坛中……");
 }
 
-var gameName = $.session.get("gameName");
 $.ajax({
 	url:'showGame.do',
 	method:'POST',
 	dataType:'JSON',
-	data: {"gameName":gameName},
+	data: {"gameId":gameId},
 	success:function(result){
 		console.log(result.data);
 		if(result.state == 0){
@@ -71,7 +71,7 @@ $.ajax({
 			$("#gameName").text("游戏名称：" + data.gameName);
 			$("#buildTime").text("游戏出版日期：" + data.buildDate);
 			$("#introduce").text("游戏介绍：" + data.introduce);
-			$("#price").text("游戏价格：" + data.price);
+			$("#price").text("游戏价格：¥" + data.price);
 			$("#size").text("游戏大小：" + data.size);
 			
 			$("#cpu").text("处理器要求：" + data.systemSupport.cpu);

@@ -11,21 +11,27 @@
 </script>
 </head>
 <body>
-	<form onsubmit="registerUser()" method="POST">
+	<form action="user/registerUser.do" method="POST" enctype="multipart/form-data">
 		<table>
 			<tr>
 				<td>用户名：</td>
-				<td><input type="text" id="username" onblur="checkUsername()"/></td>
+				<td><input type="text" id="username" name="username" onblur="checkUsername()"/></td>
 				<td><span id="usernameMessage" class="message"></span></td>
 			</tr>
 			<tr>
 				<td>密码：</td>
-				<td><input type="password" id="password" onblur="checkPassword()"/></td>
+				<td><input type="password" id="passwords" name="passwords" onblur="checkPassword()"/></td>
 				<td><span id="passwordMessage" class="message"></span></td>
 			</tr>
 			<tr>
-				<td><input type="submit" value="注册"></input></td>
-				<td><input type="submit" value="重置"></input></td>
+				<td>选择头像：</td>
+				<td><input type="file" name="file" id="fileName" onblur="checkHead()"></td>
+				<td><span id="headMessage" class="message"></span>
+			</tr>
+			<tr>
+				<td><input type="button" value="注册" onclick="checkForm()"></input>
+				<input type="submit" style= "display:none" id="register"></input></td>
+				<td><input type="reset" value="重置"></input></td>
 				<td></td>
 			</tr>
 		</table>
@@ -33,8 +39,43 @@
 	
 	
 	<script type="text/javascript">
+	
+		function checkForm(){
+			if(!checkUsername() || !checkPassword() || !checkHead()) 
+				alert('不符合注册规则，请检查！');
+			else {
+				console.log("register......");
+				$("#register").click();
+			}
+				
+		
+		}
+	
+		function checkHead(){
+			var fileName = $("#fileName").val();
+			if(fileName == null || fileName.length == 0){
+				$("#headMessage").text("");
+				return true;
+			}
+			if(!fileName.endsWith(".jpg") && !fileName.endsWith(".bmp")
+					&& !fileName.endsWith(".jpeg") && !fileName.endsWith(".png")
+					&& !fileName.endsWith(".gif")){
+				$("#headMessage").text("文件格式错误，请检查！");
+				return false;
+			}else{
+				$("#headMessage").text("");
+				return true;
+			}
+			return true;
+		}
+	
 		function checkUsername(){
 			var username = $("#username").val();
+			if(username == null || username.length == 0){
+				$("#usernameMessage").text("用户名不能为空！");
+				return false;
+			}
+			var success = true;
 			$.ajax({
 				url: "user/checkOnlyUsername.do",
 				method: "POST",
@@ -43,19 +84,24 @@
 				success: function(result){
 					if(result.state != 0){
 						$("#usernameMessage").text(result.message);
+						success = false;
 					}else{
 						$("#usernameMessage").text("");
+						success = true;
 					}
 				}
 			});
+			return success;
 		}
 		
 		function checkPassword(){
-			var password = $("#password").val();
-			if(password == null || password.trim().length <= 2 || password.trim().length >= 16){
-				$("#passwordMessage").text("密码规则为2-16位字母数字组合");
+			var password = $("#passwords").val();
+			if(password == null || password.trim().length < 3 || password.trim().length >= 16){
+				$("#passwordMessage").text("密码规则为3-16位字母数字组合");
+				return false;
 			}else{
 				$("#passwordMessage").text("");
+				return true;
 			}
 		}
 		
@@ -65,7 +111,12 @@
 		
 		function registerUser(){
 			var username = $("#username").val();
-			var password = $("#password").val();
+			var password = $("#passwords").val();
+			if(checkUsername() && checkPassword() && checkHead());
+			else {
+				alert("不符合注册规则，请检查");
+				return false;
+			}
 			
 			$.ajax({
 				url: "user/registerUser.do",
@@ -73,7 +124,7 @@
 				dataType: "JSON",
 				data: {
 					"username":username,
-					"password":password,
+					"passwords":password
 					},
 				success: function(result){
 					if(result.state == 0){
