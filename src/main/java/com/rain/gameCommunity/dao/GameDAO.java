@@ -13,4 +13,6 @@ public interface GameDAO {
 	public GameEntity queryGameByName(@Param("gameName") String gameName);
 
 	public GameEntity queryGameById(@Param("id") long id);
+	
+	public List<GameEntity> queryGameByGameType(@Param("gameType") long gameType);
 }

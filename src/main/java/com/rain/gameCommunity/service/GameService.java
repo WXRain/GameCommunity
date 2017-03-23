@@ -14,4 +14,6 @@ public interface GameService {
 	public GameEntity showGame(String gameName) throws Exception;
 	
 	public GameEntity showGameById(String id) throws Exception;
+	
+	public List<GameEntity> showGamesByGameType(String gameType) throws Exception;
 }

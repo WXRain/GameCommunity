@@ -41,6 +41,27 @@ public class GameTypeEntity implements Serializable {
 
 	
 	
+	public GameTypeEntity() {
+		
+	}
+
+
+
+	public GameTypeEntity(long id, String typeName, String introduce, Date createTime, String manager,
+			List<UserEntity> managers, String createTimeString, SimpleDateFormat sdf) {
+		super();
+		this.id = id;
+		this.typeName = typeName;
+		this.introduce = introduce;
+		this.createTime = createTime;
+		this.manager = manager;
+		this.managers = managers;
+		this.createTimeString = createTimeString;
+		this.sdf = sdf;
+	}
+
+
+
 	public SimpleDateFormat getSdf() {
 		return sdf;
 	}

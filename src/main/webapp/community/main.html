@@ -45,7 +45,7 @@ function createTable(data){
 		   $("#table").append("<tr><td colspan='3'><center>该板块无内容</center></td></tr>");
 	}else{
 		for(var i = 0; i < data.length; i++){
-			$("table").append("<tr> <td><a href=javascript:void() onclick=clickGameType(" + data[i].id + ")>" + data[i].typeName + "</a></td>" +
+			$("table").append("<tr><td><a href=javascript:void() onclick=clickGameType(" + data[i].id + ")>" + data[i].typeName + "</a></td>" +
 			  "<td>" + data[i].introduce + "</td>" + 
 			  "<td>" + data[i].createTimeString + 
 			  "</td></tr><tr><td colspan='3'><hr/></td></tr>");

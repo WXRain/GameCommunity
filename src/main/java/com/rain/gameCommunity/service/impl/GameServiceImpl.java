@@ -37,4 +37,11 @@ public class GameServiceImpl implements GameService {
 		return game;
 	}
 
+	@Override
+	public List<GameEntity> showGamesByGameType(String gameType) throws Exception {
+		long gameTypeId = Long.parseLong(gameType);
+		List<GameEntity> games = gameDao.queryGameByGameType(gameTypeId);
+		return games;
+	}
+
 }

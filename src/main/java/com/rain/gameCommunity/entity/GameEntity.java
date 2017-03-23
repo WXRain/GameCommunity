@@ -55,7 +55,6 @@ public class GameEntity implements Serializable {
 	private SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
 
 	public GameEntity() {
-		super();
 		this.cutOff = 1;
 		this.version = "1.0.0";
 

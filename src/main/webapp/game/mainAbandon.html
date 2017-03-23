@@ -1,0 +1,50 @@
+<html>
+<head>
+<meta charset="UTF-8">
+<script type="text/javascript" src="../script/jquery.min.js"></script>
+<script type="text/javascript" src="../script/jquerySession.js"></script>
+<title>Insert title here</title>
+</head>
+<body>
+<div><iframe align="center" width="100%" height="100" src="../top.html" frameborder="no" border="0" marginwidth="0" marginheight="0" scrolling="no"></iframe></div>
+
+<br/>
+	<center><h2 id="title"></h2></center><br/><br/>
+	<ol id="gameName" style="line-height:50px"></ol>
+	
+	
+	
+	
+	
+	<script type="text/javascript">
+	$("#title").text("游戏类型主页");
+	$.ajax({
+		url:'showallgame.do',
+		method:'POST',
+		dataType:'JSON',
+		data: "",
+		success:function(result){
+			var data = result.data;
+			var gameName="";
+			if(result.state == 0){
+				for(var i = 0; i < data.length; i++){
+ 					gameName = "<li><a id="+ data[i].id +" href=javascript:void(0);>" 
+ 					+ data[i].gameName + "</a></li>";
+					$("#gameName").append(gameName);
+					$("#" + data[i].id).attr("onclick", "showGame('" + data[i].id + "')");
+				}
+				
+			}else{
+				alert(result.message);
+			}
+		}
+		
+		
+	});
+	
+	function showGame(gameId){
+		location.href="showGame.html?gameId=" + gameId;
+	}
+	</script>
+</body>
+</html>

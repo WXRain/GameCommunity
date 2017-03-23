@@ -32,7 +32,7 @@
 				<td><input type="button" value="注册" onclick="checkForm()"></input>
 				<input type="submit" style= "display:none" id="register"></input></td>
 				<td><input type="reset" value="重置"></input></td>
-				<td></td>
+				<td><a href="javascript:void()" id="jumpToLogin">跳转到主页面</a></td>
 			</tr>
 		</table>
 	</form>
@@ -107,6 +107,7 @@
 		
 		$(function(){
 			$(".message").css({color:"red"});
+			$("#jumpToLogin").attr("href", path);
 		});
 		
 		function registerUser(){
