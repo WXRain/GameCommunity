@@ -4,8 +4,12 @@
   	<script type="text/javascript" src="./script/jquery.min.js"></script>
   	<script type="text/javascript" src="./script/jquerySession.js"></script>
   	<script type="text/javascript" src="./script/getRootPath.js"></script>
+  	<script type="text/javascript" src="./script/getParam.js"></script>
+  	
 	<script type="text/javascript">
 		var path = getRootPath(); 
+		var pageNum = getParam("page");
+		if(pageNum == null || pageNum == 0) pageNum = 1;
 	</script>
 	<script type="text/javascript">
 	function nowTime(){
@@ -50,7 +54,8 @@
 					<a href="javascript:void()" onclick=toIndex()>XX论坛</a>
 				<td id="loginOrRegister" width=50%></td>
 				<td width=20%><div id="time"></div></td>
-				<td width=20% id="quit"></td>
+				<td width=5% id="quit"></td>
+				<td width=15% id="search"><input type="text" id="nameCondition"/>&nbsp;&nbsp;<input type="button" value="搜索" onclick="search()"/></td>
 			</tr>
 	</table>
      <hr/>
@@ -107,6 +112,24 @@
     					$.session.set("userId", result.data.id);
     					$.session.set("isManager", result.data.isManager);
     					window.location.href = path + "/top.html";
+    				}else{
+    					alert(result.message);
+    				}
+    			}
+    		});
+     	}
+     	
+     	function search(){
+     		var nameCondition = $("#nameCondition").val();
+     		$.ajax({
+    			url: "searchGame.do",
+    			method: "POST",
+    			dataType: "JSON",
+    			data: {"nameCondition":nameCondition,
+    				   "currentPage":pageNum},
+    			success: function(result){
+    				if(result.state == 0){
+    					parent.location.replace(path + "/searchResult.html");
     				}else{
     					alert(result.message);
     				}

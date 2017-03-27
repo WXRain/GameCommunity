@@ -70,14 +70,22 @@
 	
 	<select id="queryGameByGameType" resultMap="queryGameMap">
 		select * from game g, systemsupport s where g.gameType=#{gameType} and g.systemTypeNum = s.id limit #{startLocation},
-			#{endLocation}
+			#{perPageNum}
 	</select>
 	
-	<select id="queryGameCountByCondition" resultMap="count">
-		select count(*) as countNum from game g where 1 = 1
+	<select id="queryGameCountByNameCondition" resultType="Integer">
+		select count(*) from game g , systemsupport s where g.systemTypeNum = s.id
 		<if test="nameCondition!=null">
 			and g.gamename like CONCAT(CONCAT('%', #{nameCondition}), '%')
 		</if>
+	</select>
+	
+	<select id="queryGameByCondition" resultMap="queryGameMap">
+		select * from game g, systemsupport s where g.systemTypeNum = s.id 
+		<if test="nameCondition!=null">
+			and g.gamename like CONCAT(CONCAT('%', #{nameCondition}), '%')
+		</if>
+		limit #{startLocation}, #{perPageNum}
 	</select>
 	
 	<select id="queryGamesCountByGameType" resultType="Integer">

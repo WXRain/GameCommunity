@@ -21,4 +21,8 @@ public interface GameService {
 	public Integer queryGameCountByNameCondition(String nameCondition) throws Exception;
 	
 	public int showGamesCountByGameType(long gameType) throws Exception;
+	
+	public List<GameEntity> showGameByCondition(String nameCondition, PagingData pagingData) throws Exception;
+	
+	public int showGameCountByCondition(String nameCondition) throws Exception;
 }

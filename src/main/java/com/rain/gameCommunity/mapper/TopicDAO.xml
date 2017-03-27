@@ -10,7 +10,7 @@
 	</select>
 	
 	<select id="queryTopicsBySectionId" resultType="com.rain.gameCommunity.entity.TopicEntity">
-		select * from topic where sectionId = #{id} limit #{startLocation}, #{endLocation}
+		select * from topic where sectionId = #{id} limit #{startLocation}, #{perPageNum}
 	</select>
 	
 	<select id="queryTopicsByTopicId" parameterType="java.util.List" resultType="com.rain.gameCommunity.entity.TopicEntity">
@@ -20,8 +20,19 @@
 		</foreach>
 	</select>
 	
-	<select id="queryTopicsCountBySectionId" parameterType="Long" resultType="Integer">
-		select count(*) from topic where sectionId=#{id}
+	<select id="queryTopicsByCondition" resultType="com.rain.gameCommunity.entity.TopicEntity">
+		select * from topic where 1 = 1
+		<if test="nameCondition!=null">
+			and topicName like CONCAT(CONCAT('%', #{nameCondition}), '%')
+		</if>
+		limit #{startLocation}, #{perPageNum}
+	</select>
+	
+	<select id="queryTopicsCountByCondition" resultType="Integer">
+		select count(*) from topic where 1 = 1
+		<if test="nameCondition!=null">
+			and topicName like CONCAT(CONCAT('%', #{nameCondition}), '%')
+		</if>
 	</select>
 	
  </mapper>

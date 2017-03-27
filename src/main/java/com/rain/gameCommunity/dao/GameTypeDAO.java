@@ -14,5 +14,5 @@ public interface GameTypeDAO {
 	
 	public Integer queryGameTypeCount ();
 	
-	public List<GameTypeEntity> queryGameTypesByPage(@Param("startLocation") int startLocation, @Param("endLocation") int endLocation);
+	public List<GameTypeEntity> queryGameTypesByPage(@Param("startLocation") int startLocation, @Param("perPageNum") int perPageNum);
 }

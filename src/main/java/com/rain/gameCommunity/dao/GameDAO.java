@@ -15,9 +15,12 @@ public interface GameDAO {
 	public GameEntity queryGameById(@Param("id") long id);
 	
 	public List<GameEntity> queryGameByGameType(@Param("gameType") long gameType, @Param("startLocation") int startLocation,
-								@Param("endLocation") int endLocation);
+								@Param("perPageNum") int perPageNum);
 	
 	public Integer queryGameCountByNameCondition(@Param("nameCondition") String nameCondition);
 	
 	public int queryGamesCountByGameType(@Param("gameType") long gameType);
+	
+	public List<GameEntity> queryGameByCondition(@Param("nameCondition") String nameCondition, @Param("startLocation") int startLocation,
+							@Param("perPageNum") int perPageNum);
 }

@@ -19,7 +19,7 @@
 	</select>
 	
 	<select id="queryGameTypesByPage" resultType="com.rain.gameCommunity.entity.GameTypeEntity">
-		select * from game_type limit #{startLocation}, #{endLocation}
+		select * from game_type limit #{startLocation}, #{perPageNum}
 	</select>
 	
  </mapper>

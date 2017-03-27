@@ -55,4 +55,15 @@ public class GameServiceImpl implements GameService {
 		return gameDao.queryGamesCountByGameType(gameType);
 	}
 
+	@Override
+	public List<GameEntity> showGameByCondition(String nameCondition, PagingData pagingData) throws Exception {
+		return gameDao.queryGameByCondition(nameCondition, (pagingData.getTotalPage() -1) * pagingData.getPerPageNum(),
+				pagingData.getPerPageNum());
+	}
+
+	@Override
+	public int showGameCountByCondition(String nameCondition) throws Exception {
+		return gameDao.queryGameCountByNameCondition(nameCondition);
+	}
+
 }

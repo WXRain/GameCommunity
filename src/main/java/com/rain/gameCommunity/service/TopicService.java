@@ -17,4 +17,8 @@ public interface TopicService {
 	public List<TopicEntity> showTopicsByTopicId(String id) throws Exception;
 	
 	public int showTopicsCountBySectionId(long id) throws Exception;
+	
+	public int showTopicsCountByCondition(String nameCondition) throws Exception;
+	
+	public List<TopicEntity> showTopicsByCondition(String nameCondition, PagingData pagingData) throws Exception;
 }

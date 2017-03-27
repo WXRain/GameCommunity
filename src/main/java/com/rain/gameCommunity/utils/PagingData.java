@@ -58,7 +58,8 @@ public class PagingData implements Serializable{
 	}
 
 	public void setTotalPage(int totalPage) {
-		this.totalPage = totalPage;
+		if(totalPage == 0) this.totalPage = 1;
+		else this.totalPage = totalPage;
 	}
 
 	public int getPerPageNum() {

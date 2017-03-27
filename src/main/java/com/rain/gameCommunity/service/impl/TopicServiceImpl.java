@@ -79,4 +79,18 @@ public class TopicServiceImpl implements TopicService {
 		return topicDao.queryTopicsCountBySectionId(id);
 	}
 
+
+
+	@Override
+	public int showTopicsCountByCondition(String nameCondition) throws Exception {
+		return topicDao.queryTopicsCountByCondition(nameCondition);
+	}
+
+
+
+	@Override
+	public List<TopicEntity> showTopicsByCondition(String nameCondition, PagingData pagingData) throws Exception {
+		return changeUserIdToString(topicDao.queryTopicsByCondition(nameCondition, (pagingData.getCurrentPage()-1)*pagingData.getPerPageNum(), pagingData.getPerPageNum()));
+	}
+
 }
