@@ -13,6 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.rain.gameCommunity.entity.UserEntity;
 import com.rain.gameCommunity.service.UserService;
+import com.rain.gameCommunity.utils.JsonResult;
 
 @Controller
 @RequestMapping("/user")
@@ -39,9 +40,9 @@ public class UserCotroller {
 		try{
 			UserEntity user = userService.checkOnlyUser(username);
 			if(user == null){
-				return new JsonResult<UserEntity>(0, null, null);
+				return new JsonResult<UserEntity>(0, null, null, null);
 			}else{
-				return new JsonResult<UserEntity>(1, "用户名已存在", null);
+				return new JsonResult<UserEntity>(1, "用户名已存在", null, null);
 			}
 		}catch(Exception e){
 			return new JsonResult<UserEntity>(e.getMessage());
@@ -76,7 +77,7 @@ public class UserCotroller {
 				try{
 					file.transferTo(targetFile);
 				}catch(Exception e){
-					return new JsonResult<UserEntity>(1, e.getMessage(), null);
+					return new JsonResult<UserEntity>(e.getMessage());
 				}
 				
 				user.setHead("/users/head/" + newFileName);
@@ -86,7 +87,7 @@ public class UserCotroller {
 			System.out.println("注册的账号是：" + user);
 			userService.addUser(user);
 			System.out.println("register success.");
-			return new JsonResult<UserEntity>(0, "注册成功", null);
+			return new JsonResult<UserEntity>(0, "注册成功", null, null);
 		}catch(Exception e){
 			return new JsonResult<UserEntity>(e.toString());
 		}

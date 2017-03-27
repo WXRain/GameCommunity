@@ -28,6 +28,10 @@
         </collection>
     </resultMap>
     
+    <resultMap type="java.lang.Integer" id="count">
+    		<id column="countNum" property="countNum" jdbcType="BIGINT"/>
+    </resultMap>
+    
 	<select id="queryAllGame" resultMap="queryGameMap">
 		select
 			g.id,
@@ -66,5 +70,12 @@
 	
 	<select id="queryGameByGameType" resultMap="queryGameMap">
 		select * from game g, systemsupport s where g.gameType=#{gameType} and g.systemTypeNum = s.id
+	</select>
+	
+	<select id="queryGameCountByCondition" resultMap="count">
+		select count(*) as countNum from game g where 1 = 1
+		<if test="nameCondition!=null">
+			and g.gamename like CONCAT(CONCAT('%', #{nameCondition}), '%')
+		</if>
 	</select>
  </mapper>

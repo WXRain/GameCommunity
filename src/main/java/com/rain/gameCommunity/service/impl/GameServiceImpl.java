@@ -44,4 +44,9 @@ public class GameServiceImpl implements GameService {
 		return games;
 	}
 
+	@Override
+	public Integer queryGameCountByNameCondition(String nameCondition) throws Exception {
+		return gameDao.queryGameCountByNameCondition(nameCondition);
+	}
+
 }

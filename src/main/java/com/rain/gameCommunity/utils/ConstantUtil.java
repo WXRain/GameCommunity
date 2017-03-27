@@ -1,4 +1,4 @@
-package com.rain.gameCommunity.entity;
+package com.rain.gameCommunity.utils;
 
 import org.springframework.stereotype.Repository;
 

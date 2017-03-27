@@ -13,6 +13,8 @@ import com.rain.gameCommunity.entity.TopicEntity;
 import com.rain.gameCommunity.service.GameTypeService;
 import com.rain.gameCommunity.service.SectionService;
 import com.rain.gameCommunity.service.TopicService;
+import com.rain.gameCommunity.utils.JsonResult;
+import com.rain.gameCommunity.utils.PagingData;
 
 @Controller
 @RequestMapping("/community")

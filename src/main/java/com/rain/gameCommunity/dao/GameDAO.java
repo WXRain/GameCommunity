@@ -15,4 +15,6 @@ public interface GameDAO {
 	public GameEntity queryGameById(@Param("id") long id);
 	
 	public List<GameEntity> queryGameByGameType(@Param("gameType") long gameType);
+	
+	public Integer queryGameCountByNameCondition(@Param("nameCondition") String nameCondition);
 }

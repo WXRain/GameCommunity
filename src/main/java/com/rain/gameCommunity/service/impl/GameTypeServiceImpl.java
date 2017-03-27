@@ -10,6 +10,7 @@ import com.rain.gameCommunity.dao.GameTypeDAO;
 import com.rain.gameCommunity.entity.GameTypeEntity;
 import com.rain.gameCommunity.entity.UserEntity;
 import com.rain.gameCommunity.service.GameTypeService;
+import com.rain.gameCommunity.utils.PagingData;
 
 @Service
 public class GameTypeServiceImpl implements GameTypeService {
@@ -58,6 +59,21 @@ public class GameTypeServiceImpl implements GameTypeService {
 			gameType.setManagers(users);
 		}
 		return gameTypes;
+	}
+
+	@Override
+	public int queryGameTypeCount() throws Exception {
+		return gameTypeDao.queryGameTypeCount();
+	}
+
+	@Override
+	public List<GameTypeEntity> showGameTypesByPage(PagingData pagingData) throws Exception {
+		List<GameTypeEntity> types = changeManagerToString(gameTypeDao.queryGameTypesByPage((pagingData.getCurrentPage()-1)*pagingData.getPerPageNum(),
+												pagingData.getPerPageNum())); 
+		for(GameTypeEntity type : types){
+			type.setCreateTimeString(type.getSdf().format(type.getCreateTime()));
+		}
+		return types;
 	}
 	
 }

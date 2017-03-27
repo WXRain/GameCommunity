@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.rain.gameCommunity.utils.JsonResult;
+
 @Controller
 
 public class FileUpload {
@@ -16,7 +18,7 @@ public class FileUpload {
 	@RequestMapping("/fileUpload.do")
 	@ResponseBody
 	public JsonResult<String> fileUpload(String name, MultipartFile file, HttpServletRequest request){
-		if(file.isEmpty()) return new JsonResult<String>(1, "文件为空", null); 
+		if(file.isEmpty()) return new JsonResult<String>(1, "文件为空", null, null); 
 		System.out.println(request.getSession().getServletContext().getRealPath("uploadFloder"));
 		String path = request.getSession().getServletContext().getRealPath("uploadFloder");
 		String fileName = file.getOriginalFilename();//.jpg
@@ -27,10 +29,10 @@ public class FileUpload {
 		try{
 			file.transferTo(targetFile);
 		}catch(Exception e){
-			return new JsonResult<String>(1, e.getMessage(), null);
+			return new JsonResult<String>(1, e.getMessage(), null, null);
 		}
 		File afile = new File(request.getSession().getServletContext().getRealPath("uploadFloder") + "/" + fileName);
 		System.out.println(afile.length());
-		return new JsonResult<String>(0, null, "文件上传成功");
+		return new JsonResult<String>(0, null, "文件上传成功", null);
 	}
 }

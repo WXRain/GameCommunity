@@ -1,4 +1,4 @@
-package com.rain.gameCommunity.controller;
+package com.rain.gameCommunity.utils;
 
 import java.io.Serializable;
 
@@ -7,33 +7,41 @@ public class JsonResult<T> implements Serializable {
 	private final static int ERROR = 1;
 
 	private final static int SUCCESS = 0;
-
-	// ״̬
+	
+	//返回的状态
 	private int state;
 
-	// ������Ϣ
+	//返回的消息
 	private String message;
 
-	// ����
+	//返回的数据
 	private T data;
+	
+	//返回的页面信息
+	private PagingData pagingData;
 
 	public JsonResult() {
 
 	}
 
-	public JsonResult(int state, String message, T data) {
+	public JsonResult(int state, String message, T data, PagingData pagingData) {
 		super();
 		this.state = state;
 		this.message = message;
 		this.data = data;
+		this.pagingData = pagingData;
 	}
 
 	public JsonResult(String message) {
-		this(ERROR, message, null);
+		this(ERROR, message, null, null);
 	}
 
-	public JsonResult(T data) {
-		this(SUCCESS, "", data);
+//	public JsonResult(T data) {
+//		this(SUCCESS, "", data, new PagingData(data));
+//	}
+	
+	public JsonResult(T data, PagingData pagingData){
+		this(SUCCESS, "", data, pagingData);
 	}
 
 	/*
@@ -90,5 +98,15 @@ public class JsonResult<T> implements Serializable {
 	public void setData(T data) {
 		this.data = data;
 	}
+
+	public PagingData getPagingData() {
+		return pagingData;
+	}
+
+	public void setPagingData(PagingData pagingData) {
+		this.pagingData = pagingData;
+	}
+	
+	
 
 }

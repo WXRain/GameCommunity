@@ -11,6 +11,8 @@ import com.rain.gameCommunity.entity.GameEntity;
 import com.rain.gameCommunity.entity.GameTypeEntity;
 import com.rain.gameCommunity.service.GameService;
 import com.rain.gameCommunity.service.GameTypeService;
+import com.rain.gameCommunity.utils.JsonResult;
+import com.rain.gameCommunity.utils.PagingData;
 
 @Controller
 @RequestMapping("/game")
@@ -61,20 +63,45 @@ public class GameController {
 		} catch (Exception e) {
 			return new JsonResult<GameEntity>(e.getMessage());
 		}
+		
 		return new JsonResult<GameEntity>(game);
 	}
 	
 	@RequestMapping("/showAllGameType.do")
 	@ResponseBody
-	public JsonResult<List<GameTypeEntity>> showAllGameType(){
+	public JsonResult<List<GameTypeEntity>> showAllGameType(int currentPage){
 		List<GameTypeEntity> gameTypes;
+		PagingData pagingData = new PagingData();
+		if(currentPage == 0) currentPage = 1;
 		try{
-			gameTypes = gameTypeService.showAllGameTypes();
+			pagingData.setCurrentPage(currentPage);
+			pagingData.setTotalNum(gameTypeService.queryGameTypeCount());
+			if(pagingData.getTotalNum() % pagingData.getPerPageNum() == 0){
+				pagingData.setTotalPage(pagingData.getTotalNum() / pagingData.getPerPageNum());
+			}else{
+				pagingData.setTotalPage(pagingData.getTotalNum() / pagingData.getPerPageNum() + 1);
+			}
+			
+			gameTypes = gameTypeService.showGameTypesByPage(pagingData);
 		}catch(Exception e){
 			return new JsonResult<List<GameTypeEntity>>(e.getMessage());
 		}
-		return new JsonResult<List<GameTypeEntity>>(gameTypes);
+		return new JsonResult<List<GameTypeEntity>>(gameTypes, pagingData);
 	}
+	
+//	@RequestMapping("/showGameTypeByPage")
+//	@ResponseBody
+//	public JsonResult<List<GameTypeEntity>> showGameTypeByPage(int currentPage){
+//		PagingData pagingData = new PagingData();
+//		try{
+//			pagingData.setCurrentPage(currentPage);
+//			pagingData.setTotalNum(gameType);
+//			return gameTypeService.showGameTypesByPage(pagingData);
+//		}catch(Exception e){
+//			return new JsonResult<List<GameTypeEntity>>(e.getMessage());
+//		}
+//		
+//	}
 	
 	@RequestMapping("/showGameByGameType.do")
 	@ResponseBody
