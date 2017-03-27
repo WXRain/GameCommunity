@@ -42,17 +42,17 @@ public class GameController {
 		this.gameName = gameName;
 	}
 
-	@RequestMapping("/showallgame.do")
-	@ResponseBody
-	public JsonResult<List<GameEntity>> showAllGame() {
-		List<GameEntity> games;
-		try {
-			games = gameService.showAllGame();
-		} catch (Exception e) {
-			return new JsonResult<List<GameEntity>>(e.getMessage());
-		}
-		return new JsonResult<List<GameEntity>>(games);
-	}
+//	@RequestMapping("/showallgame.do")
+//	@ResponseBody
+//	public JsonResult<List<GameEntity>> showAllGame() {
+//		List<GameEntity> games;
+//		try {
+//			games = gameService.showAllGame();
+//		} catch (Exception e) {
+//			return new JsonResult<List<GameEntity>>(e.getMessage());
+//		}
+//		return new JsonResult<List<GameEntity>>(games);
+//	}
 
 	@RequestMapping("/showGame.do")
 	@ResponseBody
@@ -64,7 +64,7 @@ public class GameController {
 			return new JsonResult<GameEntity>(e.getMessage());
 		}
 		
-		return new JsonResult<GameEntity>(game);
+		return new JsonResult<GameEntity>(game, null);
 	}
 	
 	@RequestMapping("/showAllGameType.do")
@@ -89,26 +89,20 @@ public class GameController {
 		return new JsonResult<List<GameTypeEntity>>(gameTypes, pagingData);
 	}
 	
-//	@RequestMapping("/showGameTypeByPage")
-//	@ResponseBody
-//	public JsonResult<List<GameTypeEntity>> showGameTypeByPage(int currentPage){
-//		PagingData pagingData = new PagingData();
-//		try{
-//			pagingData.setCurrentPage(currentPage);
-//			pagingData.setTotalNum(gameType);
-//			return gameTypeService.showGameTypesByPage(pagingData);
-//		}catch(Exception e){
-//			return new JsonResult<List<GameTypeEntity>>(e.getMessage());
-//		}
-//		
-//	}
-	
 	@RequestMapping("/showGameByGameType.do")
 	@ResponseBody
-	public JsonResult<List<GameEntity>> showGameByGameType(String gameType){
+	public JsonResult<List<GameEntity>> showGameByGameType(long gameType, int currentPage){
+		PagingData pagingData = new PagingData();
 		try{
-			List<GameEntity> games = gameService.showGamesByGameType(gameType);
-			return new JsonResult<List<GameEntity>>(games);
+			pagingData.setTotalNum(gameService.showGamesCountByGameType(gameType));
+			pagingData.setCurrentPage(currentPage);
+			if(pagingData.getTotalNum() % pagingData.getPerPageNum() == 0){
+				pagingData.setTotalPage(pagingData.getTotalNum() / pagingData.getPerPageNum());
+			}else{
+				pagingData.setTotalPage(pagingData.getTotalNum() / pagingData.getPerPageNum() + 1);
+			}
+			List<GameEntity> games = gameService.showGamesByGameType(gameType, pagingData);
+			return new JsonResult<List<GameEntity>>(games, pagingData);
 		}catch(Exception e){
 			return new JsonResult<List<GameEntity>>(e.getMessage());
 		}

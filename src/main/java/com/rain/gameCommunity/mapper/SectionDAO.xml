@@ -20,4 +20,9 @@
 			#{item}
 		</foreach>
 	</select>
+	
+	<select id="querySectionsCountByGameTypeId" parameterType="Long" resultType="Integer">
+		select count(*) from section where gameType = #{id}
+	</select>
+	
  </mapper>

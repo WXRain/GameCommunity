@@ -7,8 +7,12 @@
 <script type="text/javascript" src="../script/jquerySession.js"></script>
 <script type="text/javascript" src="../script/getRootPath.js"></script>
 <script type="text/javascript" src="../script/getParam.js"></script>
+<script type="text/javascript" src="../script/utils.js"></script>
+
 <script type="text/javascript">
 	var path = getRootPath(); 
+	var pageNum = getParam("page");
+	if(pageNum == null || pageNum == 0) pageNum = 1;
 </script>
 </head>
 <body>
@@ -37,10 +41,12 @@
 			url: "initSection.do",
 			method: "POST",
 			dataType: "JSON",
-			data: {"sectionId" : sectionId},
+			data: {"sectionId" : sectionId,
+				   "currentPage":pageNum},
 			success: function(result){
 				if(result.state == 0){
 					createTable(result.data);
+					createPage(result.pagingData, 4);
 				}else{
 					alert(result.message);
 				}

@@ -33,21 +33,41 @@ public class CommunityController {
 	
 	@RequestMapping("/initMain.do")
 	@ResponseBody
-	public JsonResult<List<GameTypeEntity>> initMain(){
+	public JsonResult<List<GameTypeEntity>> initMain(int currentPage){
+		List<GameTypeEntity> gameTypes;
+		PagingData pagingData = new PagingData();
+		if(currentPage == 0) currentPage = 1;
 		try{
-			List<GameTypeEntity> gameTypes = gameTypeService.showAllGameTypes();
-			return new JsonResult<List<GameTypeEntity>>(gameTypes);
+			pagingData.setCurrentPage(currentPage);
+			pagingData.setTotalNum(gameTypeService.queryGameTypeCount());
+			if(pagingData.getTotalNum() % pagingData.getPerPageNum() == 0){
+				pagingData.setTotalPage(pagingData.getTotalNum() / pagingData.getPerPageNum());
+			}else{
+				pagingData.setTotalPage(pagingData.getTotalNum() / pagingData.getPerPageNum() + 1);
+			}
+			
+			gameTypes = gameTypeService.showGameTypesByPage(pagingData);
 		}catch(Exception e){
 			return new JsonResult<List<GameTypeEntity>>(e.getMessage());
 		}
+		return new JsonResult<List<GameTypeEntity>>(gameTypes, pagingData);
 	}
 	
 	@RequestMapping("/initGameType.do")
 	@ResponseBody
-	public JsonResult<List<SectionEntity>> initGameType(String gameTypeId){
+	public JsonResult<List<SectionEntity>> initGameType(String gameTypeId, int currentPage){
+		PagingData pagingData = new PagingData();
 		try{
+			if(currentPage == 0) currentPage = 1;
+			pagingData.setTotalNum(sectionService.showSectionsCountBySectionId(Long.parseLong(gameTypeId)));
+			pagingData.setCurrentPage(currentPage);
+			if(pagingData.getTotalNum() % pagingData.getPerPageNum() == 0){
+				pagingData.setTotalPage(pagingData.getTotalNum() / pagingData.getPerPageNum());
+			}else{
+				pagingData.setTotalPage(pagingData.getTotalNum() / pagingData.getPerPageNum() + 1);
+			}
 			List<SectionEntity> sections = sectionService.showSectionsByGameTypeId(Long.parseLong(gameTypeId));
-			return new JsonResult<List<SectionEntity>>(sections);
+			return new JsonResult<List<SectionEntity>>(sections, pagingData);
 		}catch(Exception e){
 			return new JsonResult<List<SectionEntity>>(e.getMessage());
 		}
@@ -58,7 +78,7 @@ public class CommunityController {
 	public JsonResult<GameTypeEntity> showGameType(String gameTypeId){
 		try{
 			GameTypeEntity gameTypeEntity = gameTypeService.queryGameTypeById(Long.parseLong(gameTypeId));
-			return new JsonResult<GameTypeEntity>(gameTypeEntity);
+			return new JsonResult<GameTypeEntity>(gameTypeEntity, null);
 		}catch(Exception e){
 			return new JsonResult<GameTypeEntity>(e.getMessage());
 		}
@@ -66,10 +86,20 @@ public class CommunityController {
 	
 	@RequestMapping("/initSection.do")
 	@ResponseBody
-	public JsonResult<List<TopicEntity>> initSection(String sectionId){
+	public JsonResult<List<TopicEntity>> initSection(long sectionId, int currentPage){
+		PagingData pagingData = new PagingData();
+		
 		try{
-			List<TopicEntity> topics = topicService.showTopicsBySectionId(sectionId);
-			return new JsonResult<List<TopicEntity>>(topics);
+			System.out.println(topicService.showTopicsCountBySectionId(sectionId));
+			pagingData.setTotalNum(topicService.showTopicsCountBySectionId(sectionId));
+			pagingData.setCurrentPage(currentPage);
+			if(pagingData.getTotalNum() % pagingData.getPerPageNum() == 0){
+				pagingData.setTotalPage(pagingData.getTotalNum() / pagingData.getPerPageNum());
+			}else{
+				pagingData.setTotalPage(pagingData.getTotalNum() / pagingData.getPerPageNum() + 1);
+			}
+			List<TopicEntity> topics = topicService.showTopicsBySectionId(sectionId, pagingData);
+			return new JsonResult<List<TopicEntity>>(topics, pagingData);
 		}catch(Exception e){
 			return new JsonResult<List<TopicEntity>>(e.getMessage());
 		}
@@ -82,7 +112,7 @@ public class CommunityController {
 			List<SectionEntity> sections = sectionService.showSectionsBySectionId(sectionId);
 			if(sections == null || sections.size() <= 0) throw new Exception("系统错误");
 			SectionEntity section = sectionService.showSectionsBySectionId(sectionId).get(0);
-			return new JsonResult<SectionEntity>(section);
+			return new JsonResult<SectionEntity>(section, null);
 		}catch(Exception e){
 			return new JsonResult<SectionEntity>(e.getMessage());
 		}
@@ -96,7 +126,7 @@ public class CommunityController {
 			TopicEntity topic = new TopicEntity();
 			if(topics == null || topics.size() <= 0) throw new Exception("系统错误");
 			topic = topics.get(0);
-			return new JsonResult<TopicEntity>(topic);
+			return new JsonResult<TopicEntity>(topic, null);
 		}catch(Exception e){
 			return new JsonResult<TopicEntity>(e.getMessage());
 		}

@@ -7,9 +7,13 @@
 <script type="text/javascript" src="../script/jquerySession.js"></script>
 <script type="text/javascript" src="../script/getRootPath.js"></script>
 <script type="text/javascript" src="../script/getParam.js"></script>
+<script type="text/javascript" src="../script/utils.js"></script>
+
 <script type="text/javascript">
 	var path = getRootPath(); 
 	var gameType = getParam("gameTypeId");
+	var pageNum = getParam("page");
+	if(pageNum == null || pageNum == 0) pageNum = 1;
 </script>
 </head>
 <body>
@@ -38,13 +42,15 @@
 		url:'showGameByGameType.do',
 		method:'POST',
 		dataType:'JSON',
-		data: {"gameType": gameType},
+		data: {"gameType": gameType,
+			   "currentPage":pageNum},
 		success:function(result){
 			var data = result.data;
 			var gameName="";
 			if(result.state == 0){
 				console.log(result.data);
 				createTable(result.data);
+				createPage(result.pagingData, 3);
 			}else{
 				alert(result.message);
 			}

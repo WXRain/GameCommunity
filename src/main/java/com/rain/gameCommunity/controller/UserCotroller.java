@@ -31,7 +31,7 @@ public class UserCotroller {
 		} catch (Exception e) {
 			return new JsonResult<UserEntity>(e.getMessage());
 		}
-		return new JsonResult<UserEntity>(user);
+		return new JsonResult<UserEntity>(user, null);
 	}
 	
 	@RequestMapping("/checkOnlyUsername.do")

@@ -65,4 +65,9 @@ public class SectionServiceImpl implements SectionService {
 		return sections;
 	}
 
+	@Override
+	public int showSectionsCountBySectionId(long id) throws Exception {
+		return sectionDao.querySectionsCountByGameTypeId(id);
+	}
+
 }

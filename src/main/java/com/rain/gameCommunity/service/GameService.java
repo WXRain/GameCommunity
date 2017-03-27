@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Repository;
 
 import com.rain.gameCommunity.entity.GameEntity;
+import com.rain.gameCommunity.utils.PagingData;
 
 @Repository
 public interface GameService {
@@ -15,7 +16,9 @@ public interface GameService {
 	
 	public GameEntity showGameById(String id) throws Exception;
 	
-	public List<GameEntity> showGamesByGameType(String gameType) throws Exception;
+	public List<GameEntity> showGamesByGameType(long gameType, PagingData pagingData) throws Exception;
 	
 	public Integer queryGameCountByNameCondition(String nameCondition) throws Exception;
+	
+	public int showGamesCountByGameType(long gameType) throws Exception;
 }

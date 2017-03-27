@@ -12,6 +12,7 @@ import com.rain.gameCommunity.entity.SectionEntity;
 import com.rain.gameCommunity.entity.TopicEntity;
 import com.rain.gameCommunity.entity.UserEntity;
 import com.rain.gameCommunity.service.TopicService;
+import com.rain.gameCommunity.utils.PagingData;
 
 @Service
 public class TopicServiceImpl implements TopicService {
@@ -48,9 +49,9 @@ public class TopicServiceImpl implements TopicService {
 
 
 	@Override
-	public List<TopicEntity> showTopicsBySectionId(String sectionId) throws Exception {
-		long sectionLongId = Long.parseLong(sectionId);
-		List<TopicEntity> topics = topicDao.queryTopicsBySectionId(sectionLongId);
+	public List<TopicEntity> showTopicsBySectionId(long sectionId, PagingData pagingData) throws Exception {
+		List<TopicEntity> topics = topicDao.queryTopicsBySectionId(sectionId, (pagingData.getCurrentPage()-1) * pagingData.getPerPageNum(),
+								pagingData.getPerPageNum());
 		topics = changeUserIdToString(topics);
 		return topics;
 	}
@@ -68,6 +69,14 @@ public class TopicServiceImpl implements TopicService {
 		topics = changeUserIdToString(topics);
 		return topics;
 		
+	}
+
+
+
+	@Override
+	public int showTopicsCountBySectionId(long id) throws Exception {
+		
+		return topicDao.queryTopicsCountBySectionId(id);
 	}
 
 }

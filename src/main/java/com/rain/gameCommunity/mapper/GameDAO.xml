@@ -69,7 +69,8 @@
 	</select>
 	
 	<select id="queryGameByGameType" resultMap="queryGameMap">
-		select * from game g, systemsupport s where g.gameType=#{gameType} and g.systemTypeNum = s.id
+		select * from game g, systemsupport s where g.gameType=#{gameType} and g.systemTypeNum = s.id limit #{startLocation},
+			#{endLocation}
 	</select>
 	
 	<select id="queryGameCountByCondition" resultMap="count">
@@ -78,4 +79,9 @@
 			and g.gamename like CONCAT(CONCAT('%', #{nameCondition}), '%')
 		</if>
 	</select>
+	
+	<select id="queryGamesCountByGameType" resultType="Integer">
+		select count(*) from game g, systemsupport s where g.gameType=#{gameType}	
+	</select>
+	
  </mapper>

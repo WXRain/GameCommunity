@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.rain.gameCommunity.dao.GameDAO;
 import com.rain.gameCommunity.entity.GameEntity;
 import com.rain.gameCommunity.service.GameService;
+import com.rain.gameCommunity.utils.PagingData;
 
 @Service
 public class GameServiceImpl implements GameService {
@@ -38,15 +39,20 @@ public class GameServiceImpl implements GameService {
 	}
 
 	@Override
-	public List<GameEntity> showGamesByGameType(String gameType) throws Exception {
-		long gameTypeId = Long.parseLong(gameType);
-		List<GameEntity> games = gameDao.queryGameByGameType(gameTypeId);
+	public List<GameEntity> showGamesByGameType(long gameType, PagingData pagingData) throws Exception {
+		List<GameEntity> games = gameDao.queryGameByGameType(gameType, (pagingData.getTotalPage() -1) * pagingData.getPerPageNum(),
+								pagingData.getPerPageNum());
 		return games;
 	}
 
 	@Override
 	public Integer queryGameCountByNameCondition(String nameCondition) throws Exception {
 		return gameDao.queryGameCountByNameCondition(nameCondition);
+	}
+
+	@Override
+	public int showGamesCountByGameType(long gameType) throws Exception {
+		return gameDao.queryGamesCountByGameType(gameType);
 	}
 
 }
