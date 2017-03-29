@@ -22,8 +22,8 @@
 	<br/><br/>
 	<table width="100%" id="table">
        <tr>
-           <td width="25%">游戏名</td>
-           <td width="25%">介绍</td>
+           <td width="25%">主题名</td>
+           <td width="25%">点击量</td>
            <td width="25%">创建时间</td>
            <td width="25%">发帖人</td>
            
@@ -77,7 +77,7 @@
 		   for(var i = 0; i < data.length; i++){
 		   $("#table").append(
 					"<tr><td><a href=javascript:void() onclick=clickTopic("+ data[i].id +")>" + data[i].topicName + "</a></td>" + 
-					"<td>" + data[i].topicText + "</td>" + 
+					"<td>" + data[i].clickNum + "</td>" + 
 					"<td>" + data[i].createTime + "</td>" + 
 					"<td>" + data[i].username + "</td></tr><tr><td colspan='4'><hr/></td></tr>"
 				   );

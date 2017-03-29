@@ -1,8 +1,10 @@
 	
 function createPage(pagingData, tdNum){
 	if(pagingData.totalPage == 0) pagingData.totalPage = 1;
-	if(pagingData.currentPage == 0) pagingData.currentPage = 1;
-	$("#table").append("<tr>")
+	if(pagingData.totalNum == 0){
+		$("#table").append("<tr><td colspan=" + tdNum + "><hr/></td></tr>");
+	}
+	$("#table").append("<tr>");
 	for(var i = 0; i < tdNum - 2; i++){
 		$("#table").append("<td></td>");
 	}

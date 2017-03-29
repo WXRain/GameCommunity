@@ -121,20 +121,12 @@
      	
      	function search(){
      		var nameCondition = $("#nameCondition").val();
-     		$.ajax({
-    			url: "searchGame.do",
-    			method: "POST",
-    			dataType: "JSON",
-    			data: {"nameCondition":nameCondition,
-    				   "currentPage":pageNum},
-    			success: function(result){
-    				if(result.state == 0){
-    					parent.location.replace(path + "/searchResult.html");
-    				}else{
-    					alert(result.message);
-    				}
-    			}
-    		});
+     		if(nameCondition == null || nameCondition.length == 0) {
+     			alert("搜索内容不能为空！");
+     			return;
+     		}
+     		$.session.set("nameCondition", nameCondition);
+    			parent.location.replace(path + "/searchResult.html");
      	}
      	
      </script>

@@ -24,11 +24,12 @@
 	<table width="100%" id="table">
 	<tr>
 	    <td width="25%">主题</td>
-	    <td width="50%"><center>介绍</center></td>
+	    <td width="25%"><center>介绍</center></td>
 	    <td width="25%">发布时间</td>
+	    <td width=25%>价格</td>
 	</tr>
 	<tr>
-	    <td colspan="3"><hr/></td>
+	    <td colspan="4"><hr/></td>
 	</tr>
 	</table>
 	
@@ -50,7 +51,7 @@
 			if(result.state == 0){
 				console.log(result.data);
 				createTable(result.data);
-				createPage(result.pagingData, 3);
+				createPage(result.pagingData, 4);
 			}else{
 				alert(result.message);
 			}
@@ -61,14 +62,15 @@
 	
 	function createTable(data){
 		if(data == null || data.length <= 0){
-			$("#table").append("<tr><td colspan='3'><center>该板块无内容</center></td></tr>");
+			$("#table").append("<tr><td colspan='4'><center>该板块无内容</center></td></tr>");
 		}else{
 			for(var i = 0; i < data.length; i++){
 				$("#table").append("<tr><td><a href=javascript:void() onclick=showGame(" + data[i].id + ")>" + 
 						data[i].gameName + "</td>" +
 						"<td><center>" + data[i].introduce + "</center></td>" + 
 						"<td>" + data[i].buildDate + "</td>" + 
-						"</tr><tr><td colspan='3'><hr/></td></tr>");
+						"<td>" + (data[i].price * data[i].cutOff) + "</td>" +
+						"</tr><tr><td colspan='4'><hr/></td></tr>");
 			}
 		}
 	}

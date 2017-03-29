@@ -23,7 +23,7 @@
 	<select id="queryTopicsByCondition" resultType="com.rain.gameCommunity.entity.TopicEntity">
 		select * from topic where 1 = 1
 		<if test="nameCondition!=null">
-			and topicName like CONCAT(CONCAT('%', #{nameCondition}), '%')
+			and (topicName like CONCAT(CONCAT('%', #{nameCondition}), '%') or topicText like CONCAT(CONCAT('%', #{nameCondition}), '%'))
 		</if>
 		limit #{startLocation}, #{perPageNum}
 	</select>
@@ -31,8 +31,12 @@
 	<select id="queryTopicsCountByCondition" resultType="Integer">
 		select count(*) from topic where 1 = 1
 		<if test="nameCondition!=null">
-			and topicName like CONCAT(CONCAT('%', #{nameCondition}), '%')
+			and (topicName like CONCAT(CONCAT('%', #{nameCondition}), '%') or topicText like CONCAT(CONCAT('%', #{nameCondition}), '%'))
 		</if>
+	</select>
+	
+	<select id="queryTopicsCountBySectionId" resultType="Integer">
+		select count(*) from topic where sectionId = #{id}
 	</select>
 	
  </mapper>

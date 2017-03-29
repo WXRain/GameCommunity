@@ -13,6 +13,7 @@
 	var path = getRootPath(); 
 	var pageNum = getParam("page");
 	if(pageNum == null || pageNum == 0) pageNum = 1;
+	var type = getParam("type");
 </script>
 </head>
 <body>
@@ -23,27 +24,127 @@
 			<td width=50%><center><a id="game" onclick=clickGame()>游戏</a></center></td>
 			<td widtrh=50%><center><a id="community" href=javascript:void() onclick=clickCommunity()>论坛</a></center></td>
 		</tr>
+		<tr><td colspan="2"><hr/></td></tr>
 	</table>
 </div>
 
 <div>
-	<table id="table">
-		<td id="name"></td>
-		<td id="introduce"></td>
-		<td id="createTime"></td>
-		<td id="managers"></td>
+	<table id="table" width=100%>
+	<tr>
+		<td id="name" width=25%>游戏名</td>
+		<td id="introduce" width=25%>介绍</td>
+		<td id="createTime" width=25%>发布时间</td>
+		<td id="managers" width=25%>价格</td>
+	</tr>
+	<tr><td colspan='4'><hr/></td></tr>
 	</table>
 </div>
 
    <script type="text/javascript">
+   
+   var nameCondition = $.session.get("nameCondition");
+   
+   if(type == null || type.length == 0 || type == "game"){
+	   $(function(){
+			$.ajax({
+				url: "searchGame.do",
+				method: "POST",
+				dataType: "JSON",
+				data: {"nameCondition":nameCondition,
+					   "currentPage":pageNum},
+				success: function(result){
+					console.log(result);
+					if(result.state == 0){
+						$("#community").attr("href", "javascript:void()");
+			   			$("#game").removeAttr("href");
+			   			$("#name").text("游戏名");
+			   			$("#managers").text("价格");
+			   			$("#introduce").text("介绍");
+						createGameTable(result.data);
+						createPage(result.pagingData, 4);
+					}else{
+						alert(result.message);
+					}
+				}
+			});
+		});
+   }else{
+	   $(function(){
+			$.ajax({
+				url: "searchCommunity.do",
+				method: "POST",
+				dataType: "JSON",
+				data: {"nameCondition":nameCondition,
+					   "currentPage":pageNum},
+				success: function(result){
+					console.log(result);
+					if(result.state == 0){
+						$("#community").removeAttr("href");
+			   			$("#game").attr("href", "javascript:void()");
+			   			$("#name").text("帖子主题");
+			   			$("#managers").text("发布人");
+			   			$("#introduce").text("点击量");
+						createCommunityTable(result.data);
+						createPage(result.pagingData, 4);
+					}else{
+						alert(result.message);
+					}
+				}
+			});
+		});
+   }
+  
+   
+   function createGameTable(data){
+	   if(data == null || data.length <= 0){
+		   $("#table").append("<tr><td colspan='4'><center><h3>该板块无内容</h3></center></td></tr>");
+		}else{
+			for(var i = 0; i < data.length; i++){
+				$("#table").append("<tr><td><a href=javascript:void() onclick=showGame(" + data[i].id + ")>" + 
+						data[i].gameName + "</td>" +
+						"<td><center>" + data[i].introduce + "</center></td>" + 
+						"<td>" + data[i].buildDate + "</td>" + 
+						"<td>" + (data[i].price * data[i].cutOff) + "</td>" +
+						"</tr><tr><td colspan='4'><hr/></td></tr>");
+			}
+		}
+   }
+   
+   function createCommunityTable(data){
+	   if(data == null || data.length <= 0){
+		   $("#table").append("<tr><td colspan='4'><center><h3>该板块无内容</h3></center></td></tr>");
+	   }else{
+		   for(var i = 0; i < data.length; i++){
+			   $("#table").append(
+					"<tr><td><a href=javascript:void() onclick=clickTopic("+ data[i].id +")>" + data[i].topicName + "</a></td>" + 
+					"<td>" + data[i].clickNum + "</td>" + 
+					"<td>" + data[i].createTime + "</td>" + 
+					"<td>" + data[i].username + "</td></tr><tr><td colspan='4'><hr/></td></tr>"
+				);
+		   	}
+	   }
+   }
+   
+   function clickTopic(topicId){
+	   window.location.href = path + "/community/topic.html?topicId=" + topicId;
+   }
+   
    		function clickCommunity(){
-   			$("#community").removeAttr("href");
-   			$("#game").attr("href", "javascript:void()");
+   			window.location.href = path + "/searchResult.html?type=community";
    		}
    		
    		function clickGame(){
-   			$("#community").attr("href", "javascript:void()");
-   			$("#game").removeAttr("href");
+   			
+   			window.location.href = path + "/searchResult.html?type=game";
+   			
+   		}
+   		
+   		function jumpToPage(page){
+   			window.location.href = path + "/searchResult.html?page=" + page;
+   		}
+   		
+   		function showGame(gameId){
+   			location.href=path + "/game/showGame.html?gameId=" + gameId;
    		}
    </script>
 </body>
