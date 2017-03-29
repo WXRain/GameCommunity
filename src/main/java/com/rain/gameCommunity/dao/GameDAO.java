@@ -23,4 +23,6 @@ public interface GameDAO {
 	
 	public List<GameEntity> queryGameByCondition(@Param("nameCondition") String nameCondition, @Param("startLocation") int startLocation,
 							@Param("perPageNum") int perPageNum);
+	
+	public List<GameEntity> queryUserGameByIds(@Param("ids") List<Long> ids);
 }

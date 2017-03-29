@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>User page</title>
+<script type="text/javascript" src="./script/jquery.min.js"></script>
+<script type="text/javascript" src="./script/jquerySession.js"></script>
+<script type="text/javascript" src="./script/getRootPath.js"></script>
+<script type="text/javascript" src="./script/getParam.js"></script>
+<script type="text/javascript" src="./script/utils.js"></script>
+<script type="text/javascript">
+	var path = getRootPath(); 
+	var errorMessage = $.session.get("errorMessage");
+</script>
+</head>
+<body>
+<br/>
+	<center><h2 id="errorMessage"></h2></center>
+	<br/><br/>
+	<center><h2>页面将在<span id="second">3</span>秒钟之后跳转 ... ...</h2></center>
+	<br/>
+	<center><h3><a href=javascript:void()>如果没有跳转点击这里</a></h3></center>
+	
+	<script type="text/javascript">
+		$("#errorMessage").text(errorMessage);
+		onload=function(){ 
+				setInterval(go, 1000); 
+			}; 
+			var x=3; //利用了全局变量来执行 
+			function go(){ 
+				x--; 
+				if(x>0){ 
+					$("#second").text(x); //每次设置的x的值都不一样了。 
+				}else{ 
+					location.href=path; 
+				} 
+			} 
+	</script>
+</body>
+</html>

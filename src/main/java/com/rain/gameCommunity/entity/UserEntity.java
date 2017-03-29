@@ -21,6 +21,8 @@ public class UserEntity implements Serializable {
 
 	// 注册时间
 	private Date registerTime;
+	
+	private String registerTimeString;
 
 	// 性别
 	private int sex = -1;
@@ -72,7 +74,8 @@ public class UserEntity implements Serializable {
 		this.head = head;
 		this.games = games;
 		this.hasBuyedGames = hasBuyedGames;
-	}
+		this.registerTimeString = sdf.format(registerTime);
+;	}
 
 	/*
 	 * (non-Javadoc)
@@ -85,6 +88,24 @@ public class UserEntity implements Serializable {
 				+ registerTime + ", sex=" + sex + ", levels=" + levels + ", exp=" + exp + ", isManager=" + isManager
 				+ ", introduce=" + introduce + ", head=" + head + ", games=" + games + ", hasBuyedGames="
 				+ hasBuyedGames + "]";
+	}
+	
+	
+
+	public SimpleDateFormat getSdf() {
+		return sdf;
+	}
+
+	public void setSdf(SimpleDateFormat sdf) {
+		this.sdf = sdf;
+	}
+
+	public String getRegisterTimeString() {
+		return registerTimeString;
+	}
+
+	public void setRegisterTimeString(String registerTimeString) {
+		this.registerTimeString = registerTimeString;
 	}
 
 	/**

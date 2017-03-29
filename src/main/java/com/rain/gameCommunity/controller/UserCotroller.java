@@ -1,7 +1,9 @@
 package com.rain.gameCommunity.controller;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.rain.gameCommunity.entity.UserEntity;
+import com.rain.gameCommunity.service.GameService;
 import com.rain.gameCommunity.service.UserService;
 import com.rain.gameCommunity.utils.JsonResult;
 
@@ -21,6 +24,9 @@ public class UserCotroller {
 
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+	private GameService gameService;
 
 	@RequestMapping("/checkUser.do")
 	@ResponseBody
@@ -93,5 +99,23 @@ public class UserCotroller {
 		}
 	}
 	
+	@RequestMapping("/findUserByUserId")
+	@ResponseBody
+	public JsonResult<UserEntity> findUserByUserId(long userId){
+		try{
+			List<Long> ids = new ArrayList<Long>();
+			ids.add(userId);
+			List<UserEntity> users = userService.queryUsersById(ids);
+			UserEntity user;
+			if(users != null && users.size() > 0){
+				user = users.get(0);
+			}else throw new Exception("没有找到用户！");
+			user = gameService.showUserGameByUser(user);
+			user.setRegisterTimeString(user.getSdf().format(user.getRegisterTime()));
+			return new JsonResult<UserEntity>(user, null);
+		}catch(Exception e){
+			return new JsonResult<UserEntity>(e.getMessage());
+		}
+	}
 	
 }

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.rain.gameCommunity.dao.GameDAO;
 import com.rain.gameCommunity.entity.GameEntity;
+import com.rain.gameCommunity.entity.UserEntity;
 import com.rain.gameCommunity.service.GameService;
 import com.rain.gameCommunity.utils.PagingData;
 
@@ -64,6 +65,24 @@ public class GameServiceImpl implements GameService {
 	@Override
 	public int showGameCountByCondition(String nameCondition) throws Exception {
 		return gameDao.queryGameCountByNameCondition(nameCondition);
+	}
+
+	@Override
+	public UserEntity showUserGameByUser(UserEntity user) throws Exception {
+		String[] gameIdsString = user.getGames().split(",");
+		List<Long> ids = new ArrayList<Long>();
+		for(int i = 0; i < gameIdsString.length; i++){
+			ids.add(Long.parseLong(gameIdsString[i]));
+		}
+		List<GameEntity> games = gameDao.queryUserGameByIds(ids);
+		user.setHasBuyedGames(games);
+		String gameString = "";
+		for(GameEntity game : games){
+			gameString = gameString + game.getGameName() + ",";
+		}
+		gameString = gameString.substring(0, gameString.length() - 1);
+		user.setGames(gameString);
+		return user;
 	}
 
 }
