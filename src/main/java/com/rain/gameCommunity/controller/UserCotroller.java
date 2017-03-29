@@ -103,6 +103,7 @@ public class UserCotroller {
 	@ResponseBody
 	public JsonResult<UserEntity> findUserByUserId(long userId){
 		try{
+			System.out.println("查找" + userId);
 			List<Long> ids = new ArrayList<Long>();
 			ids.add(userId);
 			List<UserEntity> users = userService.queryUsersById(ids);
@@ -112,6 +113,7 @@ public class UserCotroller {
 			}else throw new Exception("没有找到用户！");
 			user = gameService.showUserGameByUser(user);
 			user.setRegisterTimeString(user.getSdf().format(user.getRegisterTime()));
+			System.out.println("结果为：" + user);
 			return new JsonResult<UserEntity>(user, null);
 		}catch(Exception e){
 			return new JsonResult<UserEntity>(e.getMessage());

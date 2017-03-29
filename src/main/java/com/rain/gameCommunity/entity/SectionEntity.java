@@ -1,6 +1,7 @@
 package com.rain.gameCommunity.entity;
 
 import java.io.Serializable;
+import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
@@ -27,13 +28,15 @@ public class SectionEntity implements Serializable {
 
 	// 对应游戏ID
 	private long gameId;
+	
+	private List<UserEntity> managers;
 
 	public SectionEntity() {
 		super();
 	}
 
 	public SectionEntity(long id, String name, String introduce, int topicNum, String sectionManager, String createTime,
-			long gameId) {
+			long gameId, List<UserEntity> managers) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -42,6 +45,7 @@ public class SectionEntity implements Serializable {
 		this.sectionManager = sectionManager;
 		this.createTime = createTime;
 		this.gameId = gameId;
+		this.managers = managers;
 	}
 
 	/*
@@ -52,7 +56,17 @@ public class SectionEntity implements Serializable {
 	@Override
 	public String toString() {
 		return "SectionEntity [id=" + id + ", name=" + name + ", introduce=" + introduce + ", topicNum=" + topicNum
-				+ ", sectionManager=" + sectionManager + ", createTime=" + createTime + ", gameId=" + gameId + "]";
+				+ ", sectionManager=" + sectionManager + ", createTime=" + createTime + ", gameId=" + gameId + ", managers=" + managers + "]";
+	}
+
+	
+	
+	public List<UserEntity> getManagers() {
+		return managers;
+	}
+
+	public void setManagers(List<UserEntity> managers) {
+		this.managers = managers;
 	}
 
 	/**

@@ -77,7 +77,10 @@
 			
 			$("#isManager").text("管理员：" + manager);
 			
-			$("#userGames").text("已经购买的游戏:  " + data.games)
+			var games = "";
+			if(data.games == "") games = "无"; 
+			else games = data.games;
+			$("#userGames").text("已经购买的游戏:  " + games)
 		}
 		
 		

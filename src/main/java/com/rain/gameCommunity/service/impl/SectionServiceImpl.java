@@ -36,12 +36,9 @@ public class SectionServiceImpl implements SectionService {
 			for(int i = 0; i < managersString.length; i++){
 				managers.add(Long.parseLong(managersString[i]));
 			}
-			section.setSectionManager("");
 			List<UserEntity> users = userServiceImpl.queryUsersById(managers);
-			for(UserEntity user : users){
-				section.setSectionManager(section.getSectionManager() + user.getUsername() + ",");
-			}
-			section.setSectionManager(section.getSectionManager().substring(0, section.getSectionManager().length() - 1));
+			
+			section.setManagers(users);
 		}
 		return sections;
 	}

@@ -18,3 +18,7 @@ function createPage(pagingData, tdNum){
 	}
 	$("#paging").append("<a href=javascript:void() onclick=jumpToPage(" + (pagingData.totalPage) + ")> 末页 </a>");
 }
+
+function showUser(userId){
+	window.location.href = "../user/showUser.html?userId=" + userId;
+}

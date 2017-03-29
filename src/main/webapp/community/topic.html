@@ -7,6 +7,7 @@
 <script type="text/javascript" src="../script/jquerySession.js"></script>
 <script type="text/javascript" src="../script/getRootPath.js"></script>
 <script type="text/javascript" src="../script/getParam.js"></script>
+<script type="text/javascript" src="../script/utils.js"></script>
 <script type="text/javascript">
 	var path = getRootPath(); 
 </script>
@@ -50,8 +51,9 @@
 	   if(data == null || data.length <= 0){
 		   $("#topicTitle").text("该板块无内容");
 	   }else{
+		   console.log(data);
 		  $("#topicTitle").text(data.topicName);
-		  $("#username").append(data.username);
+		  $("#username").append("<a href=javascript:void() onclick=showUser(" + data.userId + ")>" + data.username + "</a>");
 		  $("#createTime").append(data.createTime);
 		  $("#text").text(data.topicText);
 	   }

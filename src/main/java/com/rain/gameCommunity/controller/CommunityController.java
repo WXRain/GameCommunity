@@ -55,18 +55,18 @@ public class CommunityController {
 	
 	@RequestMapping("/initGameType.do")
 	@ResponseBody
-	public JsonResult<List<SectionEntity>> initGameType(String gameTypeId, int currentPage){
+	public JsonResult<List<SectionEntity>> initGameType(long gameTypeId, int currentPage){
 		PagingData pagingData = new PagingData();
 		try{
 			if(currentPage == 0) currentPage = 1;
-			pagingData.setTotalNum(sectionService.showSectionsCountBySectionId(Long.parseLong(gameTypeId)));
+			pagingData.setTotalNum(sectionService.showSectionsCountBySectionId(gameTypeId));
 			pagingData.setCurrentPage(currentPage);
 			if(pagingData.getTotalNum() % pagingData.getPerPageNum() == 0){
 				pagingData.setTotalPage(pagingData.getTotalNum() / pagingData.getPerPageNum());
 			}else{
 				pagingData.setTotalPage(pagingData.getTotalNum() / pagingData.getPerPageNum() + 1);
 			}
-			List<SectionEntity> sections = sectionService.showSectionsByGameTypeId(Long.parseLong(gameTypeId));
+			List<SectionEntity> sections = sectionService.showSectionsByGameTypeId(gameTypeId);
 			return new JsonResult<List<SectionEntity>>(sections, pagingData);
 		}catch(Exception e){
 			return new JsonResult<List<SectionEntity>>(e.getMessage());

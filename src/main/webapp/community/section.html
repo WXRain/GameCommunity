@@ -45,6 +45,7 @@
 				   "currentPage":pageNum},
 			success: function(result){
 				if(result.state == 0){
+					console.log(result);
 					createTable(result.data);
 					createPage(result.pagingData, 4);
 				}else{
@@ -79,7 +80,8 @@
 					"<tr><td><a href=javascript:void() onclick=clickTopic("+ data[i].id +")>" + data[i].topicName + "</a></td>" + 
 					"<td>" + data[i].clickNum + "</td>" + 
 					"<td>" + data[i].createTime + "</td>" + 
-					"<td>" + data[i].username + "</td></tr><tr><td colspan='4'><hr/></td></tr>"
+					"<td><a href=javascript:void() onclick=showUser("+
+							data[i].userId + ")>" + data[i].username + "</a></td></tr><tr><td colspan='4'><hr/></td></tr>"
 				   );
 	   		}
 	   }

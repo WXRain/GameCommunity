@@ -71,9 +71,12 @@ public class GameServiceImpl implements GameService {
 	public UserEntity showUserGameByUser(UserEntity user) throws Exception {
 		String[] gameIdsString = user.getGames().split(",");
 		List<Long> ids = new ArrayList<Long>();
+		System.out.println(gameIdsString.length);
 		for(int i = 0; i < gameIdsString.length; i++){
+			if(gameIdsString[i] == "") continue;
 			ids.add(Long.parseLong(gameIdsString[i]));
 		}
+		if(ids.size() == 0) return user;
 		List<GameEntity> games = gameDao.queryUserGameByIds(ids);
 		user.setHasBuyedGames(games);
 		String gameString = "";

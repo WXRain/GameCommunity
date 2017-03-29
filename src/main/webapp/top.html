@@ -75,7 +75,8 @@
      	}
      	
      	function showUsername(username){
-     		$("#loginOrRegister").append("欢迎您,  " + $.session.get("username"));
+     		$("#loginOrRegister").append("欢迎您,  <a href=javascript:void() onclick=showUser(" + $.session.get("userId") +
+     					")>" + $.session.get("username") + "</a>");
      		$("#quit").append("<a href=javascript:void() onclick=quit()>退出</a>");
      	}
      	
@@ -127,6 +128,10 @@
      		}
      		$.session.set("nameCondition", nameCondition);
     			parent.location.replace(path + "/searchResult.html");
+     	}
+     	
+     	function showUser(userId){
+     		parent.location.replace(path + "/user/showUser.html?userId=" + userId);
      	}
      	
      </script>

@@ -73,13 +73,21 @@
 	   if(data == null || data.length <= 0){
 		   $("#table").append("<tr><td colspan='4'><center>该板块无内容</center></td></tr>");
 	   }else{
+		   console.log(data);
 		   for(var i = 0; i < data.length; i++){
-		   $("#table").append(
+			   var managers = "";
+			   for(var j = 0; j < data[i].managers.length; j++){
+				   managers = managers + "<a href=javascript:void() onclick=showUser("+
+						   data[i].managers[j].id +")>" + data[i].managers[j].username + 
+						   "</a> , ";
+			   }
+			   managers = managers.substring(0, managers.length - 2);
+		   	   $("#table").append(
 					"<tr><td><a href=javascript:void() onclick=clickSection("+ data[i].id +")>" + data[i].name + "</a></td>" + 
 					"<td>" + data[i].introduce + "</td>" + 
 					"<td>" + data[i].createTime + "</td>" + 
-					"<td>" + data[i].sectionManager + "</td></tr><tr><td colspan='4'><hr/></td></tr>"
-				   );
+					"<td>" + managers + "</td></tr><tr><td colspan='4'><hr/></td></tr>"
+				);
 	   		}
 	   }
 	  
