@@ -92,7 +92,7 @@
 		select count(*) from game g, systemsupport s where g.gameType=#{gameType}	
 	</select>
 	
-	<select id="queryUserGameByIds" resultMap="queryGameMap" parameterType="java.util.List">
+	<select id="queryGamesByIds" resultMap="queryGameMap" parameterType="java.util.List">
 		select * from game g, systemsupport s where g.id in
 		<foreach collection="ids" index="index" item="item" open="(" close=")" separator=",">  
             #{item}  

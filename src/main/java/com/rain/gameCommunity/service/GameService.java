@@ -28,4 +28,6 @@ public interface GameService {
 	public int showGameCountByCondition(String nameCondition) throws Exception;
 	
 	public UserEntity showUserGameByUser(UserEntity user) throws Exception;
+	
+	public List<GameEntity> showGamesByIds(List<Long> ids) throws Exception;
 }

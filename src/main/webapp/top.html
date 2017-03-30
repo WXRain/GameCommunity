@@ -77,6 +77,8 @@
      	function showUsername(username){
      		$("#loginOrRegister").append("欢迎您,  <a href=javascript:void() onclick=showUser(" + $.session.get("userId") +
      					")>" + $.session.get("username") + "</a>");
+     		$("#loginOrRegister").append("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;");
+     		$("#loginOrRegister").append("<a href=javascript:void() onclick=showShoppingCart()>查看购物车</a>");
      		$("#quit").append("<a href=javascript:void() onclick=quit()>退出</a>");
      	}
      	
@@ -132,6 +134,14 @@
      	
      	function showUser(userId){
      		parent.location.replace(path + "/user/showUser.html?userId=" + userId);
+     	}
+     	
+     	function showShoppingCart(){
+     		if($.session.get("shoppingCart") == null || $.session.get("shoppingCart").length == 0){
+     			alert("购物车为空，您还没有要买的东西呢！");
+     		}else{
+     			parent.location.replace(path + "/game/showShoppingCart.html");
+     		}
      	}
      	
      </script>

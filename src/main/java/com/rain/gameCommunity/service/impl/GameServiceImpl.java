@@ -77,7 +77,7 @@ public class GameServiceImpl implements GameService {
 			ids.add(Long.parseLong(gameIdsString[i]));
 		}
 		if(ids.size() == 0) return user;
-		List<GameEntity> games = gameDao.queryUserGameByIds(ids);
+		List<GameEntity> games = gameDao.queryGamesByIds(ids);
 		user.setHasBuyedGames(games);
 		String gameString = "";
 		for(GameEntity game : games){
@@ -86,6 +86,11 @@ public class GameServiceImpl implements GameService {
 		gameString = gameString.substring(0, gameString.length() - 1);
 		user.setGames(gameString);
 		return user;
+	}
+
+	@Override
+	public List<GameEntity> showGamesByIds(List<Long> ids) throws Exception {
+		return gameDao.queryGamesByIds(ids);
 	}
 
 }

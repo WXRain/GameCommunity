@@ -23,11 +23,11 @@
 		</tr>
 		<tr><td colspan='5'><hr/></td></tr>
 		<tr>
-			<td id="gameName"></td>
-			<td id="buildTime"></td>
-			<td id="introduce"></td>
-			<td id="price"></td>
-			<td id="size"></td>
+			<td id="gameName" width=20%></td>
+			<td id="buildTime" width=20%></td>
+			<td id="introduce" width=20%></td>
+			<td id="price" width=20%></td>
+			<td id="size" width=20%></td>
 		</tr>
 		
 		<tr><td colspan='5'><hr/></td></tr>
@@ -44,6 +44,7 @@
 			<td id="voice"></td>
 			<td id="system"></td>
 			<td id="note"></td>
+			<td id="version"></td>
 		</tr>
 		<tr><td colspan='5'><hr/></td></tr>
 		
@@ -52,6 +53,10 @@
 <script type="text/javascript">
 
 function addBus(){
+	if($.session.get("shoppingCart") == null || $.session.get("shoppingCart") == "undefined"){
+		$.session.set("shoppingCart", "");
+	}
+	$.session.set("shoppingCart", $.session.get("shoppingCart") + gameId + ",");
 	alert("添加购物车成功");
 }
 
@@ -86,7 +91,7 @@ $.ajax({
 			$("#voice").text("声卡要求：" + data.systemSupport.voice);
 			$("#system").text("系统要求：" + data.systemSupport.system);
 			$("#note").text("注意事项：" + data.systemSupport.note);
-			
+			$("#version").text("版本号：" + data.version);
 		}else{
 			alert(result.message);
 		}

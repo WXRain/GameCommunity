@@ -1,5 +1,6 @@
 package com.rain.gameCommunity.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -103,6 +104,24 @@ public class GameController {
 			}
 			List<GameEntity> games = gameService.showGamesByGameType(gameType, pagingData);
 			return new JsonResult<List<GameEntity>>(games, pagingData);
+		}catch(Exception e){
+			return new JsonResult<List<GameEntity>>(e.getMessage());
+		}
+	}
+	
+	@RequestMapping("/showGameShoppingCart.do")
+	@ResponseBody
+	public JsonResult<List<GameEntity>> showGameShoppingCart(String shoppingCart){
+		String[] gameIdsString = shoppingCart.split(",");
+		List<Long> gameIds = new ArrayList<Long>();
+		for(int i = 0; i < gameIdsString.length; i++){
+			if(gameIdsString[i] == null || gameIdsString[i] == "") continue;
+			gameIds.add(Long.parseLong(gameIdsString[i]));
+		}
+		List<GameEntity> games;
+		try{
+			games = gameService.showGamesByIds(gameIds);
+			return new JsonResult<List<GameEntity>>(games, null);
 		}catch(Exception e){
 			return new JsonResult<List<GameEntity>>(e.getMessage());
 		}
