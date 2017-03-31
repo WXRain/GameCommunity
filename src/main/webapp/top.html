@@ -51,7 +51,8 @@
   	<table border="0" cellpadding="0" cellspacing="0" width=100%>
 			<tr>
 				<td width=10%>
-					<a href="javascript:void()" onclick=toIndex()>XX论坛</a>
+					<a href="javascript:void()" onclick=toCommunityIndex()>XX论坛</a>
+					<a href="javascript:void()" onclick=toGameIndex()>XX游戏</a>
 				<td id="loginOrRegister" width=50%></td>
 				<td width=20%><div id="time"></div></td>
 				<td width=5% id="quit"></td>
@@ -91,9 +92,13 @@
      		parent.location.replace(path);
      	}
      	
-     	function toIndex(){
-			parent.location.replace(path);
+     	function toCommunityIndex(){
+			parent.location.replace(path + "/community/main.html");
 		}
+     	
+     	function toGameIndex(){
+     		parent.location.replace(path + "/game/main.html");
+     	}
      	
      	function login(){
      		var username = $("#username").val();
@@ -137,11 +142,29 @@
      	}
      	
      	function showShoppingCart(){
-     		if($.session.get("shoppingCart") == null || $.session.get("shoppingCart").length == 0){
-     			alert("购物车为空，您还没有要买的东西呢！");
-     		}else{
-     			parent.location.replace(path + "/game/showShoppingCart.html");
+     		var userId = $.session.get("userId");
+     		if(userId == null || userId.length == 0){
+     			$.session.set("errorMessage", "用户登录状态异常");
+     			window.location.href = path + "error.html";
+     			return;
      		}
+     		$.ajax({
+	    			url:"pay/showGameShoppingCart.do",
+	    			method:"POST",
+	    			dataType:"JSON",
+	    			data:{"userId": userId},
+	    			success:function(result){
+    					if(result.state == 0){
+    						if(result.data == null || result.data.length == 0){
+    							alert("购物车为空");
+    							return;
+    						}
+    						parent.location.replace(path + "/pay/showShoppingCart.html");
+    					}else{
+    						alert(result.message);
+    					} 
+    				}
+    			});
      	}
      	
      </script>

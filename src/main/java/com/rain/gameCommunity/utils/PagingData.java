@@ -15,7 +15,7 @@ public class PagingData implements Serializable{
 	public int totalNum = 0;
 	
 	//每页数量
-	public int perPageNum = 1;
+	public int perPageNum = 10;
 	
 	@Override
 	public String toString() {

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>game main page</title>
+<script type="text/javascript" src="../script/jquery.min.js"></script>
+<script type="text/javascript" src="../script/jquerySession.js"></script>
+<script type="text/javascript" src="../script/getRootPath.js"></script>
+<script type="text/javascript" src="../script/getParam.js"></script>
+<script type="text/javascript" src="../script/utils.js"></script>
+<script type="text/javascript">
+	var path = getRootPath(); 
+</script>
+</head>
+<body>
+
+<div>
+	<center><h2><a href=javascript:void() onclick=paySuccess()>付款成功</a></h2></center>
+</div>
+
+<div>
+	<center><h2><a href=javascript:void() onclick=payFailed()>付款失败</a></h2></center>
+</div>
+
+<script type="text/javascript">
+function paySuccess(){
+	$.session.set("payStatus", "0");
+	window.location.href = path + "/pay/paySuccess.html";
+}
+
+function payFailed(){
+	$.session.set("payStatus", "1");
+	window.location.href = path + "/pay/payFailed.html";
+}
+</script>
+</body>
+</html>

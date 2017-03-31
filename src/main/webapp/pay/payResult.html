@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>game main page</title>
+<script type="text/javascript" src="../script/jquery.min.js"></script>
+<script type="text/javascript" src="../script/jquerySession.js"></script>
+<script type="text/javascript" src="../script/getRootPath.js"></script>
+<script type="text/javascript" src="../script/getParam.js"></script>
+<script type="text/javascript" src="../script/utils.js"></script>
+<script type="text/javascript">
+	var path = getRootPath(); 
+	var payStatus = $.session.get("payStatus");
+</script>
+</head>
+<body>
+<center><h2 id="payMessage"></h2></center>
+	<br/><br/>
+	<center><h2>页面将在<span id="second">3</span>秒钟之后跳转 ... ...</h2></center>
+	<br/>
+	<center><h3><a href=javascript:void()>如果没有跳转点击这里</a></h3></center>
+	
+	<script type="text/javascript">
+		
+	</script>
+</body>
+</html>

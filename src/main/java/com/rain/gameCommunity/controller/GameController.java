@@ -109,22 +109,4 @@ public class GameController {
 		}
 	}
 	
-	@RequestMapping("/showGameShoppingCart.do")
-	@ResponseBody
-	public JsonResult<List<GameEntity>> showGameShoppingCart(String shoppingCart){
-		String[] gameIdsString = shoppingCart.split(",");
-		List<Long> gameIds = new ArrayList<Long>();
-		for(int i = 0; i < gameIdsString.length; i++){
-			if(gameIdsString[i] == null || gameIdsString[i] == "") continue;
-			gameIds.add(Long.parseLong(gameIdsString[i]));
-		}
-		List<GameEntity> games;
-		try{
-			games = gameService.showGamesByIds(gameIds);
-			return new JsonResult<List<GameEntity>>(games, null);
-		}catch(Exception e){
-			return new JsonResult<List<GameEntity>>(e.getMessage());
-		}
-	}
-	
 }

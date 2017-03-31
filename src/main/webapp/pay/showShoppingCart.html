@@ -29,19 +29,19 @@
 	</table>
 	
 	<script type="text/javascript">
-	var shoppingCart = $.session.get("shoppingCart");
 	
 	$(function(){
-		if(shoppingCart == null || shoppingCart.length == 0 || shoppingCart == "undefined"){
-			$("#table").append("<tr><td colspan='5'><center><h2>购物车中暂无商品，去<a href="+ path + 
-					"/game/main.html>商店</a>逛逛？</h2></center></td></tr><tr><td colspan='5'><hr/></td></tr>");
+		var userId = $.session.get("userId");
+		if(userId == null || userId.length == 0){
+			$.session.set("errorMessage", "用户登陆状态异常");
+			window.location.href = path + "error.html";
 			return;
 		}
 		$.ajax({
 			url:"showGameShoppingCart.do",
 			method:"POST",
 			dataType:"JSON",
-			data:{"shoppingCart": shoppingCart},
+			data:{"userId": userId},
 			success:function(result){
 				console.log(result);
 				createTable(result.data);
@@ -50,6 +50,14 @@
 	});
 	
 	function createTable(data){
+		var finalTotalPrice = 0;
+		var totalPrice = 0;
+		var cutOffPrice = 0;
+		if(data == null || data.length == 0){
+			$("#table").append("<tr><td colspan='5'><center><h2>购物车中暂无商品，去<a href="+ path + 
+			"/game/main.html>商店</a>逛逛？</h2></center></td></tr><tr><td colspan='5'><hr/></td></tr>");
+			return;
+		}
 		for(var i = 0; i < data.length; i++){
 			$("#table").append("<tr><td>" + data[i].gameName + "</td>" +
 					"<td>" + data[i].price + "</td>" +
@@ -57,13 +65,22 @@
 					"<td>" + (data[i].price * data[i].cutOff) + "</td>" + 
 					"<td><a href=javascript:void() onclick=removeFromShoppingCart("+data[i].id +")>删除</a>" +
 					"</tr><tr><td colspan='5'><hr/></td></tr>");
+			finalTotalPrice = finalTotalPrice + (data[i].price * data[i].cutOff);
+			totalPrice = totalPrice + data[i].price;
+			cutOffPrice = cutOffPrice + data[i].price - (data[i].price * data[i].cutOff);
 		}
+		$("#table").append("<tr><td>合计</td><td>" + totalPrice.toFixed(2) + "</td><td>" + cutOffPrice.toFixed(2) + "</td><td>"+finalTotalPrice.toFixed(2) + 
+				"</td><td><a href=javascript:void() onclick=pay()>付款</a></td>");
 		
 	}
 	
 	function removeFromShoppingCart(gameId){
 		$.session.set("shoppingCart", $.session.get("shoppingCart").replace(gameId+",", ""));
-		window.location.href=path + "/game/showShoppingCart.html";
+		window.location.href=path + "/pay/showShoppingCart.html";
+	}
+	
+	function pay(){
+		window.location.href=path + "/pay/pay.html";
 	}
 	</script>
 	

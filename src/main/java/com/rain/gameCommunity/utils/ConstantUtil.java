@@ -16,4 +16,10 @@ public class ConstantUtil {
 
 	// 用户不是管理员
 	public static final int USER_NOT_MANAGER = 0;
+	
+	// 支付成功
+	public static final String PAY_SUCCESS = "1";
+	
+	// 没有支付或者支付失败
+	public static final String PAY_FAILED = "0";
 }
