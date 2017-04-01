@@ -25,4 +25,5 @@ public interface GameDAO {
 							@Param("perPageNum") int perPageNum);
 	
 	public List<GameEntity> queryGamesByIds(@Param("ids") List<Long> ids);
+
 }

@@ -2,7 +2,24 @@
 <!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
  "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
  <mapper namespace="com.rain.gameCommunity.dao.ShoppingCartDAO">
+ 
 	<select id="queryShoppingCartByUserId" parameterType="Long" resultType="com.rain.gameCommunity.entity.ShoppingCartEntity">
 		select * from shopping_cart where userId = #{userId}
 	</select>
+	
+	<update id="updateShoppingCartGameIds">
+		update shopping_cart set gameIds = #{gameIds}, createTime = now() where userId = #{userId}
+	</update>
+	
+	<delete id="deleteShoppingCartByUserId" parameterType="Long">
+		delete from shopping_cart where userId = #{userId}
+	</delete>
+	
+	<insert id="addShoppingCart" parameterType="com.rain.gameCommunity.entity.ShoppingCartEntity">
+		insert into shopping_cart 
+		(userId, gameIds, createTime)
+		values
+		(#{shoppingCart.userId}, #{shoppingCart.gameIds}, now())
+	</insert>
+	
  </mapper>

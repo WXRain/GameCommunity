@@ -29,12 +29,15 @@
 	</table>
 	
 	<script type="text/javascript">
-	
+	var finalTotalPrice = 0;
+	var totalPrice = 0;
+	var cutOffPrice = 0;
+	var shoppingCart = "";
 	$(function(){
 		var userId = $.session.get("userId");
 		if(userId == null || userId.length == 0){
 			$.session.set("errorMessage", "用户登陆状态异常");
-			window.location.href = path + "error.html";
+			window.location.href = path + "/error.html";
 			return;
 		}
 		$.ajax({
@@ -50,9 +53,6 @@
 	});
 	
 	function createTable(data){
-		var finalTotalPrice = 0;
-		var totalPrice = 0;
-		var cutOffPrice = 0;
 		if(data == null || data.length == 0){
 			$("#table").append("<tr><td colspan='5'><center><h2>购物车中暂无商品，去<a href="+ path + 
 			"/game/main.html>商店</a>逛逛？</h2></center></td></tr><tr><td colspan='5'><hr/></td></tr>");
@@ -68,18 +68,58 @@
 			finalTotalPrice = finalTotalPrice + (data[i].price * data[i].cutOff);
 			totalPrice = totalPrice + data[i].price;
 			cutOffPrice = cutOffPrice + data[i].price - (data[i].price * data[i].cutOff);
+			shoppingCart = shoppingCart + data[i].id + ",";
 		}
+		console.log(shoppingCart);
 		$("#table").append("<tr><td>合计</td><td>" + totalPrice.toFixed(2) + "</td><td>" + cutOffPrice.toFixed(2) + "</td><td>"+finalTotalPrice.toFixed(2) + 
-				"</td><td><a href=javascript:void() onclick=pay()>付款</a></td>");
+				"</td><td><a href=javascript:void() onclick=pay(" + finalTotalPrice.toFixed(2) + ")>付款</a></td>");
 		
 	}
 	
 	function removeFromShoppingCart(gameId){
-		$.session.set("shoppingCart", $.session.get("shoppingCart").replace(gameId+",", ""));
-		window.location.href=path + "/pay/showShoppingCart.html";
+		var userId = $.session.get("userId");
+		if(userId == null || userId.length == 0){
+			$.session.set("errorMessage", "用户登陆状态异常");
+			window.location.href = path + "/error.html";
+			return;
+		}
+		$.ajax({
+			url:"removeFromShoppingCart.do",
+			method:"POST",
+			dataType:"JSON",
+			data:{
+				"gameId":gameId,
+				"userId":userId
+			},
+			success:function(result){
+				if(result.state == 0){
+					var data = result.data;
+					if(data == null || data.length == 0){
+						$.session.set("errorMessage", "数据为空！");
+						window.location.href = path + "/error.html";
+					}
+					if(data){
+						alert("删除成功");
+						window.location.href = path + "/pay/showShoppingCart.html";
+					}else{
+						alert("删除失败");
+						window.location.href = path + "/pay/showShoppingCart.html";
+					}
+						
+					
+				}else{
+					alert(result.message);
+				}
+			}
+		});
+		
 	}
 	
-	function pay(){
+	function pay(finalTotalPrice){
+		shoppingCart = shoppingCart.substring(0, shoppingCart.length - 1);
+		$.session.set("shoppingCart", shoppingCart);
+		$.session.set("createTime", new Date());
+		$.session.set("finalTotalPrice", finalTotalPrice);
 		window.location.href=path + "/pay/pay.html";
 	}
 	</script>

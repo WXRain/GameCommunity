@@ -44,4 +44,8 @@
         </foreach>  
 	</select>
 	
+	<update id="updateUserGames">
+		update user set games = #{gameIds} where id = #{userId}
+	</update>
+	
  </mapper>

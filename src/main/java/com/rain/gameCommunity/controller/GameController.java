@@ -10,8 +10,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.rain.gameCommunity.entity.GameEntity;
 import com.rain.gameCommunity.entity.GameTypeEntity;
+import com.rain.gameCommunity.entity.SectionEntity;
 import com.rain.gameCommunity.service.GameService;
 import com.rain.gameCommunity.service.GameTypeService;
+import com.rain.gameCommunity.service.SectionService;
+import com.rain.gameCommunity.service.ShoppingCartService;
 import com.rain.gameCommunity.utils.JsonResult;
 import com.rain.gameCommunity.utils.PagingData;
 
@@ -24,6 +27,12 @@ public class GameController {
 	
 	@Autowired
 	private GameTypeService gameTypeService;
+	
+	@Autowired
+	private SectionService sectionService;
+	
+	@Autowired
+	private ShoppingCartService shoppingCartService;
 
 	private String gameName;
 	
@@ -109,4 +118,31 @@ public class GameController {
 		}
 	}
 	
+	@RequestMapping("/getSectionByGameId.do")
+	@ResponseBody
+	public JsonResult<SectionEntity> getSectionByGameId(long gameId){
+		System.out.println("gameId:" + gameId);
+		try{
+			List<SectionEntity> sections = sectionService.showSectionByGameId(gameId);
+			if(sections == null || sections.size() <= 0)
+				return new JsonResult<SectionEntity>(null, null);
+			SectionEntity section = sections.get(0);
+			return new JsonResult<SectionEntity>(section, null);
+		}catch(Exception e){
+			e.printStackTrace();
+			return new JsonResult<SectionEntity>(e.getMessage());
+		}
+	}
+	
+	@RequestMapping("/addToShoppingCart.do")
+	@ResponseBody
+	public JsonResult<Boolean> addToShoppingCart(long gameId, long userId){
+		try{
+			shoppingCartService.addToShoppingCart(userId, gameId);
+			return new JsonResult<Boolean>(true, null);
+		}catch(Exception e){
+			e.printStackTrace();
+			return new JsonResult<Boolean>(e.getMessage());
+		}
+	}
 }

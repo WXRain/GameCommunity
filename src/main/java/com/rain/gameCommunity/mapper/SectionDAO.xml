@@ -25,4 +25,8 @@
 		select count(*) from section where gameType = #{id}
 	</select>
 	
+	<select id="querySectionByGameId" parameterType="Long" resultType="com.rain.gameCommunity.entity.SectionEntity">
+		select * from section where gameId = #{gameId}
+	</select>
+	
  </mapper>

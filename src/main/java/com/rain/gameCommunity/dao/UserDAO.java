@@ -18,4 +18,7 @@ public interface UserDAO {
 	
 	public List<UserEntity> queryUsersById(@Param("id") List<Long> id);
 	
+	//更新已经购买的游戏
+	public void updateUserGames(@Param("userId") long userId, @Param("gameIds") String gameIds);
+	
 }

@@ -14,14 +14,60 @@
 </script>
 </head>
 <body>
-<center><h2 id="payMessage"></h2></center>
-	<br/><br/>
+<br/><br/>
+	<center><h2 id="payMessage"></h2></center>
+	
 	<center><h2>页面将在<span id="second">3</span>秒钟之后跳转 ... ...</h2></center>
 	<br/>
-	<center><h3><a href=javascript:void()>如果没有跳转点击这里</a></h3></center>
+	<center><h3><a href=javascript:void() onclick=jump()>如果没有跳转点击这里</a></h3></center>
 	
 	<script type="text/javascript">
+		$(function(){
+			if(payStatus == 0) {
+				$("#payMessage").text("付款成功！");
+				doSuccess();
+			}
+			else {
+				$("#payMessage").text("付款失败！");
+			}
+		});
 		
+		function doSuccess(){
+			console.log("doing success...");
+			var shoppingCart = $.session.get("shoppingCart");
+			var createTime = $.session.get("createTime");
+			var finalTotalPrice = $.session.get("finalTotalPrice");
+			var userId = $.session.get("userId");
+			$.ajax({
+				url:"doSuccess.do",
+				method:"POST",
+				dataType:"JSON",
+				data:{"gameIds":shoppingCart,
+					  "createTime": createTime,
+					  "finalTotalPrice":finalTotalPrice,
+					  "userId": userId},
+				success:function(result){
+					console.log(result);
+				}
+			});
+		}
+		
+		function jump(){
+			window.location.href = path;
+		}
+		
+		onload=function(){ 
+			setInterval(go, 1000); 
+		}; 
+		var x=3; //利用了全局变量来执行 
+		function go(){ 
+			x--; 
+			if(x>0){ 
+				$("#second").text(x); //每次设置的x的值都不一样了。 
+			}else{ 
+				location.href=path; 
+			} 
+		} 
 	</script>
 </body>
 </html>

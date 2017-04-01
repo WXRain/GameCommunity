@@ -10,13 +10,18 @@
 <script type="text/javascript">
 	var path = getRootPath(); 
 	var gameId = getParam("gameId");
+	if(gameId == null || gameId.length == 0){
+		$.session.set("errorMessage", "参数错误");
+		window.location.href = path + "/error.html";
+	}
 </script>
 </head>
 <body>
     <div><iframe align="center" width="100%" height="100" src="../top.html" frameborder="no" border="0" marginwidth="0" marginheight="0" scrolling="no"></iframe></div>
     
 	<br/>
-	<table width=100%>
+	<span><center><h2 id="message"></h2></center></span>
+	<table width=100% id="table">
 		<tr>
 			<td colspan='2'><center><a href=javascript:void(0) onclick=addBus()>加入购物车</a></center></td>
 			<td colspan='2'><center><a href=javascript:void(0) onclick=jumpToCommunity()>论坛</a></center></td>
@@ -53,15 +58,53 @@
 <script type="text/javascript">
 
 function addBus(){
-	if($.session.get("shoppingCart") == null || $.session.get("shoppingCart") == "undefined"){
-		$.session.set("shoppingCart", "");
+	var userId = $.session.get("userId");
+	if(userId == null || userId.length == 0){
+		$.session.set("errorMessage", "登录状态错误!");
+		window.location.href = path + "/error.html";
 	}
-	$.session.set("shoppingCart", $.session.get("shoppingCart") + gameId + ",");
+	$.ajax({
+		url:"addToShoppingCart.do",
+		method:"POST",
+		dataType:"JSON",
+		data:{
+			"gameId":gameId,
+			"userId":userId
+		},
+		success:function(result){
+			if(result.state == 0){
+				
+			}else{
+				alert(result.message);
+			}
+		}
+	});
 	alert("添加购物车成功");
 }
 
 function jumpToCommunity(){
-	alert("跳转到论坛中……");
+	
+	$.ajax({
+		url:"getSectionByGameId.do",
+		method:"POST",
+		dataType:"JSON",
+		data:{
+			"gameId":gameId
+		},
+		success:function(result){
+			if(result.state == 0){
+				var data = result.data;
+				if(data == null || data.length == 0){
+					$.session.set("errorMessage", "该游戏没有对应的论坛！");
+					window.location.href = path + "/error.html";
+				}else{
+					window.location.href = path + "/community/section.html?sectionId=" + data.id;
+				}
+			}else{
+				alert(result.message);
+			}
+		}
+	});
 }
 
 $.ajax({
@@ -73,6 +116,11 @@ $.ajax({
 		console.log(result.data);
 		if(result.state == 0){
 			data = result.data;
+			if(data == null || data.length == 0){
+				$.session.set("errorMessage", "游戏不存在！");
+				window.location.href = path + "/error.html";
+				return;
+			}
 			$("#gameName").text("游戏名称：" + data.gameName);
 			$("#buildTime").text("游戏出版日期：" + data.buildDate);
 			$("#introduce").text("游戏介绍：" + data.introduce);

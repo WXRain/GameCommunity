@@ -49,7 +49,8 @@
    
    function createPage(data){
 	   if(data == null || data.length <= 0){
-		   $("#topicTitle").text("该板块无内容");
+		   $.session.set("errorMessage", "帖子不存在！");
+		   window.location.href = path + "/error.html";
 	   }else{
 		   console.log(data);
 		  $("#topicTitle").text(data.topicName);

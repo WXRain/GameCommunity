@@ -97,4 +97,30 @@ public class UserServiceImpl implements UserService {
 	public List<UserEntity> queryUsersById(List<Long> ids) throws Exception{
 		return userDao.queryUsersById(ids);
 	}
+
+	@Override
+	public void updateUserGames(long userId, String gameIds) throws Exception {
+		List<Long> userIds = new ArrayList<Long>();
+		userIds.add(userId);
+		UserEntity user = new UserEntity();
+		List<UserEntity> users = userDao.queryUsersById(userIds);
+		if(users != null && users.size() > 0) user = users.get(0);
+		else return;
+		
+		//取出当前已经购买的游戏
+		String beforeGames = user.getGames();
+		String[] newGames = gameIds.split(",");
+		if(beforeGames == null || beforeGames.length() == 0){
+			beforeGames = newGames[0] + ",";
+		}else{
+			beforeGames = beforeGames + "," + newGames[0] + ",";
+		}
+		for(int i = 1; i < newGames.length; i++){
+			beforeGames = beforeGames + newGames[i] + ",";
+		}
+		
+		beforeGames = beforeGames.substring(0, beforeGames.length() - 1);
+		
+		userDao.updateUserGames(userId, beforeGames);
+	}
 }

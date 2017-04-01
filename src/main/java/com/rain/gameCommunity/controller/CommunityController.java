@@ -124,7 +124,8 @@ public class CommunityController {
 		try{
 			List<TopicEntity> topics = topicService.showTopicsByTopicId(topicId);
 			TopicEntity topic = new TopicEntity();
-			if(topics == null || topics.size() <= 0) throw new Exception("系统错误");
+			if(topics == null || topics.size() <= 0) 
+				return new JsonResult<TopicEntity>(null, null);
 			topic = topics.get(0);
 			return new JsonResult<TopicEntity>(topic, null);
 		}catch(Exception e){

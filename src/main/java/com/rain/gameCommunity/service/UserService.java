@@ -18,4 +18,7 @@ public interface UserService {
 	public void addUser(UserEntity user) throws Exception;
 	
 	public List<UserEntity> queryUsersById(List<Long> ids) throws Exception;
+	
+	//更新用户已购游戏列表
+	public void updateUserGames(long userId, String gameIds) throws Exception;
 }

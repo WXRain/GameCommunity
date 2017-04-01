@@ -19,9 +19,10 @@
 	<br/><br/>
 	<center><h2>页面将在<span id="second">3</span>秒钟之后跳转 ... ...</h2></center>
 	<br/>
-	<center><h3><a href=javascript:void()>如果没有跳转点击这里</a></h3></center>
+	<center><h3><a href=javascript:void() onclick=jump()>如果没有跳转点击这里</a></h3></center>
 	
 	<script type="text/javascript">
+		$("#errorMessage").css("color","red");
 		$("#errorMessage").text(errorMessage);
 		onload=function(){ 
 				setInterval(go, 1000); 
@@ -35,6 +36,10 @@
 					location.href=path; 
 				} 
 			} 
+			
+		function jump(){
+			window.location.href = path;
+		}
 	</script>
 </body>
 </html>

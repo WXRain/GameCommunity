@@ -25,12 +25,12 @@
 <script type="text/javascript">
 function paySuccess(){
 	$.session.set("payStatus", "0");
-	window.location.href = path + "/pay/paySuccess.html";
+	window.location.href = path + "/pay/payResult.html";
 }
 
 function payFailed(){
 	$.session.set("payStatus", "1");
-	window.location.href = path + "/pay/payFailed.html";
+	window.location.href = path + "/pay/payResult.html";
 }
 </script>
 </body>
