@@ -93,4 +93,10 @@ public class GameServiceImpl implements GameService {
 		return gameDao.queryGamesByIds(ids);
 	}
 
+	@Override
+	public void updateGameEntity(GameEntity game) throws Exception {
+		
+		gameDao.updateGameEntity(game);
+	}
+
 }

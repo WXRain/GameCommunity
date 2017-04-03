@@ -15,6 +15,7 @@
         <result column="version" property="version" jdbcType="VARCHAR"/>
         <result column="path" property="path" jdbcType="VARCHAR"/>
         <result column="sectionId" property="sectionId" jdbcType="INTEGER"/>
+        <result column="downloadNum" property="downloadNum" jdbcType="INTEGER"/>
         <collection property="systemSupport" ofType="com.rain.gameCommunity.entity.SystemSupportEntity">
             <id column="id" property="id" jdbcType="BIGINT" />
             <result column="memoria" property="memoria" jdbcType="VARCHAR" />
@@ -98,5 +99,21 @@
             #{item}  
         </foreach>  
 	</select>
+	
+	<update id="updateGameEntity" parameterType="com.rain.gameCommunity.entity.GameEntity">
+		update game set
+			gamename=#{game.gameName},
+			size=#{game.size},
+			buildDate=#{game.buildDate},
+			introduce=#{game.introduce},
+			price=#{game.price},
+			cutoff=#{game.cutOff},
+			systemTypeNum=#{game.systemTypeNum},
+			version=#{game.version},
+			path=#{game.path},
+			sectionId=#{game.sectionId},
+			downloadNum=#{game.downloadNum}
+			where id=#{game.id}
+	</update>
 	
  </mapper>

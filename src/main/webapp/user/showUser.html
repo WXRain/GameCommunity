@@ -57,6 +57,12 @@
 		});
 		
 		function createTable(data){
+			
+			if(data == null || data.length == 0){
+				$.session.set("errorMessage", "没有找到用户！");
+				return;
+			}
+			
 			$("#username").text("用户名：" + data.username);
 			$("#head").text("头像：" + data.head);
 			$("#introduce").text("介绍：" + data.introduce);
@@ -77,10 +83,28 @@
 			
 			$("#isManager").text("管理员：" + manager);
 			
+// 			var games = "";
+// 			if(data.games == "") games = "无"; 
+// 			else games = data.games;
+// 			$("#userGames").text("已经购买的游戏:  " + games);
+
 			var games = "";
-			if(data.games == "") games = "无"; 
-			else games = data.games;
-			$("#userGames").text("已经购买的游戏:  " + games)
+			if(data.hasBuyedGames == null || data.hasBuyedGames.length <= 0){
+				games = "无";
+			}else{
+				for(var i = 0; i < data.hasBuyedGames.length; i++){
+					games = games + "<a href=javascript:void() onclick=showGame(" + data.hasBuyedGames[i].id + ")>"+
+									data.hasBuyedGames[i].gameName + "</a>,  ";
+				}
+				games = games.substring(0, games.length - 1);
+			}
+			$("#userGames").html("已经购买的游戏:  " + games);
+			
+			
+		}
+		
+		function showGame(gameId){
+			window.location.href = path + "/game/showGame.html?gameId=" + gameId;
 		}
 		
 		

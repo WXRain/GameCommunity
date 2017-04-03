@@ -14,6 +14,11 @@
 		$.session.set("errorMessage", "参数错误");
 		window.location.href = path + "/error.html";
 	}
+	var userId = $.session.get("userId");
+	if(userId == null || gameId.length == 0){
+		$.session.set("errorMessage", "登录状态错误！");
+		window.location.href = path + "/error.html";
+	}
 </script>
 </head>
 <body>
@@ -23,8 +28,8 @@
 	<span><center><h2 id="message"></h2></center></span>
 	<table width=100% id="table">
 		<tr>
-			<td colspan='2'><center><a href=javascript:void(0) onclick=addBus()>加入购物车</a></center></td>
-			<td colspan='2'><center><a href=javascript:void(0) onclick=jumpToCommunity()>论坛</a></center></td>
+			<td colspan='2'><center><a href=javascript:void(0) onclick=addBus() id="addBus">加入购物车</a></center></td>
+			<td colspan='2'><center><a href=javascript:void(0) onclick=jumpToCommunity() id="community">论坛</a></center></td>
 		</tr>
 		<tr><td colspan='5'><hr/></td></tr>
 		<tr>
@@ -57,6 +62,30 @@
 
 <script type="text/javascript">
 
+	$.ajax({
+		url:"addShoppingCartOrDownload.do",
+		method:"POST",
+		dataType:"JSON",
+		data:{
+			"gameId":gameId,
+			"userId":userId
+		},
+		success:function(result){
+			if(result.state == 0){
+				console.log(result);
+				var data = result.data;
+				if(data){
+					$("#addBus").text("下载").attr("onclick","downloadAction(" + gameId + ")");
+				}else{
+					return;
+				}
+			}else{
+				$.session.set("errorMessage", result.message);
+				window.location.href = path + "/error.html";
+			}
+		}
+	});
+
 function addBus(){
 	var userId = $.session.get("userId");
 	if(userId == null || userId.length == 0){
@@ -73,13 +102,18 @@ function addBus(){
 		},
 		success:function(result){
 			if(result.state == 0){
-				
+				console.log(result);
+				if(!result.data){
+					alert("加入购物车失败，可能因为您已经购买该游戏，请刷新页面重试！");
+					return;
+				}
+				alert("添加购物车成功");
 			}else{
-				alert(result.message);
+				alert("加入购物车失败，原因是：" + result.message);
+				return;
 			}
 		}
 	});
-	alert("添加购物车成功");
 }
 
 function jumpToCommunity(){
@@ -115,7 +149,7 @@ $.ajax({
 	success:function(result){
 		console.log(result.data);
 		if(result.state == 0){
-			data = result.data;
+			var data = result.data;
 			if(data == null || data.length == 0){
 				$.session.set("errorMessage", "游戏不存在！");
 				window.location.href = path + "/error.html";
@@ -147,6 +181,52 @@ $.ajax({
 	
 	
 });
+
+
+function downloadGame(gameId){
+	var downloadPath = "";
+	$.ajax({
+		url:'showGame.do',
+		method:'POST',
+		dataType:'JSON',
+		data: {"gameId":gameId},
+		success:function(result){
+			console.log(result.data);
+			if(result.state == 0){
+				var data = result.data;
+				if(data == null || data.length == 0){
+					$.session.set("errorMessage", "游戏不存在！");
+					window.location.href = path + "/error.html";
+					return;
+				}
+				downloadPath = data.path;
+				//window.location.href = path + downloadPath;
+				console.log(path + downloadPath);
+			}else{
+				alert(result.message);
+			}
+		}
+		
+	});
+}
+
+function downloadAction(gameId){
+	$.ajax({
+		url:"addDownloadNum.do",
+		method:"POST",
+		dataType:"JSON",
+		data:{
+			"gameId":gameId
+		},
+		success:function(result){
+			if(result.state == 0){
+				downloadGame(gameId);
+			}else{
+				alert("下载失败，更新点击量出错:" + result.message);
+			}
+		}
+	});
+}
 </script>
 </body>
 </html>

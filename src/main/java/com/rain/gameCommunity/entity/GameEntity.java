@@ -51,6 +51,9 @@ public class GameEntity implements Serializable {
 
 	// 对应的板块ID
 	private int sectionId;
+	
+	// 游戏下载量
+	private int downloadNum;
 
 	private SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
 
@@ -62,7 +65,7 @@ public class GameEntity implements Serializable {
 
 	public GameEntity(long id, String size, String buildDate, String gameName, List<CommentEntity> comments,
 			String introduce, double price, double cutOff, int systemTypeNum, List<File> pictures, String version,
-			String path, SystemSupportEntity systemSupport, int sectionId) {
+			String path, SystemSupportEntity systemSupport, int sectionId, int downloadNum) {
 		super();
 		this.id = id;
 		this.size = size;
@@ -78,6 +81,7 @@ public class GameEntity implements Serializable {
 		this.path = path;
 		this.systemSupport = systemSupport;
 		this.sectionId = sectionId;
+		this.downloadNum = downloadNum;
 	}
 
 	/*
@@ -90,7 +94,25 @@ public class GameEntity implements Serializable {
 		return "GameEntity [id=" + id + ", size=" + size + ", buildDate=" + buildDate + ", gameName=" + gameName
 				+ ", comments=" + comments + ", introduce=" + introduce + ", price=" + price + ", cutOff=" + cutOff
 				+ ", systemTypeNum=" + systemTypeNum + ", pictures=" + pictures + ", version=" + version + ", path="
-				+ path + ", systemSupport=" + systemSupport + ", sectionId=" + sectionId + "]";
+				+ path + ", systemSupport=" + systemSupport + ", sectionId=" + sectionId + ", downloadNum=" + downloadNum + "]";
+	}
+	
+	
+
+	public int getDownloadNum() {
+		return downloadNum;
+	}
+
+	public void setDownloadNum(int downloadNum) {
+		this.downloadNum = downloadNum;
+	}
+
+	public SimpleDateFormat getSdf() {
+		return sdf;
+	}
+
+	public void setSdf(SimpleDateFormat sdf) {
+		this.sdf = sdf;
 	}
 
 	/**

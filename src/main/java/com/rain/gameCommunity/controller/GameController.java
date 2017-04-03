@@ -11,10 +11,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.rain.gameCommunity.entity.GameEntity;
 import com.rain.gameCommunity.entity.GameTypeEntity;
 import com.rain.gameCommunity.entity.SectionEntity;
+import com.rain.gameCommunity.entity.UserEntity;
 import com.rain.gameCommunity.service.GameService;
 import com.rain.gameCommunity.service.GameTypeService;
 import com.rain.gameCommunity.service.SectionService;
 import com.rain.gameCommunity.service.ShoppingCartService;
+import com.rain.gameCommunity.service.UserService;
 import com.rain.gameCommunity.utils.JsonResult;
 import com.rain.gameCommunity.utils.PagingData;
 
@@ -30,6 +32,9 @@ public class GameController {
 	
 	@Autowired
 	private SectionService sectionService;
+	
+	@Autowired
+	private UserService userService;
 	
 	@Autowired
 	private ShoppingCartService shoppingCartService;
@@ -138,7 +143,72 @@ public class GameController {
 	@ResponseBody
 	public JsonResult<Boolean> addToShoppingCart(long gameId, long userId){
 		try{
+			//检查游戏是否已经购买
+			List<Long> ids = new ArrayList<Long>();
+			ids.add(userId);
+			List<UserEntity> users = userService.queryUsersById(ids);
+			if(users == null || users.size() <= 0){
+				throw new Exception("没有找到用户！");
+			}
+			UserEntity user = users.get(0);
+			
+			System.out.println("取得的用户为：" + user);
+			String[] games = user.getGames().split(",");
+			
+			for(int i = 0; i < games.length; i++){
+				if(games[i].length() <= 0 || games[i].equals("")) continue;
+				if(games[i].equals(gameId + "")){
+					return new JsonResult<Boolean>(false, null);
+				}
+			}
+			
 			shoppingCartService.addToShoppingCart(userId, gameId);
+			return new JsonResult<Boolean>(true, null);
+		}catch(Exception e){
+			e.printStackTrace();
+			return new JsonResult<Boolean>(e.getMessage());
+		}
+	}
+	
+	@RequestMapping("/addShoppingCartOrDownload.do")
+	@ResponseBody
+	public JsonResult<Boolean> addShoppingCartOrDownload(long userId, long gameId){
+		System.out.println("-------------------------------------");
+		System.out.println("判断当前用户是否已经购买该游戏");
+		try{
+			List<Long> ids = new ArrayList<Long>();
+			ids.add(userId);
+			List<UserEntity> users = userService.queryUsersById(ids);
+			if(users == null || users.size() <= 0){
+				throw new Exception("没有找到用户！");
+			}
+			UserEntity user = users.get(0);
+			
+			System.out.println("取得的用户为：" + user);
+			String[] games = user.getGames().split(",");
+			
+			for(int i = 0; i < games.length; i++){
+				if(games[i].length() <= 0 || games[i].equals("")) continue;
+				if(games[i].equals(gameId + "")){
+					return new JsonResult<Boolean>(true, null);
+				}
+			}
+			
+			return new JsonResult<Boolean>(false, null);
+		}catch(Exception e){
+			e.printStackTrace();
+			return new JsonResult<Boolean>(e.getMessage());
+		}
+	}
+	
+	@RequestMapping("/addDownloadNum.do")
+	@ResponseBody
+	public JsonResult<Boolean> addDownloadNum(long gameId){
+		try{
+			GameEntity game = gameService.showGameById(gameId + "");
+			System.out.println(game);
+			game.setDownloadNum(game.getDownloadNum() + 1);
+			gameService.updateGameEntity(game);
 			return new JsonResult<Boolean>(true, null);
 		}catch(Exception e){
 			e.printStackTrace();
