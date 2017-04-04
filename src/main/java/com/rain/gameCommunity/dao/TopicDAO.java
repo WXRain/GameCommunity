@@ -23,4 +23,6 @@ public interface TopicDAO {
 					@Param("perPageNum") int perPageNum);
 	
 	public int queryTopicsCountByCondition(@Param("nameCondition") String nameCondition);
+	
+	public void updateTopic(@Param("topic") TopicEntity topic);
 }

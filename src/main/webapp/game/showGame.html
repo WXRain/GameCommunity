@@ -23,7 +23,7 @@
 </head>
 <body>
     <div><iframe align="center" width="100%" height="100" src="../top.html" frameborder="no" border="0" marginwidth="0" marginheight="0" scrolling="no"></iframe></div>
-    
+    <span id="index"><a href=javascript:void(0) onclick=gameIndex()>xx游戏</a>&nbsp;&nbsp;&nbsp;></span>
 	<br/>
 	<span><center><h2 id="message"></h2></center></span>
 	<table width=100% id="table">
@@ -61,7 +61,8 @@
 	</table>
 
 <script type="text/javascript">
-
+	var gameType;
+	var nowIndex;
 	$.ajax({
 		url:"addShoppingCartOrDownload.do",
 		method:"POST",
@@ -155,6 +156,9 @@ $.ajax({
 				window.location.href = path + "/error.html";
 				return;
 			}
+			
+			buildIndex(data.gameType, data.gameName);
+			
 			$("#gameName").text("游戏名称：" + data.gameName);
 			$("#buildTime").text("游戏出版日期：" + data.buildDate);
 			$("#introduce").text("游戏介绍：" + data.introduce);
@@ -182,6 +186,36 @@ $.ajax({
 	
 });
 
+function buildIndex(gameType, nowIndex){
+	$.ajax({
+		url: "showGameType.do",
+		method: "POST",
+		dataType: "JSON",
+		data: {"gameTypeId" : gameType},
+		success: function(result){
+			if(result.state == 0){
+				lastIndex = result.data.typeName;
+				$("#index").append("&nbsp;&nbsp;&nbsp;<a href=javascript:void(0) onclick=gameTypeIndex(" + gameType + ")>" + lastIndex + "</a>");
+				$("#index").append("&nbsp;&nbsp;&nbsp;>&nbsp;&nbsp;&nbsp;<a href=javascript:void(0) onclick=nowIndex()>" + nowIndex + "</a>");
+				
+			}else{
+				alert(result.message);
+			}
+		}
+	});
+}
+
+function gameIndex(){
+	window.location.href = path + "/game/main.html";
+}
+
+function gameTypeIndex(gameType){
+	window.location.href = path + "/game/showGameType.html?gameTypeId=" + gameType;
+}
+
+function nowIndex(){
+	window.location.href = path + "/game/showGame.html?gameId=" + gameId;
+}
 
 function downloadGame(gameId){
 	var downloadPath = "";

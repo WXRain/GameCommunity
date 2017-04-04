@@ -39,4 +39,20 @@
 		select count(*) from topic where sectionId = #{id}
 	</select>
 	
+	<update id="updateTopic" parameterType="com.rain.gameCommunity.entity.TopicEntity">
+		update topic set
+		userId=#{topic.userId},
+		sectionId=#{topic.sectionId},
+		clickNum=#{topic.clickNum},
+		replyNum=#{topic.replyNum},
+		topicName=#{topic.topicName},
+		topicText=#{topic.topicText},
+		createTime=#{topic.createTime},
+		lastReplyTime=#{topic.lastReplyTime},
+		isFine=#{topic.isFine},
+		isTop=#{topic.isTop}
+		where
+		id=#{topic.id}
+	</update>
+	
  </mapper>

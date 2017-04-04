@@ -215,4 +215,16 @@ public class GameController {
 			return new JsonResult<Boolean>(e.getMessage());
 		}
 	}
+	
+	@RequestMapping("/showGameType.do")
+	@ResponseBody
+	public JsonResult<GameTypeEntity> showGameType(String gameTypeId){
+		try{
+			System.out.println(gameTypeId);
+			GameTypeEntity gameTypeEntity = gameTypeService.queryGameTypeById(Long.parseLong(gameTypeId));
+			return new JsonResult<GameTypeEntity>(gameTypeEntity, null);
+		}catch(Exception e){
+			return new JsonResult<GameTypeEntity>(e.getMessage());
+		}
+	}
 }

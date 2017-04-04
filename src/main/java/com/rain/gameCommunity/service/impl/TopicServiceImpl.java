@@ -93,4 +93,12 @@ public class TopicServiceImpl implements TopicService {
 		return changeUserIdToString(topicDao.queryTopicsByCondition(nameCondition, (pagingData.getCurrentPage()-1)*pagingData.getPerPageNum(), pagingData.getPerPageNum()));
 	}
 
+
+
+	@Override
+	public void updateTopic(TopicEntity topic) throws Exception {
+		
+		topicDao.updateTopic(topic);
+	}
+
 }

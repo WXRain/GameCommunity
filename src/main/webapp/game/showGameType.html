@@ -12,6 +12,10 @@
 <script type="text/javascript">
 	var path = getRootPath(); 
 	var gameType = getParam("gameTypeId");
+	if(gameType == null || gameType.length == 0){
+		$.session.set("errorMessage", "参数错误!");
+		window.location.href = path + "/error.html";
+	}
 	var pageNum = getParam("page");
 	if(pageNum == null || pageNum == 0) pageNum = 1;
 </script>
@@ -20,7 +24,11 @@
 <div><iframe align="center" width="100%" height="100" src="../top.html" frameborder="no" border="0" marginwidth="0" marginheight="0" scrolling="no"></iframe></div>
 
 <br/>
-	<center><h2 id="title"></h2></center><br/><br/>
+<span id="index"><a href=javascript:void(0) onclick="gameIndex()">xx游戏</a>&nbsp;&nbsp;&nbsp;></span>
+<!-- 	<center><h2 id="title"></h2></center><br/><br/> -->
+	<center><h2 id="gameTypeName"></h2></center><br/>
+	<div><center><h3 id="introduce"></h3></center></div>
+	<br/><br/>
 	<table width="100%" id="table">
 	<tr>
 	    <td width="25%">主题</td>
@@ -39,6 +47,7 @@
 	
 	<script type="text/javascript">
 	$("#title").text("游戏类型主页");
+	var nowIndex = "";
 	$.ajax({
 		url:'showGameByGameType.do',
 		method:'POST',
@@ -60,6 +69,23 @@
 		
 	});
 	
+	$.ajax({
+		url: "showGameType.do",
+		method: "POST",
+		dataType: "JSON",
+		data: {"gameTypeId" : gameType},
+		success: function(result){
+			if(result.state == 0){
+				$("#gameTypeName").text(result.data.typeName);
+				$("#introduce").text("介绍：" + result.data.introduce);
+				nowIndex = result.data.typeName;
+				$("#index").append("&nbsp;&nbsp;&nbsp;<a href=javascript:void(0) onclick=gameTypeIndex()>" + nowIndex + "</a>");
+			}else{
+				alert(result.message);
+			}
+		}
+	});
+	
 	function createTable(data){
 		if(data == null || data.length <= 0){
 			$("#table").append("<tr><td colspan='4'><center>该板块无内容</center></td></tr>");
@@ -77,6 +103,12 @@
 	
 	function showGame(gameId){
 		location.href="showGame.html?gameId=" + gameId;
+	}
+	function gameIndex(){
+		window.location.href = path + "/game/main.html";
+	}
+	function gameTypeIndex(){
+		window.location.href = path + "/game/showGameType.html?gameTypeId=" + gameType;
 	}
 	</script>
 </body>

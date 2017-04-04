@@ -127,6 +127,9 @@ public class CommunityController {
 			if(topics == null || topics.size() <= 0) 
 				return new JsonResult<TopicEntity>(null, null);
 			topic = topics.get(0);
+			topic.setClickNum(topic.getClickNum() + 1);
+			//更新点击量
+			topicService.updateTopic(topic);
 			return new JsonResult<TopicEntity>(topic, null);
 		}catch(Exception e){
 			return new JsonResult<TopicEntity>(e.getMessage());
