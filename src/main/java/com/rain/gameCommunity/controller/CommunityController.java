@@ -76,6 +76,7 @@ public class CommunityController {
 	@RequestMapping("/showGameType.do")
 	@ResponseBody
 	public JsonResult<GameTypeEntity> showGameType(String gameTypeId){
+		System.out.println("showGameType:" + gameTypeId);
 		try{
 			GameTypeEntity gameTypeEntity = gameTypeService.queryGameTypeById(Long.parseLong(gameTypeId));
 			return new JsonResult<GameTypeEntity>(gameTypeEntity, null);

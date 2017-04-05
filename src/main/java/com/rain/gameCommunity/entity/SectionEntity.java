@@ -29,6 +29,9 @@ public class SectionEntity implements Serializable {
 	// 对应游戏ID
 	private long gameId;
 	
+	// 对应类型
+	private long gameType;
+	
 	private List<UserEntity> managers;
 
 	public SectionEntity() {
@@ -36,7 +39,7 @@ public class SectionEntity implements Serializable {
 	}
 
 	public SectionEntity(long id, String name, String introduce, int topicNum, String sectionManager, String createTime,
-			long gameId, List<UserEntity> managers) {
+			long gameId, List<UserEntity> managers, long gameType) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -46,6 +49,7 @@ public class SectionEntity implements Serializable {
 		this.createTime = createTime;
 		this.gameId = gameId;
 		this.managers = managers;
+		this.gameType = gameType;
 	}
 
 	/*
@@ -56,11 +60,19 @@ public class SectionEntity implements Serializable {
 	@Override
 	public String toString() {
 		return "SectionEntity [id=" + id + ", name=" + name + ", introduce=" + introduce + ", topicNum=" + topicNum
-				+ ", sectionManager=" + sectionManager + ", createTime=" + createTime + ", gameId=" + gameId + ", managers=" + managers + "]";
+				+ ", sectionManager=" + sectionManager + ", createTime=" + createTime + ", gameId=" + gameId + ", managers=" + managers +
+				", gameTypeId=" + gameType + "]";
 	}
 
-	
-	
+
+	public long getGameType() {
+		return gameType;
+	}
+
+	public void setGameType(long gameType) {
+		this.gameType = gameType;
+	}
+
 	public List<UserEntity> getManagers() {
 		return managers;
 	}

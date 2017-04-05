@@ -12,10 +12,16 @@
 	var path = getRootPath(); 
 	var pageNum = getParam("page");
 	if(pageNum == null || pageNum == 0) pageNum = 1;
+	var gameTypeId = getParam("gameTypeId");
+	if(gameTypeId == null || gameTypeId.length == 0){
+		$.session.set("errorMessage", "参数错误！");
+		window.location.href = path + "/error.html";
+	}
 </script>
 </head>
 <body>
 	<div><iframe align="center" width="100%" height="100" src="../top.html" frameborder="no" border="0" marginwidth="0" marginheight="0" scrolling="no"></iframe></div>
+	<span id="index"><a href=javascript:void(0) onclick=communityIndex()>xx论坛</a>&nbsp;&nbsp;&nbsp;></span>
 	<center><h2 id="gameTypeName"></h2></center><br/>
 	<div><center><h3 id="introduce"></h3></center></div>
 	<br/><br/>
@@ -34,7 +40,6 @@
    
    <script type="text/javascript">
    $(function(){
-	   var gameTypeId = getParam("gameTypeId");
 		$.ajax({
 			url: "initGameType.do",
 			method: "POST",
@@ -58,6 +63,12 @@
 			data: {"gameTypeId" : gameTypeId},
 			success: function(result){
 				if(result.state == 0){
+					if(result.data == null || result.data.length == 0){
+						$.session.set("errorMessage", "游戏类型出错！");
+						window.location.href = path + "/error.html";
+					}
+					$("#index").append("&nbsp;&nbsp;&nbsp;<a href=javascript:void(0) onclick=gameTypeIndex()>" + 
+										result.data.typeName + "</a>");
 					$("#gameTypeName").text(result.data.typeName);
 					$("#introduce").text("介绍：" + result.data.introduce);
 				}else{
@@ -100,6 +111,14 @@
    
    function jumpToPage(page){
 	   alert(page);
+   }
+   
+   function communityIndex(){
+	   window.location.href = path + "/community/main.html";
+   }
+   
+   function gameTypeIndex(){
+	   window.location.href = path + "/community/gameType.html?gameTypeId=" + gameTypeId;
    }
    
    </script>

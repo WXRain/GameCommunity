@@ -10,10 +10,19 @@
 <script type="text/javascript" src="../script/utils.js"></script>
 <script type="text/javascript">
 	var path = getRootPath(); 
+	var topicId = getParam("topicId");
+	if(topicId == null || topicId.length == 0){
+		$.session.set("errorMessage", "参数错误！");
+		window.location.href = path + "/error.html";
+	}
 </script>
 </head>
 <body>
 	<div><iframe align="center" width="100%" height="100" src="../top.html" frameborder="no" border="0" marginwidth="0" marginheight="0" scrolling="no"></iframe></div>
+	<span id="communityIndex"><a href=javascript:void(0) onclick="gameIndex()">xx论坛</a>&nbsp;&nbsp;&nbsp;></span>
+	<span>&nbsp;&nbsp;&nbsp;<a href=javascript:void(0) onclick="gameTypeIndex()" id="gameTypeIndex"></a>&nbsp;&nbsp;&nbsp;></span>
+	<span>&nbsp;&nbsp;&nbsp;<a href=javascript:void(0) onclick="sectionIndex()" id="sectionIndex"></a>&nbsp;&nbsp;&nbsp;></span>
+	<span>&nbsp;&nbsp;&nbsp;<a href=javascript:void(0) onclick="topicIndex()" id="topicIndex"></a></span>
 	<center><h2 id="topicTitle"></h2></center><br/><br/><br/>
 	<table width=100%>
 		<tr>
@@ -29,7 +38,7 @@
    <script type="text/javascript">
    		
    $(function(){
-	   var topicId = getParam("topicId");
+	   
 		$.ajax({
 			url: "initTopic.do",
 			method: "POST",
@@ -53,6 +62,10 @@
 		   window.location.href = path + "/error.html";
 	   }else{
 		   console.log(data);
+		   
+		  $("#topicIndex").text(data.topicName); 
+		  buildSectionIndex(data.sectionId);
+		  
 		  $("#topicTitle").text(data.topicName);
 		  $("#username").append("<a href=javascript:void() onclick=showUser(" + data.userId + ")>" + data.username + "</a>");
 		  $("#createTime").append(data.createTime);
@@ -61,6 +74,66 @@
 	  
 	   
 	   
+   }
+   
+   function buildSectionIndex(sectionId){
+	   $.ajax({
+			url: "showSection.do",
+			method: "POST",
+			dataType: "JSON",
+			data: {"sectionId" : sectionId},
+			success: function(result){
+				if(result.state == 0){
+					if(result.data == null || result.data.length == 0){
+						$.session.set("errorMessage", "数据错误！");
+						window.location.href = path + "/error.html";
+					}
+					buildGameTypeIndex(result.data.gameType);
+					$("#sectionIndex").text(result.data.name);
+					$("#sectionIndex").attr("onclick", "sectionIndex(" + result.data.id + ")");
+				}else{
+					alert(result.message);
+				}
+			}
+		});
+   }
+   
+   function buildGameTypeIndex(gameTypeId){
+	   $.ajax({
+			url: "showGameType.do",
+			method: "POST",
+			dataType: "JSON",
+			data: {"gameTypeId" : gameTypeId},
+			success: function(result){
+				if(result.state == 0){
+					if(result.data == null || result.data.length == 0){
+						$.session.set("errorMessage", "游戏类型出错！");
+						window.location.href = path + "/error.html";
+					}
+					console.log(result.data);
+					$("#gameTypeIndex").text(result.data.typeName);
+					$("#gameTypeIndex").attr("onclick", "gameTypeIndex(" + gameTypeId + ")");
+				}else{
+					alert(result.message);
+				}
+			}
+		});
+   }
+   
+   function gameIndex(){
+	   window.location.href = path + "/community/main.html";
+   }
+   
+   function gameTypeIndex(gameTypeId){
+	   window.location.href = path + "/community/gameType.html?gameTypeId=" + gameTypeId;
+   }
+   
+   function sectionIndex(sectionId){
+	   window.location.href = path + "/community/section.html?sectionId=" + sectionId;
+   }
+   
+   function topicIndex(){
+	   window.location.href = path + "/community/topic.html?topicId=" + topicId;
    }
    
    </script>

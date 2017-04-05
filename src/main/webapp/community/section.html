@@ -13,10 +13,18 @@
 	var path = getRootPath(); 
 	var pageNum = getParam("page");
 	if(pageNum == null || pageNum == 0) pageNum = 1;
+	var sectionId = getParam("sectionId");
+	if(sectionId == null || sectionId.length == 0){
+		$.session.set("errorMessage", "参数错误！");
+		window.location.href = path + "/error.html";
+	}
 </script>
 </head>
 <body>
 	<div><iframe align="center" width="100%" height="100" src="../top.html" frameborder="no" border="0" marginwidth="0" marginheight="0" scrolling="no"></iframe></div>
+	<span id="communityIndex"><a href=javascript:void(0) onclick=communityIndex()>xx论坛</a>&nbsp;&nbsp;&nbsp;></span>
+	<span>&nbsp;&nbsp;&nbsp;<a href=javascript:void(0) onclick=gameTypeIndex() id="gameTypeIndex"></a>&nbsp;&nbsp;&nbsp;></span>
+	<span>&nbsp;&nbsp;&nbsp;<a href=javascript:void(0) onclick=sectionIndex() id="sectionIndex"></a></span>
 	<center><h2 id="sectionName"></h2></center><br/>
 	<div><center><h3 id="introduce"></h3></center></div>
 	<br/><br/>
@@ -34,9 +42,7 @@
    </table>
    
    <script type="text/javascript">
-   		
    $(function(){
-	   var sectionId = getParam("sectionId");
 		$.ajax({
 			url: "initSection.do",
 			method: "POST",
@@ -61,6 +67,12 @@
 			data: {"sectionId" : sectionId},
 			success: function(result){
 				if(result.state == 0){
+					if(result.data == null || result.data.length == 0){
+						$.session.set("errorMessage", "数据错误！");
+						window.location.href = path + "/error.html";
+					}
+					buildGameTypeIndex(result.data.gameType);
+					$("#sectionIndex").text(result.data.name);
 					$("#sectionName").text(result.data.name);
 					$("#introduce").text("介绍：" + result.data.introduce);
 				}else{
@@ -70,6 +82,28 @@
 		});
 		
 	});		
+   
+   function buildGameTypeIndex(gameTypeId){
+	   $.ajax({
+			url: "showGameType.do",
+			method: "POST",
+			dataType: "JSON",
+			data: {"gameTypeId" : gameTypeId},
+			success: function(result){
+				if(result.state == 0){
+					if(result.data == null || result.data.length == 0){
+						$.session.set("errorMessage", "游戏类型出错！");
+						window.location.href = path + "/error.html";
+					}
+					console.log(result.data);
+					$("#gameTypeIndex").text(result.data.typeName);
+					$("#gameTypeIndex").attr("onclick", "gameTypeIndex(" + gameTypeId + ")");
+				}else{
+					alert(result.message);
+				}
+			}
+		});
+   }
    
    function createTable(data){
 	   if(data == null || data.length <= 0){
@@ -92,6 +126,18 @@
    
    function clickTopic(topicId){
 	   window.location.href = path + "/community/topic.html?topicId=" + topicId;
+   }
+   
+   function communityIndex(){
+	   window.location.href = path + "/community/main.html";
+   }
+   
+   function gameTypeIndex(gameTypeId){
+	   window.location.href = path + "/community/gameType.html?gameTypeId=" + gameTypeId;
+   }
+   
+   function sectionIndex(){
+	   window.location.href = path + "/community/section.html?sectionId=" + sectionId;
    }
    
    </script>
