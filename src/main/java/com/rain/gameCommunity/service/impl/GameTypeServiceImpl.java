@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.rain.gameCommunity.dao.GameTypeDAO;
+import com.rain.gameCommunity.dao.UserDAO;
 import com.rain.gameCommunity.entity.GameTypeEntity;
 import com.rain.gameCommunity.entity.UserEntity;
 import com.rain.gameCommunity.service.GameTypeService;
@@ -19,7 +20,7 @@ public class GameTypeServiceImpl implements GameTypeService {
 	private GameTypeDAO gameTypeDao;
 	
 	@Autowired
-	private UserServiceImpl userServiceImpl;
+	private UserDAO userDao;
 	
 	@Override
 	public List<GameTypeEntity> showAllGameTypes() throws Exception{
@@ -55,7 +56,7 @@ public class GameTypeServiceImpl implements GameTypeService {
 			for(int i = 0; i < managersString.length; i++){
 				managers.add(Long.parseLong(managersString[i]));
 			}
-			List<UserEntity> users = userServiceImpl.queryUsersById(managers);
+			List<UserEntity> users = userDao.queryUsersById(managers);
 			gameType.setManagers(users);
 		}
 		return gameTypes;

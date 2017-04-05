@@ -130,7 +130,6 @@ public class GameController {
 	@RequestMapping("/getSectionByGameId.do")
 	@ResponseBody
 	public JsonResult<SectionEntity> getSectionByGameId(long gameId){
-		System.out.println("gameId:" + gameId);
 		try{
 			List<SectionEntity> sections = sectionService.showSectionByGameId(gameId);
 			if(sections == null || sections.size() <= 0)
@@ -156,7 +155,6 @@ public class GameController {
 			}
 			UserEntity user = users.get(0);
 			
-			System.out.println("取得的用户为：" + user);
 			String[] games = user.getGames().split(",");
 			
 			for(int i = 0; i < games.length; i++){
@@ -177,8 +175,6 @@ public class GameController {
 	@RequestMapping("/addShoppingCartOrDownload.do")
 	@ResponseBody
 	public JsonResult<Boolean> addShoppingCartOrDownload(long userId, long gameId){
-		System.out.println("-------------------------------------");
-		System.out.println("判断当前用户是否已经购买该游戏");
 		try{
 			List<Long> ids = new ArrayList<Long>();
 			ids.add(userId);
@@ -187,8 +183,7 @@ public class GameController {
 				throw new Exception("没有找到用户！");
 			}
 			UserEntity user = users.get(0);
-			
-			System.out.println("取得的用户为：" + user);
+
 			String[] games = user.getGames().split(",");
 			
 			for(int i = 0; i < games.length; i++){
@@ -210,7 +205,6 @@ public class GameController {
 	public JsonResult<Boolean> addDownloadNum(long gameId){
 		try{
 			GameEntity game = gameService.showGameById(gameId + "");
-			System.out.println(game);
 			game.setDownloadNum(game.getDownloadNum() + 1);
 			gameService.updateGameEntity(game);
 			return new JsonResult<Boolean>(true, null);
@@ -224,7 +218,6 @@ public class GameController {
 	@ResponseBody
 	public JsonResult<GameTypeEntity> showGameType(String gameTypeId){
 		try{
-			System.out.println(gameTypeId);
 			GameTypeEntity gameTypeEntity = gameTypeService.queryGameTypeById(Long.parseLong(gameTypeId));
 			return new JsonResult<GameTypeEntity>(gameTypeEntity, null);
 		}catch(Exception e){

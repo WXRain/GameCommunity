@@ -2,12 +2,12 @@ package com.rain.gameCommunity.service;
 
 import java.util.List;
 
-import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Component;
 
 import com.rain.gameCommunity.entity.TopicEntity;
 import com.rain.gameCommunity.utils.PagingData;
 
-@Repository
+@Component
 public interface TopicService {
 
 	public List<TopicEntity> showAllTopic() throws Exception;

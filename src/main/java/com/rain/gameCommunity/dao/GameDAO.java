@@ -3,9 +3,11 @@ package com.rain.gameCommunity.dao;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
 
 import com.rain.gameCommunity.entity.GameEntity;
 
+@Repository
 public interface GameDAO {
 
 	public List<GameEntity> queryAllGame();

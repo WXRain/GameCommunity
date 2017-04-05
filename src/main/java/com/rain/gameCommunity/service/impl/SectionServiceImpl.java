@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.rain.gameCommunity.dao.SectionDAO;
+import com.rain.gameCommunity.dao.UserDAO;
 import com.rain.gameCommunity.entity.SectionEntity;
 import com.rain.gameCommunity.entity.UserEntity;
 import com.rain.gameCommunity.service.SectionService;
@@ -17,7 +18,7 @@ public class SectionServiceImpl implements SectionService {
 	@Autowired
 	private SectionDAO sectionDao;
 	@Autowired
-	private UserServiceImpl userServiceImpl;
+	private UserDAO userDao;
 	
 
 	public List<SectionEntity> showAllSection() throws Exception {
@@ -36,7 +37,7 @@ public class SectionServiceImpl implements SectionService {
 			for(int i = 0; i < managersString.length; i++){
 				managers.add(Long.parseLong(managersString[i]));
 			}
-			List<UserEntity> users = userServiceImpl.queryUsersById(managers);
+			List<UserEntity> users = userDao.queryUsersById(managers);
 			
 			section.setManagers(users);
 		}

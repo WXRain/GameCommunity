@@ -19,7 +19,6 @@ public class FileUpload {
 	@ResponseBody
 	public JsonResult<String> fileUpload(String name, MultipartFile file, HttpServletRequest request){
 		if(file.isEmpty()) return new JsonResult<String>(1, "文件为空", null, null); 
-		System.out.println(request.getSession().getServletContext().getRealPath("uploadFloder"));
 		String path = request.getSession().getServletContext().getRealPath("uploadFloder");
 		String fileName = file.getOriginalFilename();//.jpg
 		File targetFile = new File(path, fileName);
@@ -32,7 +31,6 @@ public class FileUpload {
 			return new JsonResult<String>(1, e.getMessage(), null, null);
 		}
 		File afile = new File(request.getSession().getServletContext().getRealPath("uploadFloder") + "/" + fileName);
-		System.out.println(afile.length());
 		return new JsonResult<String>(0, null, "文件上传成功", null);
 	}
 }

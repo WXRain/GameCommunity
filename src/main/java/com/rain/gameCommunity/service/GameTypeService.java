@@ -2,12 +2,12 @@ package com.rain.gameCommunity.service;
 
 import java.util.List;
 
-import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Component;
 
 import com.rain.gameCommunity.entity.GameTypeEntity;
 import com.rain.gameCommunity.utils.PagingData;
 
-@Repository
+@Component
 public interface GameTypeService {
 
 	public List<GameTypeEntity> showAllGameTypes() throws Exception;

@@ -2,9 +2,9 @@ package com.rain.gameCommunity.service;
 
 import java.util.Date;
 
-import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Component;
 
-@Repository
+@Component
 public interface OrderService {
 
 	//增加订单

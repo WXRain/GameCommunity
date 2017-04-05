@@ -2,11 +2,11 @@ package com.rain.gameCommunity.service;
 
 import java.util.List;
 
-import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Component;
 
 import com.rain.gameCommunity.entity.SectionEntity;
 
-@Repository
+@Component
 public interface SectionService {
 
 	public List<SectionEntity> showAllSection() throws Exception;

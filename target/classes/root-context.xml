@@ -79,6 +79,9 @@
 	</bean>  
   
 	<!-- 基于注解的事务处理 -->  
-	<tx:annotation-driven transaction-manager="transactionManager"/>  
+	<tx:annotation-driven transaction-manager="transactionManager"/> 
+	
+	<aop:aspectj-autoproxy/>  
+    <bean class="com.rain.gameCommunity.utils.LogAspect" />  
 	
 </beans>

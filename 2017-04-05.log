@@ -1,30 +1,26 @@
-2017-04-05  17:15:36.063 [ContainerBackgroundProcessor[StandardEngine[Catalina]]] DEBUG org.apache.ibatis.logging.LogFactory - Logging initialized using 'class org.apache.ibatis.logging.slf4j.Slf4jImpl' adapter.
-2017-04-05  17:15:52.989 [ContainerBackgroundProcessor[StandardEngine[Catalina]]] DEBUG org.apache.ibatis.logging.LogFactory - Logging initialized using 'class org.apache.ibatis.logging.slf4j.Slf4jImpl' adapter.
-2017-04-05  17:16:10.017 [ContainerBackgroundProcessor[StandardEngine[Catalina]]] DEBUG org.apache.ibatis.logging.LogFactory - Logging initialized using 'class org.apache.ibatis.logging.slf4j.Slf4jImpl' adapter.
-2017-04-05  17:17:20.229 [http-nio-8080-exec-18] DEBUG com.rain.gameCommunity.dao.UserDAO.queryUsersById - ==>  Preparing: select * from user where id in ( ? ) 
-2017-04-05  17:17:20.229 [http-nio-8080-exec-25] DEBUG com.rain.gameCommunity.dao.GameDAO.queryGameById - ==>  Preparing: select * from game g, systemsupport s where g.id=? and g.systemTypeNum = s.id 
-2017-04-05  17:17:20.247 [http-nio-8080-exec-25] DEBUG com.rain.gameCommunity.dao.GameDAO.queryGameById - ==> Parameters: 1(Long)
-2017-04-05  17:17:20.247 [http-nio-8080-exec-18] DEBUG com.rain.gameCommunity.dao.UserDAO.queryUsersById - ==> Parameters: 1(Long)
-2017-04-05  17:17:20.272 [http-nio-8080-exec-18] DEBUG com.rain.gameCommunity.dao.UserDAO.queryUsersById - <==      Total: 1
-2017-04-05  17:17:20.273 [http-nio-8080-exec-25] DEBUG com.rain.gameCommunity.dao.GameDAO.queryGameById - <==      Total: 1
-2017-04-05  17:17:20.426 [http-nio-8080-exec-27] DEBUG com.rain.gameCommunity.dao.GameTypeDAO.queryGameTypeById - ==>  Preparing: select * from game_type where id=? 
-2017-04-05  17:17:20.427 [http-nio-8080-exec-27] DEBUG com.rain.gameCommunity.dao.GameTypeDAO.queryGameTypeById - ==> Parameters: 1(Long)
-2017-04-05  17:17:20.429 [http-nio-8080-exec-27] DEBUG com.rain.gameCommunity.dao.GameTypeDAO.queryGameTypeById - <==      Total: 1
-2017-04-05  17:17:20.430 [http-nio-8080-exec-27] DEBUG com.rain.gameCommunity.dao.UserDAO.queryUsersById - ==>  Preparing: select * from user where id in ( ? ) 
-2017-04-05  17:17:20.430 [http-nio-8080-exec-27] DEBUG com.rain.gameCommunity.dao.UserDAO.queryUsersById - ==> Parameters: 1(Long)
-2017-04-05  17:17:20.431 [http-nio-8080-exec-27] DEBUG com.rain.gameCommunity.dao.UserDAO.queryUsersById - <==      Total: 1
-2017-04-05  17:20:29.284 [ContainerBackgroundProcessor[StandardEngine[Catalina]]] DEBUG org.apache.ibatis.logging.LogFactory - Logging initialized using 'class org.apache.ibatis.logging.slf4j.Slf4jImpl' adapter.
-2017-04-05  17:20:40.176 [http-nio-8080-exec-35] DEBUG com.rain.gameCommunity.dao.UserDAO.queryUsersById - ==>  Preparing: select * from user where id in ( ? ) 
-2017-04-05  17:20:40.176 [http-nio-8080-exec-28] DEBUG com.rain.gameCommunity.dao.GameDAO.queryGameById - ==>  Preparing: select * from game g, systemsupport s where g.id=? and g.systemTypeNum = s.id 
-2017-04-05  17:20:40.192 [http-nio-8080-exec-28] DEBUG com.rain.gameCommunity.dao.GameDAO.queryGameById - ==> Parameters: 1(Long)
-2017-04-05  17:20:40.192 [http-nio-8080-exec-35] DEBUG com.rain.gameCommunity.dao.UserDAO.queryUsersById - ==> Parameters: 1(Long)
-2017-04-05  17:20:40.213 [http-nio-8080-exec-35] DEBUG com.rain.gameCommunity.dao.UserDAO.queryUsersById - <==      Total: 1
-2017-04-05  17:20:40.214 [http-nio-8080-exec-28] DEBUG com.rain.gameCommunity.dao.GameDAO.queryGameById - <==      Total: 1
-2017-04-05  17:20:40.218 [http-nio-8080-exec-28] DEBUG com.rain.gameCommunity.controller.GameController - GameEntity [id=1, size=56MB, buildDate=2017-03-05 21:26:17.0, gameName=饥荒, comments=null, introduce=This is a very good game., price=15.23, cutOff=1.0, systemTypeNum=1, pictures=null, version=1.6.5, path=/download/dontstarve/1.6.5/dontstarve.exe, systemSupport=SystemSupport [id=1, memoria=2 GB RAM, System=Windows® 7 32/64-bit / Vista 32/64 / XP, disk=需要 13 GB 可用空间, voice=DirectX 9.0c compatible sound card, network=true, cpu=Pentium 4 3.0GHz, display=Video card with 128 MB, Shader model 2.0. ATI X800, NVidia 6600 or better, note=please notice your cpu!], sectionId=1, downloadNum=6, gameType=1]
-2017-04-05  17:20:40.362 [http-nio-8080-exec-28] DEBUG com.rain.gameCommunity.dao.GameTypeDAO.queryGameTypeById - ==>  Preparing: select * from game_type where id=? 
-2017-04-05  17:20:40.362 [http-nio-8080-exec-28] DEBUG com.rain.gameCommunity.dao.GameTypeDAO.queryGameTypeById - ==> Parameters: 1(Long)
-2017-04-05  17:20:40.364 [http-nio-8080-exec-28] DEBUG com.rain.gameCommunity.dao.GameTypeDAO.queryGameTypeById - <==      Total: 1
-2017-04-05  17:20:40.365 [http-nio-8080-exec-28] DEBUG com.rain.gameCommunity.dao.UserDAO.queryUsersById - ==>  Preparing: select * from user where id in ( ? ) 
-2017-04-05  17:20:40.365 [http-nio-8080-exec-28] DEBUG com.rain.gameCommunity.dao.UserDAO.queryUsersById - ==> Parameters: 1(Long)
-2017-04-05  17:20:40.366 [http-nio-8080-exec-28] DEBUG com.rain.gameCommunity.dao.UserDAO.queryUsersById - <==      Total: 1
-2017-04-05  17:22:00.103 [ContainerBackgroundProcessor[StandardEngine[Catalina]]] DEBUG org.apache.ibatis.logging.LogFactory - Logging initialized using 'class org.apache.ibatis.logging.slf4j.Slf4jImpl' adapter.
+2017-04-05  20:06:30.476 [http-nio-8080-exec-6] DEBUG com.rain.gameCommunity.utils.LogAspect - com.rain.gameCommunity.controller.GameController$$EnhancerBySpringCGLIB$$fb647d09
+2017-04-05  20:06:30.482 [http-nio-8080-exec-4] DEBUG com.rain.gameCommunity.utils.LogAspect - com.rain.gameCommunity.controller.GameController$$EnhancerBySpringCGLIB$$fb647d09
+2017-04-05  20:06:30.485 [http-nio-8080-exec-4] DEBUG com.rain.gameCommunity.utils.LogAspect - 方法showGameByGameType正在执行……,参数为：[1, 1]
+2017-04-05  20:06:30.485 [http-nio-8080-exec-6] DEBUG com.rain.gameCommunity.utils.LogAspect - 方法showGameType正在执行……,参数为：[1]
+2017-04-05  20:06:30.495 [http-nio-8080-exec-4] DEBUG com.rain.gameCommunity.utils.LogAspect - ------------------------------------------------
+2017-04-05  20:06:30.496 [http-nio-8080-exec-4] DEBUG com.rain.gameCommunity.utils.LogAspect - 开始执行
+2017-04-05  20:06:30.495 [http-nio-8080-exec-6] DEBUG com.rain.gameCommunity.utils.LogAspect - ------------------------------------------------
+2017-04-05  20:06:30.497 [http-nio-8080-exec-6] DEBUG com.rain.gameCommunity.utils.LogAspect - 开始执行
+2017-04-05  20:06:31.022 [http-nio-8080-exec-4] DEBUG com.rain.gameCommunity.dao.GameDAO.queryGamesCountByGameType - ==>  Preparing: select count(*) from game g, systemsupport s where g.gameType=? 
+2017-04-05  20:06:31.045 [http-nio-8080-exec-4] DEBUG com.rain.gameCommunity.dao.GameDAO.queryGamesCountByGameType - ==> Parameters: 1(Long)
+2017-04-05  20:06:31.057 [http-nio-8080-exec-4] DEBUG com.rain.gameCommunity.dao.GameDAO.queryGamesCountByGameType - <==      Total: 1
+2017-04-05  20:06:31.062 [http-nio-8080-exec-4] DEBUG com.rain.gameCommunity.dao.GameDAO.queryGameByGameType - ==>  Preparing: select * from game g, systemsupport s where g.gameType=? and g.systemTypeNum = s.id limit ?, ? 
+2017-04-05  20:06:31.063 [http-nio-8080-exec-4] DEBUG com.rain.gameCommunity.dao.GameDAO.queryGameByGameType - ==> Parameters: 1(Long), 0(Integer), 10(Integer)
+2017-04-05  20:06:31.069 [http-nio-8080-exec-6] DEBUG com.rain.gameCommunity.dao.GameTypeDAO.queryGameTypeById - ==>  Preparing: select * from game_type where id=? 
+2017-04-05  20:06:31.070 [http-nio-8080-exec-6] DEBUG com.rain.gameCommunity.dao.GameTypeDAO.queryGameTypeById - ==> Parameters: 1(Long)
+2017-04-05  20:06:31.073 [http-nio-8080-exec-6] DEBUG com.rain.gameCommunity.dao.GameTypeDAO.queryGameTypeById - <==      Total: 1
+2017-04-05  20:06:31.074 [http-nio-8080-exec-4] DEBUG com.rain.gameCommunity.dao.GameDAO.queryGameByGameType - <==      Total: 1
+2017-04-05  20:06:31.074 [http-nio-8080-exec-4] DEBUG com.rain.gameCommunity.utils.LogAspect - {result=JsonResult [state=0, message=, data=[GameEntity [id=1, size=56MB, buildDate=2017-03-05 21:26:17.0, gameName=饥荒, comments=null, introduce=This is a very good game., price=15.23, cutOff=1.0, systemTypeNum=1, pictures=null, version=1.6.5, path=/download/dontstarve/1.6.5/dontstarve.exe, systemSupport=SystemSupport [id=1, memoria=2 GB RAM, System=Windows® 7 32/64-bit / Vista 32/64 / XP, disk=需要 13 GB 可用空间, voice=DirectX 9.0c compatible sound card, network=true, cpu=Pentium 4 3.0GHz, display=Video card with 128 MB, Shader model 2.0. ATI X800, NVidia 6600 or better, note=please notice your cpu!], sectionId=1, downloadNum=6, gameType=1]]]}
+2017-04-05  20:06:31.074 [http-nio-8080-exec-4] DEBUG com.rain.gameCommunity.utils.LogAspect - 执行完成！
+2017-04-05  20:06:31.074 [http-nio-8080-exec-4] DEBUG com.rain.gameCommunity.utils.LogAspect - ------------------------------------------------
+2017-04-05  20:06:31.156 [http-nio-8080-exec-6] DEBUG com.rain.gameCommunity.dao.UserDAO.queryUsersById - ==>  Preparing: select * from user where id in ( ? ) 
+2017-04-05  20:06:31.157 [http-nio-8080-exec-6] DEBUG com.rain.gameCommunity.dao.UserDAO.queryUsersById - ==> Parameters: 1(Long)
+2017-04-05  20:06:31.161 [http-nio-8080-exec-6] DEBUG com.rain.gameCommunity.dao.UserDAO.queryUsersById - <==      Total: 1
+2017-04-05  20:06:31.162 [http-nio-8080-exec-6] DEBUG com.rain.gameCommunity.utils.LogAspect - {result=JsonResult [state=0, message=, data=GameTypeEntity [id=1, typeName=生存, introduce=survive, createTime=Sat Mar 18 12:54:41 CST 2017, manager=1, managers=[UserEntity [id=1, username=1, passwords=1, registerTime=Mon Mar 06 19:47:14 CST 2017, sex=1, levels=1, exp=1, isManager=1, introduce=Admin, head=/users/head, games=1,2, hasBuyedGames=null]]]]}
+2017-04-05  20:06:31.162 [http-nio-8080-exec-6] DEBUG com.rain.gameCommunity.utils.LogAspect - 执行完成！
+2017-04-05  20:06:31.162 [http-nio-8080-exec-6] DEBUG com.rain.gameCommunity.utils.LogAspect - ------------------------------------------------

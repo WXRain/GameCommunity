@@ -23,7 +23,6 @@ public class OrderServiceImpl implements OrderService {
 		order.setMoney(finalTotalPrice);
 		order.setPayTime(new Date());
 		order.setUserId(userId);
-		System.out.println(order.getCreateTime());
 		orderDao.addOrder(order);
 		return true;
 	}

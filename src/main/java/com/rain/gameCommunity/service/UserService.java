@@ -2,11 +2,11 @@ package com.rain.gameCommunity.service;
 
 import java.util.List;
 
-import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Component;
 
 import com.rain.gameCommunity.entity.UserEntity;
 
-@Repository
+@Component
 public interface UserService {
 
 	public List<UserEntity> showAllUsers() throws Exception;

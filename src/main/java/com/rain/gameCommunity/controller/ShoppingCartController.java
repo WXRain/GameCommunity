@@ -37,7 +37,6 @@ public class ShoppingCartController {
 	@RequestMapping("/showGameShoppingCart.do")
 	@ResponseBody
 	public JsonResult<List<GameEntity>> showGameShoppingCart(long userId){
-		System.out.println("showGameShopping was be called" + userId);
 		try{
 			List<ShoppingCartEntity> shoppingCarts = shoppingCartService.showShoppingCartByUserId(userId);
 			ShoppingCartEntity shoppingCart = new ShoppingCartEntity();
@@ -46,7 +45,6 @@ public class ShoppingCartController {
 			else return new JsonResult<List<GameEntity>>(null, null);
 			
 			String shoppingCartGames = shoppingCart.getGameIds();
-			System.out.println(shoppingCartGames);
 			String[] gameIdsString = shoppingCartGames.split(",");
 			List<Long> gameIds = new ArrayList<Long>();
 			for(int i = 0; i < gameIdsString.length; i++){
@@ -55,7 +53,6 @@ public class ShoppingCartController {
 			}
 			List<GameEntity> games;
 			games = gameService.showGamesByIds(gameIds);
-			System.out.println(games);
 			return new JsonResult<List<GameEntity>>(games, null);
 		}catch(Exception e){
 			e.printStackTrace();
@@ -67,9 +64,7 @@ public class ShoppingCartController {
 	@ResponseBody
 	@Transactional
 	public JsonResult<Boolean> doSuccess(long userId, String gameIds, Date createTime, double finalTotalPrice){
-		try{
-			System.out.println("userId:" + userId + " gameIds:" + gameIds + " createTime:" + createTime + " finalTotalPrice:" + finalTotalPrice);
-			
+		try{			
 			//向订单中增加付款的订单信息
 			orderService.addOrder(userId, gameIds, createTime, finalTotalPrice);
 			System.out.println("增加订单信息成功");
@@ -94,7 +89,6 @@ public class ShoppingCartController {
 	@ResponseBody
 	public JsonResult<Boolean> removeFromShoppingCart(long userId, long gameId){
 		try{
-			System.out.println("removeFromShoppingCart: userId:" + userId + " gameId:" + gameId);
 			shoppingCartService.updateShoppingCartRemove(userId, gameId + "");
 			return new JsonResult<Boolean>(true, null);
 		}catch(Exception e){
