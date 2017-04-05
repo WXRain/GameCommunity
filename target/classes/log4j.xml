@@ -10,6 +10,20 @@
 		</layout>
 	</appender>
 	
+	<!-- 输出日志到文件  文件大小到达指定尺寸的时候产生一个新的文件 -->  
+	<appender name="railyFile"   
+        class="org.apache.log4j.RollingFileAppender">  
+        <param name="File" value="classpath:log.txt"></param>  
+        <param name="ImmediateFlush" value="true"/>  
+        <param name="Threshold" value="info"></param>  
+        <param name="Append" value="true"></param>  
+        <param name="MaxFileSize" value="30KB"></param>  
+        <param name="MaxBackupIndex" value="100"></param>  
+        <layout class="org.apache.log4j.PatternLayout">  
+            <param name="ConversionPattern" value="[%d{yyyy-MM-dd HH:mm:ss\} %-5p] [%t] {%c:%L}-%m%n"></param>  
+        </layout>  
+    </appender>  
+	
 	<!-- Application Loggers -->
 	<logger name="com.rain.gameCommunity">
 		<level value="info" />
