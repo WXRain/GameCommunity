@@ -1,0 +1,139 @@
+2017-04-05  21:59:50.817 [localhost-startStop-1] DEBUG org.apache.ibatis.logging.LogFactory - Logging initialized using 'class org.apache.ibatis.logging.slf4j.Slf4jImpl' adapter.
+2017-04-05  22:00:12.224 [http-nio-8080-exec-3] DEBUG com.rain.gameCommunity.utils.LogAspect - com.rain.gameCommunity.controller.GameController$$EnhancerBySpringCGLIB$$330ce7c9
+2017-04-05  22:00:12.227 [http-nio-8080-exec-3] DEBUG com.rain.gameCommunity.utils.LogAspect - 方法showAllGameType正在执行……,参数为：[1]
+2017-04-05  22:00:12.228 [http-nio-8080-exec-3] DEBUG com.rain.gameCommunity.utils.LogAspect - ------------------------------------------------
+2017-04-05  22:00:12.229 [http-nio-8080-exec-3] DEBUG com.rain.gameCommunity.utils.LogAspect - 开始执行
+2017-04-05  22:00:12.795 [http-nio-8080-exec-3] DEBUG com.rain.gameCommunity.dao.GameTypeDAO.queryGameTypeCount - ==>  Preparing: select count(*) from game_type 
+2017-04-05  22:00:12.840 [http-nio-8080-exec-3] DEBUG com.rain.gameCommunity.dao.GameTypeDAO.queryGameTypeCount - ==> Parameters: 
+2017-04-05  22:00:12.873 [http-nio-8080-exec-3] DEBUG com.rain.gameCommunity.dao.GameTypeDAO.queryGameTypeCount - <==      Total: 1
+2017-04-05  22:00:12.885 [http-nio-8080-exec-3] DEBUG com.rain.gameCommunity.dao.GameTypeDAO.queryGameTypesByPage - ==>  Preparing: select * from game_type limit ?, ? 
+2017-04-05  22:00:12.886 [http-nio-8080-exec-3] DEBUG com.rain.gameCommunity.dao.GameTypeDAO.queryGameTypesByPage - ==> Parameters: 0(Integer), 10(Integer)
+2017-04-05  22:00:12.893 [http-nio-8080-exec-3] DEBUG com.rain.gameCommunity.dao.GameTypeDAO.queryGameTypesByPage - <==      Total: 2
+2017-04-05  22:00:12.921 [http-nio-8080-exec-3] DEBUG com.rain.gameCommunity.dao.UserDAO.queryUsersById - ==>  Preparing: select * from user where id in ( ? ) 
+2017-04-05  22:00:12.922 [http-nio-8080-exec-3] DEBUG com.rain.gameCommunity.dao.UserDAO.queryUsersById - ==> Parameters: 1(Long)
+2017-04-05  22:00:12.924 [http-nio-8080-exec-3] DEBUG com.rain.gameCommunity.dao.UserDAO.queryUsersById - <==      Total: 1
+2017-04-05  22:00:12.926 [http-nio-8080-exec-3] DEBUG com.rain.gameCommunity.dao.UserDAO.queryUsersById - ==>  Preparing: select * from user where id in ( ? ) 
+2017-04-05  22:00:12.926 [http-nio-8080-exec-3] DEBUG com.rain.gameCommunity.dao.UserDAO.queryUsersById - ==> Parameters: 1(Long)
+2017-04-05  22:00:12.929 [http-nio-8080-exec-3] DEBUG com.rain.gameCommunity.dao.UserDAO.queryUsersById - <==      Total: 1
+2017-04-05  22:00:12.930 [http-nio-8080-exec-3] DEBUG com.rain.gameCommunity.utils.LogAspect - {result=JsonResult [state=0, message=, data=[GameTypeEntity [id=1, typeName=生存, introduce=survive, createTime=Sat Mar 18 12:54:41 CST 2017, manager=1, managers=[UserEntity [id=1, username=1, passwords=1, registerTime=Mon Mar 06 19:47:14 CST 2017, sex=1, levels=1, exp=1, isManager=1, introduce=Admin, head=/users/head, games=1,2, hasBuyedGames=null]]], GameTypeEntity [id=2, typeName=冒险, introduce=maoxian, createTime=Sat Mar 18 16:03:25 CST 2017, manager=1, managers=[UserEntity [id=1, username=1, passwords=1, registerTime=Mon Mar 06 19:47:14 CST 2017, sex=1, levels=1, exp=1, isManager=1, introduce=Admin, head=/users/head, games=1,2, hasBuyedGames=null]]]]]}
+2017-04-05  22:00:12.930 [http-nio-8080-exec-3] DEBUG com.rain.gameCommunity.utils.LogAspect - 执行完成！
+2017-04-05  22:00:12.931 [http-nio-8080-exec-3] DEBUG com.rain.gameCommunity.utils.LogAspect - ------------------------------------------------
+2017-04-05  22:00:14.159 [http-nio-8080-exec-5] DEBUG com.rain.gameCommunity.utils.LogAspect - com.rain.gameCommunity.controller.GameController$$EnhancerBySpringCGLIB$$330ce7c9
+2017-04-05  22:00:14.160 [http-nio-8080-exec-5] DEBUG com.rain.gameCommunity.utils.LogAspect - 方法showGameByGameType正在执行……,参数为：[1, 1]
+2017-04-05  22:00:14.160 [http-nio-8080-exec-5] DEBUG com.rain.gameCommunity.utils.LogAspect - ------------------------------------------------
+2017-04-05  22:00:14.160 [http-nio-8080-exec-5] DEBUG com.rain.gameCommunity.utils.LogAspect - 开始执行
+2017-04-05  22:00:14.160 [http-nio-8080-exec-6] DEBUG com.rain.gameCommunity.utils.LogAspect - com.rain.gameCommunity.controller.GameController$$EnhancerBySpringCGLIB$$330ce7c9
+2017-04-05  22:00:14.160 [http-nio-8080-exec-6] DEBUG com.rain.gameCommunity.utils.LogAspect - 方法showGameType正在执行……,参数为：[1]
+2017-04-05  22:00:14.160 [http-nio-8080-exec-6] DEBUG com.rain.gameCommunity.utils.LogAspect - ------------------------------------------------
+2017-04-05  22:00:14.160 [http-nio-8080-exec-6] DEBUG com.rain.gameCommunity.utils.LogAspect - 开始执行
+2017-04-05  22:00:14.161 [http-nio-8080-exec-5] DEBUG com.rain.gameCommunity.dao.GameDAO.queryGamesCountByGameType - ==>  Preparing: select count(*) from game g, systemsupport s where g.gameType=? 
+2017-04-05  22:00:14.163 [http-nio-8080-exec-5] DEBUG com.rain.gameCommunity.dao.GameDAO.queryGamesCountByGameType - ==> Parameters: 1(Long)
+2017-04-05  22:00:14.172 [http-nio-8080-exec-5] DEBUG com.rain.gameCommunity.dao.GameDAO.queryGamesCountByGameType - <==      Total: 1
+2017-04-05  22:00:14.180 [http-nio-8080-exec-5] DEBUG com.rain.gameCommunity.dao.GameDAO.queryGameByGameType - ==>  Preparing: select * from game g, systemsupport s where g.gameType=? and g.systemTypeNum = s.id limit ?, ? 
+2017-04-05  22:00:14.180 [http-nio-8080-exec-5] DEBUG com.rain.gameCommunity.dao.GameDAO.queryGameByGameType - ==> Parameters: 1(Long), 0(Integer), 10(Integer)
+2017-04-05  22:00:14.194 [http-nio-8080-exec-6] DEBUG com.rain.gameCommunity.dao.GameTypeDAO.queryGameTypeById - ==>  Preparing: select * from game_type where id=? 
+2017-04-05  22:00:14.194 [http-nio-8080-exec-6] DEBUG com.rain.gameCommunity.dao.GameTypeDAO.queryGameTypeById - ==> Parameters: 1(Long)
+2017-04-05  22:00:14.196 [http-nio-8080-exec-5] DEBUG com.rain.gameCommunity.dao.GameDAO.queryGameByGameType - <==      Total: 1
+2017-04-05  22:00:14.197 [http-nio-8080-exec-5] DEBUG com.rain.gameCommunity.utils.LogAspect - {result=JsonResult [state=0, message=, data=[GameEntity [id=1, size=56MB, buildDate=2017-03-05 21:26:17.0, gameName=饥荒, comments=null, introduce=This is a very good game., price=15.23, cutOff=1.0, systemTypeNum=1, pictures=null, version=1.6.5, path=/download/dontstarve/1.6.5/dontstarve.exe, systemSupport=SystemSupport [id=1, memoria=2 GB RAM, System=Windows® 7 32/64-bit / Vista 32/64 / XP, disk=需要 13 GB 可用空间, voice=DirectX 9.0c compatible sound card, network=true, cpu=Pentium 4 3.0GHz, display=Video card with 128 MB, Shader model 2.0. ATI X800, NVidia 6600 or better, note=please notice your cpu!], sectionId=1, downloadNum=6, gameType=1]]]}
+2017-04-05  22:00:14.197 [http-nio-8080-exec-5] DEBUG com.rain.gameCommunity.utils.LogAspect - 执行完成！
+2017-04-05  22:00:14.197 [http-nio-8080-exec-5] DEBUG com.rain.gameCommunity.utils.LogAspect - ------------------------------------------------
+2017-04-05  22:00:14.208 [http-nio-8080-exec-6] DEBUG com.rain.gameCommunity.dao.GameTypeDAO.queryGameTypeById - <==      Total: 1
+2017-04-05  22:00:14.209 [http-nio-8080-exec-6] DEBUG com.rain.gameCommunity.dao.UserDAO.queryUsersById - ==>  Preparing: select * from user where id in ( ? ) 
+2017-04-05  22:00:14.209 [http-nio-8080-exec-6] DEBUG com.rain.gameCommunity.dao.UserDAO.queryUsersById - ==> Parameters: 1(Long)
+2017-04-05  22:00:14.211 [http-nio-8080-exec-6] DEBUG com.rain.gameCommunity.dao.UserDAO.queryUsersById - <==      Total: 1
+2017-04-05  22:00:14.212 [http-nio-8080-exec-6] DEBUG com.rain.gameCommunity.utils.LogAspect - {result=JsonResult [state=0, message=, data=GameTypeEntity [id=1, typeName=生存, introduce=survive, createTime=Sat Mar 18 12:54:41 CST 2017, manager=1, managers=[UserEntity [id=1, username=1, passwords=1, registerTime=Mon Mar 06 19:47:14 CST 2017, sex=1, levels=1, exp=1, isManager=1, introduce=Admin, head=/users/head, games=1,2, hasBuyedGames=null]]]]}
+2017-04-05  22:00:14.212 [http-nio-8080-exec-6] DEBUG com.rain.gameCommunity.utils.LogAspect - 执行完成！
+2017-04-05  22:00:14.212 [http-nio-8080-exec-6] DEBUG com.rain.gameCommunity.utils.LogAspect - ------------------------------------------------
+2017-04-05  22:00:19.284 [http-nio-8080-exec-10] DEBUG com.rain.gameCommunity.utils.LogAspect - com.rain.gameCommunity.controller.CommunityController$$EnhancerBySpringCGLIB$$55e2b244
+2017-04-05  22:00:19.285 [http-nio-8080-exec-10] DEBUG com.rain.gameCommunity.utils.LogAspect - 方法initMain正在执行……,参数为：[1]
+2017-04-05  22:00:19.285 [http-nio-8080-exec-10] DEBUG com.rain.gameCommunity.utils.LogAspect - ------------------------------------------------
+2017-04-05  22:00:19.285 [http-nio-8080-exec-10] DEBUG com.rain.gameCommunity.utils.LogAspect - 开始执行
+2017-04-05  22:00:19.298 [http-nio-8080-exec-10] DEBUG com.rain.gameCommunity.dao.GameTypeDAO.queryGameTypeCount - ==>  Preparing: select count(*) from game_type 
+2017-04-05  22:00:19.299 [http-nio-8080-exec-10] DEBUG com.rain.gameCommunity.dao.GameTypeDAO.queryGameTypeCount - ==> Parameters: 
+2017-04-05  22:00:19.300 [http-nio-8080-exec-10] DEBUG com.rain.gameCommunity.dao.GameTypeDAO.queryGameTypeCount - <==      Total: 1
+2017-04-05  22:00:19.301 [http-nio-8080-exec-10] DEBUG com.rain.gameCommunity.dao.GameTypeDAO.queryGameTypesByPage - ==>  Preparing: select * from game_type limit ?, ? 
+2017-04-05  22:00:19.301 [http-nio-8080-exec-10] DEBUG com.rain.gameCommunity.dao.GameTypeDAO.queryGameTypesByPage - ==> Parameters: 0(Integer), 10(Integer)
+2017-04-05  22:00:19.303 [http-nio-8080-exec-10] DEBUG com.rain.gameCommunity.dao.GameTypeDAO.queryGameTypesByPage - <==      Total: 2
+2017-04-05  22:00:19.303 [http-nio-8080-exec-10] DEBUG com.rain.gameCommunity.dao.UserDAO.queryUsersById - ==>  Preparing: select * from user where id in ( ? ) 
+2017-04-05  22:00:19.303 [http-nio-8080-exec-10] DEBUG com.rain.gameCommunity.dao.UserDAO.queryUsersById - ==> Parameters: 1(Long)
+2017-04-05  22:00:19.305 [http-nio-8080-exec-10] DEBUG com.rain.gameCommunity.dao.UserDAO.queryUsersById - <==      Total: 1
+2017-04-05  22:00:19.305 [http-nio-8080-exec-10] DEBUG com.rain.gameCommunity.dao.UserDAO.queryUsersById - ==>  Preparing: select * from user where id in ( ? ) 
+2017-04-05  22:00:19.306 [http-nio-8080-exec-10] DEBUG com.rain.gameCommunity.dao.UserDAO.queryUsersById - ==> Parameters: 1(Long)
+2017-04-05  22:00:19.307 [http-nio-8080-exec-10] DEBUG com.rain.gameCommunity.dao.UserDAO.queryUsersById - <==      Total: 1
+2017-04-05  22:00:19.307 [http-nio-8080-exec-10] DEBUG com.rain.gameCommunity.utils.LogAspect - {result=JsonResult [state=0, message=, data=[GameTypeEntity [id=1, typeName=生存, introduce=survive, createTime=Sat Mar 18 12:54:41 CST 2017, manager=1, managers=[UserEntity [id=1, username=1, passwords=1, registerTime=Mon Mar 06 19:47:14 CST 2017, sex=1, levels=1, exp=1, isManager=1, introduce=Admin, head=/users/head, games=1,2, hasBuyedGames=null]]], GameTypeEntity [id=2, typeName=冒险, introduce=maoxian, createTime=Sat Mar 18 16:03:25 CST 2017, manager=1, managers=[UserEntity [id=1, username=1, passwords=1, registerTime=Mon Mar 06 19:47:14 CST 2017, sex=1, levels=1, exp=1, isManager=1, introduce=Admin, head=/users/head, games=1,2, hasBuyedGames=null]]]]]}
+2017-04-05  22:00:19.307 [http-nio-8080-exec-10] DEBUG com.rain.gameCommunity.utils.LogAspect - 执行完成！
+2017-04-05  22:00:19.308 [http-nio-8080-exec-10] DEBUG com.rain.gameCommunity.utils.LogAspect - ------------------------------------------------
+2017-04-05  22:00:20.580 [http-nio-8080-exec-2] DEBUG com.rain.gameCommunity.utils.LogAspect - com.rain.gameCommunity.controller.CommunityController$$EnhancerBySpringCGLIB$$55e2b244
+2017-04-05  22:00:20.581 [http-nio-8080-exec-2] DEBUG com.rain.gameCommunity.utils.LogAspect - 方法initGameType正在执行……,参数为：[2, 1]
+2017-04-05  22:00:20.581 [http-nio-8080-exec-2] DEBUG com.rain.gameCommunity.utils.LogAspect - ------------------------------------------------
+2017-04-05  22:00:20.581 [http-nio-8080-exec-2] DEBUG com.rain.gameCommunity.utils.LogAspect - 开始执行
+2017-04-05  22:00:20.582 [http-nio-8080-exec-2] DEBUG com.rain.gameCommunity.dao.SectionDAO.querySectionsCountByGameTypeId - ==>  Preparing: select count(*) from section where gameType = ? 
+2017-04-05  22:00:20.582 [http-nio-8080-exec-2] DEBUG com.rain.gameCommunity.dao.SectionDAO.querySectionsCountByGameTypeId - ==> Parameters: 2(Long)
+2017-04-05  22:00:20.583 [http-nio-8080-exec-4] DEBUG com.rain.gameCommunity.utils.LogAspect - com.rain.gameCommunity.controller.CommunityController$$EnhancerBySpringCGLIB$$55e2b244
+2017-04-05  22:00:20.583 [http-nio-8080-exec-4] DEBUG com.rain.gameCommunity.utils.LogAspect - 方法showGameType正在执行……,参数为：[2]
+2017-04-05  22:00:20.583 [http-nio-8080-exec-4] DEBUG com.rain.gameCommunity.utils.LogAspect - ------------------------------------------------
+2017-04-05  22:00:20.583 [http-nio-8080-exec-4] DEBUG com.rain.gameCommunity.utils.LogAspect - 开始执行
+2017-04-05  22:00:20.584 [http-nio-8080-exec-4] DEBUG com.rain.gameCommunity.dao.GameTypeDAO.queryGameTypeById - ==>  Preparing: select * from game_type where id=? 
+2017-04-05  22:00:20.584 [http-nio-8080-exec-2] DEBUG com.rain.gameCommunity.dao.SectionDAO.querySectionsCountByGameTypeId - <==      Total: 1
+2017-04-05  22:00:20.584 [http-nio-8080-exec-4] DEBUG com.rain.gameCommunity.dao.GameTypeDAO.queryGameTypeById - ==> Parameters: 2(Long)
+2017-04-05  22:00:20.585 [http-nio-8080-exec-2] DEBUG com.rain.gameCommunity.dao.SectionDAO.querySectionsByGameTypeId - ==>  Preparing: select * from section where gameType = ? 
+2017-04-05  22:00:20.585 [http-nio-8080-exec-2] DEBUG com.rain.gameCommunity.dao.SectionDAO.querySectionsByGameTypeId - ==> Parameters: 2(Long)
+2017-04-05  22:00:20.585 [http-nio-8080-exec-4] DEBUG com.rain.gameCommunity.dao.GameTypeDAO.queryGameTypeById - <==      Total: 1
+2017-04-05  22:00:20.586 [http-nio-8080-exec-4] DEBUG com.rain.gameCommunity.dao.UserDAO.queryUsersById - ==>  Preparing: select * from user where id in ( ? ) 
+2017-04-05  22:00:20.586 [http-nio-8080-exec-2] DEBUG com.rain.gameCommunity.dao.SectionDAO.querySectionsByGameTypeId - <==      Total: 1
+2017-04-05  22:00:20.587 [http-nio-8080-exec-4] DEBUG com.rain.gameCommunity.dao.UserDAO.queryUsersById - ==> Parameters: 1(Long)
+2017-04-05  22:00:20.587 [http-nio-8080-exec-2] DEBUG com.rain.gameCommunity.dao.UserDAO.queryUsersById - ==>  Preparing: select * from user where id in ( ? ) 
+2017-04-05  22:00:20.587 [http-nio-8080-exec-2] DEBUG com.rain.gameCommunity.dao.UserDAO.queryUsersById - ==> Parameters: 1(Long)
+2017-04-05  22:00:20.589 [http-nio-8080-exec-2] DEBUG com.rain.gameCommunity.dao.UserDAO.queryUsersById - <==      Total: 1
+2017-04-05  22:00:20.589 [http-nio-8080-exec-4] DEBUG com.rain.gameCommunity.dao.UserDAO.queryUsersById - <==      Total: 1
+2017-04-05  22:00:20.590 [http-nio-8080-exec-2] DEBUG com.rain.gameCommunity.utils.LogAspect - {result=JsonResult [state=0, message=, data=[SectionEntity [id=2, name=天天酷跑, introduce=run！, topicNum=1, sectionManager=1, createTime=2017-03-19 14:24:05.0, gameId=2, managers=[UserEntity [id=1, username=1, passwords=1, registerTime=Mon Mar 06 19:47:14 CST 2017, sex=1, levels=1, exp=1, isManager=1, introduce=Admin, head=/users/head, games=1,2, hasBuyedGames=null]], gameTypeId=2]]]}
+2017-04-05  22:00:20.591 [http-nio-8080-exec-4] DEBUG com.rain.gameCommunity.utils.LogAspect - {result=JsonResult [state=0, message=, data=GameTypeEntity [id=2, typeName=冒险, introduce=maoxian, createTime=Sat Mar 18 16:03:25 CST 2017, manager=1, managers=[UserEntity [id=1, username=1, passwords=1, registerTime=Mon Mar 06 19:47:14 CST 2017, sex=1, levels=1, exp=1, isManager=1, introduce=Admin, head=/users/head, games=1,2, hasBuyedGames=null]]]]}
+2017-04-05  22:00:20.591 [http-nio-8080-exec-2] DEBUG com.rain.gameCommunity.utils.LogAspect - 执行完成！
+2017-04-05  22:00:20.591 [http-nio-8080-exec-4] DEBUG com.rain.gameCommunity.utils.LogAspect - 执行完成！
+2017-04-05  22:00:20.591 [http-nio-8080-exec-2] DEBUG com.rain.gameCommunity.utils.LogAspect - ------------------------------------------------
+2017-04-05  22:00:20.591 [http-nio-8080-exec-4] DEBUG com.rain.gameCommunity.utils.LogAspect - ------------------------------------------------
+2017-04-05  22:00:21.592 [http-nio-8080-exec-5] DEBUG com.rain.gameCommunity.utils.LogAspect - com.rain.gameCommunity.controller.CommunityController$$EnhancerBySpringCGLIB$$55e2b244
+2017-04-05  22:00:21.593 [http-nio-8080-exec-5] DEBUG com.rain.gameCommunity.utils.LogAspect - 方法initSection正在执行……,参数为：[2, 1]
+2017-04-05  22:00:21.593 [http-nio-8080-exec-5] DEBUG com.rain.gameCommunity.utils.LogAspect - ------------------------------------------------
+2017-04-05  22:00:21.593 [http-nio-8080-exec-5] DEBUG com.rain.gameCommunity.utils.LogAspect - 开始执行
+2017-04-05  22:00:21.594 [http-nio-8080-exec-5] DEBUG com.rain.gameCommunity.dao.TopicDAO.queryTopicsCountBySectionId - ==>  Preparing: select count(*) from topic where sectionId = ? 
+2017-04-05  22:00:21.595 [http-nio-8080-exec-5] DEBUG com.rain.gameCommunity.dao.TopicDAO.queryTopicsCountBySectionId - ==> Parameters: 2(Long)
+2017-04-05  22:00:21.598 [http-nio-8080-exec-6] DEBUG com.rain.gameCommunity.utils.LogAspect - com.rain.gameCommunity.controller.CommunityController$$EnhancerBySpringCGLIB$$55e2b244
+2017-04-05  22:00:21.598 [http-nio-8080-exec-6] DEBUG com.rain.gameCommunity.utils.LogAspect - 方法showSection正在执行……,参数为：[2]
+2017-04-05  22:00:21.598 [http-nio-8080-exec-6] DEBUG com.rain.gameCommunity.utils.LogAspect - ------------------------------------------------
+2017-04-05  22:00:21.598 [http-nio-8080-exec-6] DEBUG com.rain.gameCommunity.utils.LogAspect - 开始执行
+2017-04-05  22:00:21.598 [http-nio-8080-exec-5] DEBUG com.rain.gameCommunity.dao.TopicDAO.queryTopicsCountBySectionId - <==      Total: 1
+2017-04-05  22:00:21.599 [http-nio-8080-exec-6] DEBUG com.rain.gameCommunity.dao.SectionDAO.querySectionsBySectionId - ==>  Preparing: select * from section where id in ( ? ) 
+2017-04-05  22:00:21.599 [http-nio-8080-exec-5] DEBUG com.rain.gameCommunity.dao.TopicDAO.queryTopicsBySectionId - ==>  Preparing: select * from topic where sectionId = ? limit ?, ? 
+2017-04-05  22:00:21.600 [http-nio-8080-exec-5] DEBUG com.rain.gameCommunity.dao.TopicDAO.queryTopicsBySectionId - ==> Parameters: 2(Long), 0(Integer), 10(Integer)
+2017-04-05  22:00:21.601 [http-nio-8080-exec-6] DEBUG com.rain.gameCommunity.dao.SectionDAO.querySectionsBySectionId - ==> Parameters: 2(Long)
+2017-04-05  22:00:21.602 [http-nio-8080-exec-5] DEBUG com.rain.gameCommunity.dao.TopicDAO.queryTopicsBySectionId - <==      Total: 0
+2017-04-05  22:00:21.602 [http-nio-8080-exec-5] DEBUG com.rain.gameCommunity.utils.LogAspect - {result=JsonResult [state=0, message=, data=[]]}
+2017-04-05  22:00:21.602 [http-nio-8080-exec-6] DEBUG com.rain.gameCommunity.dao.SectionDAO.querySectionsBySectionId - <==      Total: 1
+2017-04-05  22:00:21.602 [http-nio-8080-exec-5] DEBUG com.rain.gameCommunity.utils.LogAspect - 执行完成！
+2017-04-05  22:00:21.602 [http-nio-8080-exec-5] DEBUG com.rain.gameCommunity.utils.LogAspect - ------------------------------------------------
+2017-04-05  22:00:21.602 [http-nio-8080-exec-6] DEBUG com.rain.gameCommunity.dao.UserDAO.queryUsersById - ==>  Preparing: select * from user where id in ( ? ) 
+2017-04-05  22:00:21.603 [http-nio-8080-exec-6] DEBUG com.rain.gameCommunity.dao.UserDAO.queryUsersById - ==> Parameters: 1(Long)
+2017-04-05  22:00:21.605 [http-nio-8080-exec-6] DEBUG com.rain.gameCommunity.dao.UserDAO.queryUsersById - <==      Total: 1
+2017-04-05  22:00:21.606 [http-nio-8080-exec-6] DEBUG com.rain.gameCommunity.dao.SectionDAO.querySectionsBySectionId - ==>  Preparing: select * from section where id in ( ? ) 
+2017-04-05  22:00:21.606 [http-nio-8080-exec-6] DEBUG com.rain.gameCommunity.dao.SectionDAO.querySectionsBySectionId - ==> Parameters: 2(Long)
+2017-04-05  22:00:21.607 [http-nio-8080-exec-6] DEBUG com.rain.gameCommunity.dao.SectionDAO.querySectionsBySectionId - <==      Total: 1
+2017-04-05  22:00:21.610 [http-nio-8080-exec-6] DEBUG com.rain.gameCommunity.dao.UserDAO.queryUsersById - ==>  Preparing: select * from user where id in ( ? ) 
+2017-04-05  22:00:21.610 [http-nio-8080-exec-6] DEBUG com.rain.gameCommunity.dao.UserDAO.queryUsersById - ==> Parameters: 1(Long)
+2017-04-05  22:00:21.612 [http-nio-8080-exec-6] DEBUG com.rain.gameCommunity.dao.UserDAO.queryUsersById - <==      Total: 1
+2017-04-05  22:00:21.612 [http-nio-8080-exec-6] DEBUG com.rain.gameCommunity.utils.LogAspect - {result=JsonResult [state=0, message=, data=SectionEntity [id=2, name=天天酷跑, introduce=run！, topicNum=1, sectionManager=1, createTime=2017-03-19 14:24:05.0, gameId=2, managers=[UserEntity [id=1, username=1, passwords=1, registerTime=Mon Mar 06 19:47:14 CST 2017, sex=1, levels=1, exp=1, isManager=1, introduce=Admin, head=/users/head, games=1,2, hasBuyedGames=null]], gameTypeId=2]]}
+2017-04-05  22:00:21.612 [http-nio-8080-exec-6] DEBUG com.rain.gameCommunity.utils.LogAspect - 执行完成！
+2017-04-05  22:00:21.612 [http-nio-8080-exec-6] DEBUG com.rain.gameCommunity.utils.LogAspect - ------------------------------------------------
+2017-04-05  22:00:21.682 [http-nio-8080-exec-7] DEBUG com.rain.gameCommunity.utils.LogAspect - com.rain.gameCommunity.controller.CommunityController$$EnhancerBySpringCGLIB$$55e2b244
+2017-04-05  22:00:21.682 [http-nio-8080-exec-7] DEBUG com.rain.gameCommunity.utils.LogAspect - 方法showGameType正在执行……,参数为：[2]
+2017-04-05  22:00:21.683 [http-nio-8080-exec-7] DEBUG com.rain.gameCommunity.utils.LogAspect - ------------------------------------------------
+2017-04-05  22:00:21.683 [http-nio-8080-exec-7] DEBUG com.rain.gameCommunity.utils.LogAspect - 开始执行
+2017-04-05  22:00:21.684 [http-nio-8080-exec-7] DEBUG com.rain.gameCommunity.dao.GameTypeDAO.queryGameTypeById - ==>  Preparing: select * from game_type where id=? 
+2017-04-05  22:00:21.684 [http-nio-8080-exec-7] DEBUG com.rain.gameCommunity.dao.GameTypeDAO.queryGameTypeById - ==> Parameters: 2(Long)
+2017-04-05  22:00:21.686 [http-nio-8080-exec-7] DEBUG com.rain.gameCommunity.dao.GameTypeDAO.queryGameTypeById - <==      Total: 1
+2017-04-05  22:00:21.686 [http-nio-8080-exec-7] DEBUG com.rain.gameCommunity.dao.UserDAO.queryUsersById - ==>  Preparing: select * from user where id in ( ? ) 
+2017-04-05  22:00:21.686 [http-nio-8080-exec-7] DEBUG com.rain.gameCommunity.dao.UserDAO.queryUsersById - ==> Parameters: 1(Long)
+2017-04-05  22:00:21.687 [http-nio-8080-exec-7] DEBUG com.rain.gameCommunity.dao.UserDAO.queryUsersById - <==      Total: 1
+2017-04-05  22:00:21.688 [http-nio-8080-exec-7] DEBUG com.rain.gameCommunity.utils.LogAspect - {result=JsonResult [state=0, message=, data=GameTypeEntity [id=2, typeName=冒险, introduce=maoxian, createTime=Sat Mar 18 16:03:25 CST 2017, manager=1, managers=[UserEntity [id=1, username=1, passwords=1, registerTime=Mon Mar 06 19:47:14 CST 2017, sex=1, levels=1, exp=1, isManager=1, introduce=Admin, head=/users/head, games=1,2, hasBuyedGames=null]]]]}
+2017-04-05  22:00:21.688 [http-nio-8080-exec-7] DEBUG com.rain.gameCommunity.utils.LogAspect - 执行完成！
+2017-04-05  22:00:21.688 [http-nio-8080-exec-7] DEBUG com.rain.gameCommunity.utils.LogAspect - ------------------------------------------------

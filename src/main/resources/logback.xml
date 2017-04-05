@@ -21,7 +21,7 @@
         class="ch.qos.logback.core.rolling.RollingFileAppender">  
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">  
 <!--             <fileNamePattern>${LOG_HOME}/output.%d{yyyy-MM-dd}.log</fileNamePattern>   -->
-				<fileNamePattern>/Users/wangxinyu/Documents/程序/GameCommunity/%d{yyyy-MM-dd}.log</fileNamePattern>
+				<fileNamePattern>/Users/wangxinyu/Documents/程序/GameCommunity/log/%d{yyyy-MM-dd}.log</fileNamePattern>
             <maxHistory>7</maxHistory>  
         </rollingPolicy>  
         <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">  
@@ -33,7 +33,7 @@
     <appender name="ERROR_FILE"  
         class="ch.qos.logback.core.rolling.RollingFileAppender">  
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">  
-            <fileNamePattern>/Users/wangxinyu/Documents/程序/GameCommunity/error.%d{yyyy-MM-dd}.log</fileNamePattern>  
+            <fileNamePattern>/Users/wangxinyu/Documents/程序/GameCommunity/log/error.%d{yyyy-MM-dd}.log</fileNamePattern>  
             <maxHistory>7</maxHistory>  
         </rollingPolicy>  
         <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">  
@@ -47,7 +47,7 @@
     <!-- 独立输出的同步日志 -->  
     <appender name="SYNC_FILE"  class="ch.qos.logback.core.rolling.RollingFileAppender">  
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">  
-            <fileNamePattern>/Users/wangxinyu/Documents/程序/GameCommunity/sync.%d{yyyy-MM-dd}.log</fileNamePattern>  
+            <fileNamePattern>/Users/wangxinyu/Documents/程序/GameCommunity/log/sync.%d{yyyy-MM-dd}.log</fileNamePattern>  
             <maxHistory>7</maxHistory>  
         </rollingPolicy>  
         <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">  
