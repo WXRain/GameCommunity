@@ -9,6 +9,9 @@ public class SystemSupportEntity implements Serializable {
 
 	// 系统支持ID
 	private int id;
+	
+	// 系统支持名
+	private String systemName;
 
 	// 内存
 	private String memoria;
@@ -174,16 +177,18 @@ public class SystemSupportEntity implements Serializable {
 	 * 
 	 * @see java.lang.Object#toString()
 	 */
-	@Override
-	public String toString() {
-		return "SystemSupport [id=" + id + ", memoria=" + memoria + ", System=" + system + ", disk=" + disk + ", voice="
-				+ voice + ", network=" + network + ", cpu=" + cpu + ", display=" + display + ", note=" + note + "]";
-	}
 
-	public SystemSupportEntity(int id, String memoria, String system, String disk, String voice, boolean network,
-			String cpu, String display, String note) {
+
+	public SystemSupportEntity() {
+	}
+	
+	
+
+	public SystemSupportEntity(int id, String systemName, String memoria, String system, String disk, String voice,
+			boolean network, String cpu, String display, String note) {
 		super();
 		this.id = id;
+		this.systemName = systemName;
 		this.memoria = memoria;
 		this.system = system;
 		this.disk = disk;
@@ -194,7 +199,23 @@ public class SystemSupportEntity implements Serializable {
 		this.note = note;
 	}
 
-	public SystemSupportEntity() {
+	@Override
+	public String toString() {
+		return "SystemSupportEntity [id=" + id + ", systemName=" + systemName + ", memoria=" + memoria + ", system="
+				+ system + ", disk=" + disk + ", voice=" + voice + ", network=" + network + ", cpu=" + cpu
+				+ ", display=" + display + ", note=" + note + "]";
+	}
+
+	public String getSystemName() {
+		return systemName;
+	}
+
+	public void setSystemName(String systemName) {
+		this.systemName = systemName;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 }

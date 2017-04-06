@@ -19,6 +19,7 @@
         <result column="gameType" property="gameType" jdbcType="BIGINT"/>
         <collection property="systemSupport" ofType="com.rain.gameCommunity.entity.SystemSupportEntity">
             <id column="id" property="id" jdbcType="BIGINT" />
+            <result column="systemName" property="systemName" jdbcType="VARCHAR"/>
             <result column="memoria" property="memoria" jdbcType="VARCHAR" />
             <result column="system" property="system" jdbcType="VARCHAR" />
             <result column="disk" property="disk" jdbcType="VARCHAR" />

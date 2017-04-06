@@ -13,11 +13,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.rain.gameCommunity.entity.GameEntity;
 import com.rain.gameCommunity.entity.GameTypeEntity;
 import com.rain.gameCommunity.entity.SectionEntity;
+import com.rain.gameCommunity.entity.SystemSupportEntity;
 import com.rain.gameCommunity.entity.UserEntity;
 import com.rain.gameCommunity.service.GameService;
 import com.rain.gameCommunity.service.GameTypeService;
 import com.rain.gameCommunity.service.SectionService;
 import com.rain.gameCommunity.service.ShoppingCartService;
+import com.rain.gameCommunity.service.SystemSupportService;
 import com.rain.gameCommunity.service.UserService;
 import com.rain.gameCommunity.utils.JsonResult;
 import com.rain.gameCommunity.utils.PagingData;
@@ -39,6 +41,9 @@ public class GameController {
 	
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+	private SystemSupportService systemSupportService;
 	
 	@Autowired
 	private ShoppingCartService shoppingCartService;
@@ -106,6 +111,17 @@ public class GameController {
 			return new JsonResult<List<GameTypeEntity>>(e.getMessage());
 		}
 		return new JsonResult<List<GameTypeEntity>>(gameTypes, pagingData);
+	}
+	
+	@RequestMapping("/showAllSystemSupport.do")
+	@ResponseBody
+	public JsonResult<List<SystemSupportEntity>> showAllSystemSupport(){
+		try{
+			return new JsonResult<List<SystemSupportEntity>>(systemSupportService.showAllSystemSupportService(), null);
+		}catch(Exception e){
+			e.printStackTrace();
+			return new JsonResult<List<SystemSupportEntity>>(e.getMessage());
+		}
 	}
 	
 	@RequestMapping("/showGameByGameType.do")
@@ -222,6 +238,18 @@ public class GameController {
 			return new JsonResult<GameTypeEntity>(gameTypeEntity, null);
 		}catch(Exception e){
 			return new JsonResult<GameTypeEntity>(e.getMessage());
+		}
+	}
+	
+	@RequestMapping("/showSystemSupportById.do")
+	@ResponseBody
+	public JsonResult<SystemSupportEntity> showSystemSupportById(long id){
+		try{
+			SystemSupportEntity systemSupport = systemSupportService.showSystemSupportById(id);
+			return new JsonResult<SystemSupportEntity>(systemSupport, null);
+		}catch(Exception e){
+			e.printStackTrace();
+			return new JsonResult<SystemSupportEntity>(e.getMessage());
 		}
 	}
 }

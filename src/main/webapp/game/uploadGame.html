@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>游戏类型</title>
+<script type="text/javascript" src="../script/jquery.min.js"></script>
+<script type="text/javascript" src="../script/jquerySession.js"></script>
+<script type="text/javascript" src="../script/getRootPath.js"></script>
+<script type="text/javascript" src="../script/getParam.js"></script>
+<script type="text/javascript" src="../script/utils.js"></script>
+
+<script type="text/javascript">
+	var path = getRootPath(); 
+	var gameTypeId = getParam("gameTypeId");
+	if(gameTypeId == null || gameTypeId.length == 0){
+		$.session.set("errorMessage", "参数错误！");
+		window.location.href = path + "/error.html";
+	}
+</script>
+</head>
+<body>
+<div><iframe align="center" width="100%" height="100" src="../top.html" frameborder="no" border="0" marginwidth="0" marginheight="0" scrolling="no"></iframe></div>
+	<form action="" method="POST" enctype="multipart/form-data">
+	<table width=100% id=table>
+	<tr>
+		<td width=50%>游戏类型：</td>
+		<td width=50%><input readonly="true" id="gameTypeName" value=""/></td>
+	</tr>
+	<tr>
+		<td>游戏名称：</td>
+		<td><input id="gameName" value=""/></td>
+	</tr>
+	<tr>
+		<td>游戏价格：</td>
+		<td><input id="gamePrice" value=""/></td>
+	</tr>
+	<tr>
+		<td>游戏版本号：</td>
+		<td><input id="gameVersion" value=""/></td>
+	</tr>
+	<tr>
+		<td>游戏系统要求：</td>
+		<td><select id="systemSupport" onblur=showOrHideTable()>
+			<option value="-1">重新定义</option>
+		</select></td>
+	</tr>
+	<tr>
+		<td>内存：</td>
+		<td><input id="memoria"></input></td>
+	</tr>
+	<tr>
+		<td>系统：</td>
+		<td><input id="system"/></td>
+	</tr>
+	<tr>
+		<td>磁盘：</td>
+		<td><input id="disk"/></td>
+	</tr>
+	<tr>
+		<td>声卡：</td>
+		<td><input id="voice"/></td>
+	</tr>
+	<tr>
+		<td>CPU：</td>
+		<td><input id="cpu"/></td>
+	</tr>
+	<tr>
+		<td>显卡：</td>
+		<td><input id="display"/></td>
+	</tr>
+	<tr>
+		<td>网络：</td>
+		<td><select id="network">
+			<option value="true">是</option>
+			<option value="false">否</option>
+			<option value="all">都可</option>
+		</select></td>
+	</tr>
+	<tr>
+		<td>注意：</td>
+		<td><input id="note"/></td>
+	</tr>
+	<tr>
+		<td>游戏介绍：</td>
+		<td><input id="introduce"/></td>
+	</tr>
+	<tr>
+		<td>选择程序：</td>
+		<td><input type="file" name="file" id="fileName" onblur="checkProgram()"></td>
+	</tr>
+	<tr>
+		<td><input type="submit" value="上传"/></td>
+		<td><input type="reset"/></td>
+	</tr>
+	</table>
+	</form>
+	
+	<script type="text/javascript">
+		$(function(){
+			$("#table tr").each(function(){
+				$(this).find("td:first").attr("align", "right");
+			});
+			$.ajax({
+				url:"showGameType.do",
+				method:"POST",
+				dataType:"JSON",
+				data:{
+					"gameTypeId":gameTypeId
+				},
+				success:function(result){
+					if(result.state == 0){
+						$("#gameTypeName").attr("value", result.data.typeName);
+					}else{
+						alert(result.message);
+					}
+				}
+			});
+			
+			$.ajax({
+				url:"showAllSystemSupport.do",
+				method:"POST",
+				dataType:"JSON",
+				data:{
+					
+				},
+				success:function(result){
+					if(result.state == 0){
+						var data = result.data;
+						if(data == null || data.length == 0) return;
+						for(var i = 0; i < data.length; i++){
+							$("#systemSupport").append("<option value=" + data[i].id + ">" + data[i].systemName + "</option>");
+						}
+					}else{
+						alert(result.message);
+					}
+				}
+			});
+		});
+		
+		function showOrHideTable(){
+			if($("#systemSupport").val() != -1){
+				$.ajax({
+					url:"showSystemSupportById.do",
+					method:"POST",
+					dataType:"JSON",
+					data:{
+						"id":$("#systemSupport").val()
+					},
+					success:function(result){
+						if(result.state == 0){
+							var data = result.data;
+							console.log(data);
+							$("#memoria").val(data.memoria).attr("readonly", "true");
+							$("#system").val(data.system).attr("readonly", "true");
+							$("#disk").val(data.disk).attr("readonly", "true");
+							$("#voice").val(data.voice).attr("readonly", "true");
+							$("#cpu").val(data.cpu).attr("readonly", "true");
+							$("#display").val(data.display).attr("readonly", "true");
+							$("#note").val(data.note).attr("readonly", "true");
+							$("#network").val("" + data.network);
+						}else{
+							alert(result.message);
+						}
+					}
+				});
+			}else{
+				$("#memoria").val("").removeAttr("readonly");
+				$("#system").val("").removeAttr("readonly");
+				$("#disk").val("").removeAttr("readonly");
+				$("#voice").val("").removeAttr("readonly");
+				$("#cpu").val("").removeAttr("readonly");
+				$("#display").val("").removeAttr("readonly");
+				$("#note").val("").removeAttr("readonly");
+			}
+		}
+	</script>
+</body>
+</html>

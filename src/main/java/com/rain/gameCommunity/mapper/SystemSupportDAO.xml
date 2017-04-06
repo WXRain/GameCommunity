@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+ <mapper namespace="com.rain.gameCommunity.dao.SystemSupportDAO">
+	<select id="queryAllSystemSupport" resultType="com.rain.gameCommunity.entity.SystemSupportEntity">
+		select * from systemsupport
+	</select>
+	<select id="querySystemSupportById" parameterType="Long" resultType="com.rain.gameCommunity.entity.SystemSupportEntity">
+		select * from systemsupport where id=#{id}
+	</select>
+ </mapper>

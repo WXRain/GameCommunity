@@ -26,7 +26,9 @@
 <br/>
 <span id="index"><a href=javascript:void(0) onclick="gameIndex()">xx游戏</a>&nbsp;&nbsp;&nbsp;></span>
 <!-- 	<center><h2 id="title"></h2></center><br/><br/> -->
-	<center><h2 id="gameTypeName"></h2></center><br/>
+	<center><h2 id="gameTypeName"></h2>
+			<a id="uploadGame" href="javascript:void(0)" onclick=uploadGame()>上传游戏</a></center>
+	<br/>
 	<div><center><h3 id="introduce"></h3></center></div>
 	<div><center><a href=javascript:void(0) onclick=jumpToCommunity()>点此查看论坛</a></center></div>
 	<br/><br/>
@@ -114,6 +116,10 @@
 	
 	function jumpToCommunity(){
 		window.location.href = path + "/community/gameType.html?gameTypeId=" + gameType;
+	}
+	
+	function uploadGame(){
+		window.location.href = path + "/game/uploadGame.html?gameTypeId=" + gameType;
 	}
 	</script>
 </body>
