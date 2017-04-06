@@ -25,4 +25,10 @@ public class SystemSupportServiceImpl implements SystemSupportService {
 		return systemSupportDao.querySystemSupportById(id);
 	}
 
+	@Override
+	public long addSystemSupport(SystemSupportEntity systemSupport) throws Exception {
+		
+		return systemSupportDao.addSystemSupport(systemSupport);
+	}
+
 }

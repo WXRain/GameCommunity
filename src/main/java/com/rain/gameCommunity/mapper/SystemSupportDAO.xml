@@ -2,10 +2,21 @@
 <!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
  "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
  <mapper namespace="com.rain.gameCommunity.dao.SystemSupportDAO">
+ 
 	<select id="queryAllSystemSupport" resultType="com.rain.gameCommunity.entity.SystemSupportEntity">
 		select * from systemsupport
 	</select>
+	
 	<select id="querySystemSupportById" parameterType="Long" resultType="com.rain.gameCommunity.entity.SystemSupportEntity">
 		select * from systemsupport where id=#{id}
 	</select>
+	
+	<insert id="addSystemSupport" keyProperty="id" useGeneratedKeys="true" parameterType="com.rain.gameCommunity.entity.SystemSupportEntity">
+		insert into systemsupport 
+		(systemName, memoria, system, disk, voice, display, network, cpu, note)
+		values
+		(#{systemSupport.systemName}, #{systemSupport.memoria}, #{systemSupport.system}, #{systemSupport.disk},
+		#{systemSupport.voice}, #{systemSupport.display}, #{systemSupport.network}, #{systemSupport.cpu}, #{systemSupport.note})
+	</insert>
+	
  </mapper>

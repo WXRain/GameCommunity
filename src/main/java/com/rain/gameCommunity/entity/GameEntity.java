@@ -35,7 +35,7 @@ public class GameEntity implements Serializable {
 	private double cutOff;
 
 	// 系统支持类型
-	private int systemTypeNum;
+	private long systemTypeNum;
 
 	// 游戏封面
 	private List<File> pictures;
@@ -67,7 +67,7 @@ public class GameEntity implements Serializable {
 	}
 
 	public GameEntity(long id, String size, String buildDate, String gameName, List<TopicEntity> comments,
-			String introduce, double price, double cutOff, int systemTypeNum, List<File> pictures, String version,
+			String introduce, double price, double cutOff, long systemTypeNum, List<File> pictures, String version,
 			String path, SystemSupportEntity systemSupport, int sectionId, int downloadNum, long gameType) {
 		super();
 		this.id = id;
@@ -251,7 +251,7 @@ public class GameEntity implements Serializable {
 	/**
 	 * @return the systemTypeNum
 	 */
-	public int getSystemTypeNum() {
+	public long getSystemTypeNum() {
 		return systemTypeNum;
 	}
 
@@ -259,7 +259,7 @@ public class GameEntity implements Serializable {
 	 * @param systemTypeNum
 	 *            the systemTypeNum to set
 	 */
-	public void setSystemTypeNum(int systemTypeNum) {
+	public void setSystemTypeNum(long systemTypeNum) {
 		this.systemTypeNum = systemTypeNum;
 	}
 

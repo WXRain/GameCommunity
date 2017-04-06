@@ -136,4 +136,9 @@ public class GameServiceImpl implements GameService {
 		gameDao.updateGameEntity(game);
 	}
 
+	@Override
+	public long addGame(GameEntity game) throws Exception {
+		return gameDao.addGame(game);
+	}
+
 }

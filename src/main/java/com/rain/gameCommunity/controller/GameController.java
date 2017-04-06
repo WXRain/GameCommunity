@@ -1,7 +1,10 @@
 package com.rain.gameCommunity.controller;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -9,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.rain.gameCommunity.entity.GameEntity;
 import com.rain.gameCommunity.entity.GameTypeEntity;
@@ -251,5 +255,58 @@ public class GameController {
 			e.printStackTrace();
 			return new JsonResult<SystemSupportEntity>(e.getMessage());
 		}
+	}
+	
+	@RequestMapping("/uploadGame.do")
+	@ResponseBody
+	public JsonResult<Boolean> uploadGame(MultipartFile file, HttpServletRequest request){
+		try{
+			SystemSupportEntity systemSupport = new SystemSupportEntity();
+			GameEntity game = new GameEntity();
+			
+			//如果要求同时创建section，则创建section
+			
+			
+			System.out.println("加入论坛板块数据库成功！");
+			
+			long systemSupportId = Long.parseLong(request.getParameter("systemSupport"));
+			//用现有的系统支持
+			if(systemSupportId == -1){
+				game.setSystemTypeNum(systemSupportId);
+			}else{
+				systemSupport.setSystemName(request.getParameter("systemSupportName"));
+				systemSupport.setMemoria(request.getParameter("memoria"));
+				systemSupport.setDisk(request.getParameter("disk"));
+				systemSupport.setDisplay(request.getParameter("display"));
+				systemSupport.setNote(request.getParameter("note"));
+				systemSupport.setNetwork(request.getParameter("network"));
+				systemSupport.setSystem(request.getParameter("system"));
+				systemSupport.setCpu(request.getParameter("cpu"));
+				systemSupport.setVoice(request.getParameter("voice"));
+				
+				//将新定义的系统支持插入数据库
+				game.setSystemTypeNum(systemSupportService.addSystemSupport(systemSupport));
+				log.debug("加入系统支持数据库成功！");
+			}
+			
+			game.setGameType(Long.parseLong(request.getParameter("gameTypeId")));
+			game.setBuildDate(game.getSdf().format(new Date()));
+			game.setVersion(request.getParameter("gameVersion"));
+			game.setGameName(request.getParameter("gameName"));
+			game.setPrice(Double.parseDouble(request.getParameter("gamePrice")));
+			game.setIntroduce(request.getParameter("introduce"));
+			
+			//处理上传的游戏文件
+			String path = "/Users/wangxinyu/Documents/程序/GameCommunity/upload";
+			
+			gameService.addGame(game);
+			System.out.println("加入游戏数据库成功！");
+			
+			return null;
+		}catch(Exception e){
+			e.printStackTrace();
+			return new JsonResult<Boolean>(e.getMessage());
+		}
+		
 	}
 }

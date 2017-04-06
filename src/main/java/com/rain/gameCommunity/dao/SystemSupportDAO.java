@@ -13,4 +13,6 @@ public interface SystemSupportDAO {
 	public List<SystemSupportEntity> queryAllSystemSupport();
 	
 	public SystemSupportEntity querySystemSupportById(@Param("id") long id);
+	
+	public long addSystemSupport(@Param("systemSupport") SystemSupportEntity systemSupport);
 }

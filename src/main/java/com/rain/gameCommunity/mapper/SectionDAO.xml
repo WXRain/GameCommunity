@@ -29,4 +29,12 @@
 		select * from section where gameId = #{gameId}
 	</select>
 	
+	<insert id="addSection" parameterType="com.rain.gameCommunity.entity.SectionEntity" keyProperty="id" useGeneratedKeys="true">
+		insert into section 
+		(name, introduce, topicNum, sectionManager, createTime, gameId, gameType)
+		values
+		(#{section.name}, #{section.introduce}, #{section.topicNum}, #{section.sectionManager}, #{section.createTime},
+		#{section.gameId}, #{section.gameType})
+	</insert>
+	
  </mapper>

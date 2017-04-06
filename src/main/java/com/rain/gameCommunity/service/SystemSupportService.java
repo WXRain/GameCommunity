@@ -12,4 +12,6 @@ public interface SystemSupportService {
 	public List<SystemSupportEntity> showAllSystemSupportService() throws Exception;
 	
 	public SystemSupportEntity showSystemSupportById(long id) throws Exception;
+	
+	public long addSystemSupport(SystemSupportEntity systemSupport) throws Exception;
 }

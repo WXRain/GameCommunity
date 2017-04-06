@@ -118,4 +118,12 @@
 			where id=#{game.id}
 	</update>
 	
+	<insert id="addGame" parameterType="com.rain.gameCommunity.entity.GameEntity" useGeneratedKeys="true" keyProperty="id">
+		insert into game
+		(buildDate, introduce, price, cutOff, version, path, systemTypeNum, sectionId, picturePath, gameName, gameType, downloadNum)
+		values
+		(#{game.buildDate}, #{game.introduce}, #{game.price}, #{game.cutOff}, #{game.version}, #{game.path}, #{game.systemTypeNum},
+		#{game.sectionId}, #{game.picturePath}, #{game.gameName}, #{game.gameTypeId}, #{game.downloadNum})
+	</insert>
+	
  </mapper>

@@ -29,5 +29,7 @@ public interface GameDAO {
 	public List<GameEntity> queryGamesByIds(@Param("ids") List<Long> ids);
 	
 	public void updateGameEntity(@Param("game") GameEntity game);
+	
+	public long addGame(@Param("game") GameEntity game);
 
 }

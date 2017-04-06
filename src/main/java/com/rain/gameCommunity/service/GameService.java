@@ -32,4 +32,6 @@ public interface GameService {
 	public List<GameEntity> showGamesByIds(List<Long> ids) throws Exception;
 	
 	public void updateGameEntity(GameEntity game) throws Exception;
+	
+	public long addGame(GameEntity game) throws Exception;
 }

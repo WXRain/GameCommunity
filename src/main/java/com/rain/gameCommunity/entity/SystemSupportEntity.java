@@ -26,7 +26,7 @@ public class SystemSupportEntity implements Serializable {
 	private String voice;
 
 	// 是否需要网络
-	private boolean network;
+	private String network;
 
 	// CPU
 	private String cpu;
@@ -115,7 +115,7 @@ public class SystemSupportEntity implements Serializable {
 	/**
 	 * @return the network
 	 */
-	public boolean isNetwork() {
+	public String isNetwork() {
 		return network;
 	}
 
@@ -123,7 +123,7 @@ public class SystemSupportEntity implements Serializable {
 	 * @param network
 	 *            the network to set
 	 */
-	public void setNetwork(boolean network) {
+	public void setNetwork(String network) {
 		this.network = network;
 	}
 
@@ -185,7 +185,7 @@ public class SystemSupportEntity implements Serializable {
 	
 
 	public SystemSupportEntity(int id, String systemName, String memoria, String system, String disk, String voice,
-			boolean network, String cpu, String display, String note) {
+			String network, String cpu, String display, String note) {
 		super();
 		this.id = id;
 		this.systemName = systemName;

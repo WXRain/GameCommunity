@@ -20,57 +20,72 @@
 </head>
 <body>
 <div><iframe align="center" width="100%" height="100" src="../top.html" frameborder="no" border="0" marginwidth="0" marginheight="0" scrolling="no"></iframe></div>
-	<form action="" method="POST" enctype="multipart/form-data">
+	<form action="uploadGame.do" method="POST" enctype="multipart/form-data">
 	<table width=100% id=table>
 	<tr>
-		<td width=50%>游戏类型：</td>
-		<td width=50%><input readonly="true" id="gameTypeName" value=""/></td>
+		<td width=45%>游戏类型：</td>
+		<td width=45%><input readonly="true" id="gameTypeName" value=""/></td>
+		<td width=10%><input name="gameTypeId" id="gameTypeId"/></td>
 	</tr>
 	<tr>
 		<td>游戏名称：</td>
-		<td><input id="gameName" value=""/></td>
+		<td><input id="gameName" value="" name="gameName"/></td>
+		<td><span id="gameNameMessage"></span></td>
 	</tr>
 	<tr>
 		<td>游戏价格：</td>
-		<td><input id="gamePrice" value=""/></td>
+		<td><input id="gamePrice" value="" name="gamePrice"/></td>
+		<td><span id="gamePriceMessage"></span></td>
 	</tr>
 	<tr>
 		<td>游戏版本号：</td>
-		<td><input id="gameVersion" value=""/></td>
+		<td><input id="gameVersion" value="" name="gameVersion"/></td>
+		<td><span id="gameVersionMessage"></span></td>
 	</tr>
 	<tr>
 		<td>游戏系统要求：</td>
-		<td><select id="systemSupport" onblur=showOrHideTable()>
+		<td><select id="systemSupport" onblur=showOrHideTable() name="systemSupport">
 			<option value="-1">重新定义</option>
 		</select></td>
 	</tr>
 	<tr>
+		<td>系统支持名称：</td>
+		<td><input id="systemSupportName" name="systemSupportName"/></td>
+		<td><span id="systemSupportNameMessage"></span></td>
+	</tr>
+	<tr>
 		<td>内存：</td>
-		<td><input id="memoria"></input></td>
+		<td><input id="memoria" name="memoria"></input></td>
+		<td><span id="memoriaMessage"></span></td>
 	</tr>
 	<tr>
 		<td>系统：</td>
-		<td><input id="system"/></td>
+		<td><input id="system" name="system"/></td>
+		<td><span id="systemMessage"></span></td>
 	</tr>
 	<tr>
 		<td>磁盘：</td>
-		<td><input id="disk"/></td>
+		<td><input id="disk" name="disk"/></td>
+		<td><span id="diskMessage"></span></td>
 	</tr>
 	<tr>
 		<td>声卡：</td>
-		<td><input id="voice"/></td>
+		<td><input id="voice" name="voice"/></td>
+		<td><span id="voiceMessage"></span></td>
 	</tr>
 	<tr>
 		<td>CPU：</td>
-		<td><input id="cpu"/></td>
+		<td><input id="cpu" name="cpu"/></td>
+		<td><span id="cpuMessage"></span></td>
 	</tr>
 	<tr>
 		<td>显卡：</td>
-		<td><input id="display"/></td>
+		<td><input id="display" name="display"/></td>
+		<td><span id="displayMessage"></span></td>
 	</tr>
 	<tr>
 		<td>网络：</td>
-		<td><select id="network">
+		<td><select id="network" name="network">
 			<option value="true">是</option>
 			<option value="false">否</option>
 			<option value="all">都可</option>
@@ -78,15 +93,18 @@
 	</tr>
 	<tr>
 		<td>注意：</td>
-		<td><input id="note"/></td>
+		<td><input id="note" name="note"/></td>
+		<td><span id="noteMessage"></span></td>
 	</tr>
 	<tr>
 		<td>游戏介绍：</td>
-		<td><input id="introduce"/></td>
+		<td><input id="introduce" name="introduce"/></td>
+		<td><span id="introduceMessage"></span></td>
 	</tr>
 	<tr>
 		<td>选择程序：</td>
 		<td><input type="file" name="file" id="fileName" onblur="checkProgram()"></td>
+		<td><span id="fileMessage"></span></td>
 	</tr>
 	<tr>
 		<td><input type="submit" value="上传"/></td>
@@ -100,6 +118,7 @@
 			$("#table tr").each(function(){
 				$(this).find("td:first").attr("align", "right");
 			});
+			$("#gameTypeId").val(gameTypeId).hide();
 			$.ajax({
 				url:"showGameType.do",
 				method:"POST",
@@ -150,6 +169,7 @@
 						if(result.state == 0){
 							var data = result.data;
 							console.log(data);
+							$("#systemSupportName").val(data.systemName).attr("readonly", "true");
 							$("#memoria").val(data.memoria).attr("readonly", "true");
 							$("#system").val(data.system).attr("readonly", "true");
 							$("#disk").val(data.disk).attr("readonly", "true");
@@ -164,6 +184,7 @@
 					}
 				});
 			}else{
+				$("#systemSupportName").val("").removeAttr("readonly");
 				$("#memoria").val("").removeAttr("readonly");
 				$("#system").val("").removeAttr("readonly");
 				$("#disk").val("").removeAttr("readonly");
