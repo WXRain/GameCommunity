@@ -23,7 +23,7 @@ public class GameEntity implements Serializable {
 	private String gameName;
 
 	// 游戏评论
-	private List<CommentEntity> comments;
+	private List<TopicEntity> comments;
 
 	// 游戏介绍
 	private String introduce;
@@ -66,7 +66,7 @@ public class GameEntity implements Serializable {
 
 	}
 
-	public GameEntity(long id, String size, String buildDate, String gameName, List<CommentEntity> comments,
+	public GameEntity(long id, String size, String buildDate, String gameName, List<TopicEntity> comments,
 			String introduce, double price, double cutOff, int systemTypeNum, List<File> pictures, String version,
 			String path, SystemSupportEntity systemSupport, int sectionId, int downloadNum, long gameType) {
 		super();
@@ -191,7 +191,7 @@ public class GameEntity implements Serializable {
 	/**
 	 * @return the comments
 	 */
-	public List<CommentEntity> getComments() {
+	public List<TopicEntity> getComments() {
 		return comments;
 	}
 
@@ -199,7 +199,7 @@ public class GameEntity implements Serializable {
 	 * @param comments
 	 *            the comments to set
 	 */
-	public void setComments(List<CommentEntity> comments) {
+	public void setComments(List<TopicEntity> comments) {
 		this.comments = comments;
 	}
 

@@ -7,7 +7,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.rain.gameCommunity.dao.GameDAO;
+import com.rain.gameCommunity.dao.SectionDAO;
+import com.rain.gameCommunity.dao.TopicDAO;
+import com.rain.gameCommunity.dao.UserDAO;
 import com.rain.gameCommunity.entity.GameEntity;
+import com.rain.gameCommunity.entity.SectionEntity;
+import com.rain.gameCommunity.entity.TopicEntity;
 import com.rain.gameCommunity.entity.UserEntity;
 import com.rain.gameCommunity.service.GameService;
 import com.rain.gameCommunity.utils.PagingData;
@@ -17,12 +22,35 @@ public class GameServiceImpl implements GameService {
 
 	@Autowired
 	private GameDAO gameDao;
+	
+	@Autowired
+	private SectionDAO sectionDao;
+	
+	@Autowired
+	private TopicDAO topicDao;
+	
+	@Autowired
+	private UserDAO userDao;
 
 	public List<GameEntity> showAllGame() throws Exception {
 
 		List<GameEntity> games = new ArrayList<GameEntity>();
 		games = gameDao.queryAllGame();
 		return games;
+	}
+	
+	private List<TopicEntity> changeUserIdToString(List<TopicEntity> topics) throws Exception{
+		
+		for(TopicEntity topic : topics){
+			long userId = topic.getUserId();
+			List<Long> ids = new ArrayList<Long>();
+			ids.add(userId);
+			List<UserEntity> users = userDao.queryUsersById(ids);
+			for(UserEntity user : users){
+				topic.setUsername(user.getUsername());
+			}
+		}
+		return topics;
 	}
 
 	@Override
@@ -36,6 +64,16 @@ public class GameServiceImpl implements GameService {
 	public GameEntity showGameById(String id) throws Exception {
 		long idLong = Long.parseLong(id);
 		GameEntity game = gameDao.queryGameById(idLong);
+		//取出section
+		List<SectionEntity> sections = sectionDao.querySectionByGameId(idLong);
+		
+		if(sections == null || sections.size() <= 0) return game;
+		
+		SectionEntity section = sections.get(0);
+		long sectionId = section.getId();
+		
+		game.setComments(changeUserIdToString(topicDao.queryCommentsBySectionId(sectionId)));
+		
 		return game;
 	}
 

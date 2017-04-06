@@ -16,8 +16,9 @@
 	}
 	var userId = $.session.get("userId");
 	if(userId == null || gameId.length == 0){
-		$.session.set("errorMessage", "登录状态错误！");
-		window.location.href = path + "/error.html";
+// 		$.session.set("errorMessage", "登录状态错误！");
+// 		window.location.href = path + "/error.html";
+		userId = -1;
 	}
 </script>
 </head>
@@ -59,39 +60,61 @@
 		<tr><td colspan='5'><hr/></td></tr>
 		
 	</table>
+	<br/><br/>
+	<center><h3>精选评论</h3></center>
+	<hr/>
+	<table width=100% id="comments">
+	<tr>
+		<td width=25%>发布者</td>
+		<td width=25%>发布时间</td>
+		<td width=25%>发布名</td>
+		<td width=25%>点击量</td>
+	</tr>
+	<tr><td colspan='4'><hr/></td></tr>
+	</table>
 
 <script type="text/javascript">
 	var gameType;
 	var nowIndex;
-	$.ajax({
-		url:"addShoppingCartOrDownload.do",
-		method:"POST",
-		dataType:"JSON",
-		data:{
-			"gameId":gameId,
-			"userId":userId
-		},
-		success:function(result){
-			if(result.state == 0){
-				console.log(result);
-				var data = result.data;
-				if(data){
-					$("#addBus").text("下载").attr("onclick","downloadAction(" + gameId + ")");
+	$(function(){
+		if(userId == -1) return;
+		$.ajax({
+			url:"addShoppingCartOrDownload.do",
+			method:"POST",
+			dataType:"JSON",
+			data:{
+				"gameId":gameId,
+				"userId":userId
+			},
+			success:function(result){
+				if(result.state == 0){
+					console.log(result);
+					var data = result.data;
+					if(data){
+						$("#addBus").text("下载").attr("onclick","downloadAction(" + gameId + ")");
+					}else{
+						return;
+					}
 				}else{
-					return;
+					$.session.set("errorMessage", result.message);
+					window.location.href = path + "/error.html";
 				}
-			}else{
-				$.session.set("errorMessage", result.message);
-				window.location.href = path + "/error.html";
 			}
-		}
+		});
 	});
+	
+	
+	
 
 function addBus(){
 	var userId = $.session.get("userId");
 	if(userId == null || userId.length == 0){
 		$.session.set("errorMessage", "登录状态错误!");
 		window.location.href = path + "/error.html";
+	}
+	if(userId == -1){
+		alert("您还没有登录！");
+		window.location.href = path;
 	}
 	$.ajax({
 		url:"addToShoppingCart.do",
@@ -178,6 +201,21 @@ $.ajax({
 			$("#system").text("系统要求：" + data.systemSupport.system);
 			$("#note").text("注意事项：" + data.systemSupport.note);
 			$("#version").text("版本号：" + data.version);
+			
+			if(data.comments == null || data.comments.length == 0){
+				$("#comments").append("<tr><td colspan='4'><center><h3>暂时没有评论！</h3></center></td></tr><tr><td colspan='4'><hr/></td></tr>")
+			}else{
+				var comments = data.comments;
+				for(var i = 0; i < comments.length; i++){
+					$("#comments").append("<tr>"+
+							"<td><a href=" + path + "/user/showUser.html?userId=" + comments[i].userId + ">" + comments[i].username + "</a></td>"+
+							"<td>" + comments[i].createTime + "</td>" + 
+							"<td><a href=" + path + "/community/topic.html?topicId=" + comments[i].id + ">" + comments[i].topicName + "</a></td>" + 
+							"<td>" + comments[i].clickNum + "</td>" +
+							"</tr><td colspan='4'><hr/></td></tr>");
+				}
+			}
+			
 		}else{
 			alert(result.message);
 		}

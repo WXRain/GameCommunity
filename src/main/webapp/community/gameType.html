@@ -24,6 +24,7 @@
 	<span id="index"><a href=javascript:void(0) onclick=communityIndex()>xx论坛</a>&nbsp;&nbsp;&nbsp;></span>
 	<center><h2 id="gameTypeName"></h2></center><br/>
 	<div><center><h3 id="introduce"></h3></center></div>
+	<div><center><a href=javascript:void(0) onclick=jumpToGame()>点此跳转到游戏</a></center></div>
 	<br/><br/>
 	<table width="100%" id="table">
        <tr>
@@ -119,6 +120,10 @@
    
    function gameTypeIndex(){
 	   window.location.href = path + "/community/gameType.html?gameTypeId=" + gameTypeId;
+   }
+   
+   function jumpToGame(){
+	   window.location.href = path + "/game/showGameType.html?gameTypeId=" + gameTypeId;
    }
    
    </script>

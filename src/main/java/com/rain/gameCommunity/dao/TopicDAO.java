@@ -25,4 +25,6 @@ public interface TopicDAO {
 	public int queryTopicsCountByCondition(@Param("nameCondition") String nameCondition);
 	
 	public void updateTopic(@Param("topic") TopicEntity topic);
+	
+	public List<TopicEntity> queryCommentsBySectionId(@Param("sectionId") long sectionId);
 }

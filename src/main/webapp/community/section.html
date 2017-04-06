@@ -27,6 +27,7 @@
 	<span>&nbsp;&nbsp;&nbsp;<a href=javascript:void(0) onclick=sectionIndex() id="sectionIndex"></a></span>
 	<center><h2 id="sectionName"></h2></center><br/>
 	<div><center><h3 id="introduce"></h3></center></div>
+	<div><center><a id="jumpToGame" href=javascript:void(0)>点此跳转到游戏</a></center></div>
 	<br/><br/>
 	<table width="100%" id="table">
        <tr>
@@ -72,6 +73,7 @@
 						window.location.href = path + "/error.html";
 					}
 					buildGameTypeIndex(result.data.gameType);
+					$("#jumpToGame").attr("onclick", "jumpToGame(" + result.data.gameId + ")");
 					$("#sectionIndex").text(result.data.name);
 					$("#sectionName").text(result.data.name);
 					$("#introduce").text("介绍：" + result.data.introduce);
@@ -140,6 +142,9 @@
 	   window.location.href = path + "/community/section.html?sectionId=" + sectionId;
    }
    
+   function jumpToGame(gameId){
+	   window.location.href = path + "/game/showGame.html?gameId=" + gameId;
+   }
    </script>
    
 </body>
