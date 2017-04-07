@@ -21,5 +21,7 @@ public interface SectionDAO {
 	//根据游戏id取得板块信息
 	public List<SectionEntity> querySectionByGameId(@Param("gameId") long gameId);
 	
-	public long addSection(@Param("section") SectionEntity section);
+	public void addSection(@Param("section") SectionEntity section);
+	
+	public void updateSection(@Param("section") SectionEntity section, @Param("id") long id);
 }

@@ -39,6 +39,9 @@ public class GameEntity implements Serializable {
 
 	// 游戏封面
 	private List<File> pictures;
+	
+	//游戏封面路径
+	private String picturePath;
 
 	// 游戏版本
 	private String version;
@@ -50,7 +53,7 @@ public class GameEntity implements Serializable {
 	private SystemSupportEntity systemSupport;
 
 	// 对应的板块ID
-	private int sectionId;
+	private long sectionId;
 	
 	// 游戏下载量
 	private int downloadNum;
@@ -66,9 +69,11 @@ public class GameEntity implements Serializable {
 
 	}
 
+
 	public GameEntity(long id, String size, String buildDate, String gameName, List<TopicEntity> comments,
-			String introduce, double price, double cutOff, long systemTypeNum, List<File> pictures, String version,
-			String path, SystemSupportEntity systemSupport, int sectionId, int downloadNum, long gameType) {
+			String introduce, double price, double cutOff, long systemTypeNum, List<File> pictures, String picturePath,
+			String version, String path, SystemSupportEntity systemSupport, long sectionId, int downloadNum,
+			long gameType, SimpleDateFormat sdf) {
 		super();
 		this.id = id;
 		this.size = size;
@@ -80,29 +85,42 @@ public class GameEntity implements Serializable {
 		this.cutOff = cutOff;
 		this.systemTypeNum = systemTypeNum;
 		this.pictures = pictures;
+		this.picturePath = picturePath;
 		this.version = version;
 		this.path = path;
 		this.systemSupport = systemSupport;
 		this.sectionId = sectionId;
 		this.downloadNum = downloadNum;
 		this.gameType = gameType;
+		this.sdf = sdf;
 	}
+	
+	
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.lang.Object#toString()
-	 */
 	@Override
 	public String toString() {
 		return "GameEntity [id=" + id + ", size=" + size + ", buildDate=" + buildDate + ", gameName=" + gameName
 				+ ", comments=" + comments + ", introduce=" + introduce + ", price=" + price + ", cutOff=" + cutOff
-				+ ", systemTypeNum=" + systemTypeNum + ", pictures=" + pictures + ", version=" + version + ", path="
-				+ path + ", systemSupport=" + systemSupport + ", sectionId=" + sectionId + ", downloadNum=" + downloadNum +
-				", gameType=" + gameType + "]";
+				+ ", systemTypeNum=" + systemTypeNum + ", pictures=" + pictures + ", picturePath=" + picturePath
+				+ ", version=" + version + ", path=" + path + ", systemSupport=" + systemSupport + ", sectionId="
+				+ sectionId + ", downloadNum=" + downloadNum + ", gameType=" + gameType + ", sdf=" + sdf + "]";
 	}
-	
-	
+
+
+	public String getPicturePath() {
+		return picturePath;
+	}
+
+
+	public void setPicturePath(String picturePath) {
+		this.picturePath = picturePath;
+	}
+
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
 
 	public long getGameType() {
 		return gameType;
@@ -326,7 +344,7 @@ public class GameEntity implements Serializable {
 	/**
 	 * @return the sectionId
 	 */
-	public int getSectionId() {
+	public long getSectionId() {
 		return sectionId;
 	}
 
@@ -334,7 +352,7 @@ public class GameEntity implements Serializable {
 	 * @param sectionId
 	 *            the sectionId to set
 	 */
-	public void setSectionId(int sectionId) {
+	public void setSectionId(long sectionId) {
 		this.sectionId = sectionId;
 	}
 

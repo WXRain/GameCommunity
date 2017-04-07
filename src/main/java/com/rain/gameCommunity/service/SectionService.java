@@ -20,5 +20,7 @@ public interface SectionService {
 	//根据游戏id取出板块信息
 	public List<SectionEntity> showSectionByGameId(long gameId) throws Exception;
 	
-	public long addSection(SectionEntity section) throws Exception;
+	public void addSection(SectionEntity section) throws Exception;
+	
+	public void updateSection(SectionEntity section, long id) throws Exception;
 }

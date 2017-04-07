@@ -56,12 +56,17 @@ function createTable(data){
 	}else{
 		for(var i = 0; i < data.length; i++){
 			var managers = "";
-			for(var j = 0; j < data[i].managers.length; j++){
-				managers = managers + "<a href=javascript:void() onclick=showUser("+data[i].managers[j].id + 
-									")>" + data[i].managers[j].username + "</a> , ";
-			}
-			console.log(managers);
-			managers = managers.substr(0, managers.length - 2);
+			if(data[i].managers != null && data[i].managers.length > 0){
+				   for(var j = 0; j < data[i].managers.length; j++){
+					   managers = managers + "<a href=javascript:void() onclick=showUser("+
+							   data[i].managers[j].id +")>" + data[i].managers[j].username + 
+							   "</a> , ";
+				   }
+				  
+			   }
+			   if(managers!=null && managers.length > 0){
+				   managers = managers.substring(0, managers.length - 2);
+			   }
 			$("table").append("<tr><td><a href=javascript:void() onclick=clickGameType(" + data[i].id + ")>" + data[i].typeName + "</a></td>" +
 			  "<td>" + data[i].introduce + "</td>" + 
 			  "<td>" + data[i].createTimeString + "</td>" + 

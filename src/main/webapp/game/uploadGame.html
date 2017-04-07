@@ -102,6 +102,21 @@
 		<td><span id="introduceMessage"></span></td>
 	</tr>
 	<tr>
+		<td>同时创建论坛板块：</td>
+		<td><input type="checkbox" id="createSection" name="createSection" checked onblur="checkBoxIsChecked()"/></td>
+		<td><span id="createSectionMessage"></span></td>
+	</tr>
+	<tr class="section">
+		<td>论坛名：</td>
+		<td><input id="sectionName" name="sectionName"/></td>
+		<td><span id="sectionNameMessage"></span></td>
+	</tr>
+	<tr class="section">
+	<td>论坛介绍：</td>
+	<td><input id="sectionIntroduce" name="sectionIntroduce"/></td>
+	<td><span id="sectionIntroduceMessage"></span></td>
+	</tr>
+	<tr>
 		<td>选择程序：</td>
 		<td><input type="file" name="file" id="fileName" onblur="checkProgram()"></td>
 		<td><span id="fileMessage"></span></td>
@@ -194,6 +209,14 @@
 				$("#note").val("").removeAttr("readonly");
 			}
 		}
+		
+	function checkBoxIsChecked(){
+		if($("#createSection").is(":checked")){
+			$(".section").show();
+		}else{
+			$(".section").hide();
+		}
+	}
 	</script>
 </body>
 </html>

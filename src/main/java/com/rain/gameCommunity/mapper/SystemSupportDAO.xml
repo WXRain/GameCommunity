@@ -11,7 +11,7 @@
 		select * from systemsupport where id=#{id}
 	</select>
 	
-	<insert id="addSystemSupport" keyProperty="id" useGeneratedKeys="true" parameterType="com.rain.gameCommunity.entity.SystemSupportEntity">
+	<insert id="addSystemSupport" keyProperty="systemSupport.id" useGeneratedKeys="true" parameterType="com.rain.gameCommunity.entity.SystemSupportEntity">
 		insert into systemsupport 
 		(systemName, memoria, system, disk, voice, display, network, cpu, note)
 		values

@@ -32,9 +32,11 @@ public class SectionServiceImpl implements SectionService {
 		
 		for(SectionEntity section : sections){
 			String sectionManager = section.getSectionManager();
+			if(sectionManager == null || sectionManager.length() <= 0) continue;
 			String[] managersString = sectionManager.split(",");
 			List<Long> managers = new ArrayList<Long>();
 			for(int i = 0; i < managersString.length; i++){
+				if(managersString[i] == null || managersString[i].length() <= 0) continue;
 				managers.add(Long.parseLong(managersString[i]));
 			}
 			List<UserEntity> users = userDao.queryUsersById(managers);
@@ -74,8 +76,14 @@ public class SectionServiceImpl implements SectionService {
 	}
 
 	@Override
-	public long addSection(SectionEntity section) throws Exception {
-		return sectionDao.addSection(section);
+	public void addSection(SectionEntity section) throws Exception {
+		sectionDao.addSection(section);
+	}
+
+	@Override
+	public void updateSection(SectionEntity section, long id) throws Exception {
+		
+		sectionDao.updateSection(section, id);
 	}
 
 }

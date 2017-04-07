@@ -14,9 +14,10 @@
         <result column="systemTypeNum" property="systemTypeNum" jdbcType="INTEGER"/>
         <result column="version" property="version" jdbcType="VARCHAR"/>
         <result column="path" property="path" jdbcType="VARCHAR"/>
-        <result column="sectionId" property="sectionId" jdbcType="INTEGER"/>
+        <result column="sectionId" property="sectionId" jdbcType="BIGINT"/>
         <result column="downloadNum" property="downloadNum" jdbcType="INTEGER"/>
         <result column="gameType" property="gameType" jdbcType="BIGINT"/>
+        <result column="picturePath" property="picturePath" jdbcType="VARCHAR"/>
         <collection property="systemSupport" ofType="com.rain.gameCommunity.entity.SystemSupportEntity">
             <id column="id" property="id" jdbcType="BIGINT" />
             <result column="systemName" property="systemName" jdbcType="VARCHAR"/>
@@ -118,12 +119,12 @@
 			where id=#{game.id}
 	</update>
 	
-	<insert id="addGame" parameterType="com.rain.gameCommunity.entity.GameEntity" useGeneratedKeys="true" keyProperty="id">
+	<insert id="addGame" parameterType="com.rain.gameCommunity.entity.GameEntity" useGeneratedKeys="true" keyProperty="game.id">
 		insert into game
-		(buildDate, introduce, price, cutOff, version, path, systemTypeNum, sectionId, picturePath, gameName, gameType, downloadNum)
+		(buildDate, introduce, price, cutOff, version, path, systemTypeNum, sectionId, picturePath, gameName, gameType, downloadNum, size)
 		values
 		(#{game.buildDate}, #{game.introduce}, #{game.price}, #{game.cutOff}, #{game.version}, #{game.path}, #{game.systemTypeNum},
-		#{game.sectionId}, #{game.picturePath}, #{game.gameName}, #{game.gameTypeId}, #{game.downloadNum})
+		#{game.sectionId}, #{game.picturePath}, #{game.gameName}, #{game.gameType}, #{game.downloadNum}, #{game.size})
 	</insert>
 	
  </mapper>

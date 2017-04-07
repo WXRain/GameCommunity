@@ -1,5 +1,7 @@
 package com.rain.gameCommunity.controller;
 
+import java.io.File;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -10,6 +12,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
@@ -25,6 +28,7 @@ import com.rain.gameCommunity.service.SectionService;
 import com.rain.gameCommunity.service.ShoppingCartService;
 import com.rain.gameCommunity.service.SystemSupportService;
 import com.rain.gameCommunity.service.UserService;
+import com.rain.gameCommunity.utils.GetPrintSize;
 import com.rain.gameCommunity.utils.JsonResult;
 import com.rain.gameCommunity.utils.PagingData;
 
@@ -259,19 +263,58 @@ public class GameController {
 	
 	@RequestMapping("/uploadGame.do")
 	@ResponseBody
+	@Transactional
 	public JsonResult<Boolean> uploadGame(MultipartFile file, HttpServletRequest request){
 		try{
 			SystemSupportEntity systemSupport = new SystemSupportEntity();
 			GameEntity game = new GameEntity();
+			SectionEntity section = new SectionEntity();
+			long sectionId = -1;
+			
+			//处理上传的游戏文件
+			if(file.isEmpty()) throw new Exception("上传文件无效或者文件为空！");
+			String path = "/Users/wangxinyu/Documents/程序/GameCommunity/download/";
+			String fileName = file.getOriginalFilename(); //xxx.exe
+			path = path + request.getParameter("gameName") + "/" + request.getParameter("gameVersion") + "/";
+			System.out.println(path);
+			
+			File targetFile = new File(path, fileName);
+			if(!targetFile.exists()){
+				targetFile.mkdirs();//不存在则新建目录
+			}
+			
+			try{
+				file.transferTo(targetFile);
+			}catch(Exception e){
+				e.printStackTrace();
+				return new JsonResult<Boolean>(e.getMessage());
+			}
+			
+			game.setPath(path + fileName);
+			game.setSize(GetPrintSize.getPrintSize(file.getSize()));
+			
+			
 			
 			//如果要求同时创建section，则创建section
+			if(request.getParameter("createSection") == null) ;
+			else{
+				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+				section.setCreateTime(sdf.format(new Date()));
+				section.setGameType(Long.parseLong(request.getParameter("gameTypeId")));
+				section.setIntroduce(request.getParameter("sectionIntroduce"));
+				section.setName(request.getParameter("sectionName"));
+				section.setTopicNum(0);
+				sectionService.addSection(section);
+				sectionId = section.getId();
+				System.out.println("加入论坛板块数据库成功！");
+			}
 			
 			
-			System.out.println("加入论坛板块数据库成功！");
+			
 			
 			long systemSupportId = Long.parseLong(request.getParameter("systemSupport"));
 			//用现有的系统支持
-			if(systemSupportId == -1){
+			if(systemSupportId != -1){
 				game.setSystemTypeNum(systemSupportId);
 			}else{
 				systemSupport.setSystemName(request.getParameter("systemSupportName"));
@@ -279,13 +322,18 @@ public class GameController {
 				systemSupport.setDisk(request.getParameter("disk"));
 				systemSupport.setDisplay(request.getParameter("display"));
 				systemSupport.setNote(request.getParameter("note"));
-				systemSupport.setNetwork(request.getParameter("network"));
+				String network = request.getParameter("network");
+				if("true".equals(network)) network = "1";
+				else if("fale".equals(network)) network = "0";
+				else network = "-1";
+				systemSupport.setNetwork(network);
 				systemSupport.setSystem(request.getParameter("system"));
 				systemSupport.setCpu(request.getParameter("cpu"));
 				systemSupport.setVoice(request.getParameter("voice"));
 				
 				//将新定义的系统支持插入数据库
-				game.setSystemTypeNum(systemSupportService.addSystemSupport(systemSupport));
+				systemSupportService.addSystemSupport(systemSupport);
+				game.setSystemTypeNum(systemSupport.getId());
 				log.debug("加入系统支持数据库成功！");
 			}
 			
@@ -295,12 +343,18 @@ public class GameController {
 			game.setGameName(request.getParameter("gameName"));
 			game.setPrice(Double.parseDouble(request.getParameter("gamePrice")));
 			game.setIntroduce(request.getParameter("introduce"));
-			
-			//处理上传的游戏文件
-			String path = "/Users/wangxinyu/Documents/程序/GameCommunity/upload";
+			if(sectionId != -1) game.setSectionId(sectionId);
 			
 			gameService.addGame(game);
+			long gameId = game.getId();
 			System.out.println("加入游戏数据库成功！");
+			
+			if(sectionId != -1){
+				//更新论坛板块数据，将板块和游戏绑定在一起
+				section.setGameId(gameId);
+				sectionService.updateSection(section, sectionId);
+				System.out.println("更新论坛板块数据成功！");
+			}
 			
 			return null;
 		}catch(Exception e){
