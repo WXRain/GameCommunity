@@ -101,4 +101,15 @@ public class TopicServiceImpl implements TopicService {
 		topicDao.updateTopic(topic);
 	}
 
+
+
+	/* (non-Javadoc)
+	 * @see com.rain.gameCommunity.service.TopicService#addTopic(com.rain.gameCommunity.entity.TopicEntity)
+	 */
+	@Override
+	public void addTopic(TopicEntity topic) throws Exception {
+		
+		topicDao.addTopic(topic);
+	}
+
 }

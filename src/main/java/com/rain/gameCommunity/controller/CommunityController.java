@@ -2,6 +2,8 @@ package com.rain.gameCommunity.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -132,6 +134,23 @@ public class CommunityController {
 			return new JsonResult<TopicEntity>(topic, null);
 		}catch(Exception e){
 			return new JsonResult<TopicEntity>(e.getMessage());
+		}
+	}
+	
+	@RequestMapping("/addTopic.do")
+	@ResponseBody
+	public JsonResult<Boolean> addTopic(HttpServletRequest request){
+		try{
+			TopicEntity topic = new TopicEntity();
+			topic.setTopicName(request.getParameter("topicName"));
+			topic.setTopicText(request.getParameter("topicText"));
+			topic.setUserId(Long.parseLong(request.getParameter("userId")));
+			topic.setSectionId(Long.parseLong(request.getParameter("sectionId")));
+			topicService.addTopic(topic);
+			return new JsonResult<Boolean>(true, null);
+		}catch(Exception e){
+			e.printStackTrace();
+			return new JsonResult<Boolean>(e.getMessage());
 		}
 	}
 

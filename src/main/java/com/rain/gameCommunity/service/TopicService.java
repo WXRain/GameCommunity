@@ -23,4 +23,6 @@ public interface TopicService {
 	public List<TopicEntity> showTopicsByCondition(String nameCondition, PagingData pagingData) throws Exception;
 	
 	public void updateTopic(TopicEntity topic) throws Exception;
+	
+	public void addTopic(TopicEntity topic) throws Exception;
 }

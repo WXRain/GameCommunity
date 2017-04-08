@@ -20,6 +20,11 @@
 </head>
 <body>
 <div><iframe align="center" width="100%" height="100" src="../top.html" frameborder="no" border="0" marginwidth="0" marginheight="0" scrolling="no"></iframe></div>
+	<span id="index">
+		<a href=javascript:void(0) onclick=gameIndex()>xx游戏</a>&nbsp;&nbsp;&nbsp;>&nbsp;&nbsp;&nbsp;
+		<a href=javascript:void(0) onclick=gameTypeIndex() id=gameTypeIndex></a>&nbsp;&nbsp;&nbsp;>&nbsp;&nbsp;&nbsp;
+		<a href=javascript:void(0) onclick=uploadGameIndex()>上传游戏</a>
+	</span>
 	<form action="uploadGame.do" method="POST" enctype="multipart/form-data">
 	<table width=100% id=table>
 	<tr>
@@ -144,6 +149,7 @@
 				success:function(result){
 					if(result.state == 0){
 						$("#gameTypeName").attr("value", result.data.typeName);
+						$("#gameTypeIndex").text(result.data.typeName);
 					}else{
 						alert(result.message);
 					}
@@ -216,6 +222,18 @@
 		}else{
 			$(".section").hide();
 		}
+	}
+	
+	function gameIndex(){
+		window.location.href = path + "/game/main.html";
+	}
+	
+	function gameTypeIndex(){
+		window.location.href = path + "/game/showGameType.html?gameTypeId=" + gameTypeId;
+	}
+	
+	function uploadGameIndex(){
+		window.location.href = path + "/game/uploadGame.html?gameTypeId=" + gameTypeId;
 	}
 	</script>
 </body>

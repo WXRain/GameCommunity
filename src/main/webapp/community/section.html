@@ -27,7 +27,10 @@
 	<span>&nbsp;&nbsp;&nbsp;<a href=javascript:void(0) onclick=sectionIndex() id="sectionIndex"></a></span>
 	<center><h2 id="sectionName"></h2></center><br/>
 	<div><center><h3 id="introduce"></h3></center></div>
-	<div><center><a id="jumpToGame" href=javascript:void(0)>点此跳转到游戏</a></center></div>
+	<div>
+		<center><a id="jumpToGame" href=javascript:void(0)>点此跳转到游戏</a>
+		<a id="addTopic" href=javascript:void(0)>发布帖子</a></center>
+	</div>
 	<br/><br/>
 	<table width="100%" id="table">
        <tr>
@@ -74,6 +77,7 @@
 					}
 					buildGameTypeIndex(result.data.gameType);
 					$("#jumpToGame").attr("onclick", "jumpToGame(" + result.data.gameId + ")");
+					$("#addTopic").attr("onclick", "addTopic(" + result.data.id + ")");
 					$("#sectionIndex").text(result.data.name);
 					$("#sectionName").text(result.data.name);
 					$("#introduce").text("介绍：" + result.data.introduce);
@@ -144,6 +148,10 @@
    
    function jumpToGame(gameId){
 	   window.location.href = path + "/game/showGame.html?gameId=" + gameId;
+   }
+   
+   function addTopic(sectionId){
+	   window.location.href = path + "/community/addTopic.html?sectionId=" + sectionId;
    }
    </script>
    

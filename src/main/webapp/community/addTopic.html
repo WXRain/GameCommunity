@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>游戏板块</title>
+<script type="text/javascript" src="../script/jquery.min.js"></script>
+<script type="text/javascript" src="../script/jquerySession.js"></script>
+<script type="text/javascript" src="../script/getRootPath.js"></script>
+<script type="text/javascript" src="../script/getParam.js"></script>
+<script type="text/javascript" src="../script/utils.js"></script>
+<script type="text/javascript">
+	var path = getRootPath(); 
+	var sectionId = getParam("sectionId");
+	if(sectionId == null || sectionId.length == 0){
+		$.session.set("errorMessage", "参数出错！");
+		window.location.href = path + "/error.html";
+	}
+	var userId = $.session.get("userId");
+	if(userId == null || userId.length == 0){
+		$.session.set("errorMessage", "登录状态错误！");
+		window.location.href = path + "/error.html";
+	}
+</script>
+</head>
+<body>
+	<div><iframe align="center" width="100%" height="100" src="../top.html" frameborder="no" border="0" marginwidth="0" marginheight="0" scrolling="no"></iframe></div>
+	<span id="index">
+		<a href=javascript:void(0) onclick=communityIndex()>xx论坛</a>&nbsp;&nbsp;&nbsp;>&nbsp;&nbsp;&nbsp;
+		<a href=javascript:void(0) id="gameTypeIndex"></a>&nbsp;&nbsp;&nbsp;>&nbsp;&nbsp;&nbsp;
+		<a href=javascript:void(0) id="sectionIndex"></a>&nbsp;&nbsp;&nbsp;>&nbsp;&nbsp;&nbsp;
+		<a href=javascript:void(0) onclick="addTopicIndex()">发布帖子</a>
+	</span>
+	<br/><br/><br/><br/>
+	<form action="addTopic.do" method="POST">
+	<input name="userId" id="userId"/>
+	<input name="sectionId" id="sectionId"/>
+	<table width=100%>
+	<tr>
+		<td width=30% align="right">帖子主题：</td>
+		<td width=70%><input name="topicName" id="topicName" type="text"/></td>
+	</tr>
+	<tr>
+		<td align="right">帖子内容：</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td colspan="2"> <textarea cols="100" rows="15" style="overflow-x:auto;overflow-y:hidden;" name="topicText"></textarea> </td>
+	</tr>
+	<tr>
+		<td align="right"><input type="submit"/></td>
+		<td><input type="reset"/></td>
+	</tr>
+	</table>
+	</form>
+	
+	<script type="text/javascript">
+		$(function(){
+			$("#userId").val(userId).hide();
+			$("#sectionId").val(sectionId).hide();
+			$.ajax({
+				url: "showSection.do",
+				method: "POST",
+				dataType: "JSON",
+				data: {"sectionId" : sectionId},
+				success: function(result){
+					if(result.state == 0){
+						if(result.data == null || result.data.length == 0){
+							$.session.set("errorMessage", "数据错误！");
+							window.location.href = path + "/error.html";
+						}
+						buildGameTypeIndex(result.data.gameType);
+						$("#sectionIndex").text(result.data.name);
+						$("#sectionIndex").attr("onclick", "sectionIndex(" + result.data.id + ")");
+					}else{
+						alert(result.message);
+					}
+				}
+			});
+		});
+		 function buildGameTypeIndex(gameTypeId){
+			   $.ajax({
+					url: "showGameType.do",
+					method: "POST",
+					dataType: "JSON",
+					data: {"gameTypeId" : gameTypeId},
+					success: function(result){
+						if(result.state == 0){
+							if(result.data == null || result.data.length == 0){
+								$.session.set("errorMessage", "游戏类型出错！");
+								window.location.href = path + "/error.html";
+							}
+							console.log(result.data);
+							$("#gameTypeIndex").text(result.data.typeName);
+							$("#gameTypeIndex").attr("onclick", "gameTypeIndex(" + gameTypeId + ")");
+						}else{
+							alert(result.message);
+						}
+					}
+				});
+		   }
+		 
+		 function communityIndex(){
+			 window.location.href = path + "/community/main.html";
+		 }
+		 
+		 function gameTypeIndex(gameTypeId){
+			 window.location.href = path + "/community/gameType.html?gameTypeId=" + gameTypeId;
+		 }
+		   
+		 function sectionIndex(){
+			 window.location.href = path + "/community/section.html?sectionId=" + sectionId;
+		 }
+		   
+		 function addTopicIndex(){
+			 window.location.href = path + "/community/addTopic.html?sectionId=" + sectionId;
+		 }
+	</script>
+	
+</body>
+</html>

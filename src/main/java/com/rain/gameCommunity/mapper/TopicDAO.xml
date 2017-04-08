@@ -59,4 +59,11 @@
 		select * from topic where sectionId=#{sectionId} order by "clickNum" desc limit 0, 2
 	</select>
 	
+	<insert id="addTopic" parameterType="com.rain.gameCommunity.entity.TopicEntity">
+		insert into topic 
+		(userId, sectionId, clickNum, replyNum, topicName, topicText, createTime, lastReplyTime, isTop, isFine)
+		values
+		(#{topic.userId}, #{topic.sectionId}, 0, 0, #{topic.topicName}, #{topic.topicText}, now(), null, 0, 0)
+	</insert>
+	
  </mapper>

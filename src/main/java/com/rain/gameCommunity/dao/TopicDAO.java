@@ -27,4 +27,6 @@ public interface TopicDAO {
 	public void updateTopic(@Param("topic") TopicEntity topic);
 	
 	public List<TopicEntity> queryCommentsBySectionId(@Param("sectionId") long sectionId);
+	
+	public void addTopic(@Param("topic") TopicEntity topic);
 }
