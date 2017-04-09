@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+ <mapper namespace="com.rain.gameCommunity.dao.ReplyDAO">
+ 
+ 	<resultMap id="queryReplyMap" type="com.rain.gameCommunity.entity.ReplyEntity" >
+ 		<id column="id" property="id" jdbcType="BIGINT"/>
+ 		<result column="username" property="username" jdbcType="VARCHAR"/>
+ 		<result column="userId" property="usernId" jdbcType="BIGINT"/>
+ 		<result column="replyTime" property="replyTime" jdbcType="TIMESTAMP"/>
+ 		<result column="replyName" property="replyName" jdbcType="VARCHAR"/>
+ 		<result column="replyText" property="replyText" jdbcType="VARCHAR"/>
+ 		<result column="isReplyComment" property="isReplyComment" jdbcType="VARCHAR"/>
+ 		<result column="replyCommentId" property="replyCommentId" jdbcType="BIGINT"/>
+ 		<result column="replyTopicId" property="replyTopicId" jdbcType="BIGINT"/>
+        <collection property="replyComment" ofType="com.rain.gameCommunity.entity.ReplyEntity">
+        		<id column="id" property="id" jdbcType="BIGINT" />
+        		<result column="username" property="username" jdbcType="VARCHAR"/>
+	 		<result column="userId" property="usernId" jdbcType="BIGINT"/>
+	 		<result column="replyTime" property="replyTime" jdbcType="TIMESTAMP"/>
+	 		<result column="replyName" property="replyName" jdbcType="VARCHAR"/>
+	 		<result column="replyText" property="replyText" jdbcType="VARCHAR"/>
+	 		<result column="isReplyComment" property="isReplyComment" jdbcType="VARCHAR"/>
+	 		<result column="replyCommentId" property="replyCommentId" jdbcType="BIGINT"/>
+	 		<result column="replyTopicId" property="replyTopicId" jdbcType="BIGINT"/>
+        	</collection>
+ 	</resultMap>
+ 
+	<insert id="addReply" parameterType="com.rain.gameCommunity.entity.ReplyEntity">
+		insert into reply 
+		(username, userId, replyTime, replyName, replyText, isReplyComment, replyCommentId, replyTopicId)
+		values
+		(#{reply.username}, #{reply.userId}, #{reply.replyTime}, #{reply.replyName}, #{reply.replyText}, #{reply.isReplyComment},
+		#{reply.replyCommentId}, #{reply.replyTopicId})	
+	</insert>
+	
+	<select id="queryReplysByTopicId" resultMap="queryReplyMap">
+		select * from reply a, reply b where a.replyCommentId = b.id and a.replyTopicId = #{topicId} limit #{startLocation}, #{perPageNum}
+	</select>
+	
+	<select id="queryReplyCountByTopicId" parameterType="Long" resultType="Integer">
+		select count(*) from reply where reply.replyTopicId=#{topicId}
+	</select>
+	
+ </mapper>

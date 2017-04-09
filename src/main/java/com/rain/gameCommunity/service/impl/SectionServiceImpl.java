@@ -11,6 +11,7 @@ import com.rain.gameCommunity.dao.UserDAO;
 import com.rain.gameCommunity.entity.SectionEntity;
 import com.rain.gameCommunity.entity.UserEntity;
 import com.rain.gameCommunity.service.SectionService;
+import com.rain.gameCommunity.utils.PagingData;
 
 @Service
 public class SectionServiceImpl implements SectionService {
@@ -47,8 +48,9 @@ public class SectionServiceImpl implements SectionService {
 	}
 
 	@Override
-	public List<SectionEntity> showSectionsByGameTypeId(long id) throws Exception {
-		List<SectionEntity> sections = sectionDao.querySectionsByGameTypeId(id);
+	public List<SectionEntity> showSectionsByGameTypeId(long id, PagingData pagingData) throws Exception {
+		List<SectionEntity> sections = sectionDao.querySectionsByGameTypeId(id, (pagingData.getTotalPage() -1) * pagingData.getPerPageNum(),
+				pagingData.getPerPageNum());
 		sections = changeManagerToString(sections);
 		return sections;
 	}

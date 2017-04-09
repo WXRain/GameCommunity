@@ -15,6 +15,10 @@
 		$.session.set("errorMessage", "参数错误！");
 		window.location.href = path + "/error.html";
 	}
+	var currentPage = getParam("page");
+	if(currentPage == null || currentPage.length == 0){
+		currentPage = 1;
+	}
 </script>
 </head>
 <body>
@@ -28,15 +32,47 @@
 	<br/><br/><br/>
 	<table width=100%>
 		<tr>
-			<td id="username" width=50% align="center">发帖用户：</td>
-			<td id="createTime" width=50% align="center">发帖时间：</td>
+			<td id="username" width=40% align="center">发帖用户：</td>
+			<td id="createTime" width=40% align="center">发帖时间：</td>
+			<td id="reply" width=20% align="center"><a href=javascript:void(0) onclick="reply()">回复</a></td>
 		</tr>
 	</table>
-	
+	<hr/>
 	<br/><br/><br/>
 	
 	<div id="text"></div>
-   
+	<br/><br/><br/>
+    <hr/>
+    
+<!--     <form action="" method="POST"> -->
+<!--     <table width=100%> -->
+<!--     <tr> -->
+<!--     		<td align="right">回复主题：</td> -->
+<!--     		<td><input id="replyName" name="replyName" type="text"/></td> -->
+<!--     </tr> -->
+<!--     <tr> -->
+<!--     		<td align="right">回复内容：</td> -->
+<!--     		<td><input id="replyText" name="replyText" type="text"/></td> -->
+<!--     </tr> -->
+<!--     <tr> -->
+<!--     		<td align="right"><input type="submit"/></td> -->
+<!--     		<td><input type="button" value="取消" onclick="cancelReply()"/></td> -->
+<!--     </tr> -->
+<!--     </table> -->
+<!--     </form> -->
+
+<table width=100%>
+<tr>
+	<td>回复用户</td>
+	<td>回复主题</td>
+	<td>回复内容</td>
+	<td>回复时间</td>
+</tr>
+<tr><td colspan="4"><hr/></td></tr>
+</table>
+
+	
+    
    <script type="text/javascript">
    		
    $(function(){
@@ -49,6 +85,23 @@
 			success: function(result){
 				if(result.state == 0){
 					createPage(result.data);
+				}else{
+					alert(result.message);
+				}
+			}
+		});
+		
+		$.ajax({
+			url: "showReply.do",
+			method: "POST",
+			dataType: "JSON",
+			data: {
+				"topicId" : topicId,
+				"currentPage" : currentPage
+			},
+			success: function(result){
+				if(result.state == 0){
+					console.log(result);
 				}else{
 					alert(result.message);
 				}
@@ -141,6 +194,14 @@
    
    function jumpToGame(gameId){
 	   window.location.href = path + "/game/showGame.html?gameId=" + gameId;
+   }
+   
+   function reply(){
+	   var userId = $.session.get("userId");
+	   if(userId == null || userId.length == 0){
+		   $.session.set("errorMessage", "请先登录！");
+		   window.location.href = path + "/error.html";
+	   }
    }
    
    </script>

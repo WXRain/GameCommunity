@@ -9,9 +9,9 @@
 			section
 	</select>
 	
-	<select id="querySectionsByGameTypeId" parameterType="Long" resultType="com.rain.gameCommunity.entity.SectionEntity">
+	<select id="querySectionsByGameTypeId" resultType="com.rain.gameCommunity.entity.SectionEntity">
 		select * from section where
-		    gameType = #{id}
+		    gameType = #{id} limit #{startLocation}, #{perPageNum}
 	</select>
 	
 	<select id="querySectionsBySectionId" parameterType="java.util.List" resultType="com.rain.gameCommunity.entity.SectionEntity">

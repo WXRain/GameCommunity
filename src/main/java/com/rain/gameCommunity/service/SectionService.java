@@ -5,13 +5,14 @@ import java.util.List;
 import org.springframework.stereotype.Component;
 
 import com.rain.gameCommunity.entity.SectionEntity;
+import com.rain.gameCommunity.utils.PagingData;
 
 @Component
 public interface SectionService {
 
 	public List<SectionEntity> showAllSection() throws Exception;
 	
-	public List<SectionEntity> showSectionsByGameTypeId(long id) throws Exception;
+	public List<SectionEntity> showSectionsByGameTypeId(long id, PagingData pagingData) throws Exception;
 	
 	public List<SectionEntity> showSectionsBySectionId(String id) throws Exception;
 	

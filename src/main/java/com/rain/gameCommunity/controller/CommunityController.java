@@ -10,9 +10,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.rain.gameCommunity.entity.GameTypeEntity;
+import com.rain.gameCommunity.entity.ReplyEntity;
 import com.rain.gameCommunity.entity.SectionEntity;
 import com.rain.gameCommunity.entity.TopicEntity;
 import com.rain.gameCommunity.service.GameTypeService;
+import com.rain.gameCommunity.service.ReplyService;
 import com.rain.gameCommunity.service.SectionService;
 import com.rain.gameCommunity.service.TopicService;
 import com.rain.gameCommunity.utils.JsonResult;
@@ -30,6 +32,9 @@ public class CommunityController {
 	
 	@Autowired
 	private TopicService topicService;
+	
+	@Autowired
+	private ReplyService replyService;
 	
 	private String gameTypeName;
 	
@@ -68,7 +73,7 @@ public class CommunityController {
 			}else{
 				pagingData.setTotalPage(pagingData.getTotalNum() / pagingData.getPerPageNum() + 1);
 			}
-			List<SectionEntity> sections = sectionService.showSectionsByGameTypeId(gameTypeId);
+			List<SectionEntity> sections = sectionService.showSectionsByGameTypeId(gameTypeId, pagingData);
 			return new JsonResult<List<SectionEntity>>(sections, pagingData);
 		}catch(Exception e){
 			return new JsonResult<List<SectionEntity>>(e.getMessage());
@@ -151,6 +156,27 @@ public class CommunityController {
 		}catch(Exception e){
 			e.printStackTrace();
 			return new JsonResult<Boolean>(e.getMessage());
+		}
+	}
+	
+	@RequestMapping("/showReply.do")
+	@ResponseBody
+	public JsonResult<List<ReplyEntity>> showReply(long topicId, int currentPage){
+		PagingData pagingData = new PagingData();
+		try{
+			if(currentPage == 0) currentPage = 1;
+			pagingData.setTotalNum(replyService.showReplyCountByTopicId(topicId));
+			pagingData.setCurrentPage(currentPage);
+			if(pagingData.getTotalNum() % pagingData.getPerPageNum() == 0){
+				pagingData.setTotalPage(pagingData.getTotalNum() / pagingData.getPerPageNum());
+			}else{
+				pagingData.setTotalPage(pagingData.getTotalNum() / pagingData.getPerPageNum() + 1);
+			}
+			List<ReplyEntity> replys = replyService.showReplysByTopicId(topicId, pagingData);
+			return new JsonResult<List<ReplyEntity>>(replys, pagingData);
+		}catch(Exception e){
+			e.printStackTrace();
+			return new JsonResult<List<ReplyEntity>>(e.getMessage());
 		}
 	}
 
