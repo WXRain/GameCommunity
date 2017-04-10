@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -177,6 +178,36 @@ public class CommunityController {
 		}catch(Exception e){
 			e.printStackTrace();
 			return new JsonResult<List<ReplyEntity>>(e.getMessage());
+		}
+	}
+	
+	@RequestMapping("/addReply.do")
+	@ResponseBody
+	@Transactional
+	public JsonResult<Boolean> addReply(long userId, String username, String replyName, String replyText, String isReplyComment, 
+			long replyCommentId, long replyTopicId){
+		ReplyEntity reply = new ReplyEntity();
+		try{
+			reply.setUserId(userId);
+			reply.setUsername(username);
+			reply.setReplyName(replyName);
+			reply.setReplyText(replyText);
+			reply.setIsReplyComment(isReplyComment);
+			reply.setReplyCommentId(replyCommentId);
+			reply.setReplyTopicId(replyTopicId);
+			replyService.addReply(reply);
+			System.out.println("更新回复数据库成功！");
+			
+			//更新帖子回复数量
+			TopicEntity topic = topicService.showTopicByTopicId(replyTopicId);
+			if(topic==null) throw new Exception("执行出错！");
+			topic.setReplyNum(topic.getReplyNum() + 1);
+			topicService.updateTopic(topic);
+			
+			return new JsonResult<Boolean>(true, null);
+		}catch(Exception e){
+			e.printStackTrace();
+			return new JsonResult<Boolean>(e.getMessage());
 		}
 	}
 

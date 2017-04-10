@@ -19,7 +19,7 @@
 		insert into reply 
 		(username, userId, replyTime, replyName, replyText, isReplyComment, replyCommentId, replyTopicId)
 		values
-		(#{reply.username}, #{reply.userId}, #{reply.replyTime}, #{reply.replyName}, #{reply.replyText}, #{reply.isReplyComment},
+		(#{reply.username}, #{reply.userId}, now(), #{reply.replyName}, #{reply.replyText}, #{reply.isReplyComment},
 		#{reply.replyCommentId}, #{reply.replyTopicId})	
 	</insert>
 	

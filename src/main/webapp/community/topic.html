@@ -19,6 +19,13 @@
 	if(currentPage == null || currentPage.length == 0){
 		currentPage = 1;
 	}
+	
+	var replyForm = '<tr class="replyForm">'+
+    					'<td align="right">回复主题：</td>' +
+    					'<td><input id="replyName" name="replyName" type="text"/></td>' +
+    					'</tr><tr class="replyForm"><td align="right">回复内容：</td><td><input id="replyText" name="replyText" type="text"/></td>' +
+    					'</tr><tr class="replyForm"><td align="right"><input type="button" value="回复" onclick="submitReply()"/></td><td><input type="button" value="取消" onclick="cancelReply(this)"/></td>' +
+   					'</tr>';
 </script>
 </head>
 <body>
@@ -43,31 +50,14 @@
 	<div id="text"></div>
 	<br/><br/><br/>
     <hr/>
-    
-<!--     <form action="" method="POST"> -->
-<!--     <table width=100%> -->
-<!--     <tr> -->
-<!--     		<td align="right">回复主题：</td> -->
-<!--     		<td><input id="replyName" name="replyName" type="text"/></td> -->
-<!--     </tr> -->
-<!--     <tr> -->
-<!--     		<td align="right">回复内容：</td> -->
-<!--     		<td><input id="replyText" name="replyText" type="text"/></td> -->
-<!--     </tr> -->
-<!--     <tr> -->
-<!--     		<td align="right"><input type="submit"/></td> -->
-<!--     		<td><input type="button" value="取消" onclick="cancelReply()"/></td> -->
-<!--     </tr> -->
-<!--     </table> -->
-<!--     </form> -->
 
-<table width=100% id="replyTable" style="TABLE-LAYOUT: fixed">
+<table width=100% id="table" style="TABLE-LAYOUT: fixed">
 <tr>
-	<td width=30%>回复用户</td>
+	<td width=20%>回复用户</td>
 	<td width=15%>回复主题</td>
 	<td width=30%>回复内容</td>
 	<td width=20%>回复时间</td>
-	<td width=5%>操作</td>
+	<td width=15%>操作</td>
 </tr>
 <tr><td colspan="5"><hr/></td></tr>
 </table>
@@ -85,7 +75,7 @@
 			data: {"topicId" : topicId},
 			success: function(result){
 				if(result.state == 0){
-					createPage(result.data);
+					createCurrentPage(result.data);
 				}else{
 					alert(result.message);
 				}
@@ -105,10 +95,11 @@
 					console.log(result);
 					var data = result.data;
 					if(data == null || data.length == 0){
-						$("#replyTable").append("<tr><td colspan='5'><center><h3>暂无回复！</h3></center></td></tr><tr><td colspan='5'><hr/></td></tr>")
+						$("#table").append("<tr><td colspan='5'><center><h3>暂无回复！</h3></center></td></tr><tr><td colspan='5'><hr/></td></tr>")
 						return;
 					}else{
 						createReplyTable(result);
+						createPage(result.pagingData, 5);
 					}
 				}else{
 					alert(result.message);
@@ -123,7 +114,7 @@
 	   var data = result.data;
 	   var pagingData = result.pagingData;
 	   for(var i = 0; i < data.length; i++){
-		   $("#replyTable").append("<tr>"+"<td style='WORD-WRAP: break-word' id=" + i + "td0" + ">" + (pagingData.perPageNum * (currentPage-1) + i + 1) + "楼:</td>" + 
+		   $("#table").append("<tr id=tr" + i + ">"+"<td style='WORD-WRAP: break-word' id=" + i + "td0" + ">" + (pagingData.perPageNum * (currentPage-1) + i + 1) + "楼:</td>" + 
 				   						"<td id=" + i + "td1" + "></td>" + 
 				   						"<td style='WORD-WRAP: break-word' id=" + i + "td2" + "></td>" +
 				   						"<td id=" + i + "td3" + "></td>"+
@@ -131,7 +122,7 @@
 		   if(data[i].isReplyComment == 1){
 			   $("#" + i + "td0").append("<a href=javascript:void(0) onclick=showUser(" + data[i].userId + ")>" + data[i].username + "</a>" +
 					   			"回复" + "<a href=javascript:void(0) onclick=showUser(" + data[i].replyComment.userId + ")>" + data[i].replyComment.username + "</a>" +
-					   			"发布:" + data[i].replyComment.replyText);
+					   			"发布的: " + data[i].replyComment.replyText);
 		   }else{
 			   $("#" + i + "td0").append("<a href=javascript:void(0) onclick=showUser(" + data[i].userId + ")>" + data[i].username + "</a>");
 		   }
@@ -139,12 +130,12 @@
 		   $("#" + i + "td1").append(data[i].replyName);
 		   $("#" + i + "td2").append(data[i].replyText);
 		   $("#" + i + "td3").append(data[i].replyTime);
-		   $("#" + i + "td4").append("<a href=javascript:void(0) onclick=replyComment(" + data[i].id + ")>回复</a>");
-		   $("#replyTable").append("<tr><td colspan='5'><hr/></td></tr>")
+		   $("#" + i + "td4").append("<a href=javascript:void(0) onclick='replyComment(" + data[i].id + ", " + i + ")'>回复</a>");
+		   $("#table").append("<tr><td colspan='5'><hr/></td></tr>")
 	   }
    }
    
-   function createPage(data){
+   function createCurrentPage(data){
 	   if(data == null || data.length <= 0){
 		   $.session.set("errorMessage", "帖子不存在！");
 		   window.location.href = path + "/error.html";
@@ -230,15 +221,73 @@
    }
    
    function reply(){
+	   $(".replyForm").remove();
 	   var userId = $.session.get("userId");
 	   if(userId == null || userId.length == 0){
-		   $.session.set("errorMessage", "请先登录！");
-		   window.location.href = path + "/error.html";
+		   alert("请先登录！");
 	   }
+	   $("#table").append(replyForm);
+	   
    }
    
    function showUser(userId){
 	   window.location.href = path + "/user/showUser.html?userId=" + userId;
+   }
+   
+   function replyComment(replyCommentId, i){
+	   $(".replyForm").remove();
+	   var userId = $.session.get("userId");
+	   if(userId == null || userId.length == 0){
+		   alert("请先登录！");
+	   }
+	   $("#tr" + i).append("<td><input name='replyCommentId' id='replyCommentId' value=" + replyCommentId + "></td>");
+	   $("#replyCommentId").hide();
+	   $("#tr" + i).after(replyForm);
+   }
+   
+   function cancelReply(nowtd){
+// 	   $(nowtd).parents("tr").prev("tr").remove();
+// 	   $(nowtd).parents("tr").prev("tr").remove();
+// 	   $(nowtd).parents("tr").remove();
+		$(".replyForm").remove();
+   }
+   
+   function submitReply(){
+	   var replyCommentId = $("#replyCommentId").val();
+	   var isReplyComment;
+	   if(replyCommentId == null || replyCommentId.length == 0){
+		   replyCommentId = -1;
+		   isReplyComment = 0;
+	   }else{
+		   isReplyComment = 1;
+	   }
+	   console.log(replyCommentId);
+	   $.ajax({
+		   url:"addReply.do",
+		   method:"POST",
+		   dataType:"JSON",
+		   data:{
+			   "userId":$.session.get("userId"),
+			   "username":$.session.get("username"),
+			   "replyName":$("#replyName").val(),
+		   	   "replyText":$("#replyText").val(),
+		   	   "isReplyComment":isReplyComment,
+		   	   "replyCommentId":replyCommentId,
+		   	   "replyTopicId":topicId
+		   },
+		   success:function(result){
+			   if(result.state == 0){
+				   if(result.data){
+					   alert("回复成功！");
+					   location.reload();
+				   }else{
+					   alert("回复失败！");
+				   }
+			   }else{
+				   alert(result.message);
+			   }
+		   }
+	   });
    }
    
    </script>

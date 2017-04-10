@@ -112,4 +112,14 @@ public class TopicServiceImpl implements TopicService {
 		topicDao.addTopic(topic);
 	}
 
+
+
+	/* (non-Javadoc)
+	 * @see com.rain.gameCommunity.service.TopicService#showTopicByTopicId(long)
+	 */
+	@Override
+	public TopicEntity showTopicByTopicId(long topicId) throws Exception {
+		return topicDao.queryTopicByTopicId(topicId);
+	}
+
 }

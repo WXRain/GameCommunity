@@ -25,4 +25,6 @@ public interface TopicService {
 	public void updateTopic(TopicEntity topic) throws Exception;
 	
 	public void addTopic(TopicEntity topic) throws Exception;
+	
+	public TopicEntity showTopicByTopicId(long topicId) throws Exception;
 }
