@@ -61,14 +61,15 @@
 <!--     </table> -->
 <!--     </form> -->
 
-<table width=100%>
+<table width=100% id="replyTable" style="TABLE-LAYOUT: fixed">
 <tr>
-	<td>回复用户</td>
-	<td>回复主题</td>
-	<td>回复内容</td>
-	<td>回复时间</td>
+	<td width=30%>回复用户</td>
+	<td width=15%>回复主题</td>
+	<td width=30%>回复内容</td>
+	<td width=20%>回复时间</td>
+	<td width=5%>操作</td>
 </tr>
-<tr><td colspan="4"><hr/></td></tr>
+<tr><td colspan="5"><hr/></td></tr>
 </table>
 
 	
@@ -102,6 +103,13 @@
 			success: function(result){
 				if(result.state == 0){
 					console.log(result);
+					var data = result.data;
+					if(data == null || data.length == 0){
+						$("#replyTable").append("<tr><td colspan='5'><center><h3>暂无回复！</h3></center></td></tr><tr><td colspan='5'><hr/></td></tr>")
+						return;
+					}else{
+						createReplyTable(result);
+					}
 				}else{
 					alert(result.message);
 				}
@@ -110,6 +118,31 @@
 		
 		
 	});		
+   
+   function createReplyTable(result){
+	   var data = result.data;
+	   var pagingData = result.pagingData;
+	   for(var i = 0; i < data.length; i++){
+		   $("#replyTable").append("<tr>"+"<td style='WORD-WRAP: break-word' id=" + i + "td0" + ">" + (pagingData.perPageNum * (currentPage-1) + i + 1) + "楼:</td>" + 
+				   						"<td id=" + i + "td1" + "></td>" + 
+				   						"<td style='WORD-WRAP: break-word' id=" + i + "td2" + "></td>" +
+				   						"<td id=" + i + "td3" + "></td>"+
+				   						"<td id=" + i + "td4" + "></td></tr>");
+		   if(data[i].isReplyComment == 1){
+			   $("#" + i + "td0").append("<a href=javascript:void(0) onclick=showUser(" + data[i].userId + ")>" + data[i].username + "</a>" +
+					   			"回复" + "<a href=javascript:void(0) onclick=showUser(" + data[i].replyComment.userId + ")>" + data[i].replyComment.username + "</a>" +
+					   			"发布:" + data[i].replyComment.replyText);
+		   }else{
+			   $("#" + i + "td0").append("<a href=javascript:void(0) onclick=showUser(" + data[i].userId + ")>" + data[i].username + "</a>");
+		   }
+		   
+		   $("#" + i + "td1").append(data[i].replyName);
+		   $("#" + i + "td2").append(data[i].replyText);
+		   $("#" + i + "td3").append(data[i].replyTime);
+		   $("#" + i + "td4").append("<a href=javascript:void(0) onclick=replyComment(" + data[i].id + ")>回复</a>");
+		   $("#replyTable").append("<tr><td colspan='5'><hr/></td></tr>")
+	   }
+   }
    
    function createPage(data){
 	   if(data == null || data.length <= 0){
@@ -202,6 +235,10 @@
 		   $.session.set("errorMessage", "请先登录！");
 		   window.location.href = path + "/error.html";
 	   }
+   }
+   
+   function showUser(userId){
+	   window.location.href = path + "/user/showUser.html?userId=" + userId;
    }
    
    </script>

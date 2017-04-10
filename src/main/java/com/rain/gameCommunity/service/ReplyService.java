@@ -22,4 +22,6 @@ public interface ReplyService {
 	public List<ReplyEntity> showReplysByTopicId(long topicId, PagingData pagingData) throws Exception;
 	
 	public int showReplyCountByTopicId(long topicId) throws Exception;
+	
+	public ReplyEntity showReplyByReplyId(long replyId) throws Exception;
 }

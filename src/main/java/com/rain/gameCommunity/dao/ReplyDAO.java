@@ -21,4 +21,6 @@ public interface ReplyDAO {
 												@Param("perPageNum") int perPageNum);
 	
 	public int queryReplyCountByTopicId(@Param("topicId") long topicId);
+	
+	public ReplyEntity queryReplyByReplyId(@Param("replyId") long replyId);
 }

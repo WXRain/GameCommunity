@@ -7,6 +7,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.rain.gameCommunity.dao.ReplyDAO;
 import com.rain.gameCommunity.entity.ReplyEntity;
@@ -30,15 +31,31 @@ public class ReplyServiceImpl implements ReplyService {
 	}
 
 	@Override
+	@Transactional
 	public List<ReplyEntity> showReplysByTopicId(long topicId, PagingData pagingData) throws Exception {
 		
-		return replyDao.queryReplysByTopicId(topicId, (pagingData.getTotalPage() -1) * pagingData.getPerPageNum(),
-				pagingData.getPerPageNum());
+		return setCommentByCommentId(replyDao.queryReplysByTopicId(topicId, (pagingData.getTotalPage() -1) * pagingData.getPerPageNum(),
+				pagingData.getPerPageNum()));
 	}
 
 	@Override
 	public int showReplyCountByTopicId(long topicId) throws Exception {
 		return replyDao.queryReplyCountByTopicId(topicId);
+	}
+	
+	private List<ReplyEntity> setCommentByCommentId(List<ReplyEntity> replies){
+		if(replies != null && replies.size() > 0){
+			for(int i = 0; i < replies.size(); i++){
+				if(replies.get(i).getIsReplyComment() == null || "".equals(replies.get(i).getIsReplyComment())) continue;
+				replies.get(i).setReplyComment(replyDao.queryReplyByReplyId(replies.get(i).getReplyCommentId()));
+			}
+		}
+		return replies;
+	}
+
+	@Override
+	public ReplyEntity showReplyByReplyId(long replyId) throws Exception {
+		return replyDao.queryReplyByReplyId(replyId);
 	}
 
 }
