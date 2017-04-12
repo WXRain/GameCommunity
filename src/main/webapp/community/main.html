@@ -14,12 +14,14 @@
 	var path = getRootPath(); 
 	var pageNum = getParam("page");
 	if(pageNum == null || pageNum == 0) pageNum = 1;
+	var manager = $.session.get("isManager");
+	var tableLine = 4;
 </script>
 </head>
 <body>
 <div><iframe align="center" width="100%" height="100" src="../top.html" frameborder="no" border="0" marginwidth="0" marginheight="0" scrolling="no"></iframe></div>
 <span id="index"><a href=javascript:void(0) onclick=index()>xx论坛</a></span>
-<center><h2 id="title">论坛主页</h2></center><br/><br/><br/>
+<center><h2 id="title">论坛主页</h2><a href=javascript:void(0) onclick="addGameType()" id="addGameType">添加游戏类型</a></center><br/><br/><br/>
 <table width="100%" id="table">
 	<tr>
 	    <td width="25%">主题</td>
@@ -31,8 +33,32 @@
 	    <td colspan="4"><hr/></td>
 	</tr>
 </table>
+
+<table width=100% id="addGameTypeTable" style="display:none">
+<tr>
+	<td width=40% align="right">游戏类型名称：</td>
+	<td width=40%><input id="gameTypeName" name="gameTypeName" type="text"/></td>
+	<td width=20%><span id="gameTypeNameMessage" style="color:red"></span></td>
+</tr>
+<tr>
+	<td align="right">游戏类型介绍：</td>
+	<td><input id="gameTypeIntroduce" name="gameTypeIntroduce" type="text"/></td>
+	<td></td>
+</tr>
+<tr>
+	<td align="right"><input type="button" onclick="doAddGameType()" value="提交"/></td>
+	<td><input type="button" onclick="cancelAddGameType()" value="取消"/></td>
+	<td></td>
+</tr>
+</table>
+
 <script type="text/javascript">
 $(function(){
+	if(manager == 1){
+		$("#addGameType").show();
+	}else{
+		$("#addGameType").hide();
+	}
 	$.ajax({
 		url: "initMain.do",
 		method: "POST",
@@ -42,7 +68,7 @@ $(function(){
 			console.log(result);
 			if(result.state == 0){
 				createTable(result.data);
-				createPage(result.pagingData, 4);
+				createPage(result.pagingData, tableLine);
 			}else{
 				alert(result.message);
 			}
@@ -52,7 +78,7 @@ $(function(){
 
 function createTable(data){
 	if(data == null || data.length <= 0){
-		   $("#table").append("<tr><td colspan='4'><center>该板块无内容</center></td></tr>");
+		   $("#table").append("<tr><td colspan=" + tableLine + "><center>该板块无内容</center></td></tr>");
 	}else{
 		for(var i = 0; i < data.length; i++){
 			var managers = "";
@@ -67,14 +93,46 @@ function createTable(data){
 			   if(managers!=null && managers.length > 0){
 				   managers = managers.substring(0, managers.length - 2);
 			   }
-			$("table").append("<tr><td><a href=javascript:void() onclick=clickGameType(" + data[i].id + ")>" + data[i].typeName + "</a></td>" +
+			$("#table").append("<tr><td><a href=javascript:void() onclick=clickGameType(" + data[i].id + ")>" + data[i].typeName + "</a></td>" +
 			  "<td>" + data[i].introduce + "</td>" + 
 			  "<td>" + data[i].createTimeString + "</td>" + 
 			  "<td>" + managers + 
-			  "</td></tr><tr><td colspan='4'><hr/></td></tr>");
+			  "</td></tr><tr><td colspan=" + tableLine + "><hr/></td></tr>");
 		}
 	}
 	
+}
+
+function doAddGameType(){
+	$.ajax({
+		url:"../common/addGameType.do",
+		method:"POST",
+		dataType:"JSON",
+		data:{
+			"gameTypeName":$("#gameTypeName").val(),
+			"gameTypeIntroduce":$("#gameTypeIntroduce").val()
+		},
+		success:function(result){
+			if(result.state == 0){
+				if(result.data){
+					alert("添加成功!");
+					location.reload();
+				}else{
+					alert("添加失败！");
+				}
+			}else{
+				$("#gameTypeNameMessage").text(result.message);
+			}
+		}
+	});
+}
+
+function addGameType(){
+	$("#addGameTypeTable").show();
+}
+
+function cancelAddGameType(){
+	$("#addGameTypeTable").hide();
 }
 
 function clickGameType(gameTypeId){

@@ -17,4 +17,10 @@ public interface GameTypeService {
 	public int queryGameTypeCount() throws Exception;
 	
 	public List<GameTypeEntity> showGameTypesByPage(PagingData pagingData) throws Exception;
+	
+	public void updateGameType(GameTypeEntity gameType) throws Exception;
+	
+	public void addGameType(GameTypeEntity gameType) throws Exception;
+	
+	public GameTypeEntity queryGameTypeByName(String gameTypeName) throws Exception;
 }

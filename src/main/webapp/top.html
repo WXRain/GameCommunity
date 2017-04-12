@@ -119,7 +119,8 @@
     					$.session.set("username", result.data.username);
     					$.session.set("userId", result.data.id);
     					$.session.set("isManager", result.data.isManager);
-    					window.location.href = path + "/top.html";
+    					//window.location.href = path + "/top.html";
+    					parent.location.reload();
     				}else{
     					alert(result.message);
     				}

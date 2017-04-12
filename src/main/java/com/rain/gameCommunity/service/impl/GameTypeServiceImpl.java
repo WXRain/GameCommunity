@@ -48,9 +48,10 @@ public class GameTypeServiceImpl implements GameTypeService {
 	}
 
 	private List<GameTypeEntity> changeManagerToString(List<GameTypeEntity> gameTypes) throws Exception{
-		
+		if(gameTypes == null || gameTypes.size() <= 0) return null;
 		for(GameTypeEntity gameType : gameTypes){
 			String gameTypeManager = gameType.getManager();
+			if(gameTypeManager == null || gameTypeManager.length() <= 0) continue;
 			String[] managersString = gameTypeManager.split(",");
 			List<Long> managers = new ArrayList<Long>();
 			for(int i = 0; i < managersString.length; i++){
@@ -60,6 +61,20 @@ public class GameTypeServiceImpl implements GameTypeService {
 			gameType.setManagers(users);
 		}
 		return gameTypes;
+	}
+	
+	private GameTypeEntity changeManagerToString(GameTypeEntity gameType) throws Exception{
+		if (gameType == null) return null;
+		String gameTypeManager = gameType.getManager();
+		if(gameTypeManager == null || gameTypeManager.length() <= 0) return gameType;
+		String[] managersString = gameTypeManager.split(",");
+		List<Long> managers = new ArrayList<Long>();
+		for(int i = 0; i < managersString.length; i++){
+			managers.add(Long.parseLong(managersString[i]));
+		}
+		List<UserEntity> users = userDao.queryUsersById(managers);
+		gameType.setManagers(users);
+		return gameType;
 	}
 
 	@Override
@@ -75,6 +90,23 @@ public class GameTypeServiceImpl implements GameTypeService {
 			type.setCreateTimeString(type.getSdf().format(type.getCreateTime()));
 		}
 		return types;
+	}
+
+	@Override
+	public void updateGameType(GameTypeEntity gameType) throws Exception {
+		
+		gameTypeDao.updateGameType(gameType);
+	}
+
+	@Override
+	public void addGameType(GameTypeEntity gameType) throws Exception {
+		
+		gameTypeDao.addGameType(gameType);
+	}
+
+	@Override
+	public GameTypeEntity queryGameTypeByName(String gameTypeName) throws Exception {
+		return changeManagerToString(gameTypeDao.queryGameTypeByName(gameTypeName));
 	}
 	
 }
