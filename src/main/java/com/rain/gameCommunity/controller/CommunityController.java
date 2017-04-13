@@ -242,6 +242,18 @@ public class CommunityController {
 			return new JsonResult<Boolean>(e.getMessage());
 		}
 	}
+	
+	@RequestMapping("/deleteSection.do")
+	@ResponseBody
+	public JsonResult<Boolean> deleteSection(long sectionId){
+		try{
+			sectionService.deleteSectionBySectionId(sectionId);
+			return new JsonResult<Boolean>(true, null);
+		}catch(Exception e){
+			e.printStackTrace();
+			return new JsonResult<Boolean>(e.getMessage());
+		}
+	}
 
 	public String getGameTypeName() {
 		return gameTypeName;

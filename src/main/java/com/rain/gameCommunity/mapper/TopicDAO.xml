@@ -56,7 +56,7 @@
 	</update>
 	
 	<select id="queryCommentsBySectionId" resultType="com.rain.gameCommunity.entity.TopicEntity">
-		select * from topic where sectionId=#{sectionId} order by "clickNum" desc limit 0, 2
+		select * from topic where sectionId=#{sectionId} order by clickNum desc limit 0, 2
 	</select>
 	
 	<insert id="addTopic" parameterType="com.rain.gameCommunity.entity.TopicEntity">

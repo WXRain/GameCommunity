@@ -18,6 +18,7 @@
 		window.location.href = path + "/error.html";
 	}
 	var isManager = $.session.get("isManager");
+	var tableLine = 5;
 </script>
 </head>
 <body>
@@ -29,14 +30,15 @@
 	<br/><br/>
 	<table width="100%" id="table">
        <tr>
-           <td width="25%">游戏名</td>
-           <td width="25%">介绍</td>
-           <td width="25%">创建时间</td>
-           <td width="25%">管理员</td>
+           <td width="20%">游戏名</td>
+           <td width="20%">介绍</td>
+           <td width="20%">创建时间</td>
+           <td width="20%">管理员</td>
+           <td width="20%">操作</td>
            
        </tr>
        <tr>
-           <td colspan="4"><hr/></td>
+           <td colspan="5"><hr/></td>
        </tr>
    </table>
    
@@ -61,8 +63,12 @@
    <script type="text/javascript">
    $(function(){
 	   console.log(isManager);
-	   if(isManager == 1) $("#addSection").show();
-	   else $("#addSection").hide();
+	   if(isManager == 1) {
+		   $("#addSection").show();
+	   }
+	   else {
+		   $("#addSection").hide();
+	   }
 		$.ajax({
 			url: "initGameType.do",
 			method: "POST",
@@ -72,7 +78,7 @@
 			success: function(result){
 				if(result.state == 0){
 					createTable(result.data);
-					createPage(result.pagingData, 4);
+					createPage(result.pagingData, tableLine);
 				}else{
 					alert(result.message);
 				}
@@ -88,11 +94,12 @@
 				if(result.state == 0){
 					console.log(result);
 					
-					//如果是管理员则显示增加板块接口
+					//如果是管理员则显示增加板块接口,删除板块接口
 					if(result.data.managers != null && result.data.managers.length > 0){
 						for(var i = 0 ; i < result.data.managers.length; i++){
 							if(result.data.managers[i].id == $.session.get("userId")){
 								$("#addSection").show();
+								$(".delete").show();
 								break;
 							}
 						}
@@ -116,7 +123,7 @@
    
    function createTable(data){
 	   if(data == null || data.length <= 0){
-		   $("#table").append("<tr><td colspan='4'><center>该板块无内容</center></td></tr>");
+		   $("#table").append("<tr><td colspan=" + tableLine + "><center>该板块无内容</center></td></tr>");
 	   }else{
 		   console.log(data);
 		   for(var i = 0; i < data.length; i++){
@@ -136,9 +143,15 @@
 					"<tr><td><a href=javascript:void() onclick=clickSection("+ data[i].id +")>" + data[i].name + "</a></td>" + 
 					"<td>" + data[i].introduce + "</td>" + 
 					"<td>" + data[i].createTime + "</td>" + 
-					"<td>" + managers + "</td></tr><tr><td colspan='4'><hr/></td></tr>"
+					"<td>" + managers + "</td>" +
+					"<td><a href=javascript:void(0) class='delete' style='display:none' onclick=deleteSection(" + data[i].id + ")>删除</a></td>"+
+					"</tr><tr><td colspan=" + tableLine + "><hr/></td></tr>"
 				);
 	   		}
+		   
+		   if(isManager == 1){
+			   $(".delete").show();
+		   }
 	   }
 	  
 	   
@@ -169,6 +182,30 @@
 					   alert("增加成功!");
 				   }else{
 					   alert("增加失败！");
+				   }
+				   location.reload();
+			   }else{
+				   $.session.set("errrorMessage", result.message);
+				   window.location.href = path + "/error.html";
+			   }
+		   }
+	   });
+   }
+   
+   function deleteSection(sectionId){
+	   $.ajax({
+		   url:"deleteSection.do",
+		   method:"POST",
+		   dataType:"JSON",
+		   data:{
+			   "sectionId":sectionId
+		   },
+		   success:function(result){
+			   if(result.state == 0){
+				   if(result.data){
+					   alert("删除成功!");
+				   }else{
+					   alert("删除失败！");
 				   }
 				   location.reload();
 			   }else{
