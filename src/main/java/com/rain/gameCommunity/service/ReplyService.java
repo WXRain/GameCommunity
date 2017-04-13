@@ -24,4 +24,6 @@ public interface ReplyService {
 	public int showReplyCountByTopicId(long topicId) throws Exception;
 	
 	public ReplyEntity showReplyByReplyId(long replyId) throws Exception;
+	
+	public void deleteReplyByReplyId(long replyId) throws Exception;
 }

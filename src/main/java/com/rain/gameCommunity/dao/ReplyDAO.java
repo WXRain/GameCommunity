@@ -27,4 +27,6 @@ public interface ReplyDAO {
 	public void deleteReplyByReplyId(@Param("replyId") long replyId);
 	
 	public List<ReplyEntity> queryReplysByTopic(@Param("topicId") long topicId);
+	
+	public List<ReplyEntity> queryRepliesByReplyCommentId(@Param("replyCommentId") long replyCommentId);
 }

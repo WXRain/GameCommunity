@@ -26,6 +26,8 @@
     					'</tr><tr class="replyForm"><td align="right">回复内容：</td><td><input id="replyText" name="replyText" type="text"/></td>' +
     					'</tr><tr class="replyForm"><td align="right"><input type="button" value="回复" onclick="submitReply()"/></td><td><input type="button" value="取消" onclick="cancelReply(this)"/></td>' +
    					'</tr>';
+   					
+   	var isManager = $.session.get("userId");
 </script>
 </head>
 <body>
@@ -130,9 +132,11 @@
 		   $("#" + i + "td1").append(data[i].replyName);
 		   $("#" + i + "td2").append(data[i].replyText);
 		   $("#" + i + "td3").append(data[i].replyTime);
-		   $("#" + i + "td4").append("<a href=javascript:void(0) onclick='replyComment(" + data[i].id + ", " + i + ")'>回复</a>");
+		   $("#" + i + "td4").append("<a href=javascript:void(0) onclick='replyComment(" + data[i].id + ", " + i + ")'>回复</a>" +
+				   				" <a href=javascript:void(0) class='delete' style='display:none' onclick='deleteReply(" + data[i].id + ")'>删除</a>");
 		   $("#table").append("<tr><td colspan='5'><hr/></td></tr>")
 	   }
+	   if(isManager == 1) $(".delete").show();
    }
    
    function createCurrentPage(data){
@@ -171,6 +175,16 @@
 					$("#jumpToGame").attr("onclick", "jumpToGame(" + result.data.gameId + ")");
 					$("#sectionIndex").text(result.data.name);
 					$("#sectionIndex").attr("onclick", "sectionIndex(" + result.data.id + ")");
+					
+					if(result.data.managers != null && result.data.managers.length > 0){
+						for(var i = 0; i < result.data.managers.length; i++){
+							if(result.data.managers[i].id == $.session.get("userId")){
+								$(".delete").show();
+								break;
+							}
+						}
+					}
+					
 				}else{
 					alert(result.message);
 				}
@@ -285,6 +299,30 @@
 				   }
 			   }else{
 				   alert(result.message);
+			   }
+		   }
+	   });
+   }
+   
+   function deleteReply(replyId){
+	   $.ajax({
+		   url:"deleteReply.do",
+		   method:"POST",
+		   dataType:"JSON",
+		   data:{
+			   "replyId":replyId
+		   },
+		   success:function(result){
+			   if(result.state == 0){
+				   if(result.data){
+					   alert("删除成功!");
+				   }else{
+					   alert("删除失败！");
+				   }
+				   location.reload();
+			   }else{
+				   $.session.set("errrorMessage", result.message);
+				   window.location.href = path + "/error.html";
 			   }
 		   }
 	   });

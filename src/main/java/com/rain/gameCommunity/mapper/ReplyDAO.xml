@@ -44,4 +44,8 @@
 		select * from reply where replyTopicId = #{topicId}
 	</select>
 	
+	<select id="queryRepliesByReplyCommentId" parameterType="Long" resultMap="queryReplyMap">
+		select * from reply where replyCommentId=#{replyCommentId}
+	</select>
+	
  </mapper>
