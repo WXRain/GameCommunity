@@ -30,4 +30,8 @@ public interface SectionService {
 	public void addSection(SectionEntity section) throws Exception;
 	
 	public void updateSection(SectionEntity section, long id) throws Exception;
+	
+	public void deleteSectionBySectionId(long sectionId) throws Exception;
+	
+	public List<SectionEntity> showSectionsByGameTypeId(long gameTypeId) throws Exception;
 }

@@ -122,6 +122,7 @@ public class GameController {
 			
 			gameTypes = gameTypeService.showGameTypesByPage(pagingData);
 		}catch(Exception e){
+			e.printStackTrace();
 			return new JsonResult<List<GameTypeEntity>>(e.getMessage());
 		}
 		return new JsonResult<List<GameTypeEntity>>(gameTypes, pagingData);
@@ -153,6 +154,7 @@ public class GameController {
 			List<GameEntity> games = gameService.showGamesByGameType(gameType, pagingData);
 			return new JsonResult<List<GameEntity>>(games, pagingData);
 		}catch(Exception e){
+			e.printStackTrace();
 			return new JsonResult<List<GameEntity>>(e.getMessage());
 		}
 	}

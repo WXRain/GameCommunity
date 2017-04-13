@@ -27,4 +27,6 @@ public interface GameTypeDAO {
 	public void updateGameType(@Param("gameType") GameTypeEntity gameType);
 	
 	public GameTypeEntity queryGameTypeByName(@Param("gameTypeName") String gameTypeName);
+	
+	public void deleteGameTypeByGameTypeId(@Param("gameTypeId") long gameTypeId);
 }

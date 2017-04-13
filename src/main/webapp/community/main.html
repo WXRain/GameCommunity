@@ -14,8 +14,8 @@
 	var path = getRootPath(); 
 	var pageNum = getParam("page");
 	if(pageNum == null || pageNum == 0) pageNum = 1;
-	var manager = $.session.get("isManager");
-	var tableLine = 4;
+	var isManager = $.session.get("isManager");
+	var tableLine = 5;
 </script>
 </head>
 <body>
@@ -24,13 +24,14 @@
 <center><h2 id="title">论坛主页</h2><a href=javascript:void(0) onclick="addGameType()" id="addGameType">添加游戏类型</a></center><br/><br/><br/>
 <table width="100%" id="table">
 	<tr>
-	    <td width="25%">主题</td>
-	    <td width="25%">介绍</td>
-	    <td width="25%">创建时间</td>
-	    <td width="25%">管理员</td>
+	    <td width="20%">主题</td>
+	    <td width="20%">介绍</td>
+	    <td width="20%">创建时间</td>
+	    <td width="20%">管理员</td>
+	    <td width="20%">操作</td>
 	</tr>
 	<tr>
-	    <td colspan="4"><hr/></td>
+	    <td colspan="5"><hr/></td>
 	</tr>
 </table>
 
@@ -54,7 +55,7 @@
 
 <script type="text/javascript">
 $(function(){
-	if(manager == 1){
+	if(isManager == 1){
 		$("#addGameType").show();
 	}else{
 		$("#addGameType").hide();
@@ -93,11 +94,18 @@ function createTable(data){
 			   if(managers!=null && managers.length > 0){
 				   managers = managers.substring(0, managers.length - 2);
 			   }
+			   
+			   var operation = "";
+			   if(isManager == 1){
+				   operation = "<a href=javascript:void(0) onclick=deleteGameType(" + data[i].id + ")>删除</a>";
+			   }
+			   
 			$("#table").append("<tr><td><a href=javascript:void() onclick=clickGameType(" + data[i].id + ")>" + data[i].typeName + "</a></td>" +
 			  "<td>" + data[i].introduce + "</td>" + 
 			  "<td>" + data[i].createTimeString + "</td>" + 
-			  "<td>" + managers + 
-			  "</td></tr><tr><td colspan=" + tableLine + "><hr/></td></tr>");
+			  "<td>" + managers + "</td>" +
+			  "<td>" + operation + "</td>" +
+			  "</tr><tr><td colspan=" + tableLine + "><hr/></td></tr>");
 		}
 	}
 	
@@ -122,6 +130,30 @@ function doAddGameType(){
 				}
 			}else{
 				$("#gameTypeNameMessage").text(result.message);
+			}
+		}
+	});
+}
+
+function deleteGameType(gameTypeId){
+	$.ajax({
+		url:"../common/deleteGameType.do",
+		method:"POST",
+		dataType:"JSON",
+		data:{
+			"gameTypeId":gameTypeId
+		},
+		success:function(result){
+			if(result.state == 0){
+				if(result.data){
+					alert("删除成功！");
+				}else{
+					alert("删除失败！");
+				}
+				location.reload();
+			}else{
+				$.session.set("errorMessage", result.message);
+				window.location.href = path + "/error.html";
 			}
 		}
 	});

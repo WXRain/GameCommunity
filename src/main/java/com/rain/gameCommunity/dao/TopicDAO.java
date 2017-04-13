@@ -35,4 +35,8 @@ public interface TopicDAO {
 	public void addTopic(@Param("topic") TopicEntity topic);
 	
 	public TopicEntity queryTopicByTopicId(@Param("topicId") long topicId);
+	
+	public void deleteTopicByTopicId(@Param("topicId") long topicId);
+	
+	public List<TopicEntity> queryTopicsBySection(@Param("sectionId") long sectionId);
 }

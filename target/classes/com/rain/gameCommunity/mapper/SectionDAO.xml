@@ -47,5 +47,13 @@
 		select * from section where id=#{sectionId}
 	</select>
 	
+	<delete id="deleteSectionBySectionId" parameterType="Long">
+		delete from section where id=#{sectionId}
+	</delete>
+	
+	<select id="querySectionsByGameType" parameterType="Long" resultType="com.rain.gameCommunity.entity.SectionEntity">
+		select * from section where gameType=#{gameTypeId}
+	</select>
+	
 	
  </mapper>

@@ -36,4 +36,12 @@
 		select * from reply where id=#{replyId}
 	</select>
 	
+	<delete id="deleteReplyByReplyId" parameterType="Long">
+		delete from reply where id=#{replyId}
+	</delete>
+	
+	<select id="queryReplysByTopic" parameterType="Long" resultMap="queryReplyMap">
+		select * from reply where replyTopicId = #{topicId}
+	</select>
+	
  </mapper>

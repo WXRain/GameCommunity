@@ -6,9 +6,13 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.rain.gameCommunity.dao.ReplyDAO;
 import com.rain.gameCommunity.dao.SectionDAO;
+import com.rain.gameCommunity.dao.TopicDAO;
 import com.rain.gameCommunity.dao.UserDAO;
+import com.rain.gameCommunity.entity.ReplyEntity;
 import com.rain.gameCommunity.entity.SectionEntity;
+import com.rain.gameCommunity.entity.TopicEntity;
 import com.rain.gameCommunity.entity.UserEntity;
 import com.rain.gameCommunity.service.SectionService;
 import com.rain.gameCommunity.utils.PagingData;
@@ -22,8 +26,15 @@ public class SectionServiceImpl implements SectionService {
 
 	@Autowired
 	private SectionDAO sectionDao;
+	
 	@Autowired
 	private UserDAO userDao;
+	
+	@Autowired
+	private TopicDAO topicDao;
+	
+	@Autowired
+	private ReplyDAO replyDao;
 	
 
 	public List<SectionEntity> showAllSection() throws Exception {
@@ -112,6 +123,36 @@ public class SectionServiceImpl implements SectionService {
 	public SectionEntity showSectionBySectionId(long sectionId) throws Exception {
 		SectionEntity section = sectionDao.querySectionBySectionId(sectionId);
 		return changeManagerToString(section);
+	}
+
+	@Override
+	public void deleteSectionBySectionId(long sectionId) throws Exception {
+		
+		//删除板块内所有的帖子
+		List<TopicEntity> topics = topicDao.queryTopicsBySection(sectionId);
+		if(topics != null && topics.size() > 0){
+			for(TopicEntity topic : topics){
+				//删除当前帖子下的回复
+				List<ReplyEntity> replies = replyDao.queryReplysByTopic(topic.getId());
+				if(replies != null && replies.size() > 0){
+					for(ReplyEntity reply : replies){
+						replyDao.deleteReplyByReplyId(reply.getId());
+					}
+				}
+				
+				//删除当前帖子
+				topicDao.deleteTopicByTopicId(topic.getId());
+			}
+		}
+		
+		
+		//删除板块
+		sectionDao.deleteSectionBySectionId(sectionId);
+	}
+
+	@Override
+	public List<SectionEntity> showSectionsByGameTypeId(long gameTypeId) throws Exception {
+		return sectionDao.querySectionsByGameType(gameTypeId);
 	}
 
 }

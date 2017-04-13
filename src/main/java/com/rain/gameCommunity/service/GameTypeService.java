@@ -27,4 +27,6 @@ public interface GameTypeService {
 	public void addGameType(GameTypeEntity gameType) throws Exception;
 	
 	public GameTypeEntity queryGameTypeByName(String gameTypeName) throws Exception;
+	
+	public void deleteGameTypeByGameTypeId(long gameTypeId) throws Exception;
 }

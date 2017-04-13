@@ -90,6 +90,8 @@ public class GameTypeServiceImpl implements GameTypeService {
 	public List<GameTypeEntity> showGameTypesByPage(PagingData pagingData) throws Exception {
 		List<GameTypeEntity> types = changeManagerToString(gameTypeDao.queryGameTypesByPage((pagingData.getCurrentPage()-1)*pagingData.getPerPageNum(),
 												pagingData.getPerPageNum())); 
+		if(types == null || types.size() <= 0) return null;
+		
 		for(GameTypeEntity type : types){
 			type.setCreateTimeString(type.getSdf().format(type.getCreateTime()));
 		}
@@ -111,6 +113,12 @@ public class GameTypeServiceImpl implements GameTypeService {
 	@Override
 	public GameTypeEntity queryGameTypeByName(String gameTypeName) throws Exception {
 		return changeManagerToString(gameTypeDao.queryGameTypeByName(gameTypeName));
+	}
+
+	@Override
+	public void deleteGameTypeByGameTypeId(long gameTypeId) throws Exception {
+		
+		gameTypeDao.deleteGameTypeByGameTypeId(gameTypeId);
 	}
 	
 }

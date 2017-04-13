@@ -38,4 +38,8 @@ public interface GameService {
 	public void updateGameEntity(GameEntity game) throws Exception;
 	
 	public long addGame(GameEntity game) throws Exception;
+	
+	public void deleteGameByGameId(long gameId) throws Exception;
+	
+	public List<GameEntity> showGameByGameType(long gameType) throws Exception;
 }

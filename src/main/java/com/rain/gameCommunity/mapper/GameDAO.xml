@@ -127,4 +127,12 @@
 		#{game.sectionId}, #{game.picturePath}, #{game.gameName}, #{game.gameType}, #{game.downloadNum}, #{game.size})
 	</insert>
 	
+	<select id="queryGamesByGameType" resultMap="queryGameMap" parameterType="Long">
+		select * from game g, systemsupport s where g.gameType=#{gameType} and g.systemTypeNum = s.id
+	</select>
+	
+	<delete id="deleteGameByGameId" parameterType="Long">
+		delete from game where id=#{gameId}
+	</delete>
+	
  </mapper>

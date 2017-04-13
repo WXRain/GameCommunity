@@ -38,4 +38,8 @@
 		select * from game_type where typeName = #{gameTypeName}
 	</select>
 	
+	<delete id="deleteGameTypeByGameTypeId" parameterType="Long" >
+		delete from game_type where id=#{gameTypeId}
+	</delete>
+	
  </mapper>

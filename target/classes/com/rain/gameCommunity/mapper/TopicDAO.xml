@@ -70,4 +70,12 @@
 		select * from topic where id=#{topicId}
 	</select>
 	
+	<delete id="deleteTopicByTopicId" parameterType="Long">
+		delete from topic where id=#{topicId}
+	</delete>
+	
+	<select id="queryTopicsBySection" parameterType="Long" resultType="com.rain.gameCommunity.entity.TopicEntity">
+		select * from topic where sectionId=#{sectionId}
+	</select>
+	
  </mapper>

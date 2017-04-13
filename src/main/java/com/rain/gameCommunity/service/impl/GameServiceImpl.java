@@ -44,7 +44,7 @@ public class GameServiceImpl implements GameService {
 	}
 	
 	private List<TopicEntity> changeUserIdToString(List<TopicEntity> topics) throws Exception{
-		
+		if(topics == null || topics.size() <= 0) return null;
 		for(TopicEntity topic : topics){
 			long userId = topic.getUserId();
 			List<Long> ids = new ArrayList<Long>();
@@ -143,6 +143,17 @@ public class GameServiceImpl implements GameService {
 	@Override
 	public long addGame(GameEntity game) throws Exception {
 		return gameDao.addGame(game);
+	}
+
+	@Override
+	public void deleteGameByGameId(long gameId) throws Exception {
+		gameDao.deleteGameByGameId(gameId);
+		
+	}
+
+	@Override
+	public List<GameEntity> showGameByGameType(long gameType) throws Exception {
+		return gameDao.queryGamesByGameType(gameType);
 	}
 
 }
