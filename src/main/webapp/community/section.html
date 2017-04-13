@@ -18,6 +18,8 @@
 		$.session.set("errorMessage", "参数错误！");
 		window.location.href = path + "/error.html";
 	}
+	var isManager = $.session.get("isManager");
+	var tableLine = 5;
 </script>
 </head>
 <body>
@@ -34,14 +36,15 @@
 	<br/><br/>
 	<table width="100%" id="table">
        <tr>
-           <td width="25%">主题名</td>
-           <td width="25%">点击量</td>
-           <td width="25%">创建时间</td>
-           <td width="25%">发帖人</td>
+           <td width="20%">主题名</td>
+           <td width="20%">点击量</td>
+           <td width="20%">创建时间</td>
+           <td width="20%">发帖人</td>
+           <td width="20%">操作</td>
            
        </tr>
        <tr>
-           <td colspan="4"><hr/></td>
+           <td colspan="5"><hr/></td>
        </tr>
    </table>
    
@@ -57,7 +60,7 @@
 				if(result.state == 0){
 					console.log(result);
 					createTable(result.data);
-					createPage(result.pagingData, 4);
+					createPage(result.pagingData, tableLine);
 				}else{
 					alert(result.message);
 				}
@@ -75,12 +78,21 @@
 						$.session.set("errorMessage", "数据错误！");
 						window.location.href = path + "/error.html";
 					}
+					console.log(result);
 					buildGameTypeIndex(result.data.gameType);
 					$("#jumpToGame").attr("onclick", "jumpToGame(" + result.data.gameId + ")");
 					$("#addTopic").attr("onclick", "addTopic(" + result.data.id + ")");
 					$("#sectionIndex").text(result.data.name);
 					$("#sectionName").text(result.data.name);
 					$("#introduce").text("介绍：" + result.data.introduce);
+					if(result.data.managers != null && result.data.managers.length > 0){
+						for(var i = 0; i < result.data.managers.length; i++){
+							if(result.data.managers[i].id == $.session.get("userId")){
+								$(".delete").show();
+								break;
+							}
+						}
+					}
 				}else{
 					alert(result.message);
 				}
@@ -104,6 +116,7 @@
 					console.log(result.data);
 					$("#gameTypeIndex").text(result.data.typeName);
 					$("#gameTypeIndex").attr("onclick", "gameTypeIndex(" + gameTypeId + ")");
+					
 				}else{
 					alert(result.message);
 				}
@@ -113,7 +126,7 @@
    
    function createTable(data){
 	   if(data == null || data.length <= 0){
-		   $("#table").append("<tr><td colspan='4'><center>该板块无内容</center></td></tr>");
+		   $("#table").append("<tr><td colspan=" + tableLine + "><center>该板块无内容</center></td></tr>");
 	   }else{
 		   for(var i = 0; i < data.length; i++){
 		   $("#table").append(
@@ -121,13 +134,43 @@
 					"<td>" + data[i].clickNum + "</td>" + 
 					"<td>" + data[i].createTime + "</td>" + 
 					"<td><a href=javascript:void() onclick=showUser("+
-							data[i].userId + ")>" + data[i].username + "</a></td></tr><tr><td colspan='4'><hr/></td></tr>"
+							data[i].userId + ")>" + data[i].username + "</a></td>" +
+							"<td><a href=javascript:void(0) class='delete' style='display:none' onclick=deleteTopic(" + data[i].id + ")>删除</a>" +
+							"</tr><tr><td colspan=" + tableLine + "><hr/></td></tr>"
 				   );
 	   		}
+		   
+		   if(isManager == 1){
+			   $(".delete").show();
+		   }
 	   }
 	  
 	   
 	   
+   }
+   
+   function deleteTopic(topicId){
+	   $.ajax({
+		   url:"deleteTopic.do",
+		   method:"POST",
+		   dataType:"JSON",
+		   data:{
+			   "topicId":topicId
+		   },
+		   success:function(result){
+			   if(result.state == 0){
+				   if(result.data){
+					   alert("删除成功!");
+				   }else{
+					   alert("删除失败！");
+				   }
+				   location.reload();
+			   }else{
+				   $.session.set("errrorMessage", result.message);
+				   window.location.href = path + "/error.html";
+			   }
+		   }
+	   });
    }
    
    function clickTopic(topicId){

@@ -126,4 +126,14 @@ public class TopicServiceImpl implements TopicService {
 		return topicDao.queryTopicByTopicId(topicId);
 	}
 
+
+
+	/* (non-Javadoc)
+	 * @see com.rain.gameCommunity.service.TopicService#deleteTopicByTopicId(long)
+	 */
+	@Override
+	public void deleteTopicByTopicId(long topicId) throws Exception {
+		topicDao.deleteTopicByTopicId(topicId);
+	}
+
 }

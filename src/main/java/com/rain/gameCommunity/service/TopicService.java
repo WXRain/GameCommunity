@@ -31,4 +31,6 @@ public interface TopicService {
 	public void addTopic(TopicEntity topic) throws Exception;
 	
 	public TopicEntity showTopicByTopicId(long topicId) throws Exception;
+	
+	public void deleteTopicByTopicId(long topicId) throws Exception;
 }
