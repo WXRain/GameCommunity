@@ -1,7 +1,12 @@
 package com.rain.gameCommunity.utils;
 
 import java.io.Serializable;
-
+/**
+ * 
+ * @author wangxinyu
+ *
+ * @param <T>
+ */
 public class JsonResult<T> implements Serializable {
 
 	private final static int ERROR = 1;

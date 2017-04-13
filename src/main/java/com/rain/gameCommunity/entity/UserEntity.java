@@ -6,7 +6,11 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.stereotype.Repository;
-
+/**
+ * 
+ * @author wangxinyu
+ *
+ */
 @Repository
 public class UserEntity implements Serializable {
 

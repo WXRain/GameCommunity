@@ -7,7 +7,11 @@ import org.springframework.stereotype.Component;
 import com.rain.gameCommunity.entity.GameEntity;
 import com.rain.gameCommunity.entity.UserEntity;
 import com.rain.gameCommunity.utils.PagingData;
-
+/**
+ * 
+ * @author wangxinyu
+ *
+ */
 @Component
 public interface GameService {
 

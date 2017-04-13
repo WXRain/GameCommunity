@@ -3,7 +3,11 @@ package com.rain.gameCommunity.entity;
 import java.io.Serializable;
 
 import org.springframework.stereotype.Repository;
-
+/**
+ * 
+ * @author wangxinyu
+ *
+ */
 @Repository
 public class CommentEntity implements Serializable {
 

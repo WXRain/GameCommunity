@@ -1,5 +1,9 @@
 package com.rain.gameCommunity.utils;
-
+/**
+ * 
+ * @author wangxinyu
+ *
+ */
 public class GetPrintSize {
 
 	public static String getPrintSize(long size) {  

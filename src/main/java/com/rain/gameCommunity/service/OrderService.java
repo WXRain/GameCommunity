@@ -3,7 +3,11 @@ package com.rain.gameCommunity.service;
 import java.util.Date;
 
 import org.springframework.stereotype.Component;
-
+/**
+ * 
+ * @author wangxinyu
+ *
+ */
 @Component
 public interface OrderService {
 

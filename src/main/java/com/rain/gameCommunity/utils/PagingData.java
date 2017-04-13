@@ -2,7 +2,11 @@ package com.rain.gameCommunity.utils;
 
 import java.io.Serializable;
 import java.util.List;
-
+/**
+ * 
+ * @author wangxinyu
+ *
+ */
 public class PagingData implements Serializable{
 
 	//当前页面

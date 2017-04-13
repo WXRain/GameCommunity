@@ -18,6 +18,12 @@ import com.rain.gameCommunity.service.ShoppingCartService;
 import com.rain.gameCommunity.service.UserService;
 import com.rain.gameCommunity.utils.JsonResult;
 
+/**
+ * 
+ * @author wangxinyu
+ *
+ */
+
 @Controller
 @RequestMapping("/pay")
 public class ShoppingCartController {

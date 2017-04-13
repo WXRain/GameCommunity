@@ -8,7 +8,11 @@ import org.springframework.stereotype.Service;
 import com.rain.gameCommunity.dao.SystemSupportDAO;
 import com.rain.gameCommunity.entity.SystemSupportEntity;
 import com.rain.gameCommunity.service.SystemSupportService;
-
+/**
+ * 
+ * @author wangxinyu
+ *
+ */
 @Service
 public class SystemSupportServiceImpl implements SystemSupportService {
 

@@ -16,7 +16,11 @@ import com.rain.gameCommunity.entity.TopicEntity;
 import com.rain.gameCommunity.entity.UserEntity;
 import com.rain.gameCommunity.service.GameService;
 import com.rain.gameCommunity.utils.PagingData;
-
+/**
+ * 
+ * @author wangxinyu
+ *
+ */
 @Service
 public class GameServiceImpl implements GameService {
 

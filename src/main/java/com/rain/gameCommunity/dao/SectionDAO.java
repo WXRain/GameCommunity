@@ -7,7 +7,11 @@ import org.springframework.stereotype.Repository;
 
 import com.rain.gameCommunity.entity.SectionEntity;
 import com.rain.gameCommunity.utils.PagingData;
-
+/**
+ * 
+ * @author wangxinyu
+ *
+ */
 @Repository
 public interface SectionDAO {
 

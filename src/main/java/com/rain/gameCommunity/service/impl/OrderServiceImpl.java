@@ -8,7 +8,11 @@ import org.springframework.stereotype.Service;
 import com.rain.gameCommunity.dao.OrderDAO;
 import com.rain.gameCommunity.entity.OrderEntity;
 import com.rain.gameCommunity.service.OrderService;
-
+/**
+ * 
+ * @author wangxinyu
+ *
+ */
 @Service
 public class OrderServiceImpl implements OrderService {
 

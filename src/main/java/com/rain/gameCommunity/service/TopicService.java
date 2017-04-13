@@ -6,7 +6,11 @@ import org.springframework.stereotype.Component;
 
 import com.rain.gameCommunity.entity.TopicEntity;
 import com.rain.gameCommunity.utils.PagingData;
-
+/**
+ * 
+ * @author wangxinyu
+ *
+ */
 @Component
 public interface TopicService {
 

@@ -6,7 +6,11 @@ import java.text.SimpleDateFormat;
 import java.util.List;
 
 import org.springframework.stereotype.Repository;
-
+/**
+ * 
+ * @author wangxinyu
+ *
+ */
 @Repository
 public class GameEntity implements Serializable {
 

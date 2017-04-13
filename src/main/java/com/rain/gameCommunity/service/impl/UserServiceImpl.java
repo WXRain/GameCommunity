@@ -14,7 +14,11 @@ import com.rain.gameCommunity.exception.UserNotExitException;
 import com.rain.gameCommunity.exception.UserPasswordNotCorrectException;
 import com.rain.gameCommunity.exception.UsernameOrPasswordIsNullException;
 import com.rain.gameCommunity.service.UserService;
-
+/**
+ * 
+ * @author wangxinyu
+ *
+ */
 @Service
 public class UserServiceImpl implements UserService {
 

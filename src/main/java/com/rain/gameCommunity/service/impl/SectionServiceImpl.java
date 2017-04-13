@@ -12,7 +12,11 @@ import com.rain.gameCommunity.entity.SectionEntity;
 import com.rain.gameCommunity.entity.UserEntity;
 import com.rain.gameCommunity.service.SectionService;
 import com.rain.gameCommunity.utils.PagingData;
-
+/**
+ * 
+ * @author wangxinyu
+ *
+ */
 @Service
 public class SectionServiceImpl implements SectionService {
 

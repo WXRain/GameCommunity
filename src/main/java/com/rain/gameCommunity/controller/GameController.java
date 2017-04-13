@@ -32,6 +32,12 @@ import com.rain.gameCommunity.utils.GetPrintSize;
 import com.rain.gameCommunity.utils.JsonResult;
 import com.rain.gameCommunity.utils.PagingData;
 
+/**
+ * 
+ * @author wangxinyu
+ *
+ */
+
 @Controller
 @RequestMapping("/game")
 public class GameController {

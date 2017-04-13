@@ -11,8 +11,13 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.rain.gameCommunity.utils.JsonResult;
 
-@Controller
+/**
+ * 
+ * @author wangxinyu
+ *
+ */
 
+@Controller
 public class FileUpload {
 
 	@RequestMapping("/fileUpload.do")

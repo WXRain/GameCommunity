@@ -5,7 +5,11 @@ import java.util.List;
 import org.springframework.stereotype.Component;
 
 import com.rain.gameCommunity.entity.ShoppingCartEntity;
-
+/**
+ * 
+ * @author wangxinyu
+ *
+ */
 @Component
 public interface ShoppingCartService {
 

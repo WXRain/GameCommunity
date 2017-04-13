@@ -4,6 +4,13 @@ import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import org.springframework.stereotype.Repository;
+/**
+ * 
+ * @author wangxinyu
+ *
+ */
+@Repository
 public class ShoppingCartEntity implements Serializable {
 
 	//购物车id

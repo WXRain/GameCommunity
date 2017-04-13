@@ -6,7 +6,11 @@ import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import com.rain.gameCommunity.entity.GameTypeEntity;
-
+/**
+ * 
+ * @author wangxinyu
+ *
+ */
 @Repository
 public interface GameTypeDAO {
 

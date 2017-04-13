@@ -21,6 +21,12 @@ import com.rain.gameCommunity.service.TopicService;
 import com.rain.gameCommunity.utils.JsonResult;
 import com.rain.gameCommunity.utils.PagingData;
 
+/**
+ * 
+ * @author wangxinyu
+ *
+ */
+
 @Controller
 @RequestMapping("/community")
 public class CommunityController {

@@ -9,7 +9,11 @@ import org.springframework.stereotype.Service;
 import com.rain.gameCommunity.dao.ShoppingCartDAO;
 import com.rain.gameCommunity.entity.ShoppingCartEntity;
 import com.rain.gameCommunity.service.ShoppingCartService;
-
+/**
+ * 
+ * @author wangxinyu
+ *
+ */
 @Service
 public class ShoppingCartServiceImpl implements ShoppingCartService{
 

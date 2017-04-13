@@ -1,7 +1,11 @@
 package com.rain.gameCommunity.utils;
 
 import org.springframework.stereotype.Repository;
-
+/**
+ * 
+ * @author wangxinyu
+ *
+ */
 @Repository
 public class ConstantUtil {
 
