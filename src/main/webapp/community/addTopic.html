@@ -31,9 +31,9 @@
 		<a href=javascript:void(0) onclick="addTopicIndex()">发布帖子</a>
 	</span>
 	<br/><br/><br/><br/>
-	<form action="addTopic.do" method="POST">
-	<input name="userId" id="userId"/>
-	<input name="sectionId" id="sectionId"/>
+	<form action="" method="POST">
+	<input name="userId" id="userId" style="display:none"/>
+	<input name="sectionId" id="sectionId" style="display:none"/>
 	<table width=100%>
 	<tr>
 		<td width=30% align="right">帖子主题：</td>
@@ -44,10 +44,10 @@
 		<td></td>
 	</tr>
 	<tr>
-		<td colspan="2"> <textarea cols="100" rows="15" style="overflow-x:auto;overflow-y:hidden;" name="topicText"></textarea> </td>
+		<td colspan="2"> <textarea cols="100" rows="15" style="overflow-x:auto;overflow-y:hidden;" name="topicText" id="topicText"></textarea> </td>
 	</tr>
 	<tr>
-		<td align="right"><input type="submit"/></td>
+		<td align="right"><input type="button" onclick="addTopic()" value="提交"/></td>
 		<td><input type="reset"/></td>
 	</tr>
 	</table>
@@ -98,6 +98,33 @@
 					}
 				});
 		   }
+		 
+		 function addTopic(){
+			 $.ajax({
+				 url:"addTopic.do",
+				 method:"POST",
+				 dataType:"JSON",
+				 data:{
+ 					 "userId":$.session.get("userId"),
+					 "sectionId":sectionId,
+					 "topicName":$("#topicName").val(),
+					 "topicText":$("#topicText").val()
+				 },
+				 success:function(result){
+					 if(result.state == 0){
+						 if(result.data){
+							 alert("添加成功！");
+						 }else{
+							 alert("添加失败！");
+						 }
+						 window.location.href = path + "/community/section.html?sectionId=" + sectionId;
+					 }else{
+						 $.session.set("errorMessage", result.message);
+						 window.location.href = path + "/error.html";
+					 }
+				 }
+			 });
+		 }
 		 
 		 function communityIndex(){
 			 window.location.href = path + "/community/main.html";

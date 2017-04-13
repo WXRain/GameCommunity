@@ -26,4 +26,6 @@ public interface SectionDAO {
 	public void addSection(@Param("section") SectionEntity section);
 	
 	public void updateSection(@Param("section") SectionEntity section, @Param("id") long id);
+	
+	public SectionEntity querySectionBySectionId(@Param("sectionId") long sectionId);
 }

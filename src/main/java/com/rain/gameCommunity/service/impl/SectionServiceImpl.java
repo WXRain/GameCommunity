@@ -30,7 +30,7 @@ public class SectionServiceImpl implements SectionService {
 	}
 	
 	private List<SectionEntity> changeManagerToString(List<SectionEntity> sections) throws Exception{
-		
+		if(sections == null || sections.size() <= 0) return null;
 		for(SectionEntity section : sections){
 			String sectionManager = section.getSectionManager();
 			if(sectionManager == null || sectionManager.length() <= 0) continue;
@@ -45,6 +45,22 @@ public class SectionServiceImpl implements SectionService {
 			section.setManagers(users);
 		}
 		return sections;
+	}
+	
+	private SectionEntity changeManagerToString(SectionEntity section) throws Exception{
+		if(section == null) return null;
+		String sectionManager = section.getSectionManager();
+		if(sectionManager == null || sectionManager.length() <= 0) return section;
+		String[] managersString = sectionManager.split(",");
+		List<Long> managers = new ArrayList<Long>();
+		for(int i = 0; i < managersString.length; i++){
+			if(managersString[i] == null || managersString[i].length() <= 0) continue;
+			managers.add(Long.parseLong(managersString[i]));
+		}
+		List<UserEntity> users = userDao.queryUsersById(managers);
+		
+		section.setManagers(users);
+		return section;
 	}
 
 	@Override
@@ -86,6 +102,12 @@ public class SectionServiceImpl implements SectionService {
 	public void updateSection(SectionEntity section, long id) throws Exception {
 		
 		sectionDao.updateSection(section, id);
+	}
+
+	@Override
+	public SectionEntity showSectionBySectionId(long sectionId) throws Exception {
+		SectionEntity section = sectionDao.querySectionBySectionId(sectionId);
+		return changeManagerToString(section);
 	}
 
 }

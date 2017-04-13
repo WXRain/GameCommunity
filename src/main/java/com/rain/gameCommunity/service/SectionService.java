@@ -16,6 +16,8 @@ public interface SectionService {
 	
 	public List<SectionEntity> showSectionsBySectionId(String id) throws Exception;
 	
+	public SectionEntity showSectionBySectionId(long sectionId) throws Exception;
+	
 	public int showSectionsCountBySectionId(long id) throws Exception;
 	
 	//根据游戏id取出板块信息

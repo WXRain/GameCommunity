@@ -17,12 +17,13 @@
 		$.session.set("errorMessage", "参数错误！");
 		window.location.href = path + "/error.html";
 	}
+	var isManager = $.session.get("isManager");
 </script>
 </head>
 <body>
 	<div><iframe align="center" width="100%" height="100" src="../top.html" frameborder="no" border="0" marginwidth="0" marginheight="0" scrolling="no"></iframe></div>
 	<span id="index"><a href=javascript:void(0) onclick=communityIndex()>xx论坛</a>&nbsp;&nbsp;&nbsp;></span>
-	<center><h2 id="gameTypeName"></h2></center><br/>
+	<center><h2 id="gameTypeName"></h2><a id="addSection" href=javascript:void(0) onclick="addSectionTable()">新建板块</a></center><br/>
 	<div><center><h3 id="introduce"></h3></center></div>
 	<div><center><a href=javascript:void(0) onclick=jumpToGame()>点此跳转到游戏</a></center></div>
 	<br/><br/>
@@ -39,8 +40,29 @@
        </tr>
    </table>
    
+   <table id="addSectionTable" width=100% style="display:none">
+   <tr>
+   		<td width=40% align="right">板块名：</td>
+   		<td width=40%><input id="addSectionName"/></td>
+   		<td width=20%><span id="addSectionNameMessage" style="color:red"></span></td>
+   </tr>
+   <tr>
+   		<td width=40% align="right">介绍：</td>
+   		<td width=40%><input id="addSectionIntroduce"/></td>
+   		<td width=20%><span id="addSectionIntroduceMessage" style="color:red"></span></td>
+   </tr>
+   <tr>
+   		<td align="right"><input type="button" onclick="addSection()" value="提交"/></td>
+   		<td><input type="button" onclick="cancelAddSection()" value="取消"/></td>
+   		<td></td>
+   </tr>
+   </table>
+   
    <script type="text/javascript">
    $(function(){
+	   console.log(isManager);
+	   if(isManager == 1) $("#addSection").show();
+	   else $("#addSection").hide();
 		$.ajax({
 			url: "initGameType.do",
 			method: "POST",
@@ -64,6 +86,18 @@
 			data: {"gameTypeId" : gameTypeId},
 			success: function(result){
 				if(result.state == 0){
+					console.log(result);
+					
+					//如果是管理员则显示增加板块接口
+					if(result.data.managers != null && result.data.managers.length > 0){
+						for(var i = 0 ; i < result.data.managers.length; i++){
+							if(result.data.managers[i].id == $.session.get("userId")){
+								$("#addSection").show();
+								break;
+							}
+						}
+					}
+					
 					if(result.data == null || result.data.length == 0){
 						$.session.set("errorMessage", "游戏类型出错！");
 						window.location.href = path + "/error.html";
@@ -109,6 +143,40 @@
 	  
 	   
 	   
+   }
+   
+   function addSectionTable(){
+	   $("#addSectionTable").show();
+   }
+   
+   function cancelAddSection(){
+	   $("#addSectionTable").hide();
+   }
+   
+   function addSection(){
+	   $.ajax({
+		   url:"addSection.do",
+		   method:"POST",
+		   dataType:"JSON",
+		   data:{
+			   "gameTypeId":gameTypeId,
+			   "sectionName":$("#addSectionName").val(),
+			   "sectionIntroduce":$("#addSectionIntroduce").val()
+		   },
+		   success:function(result){
+			   if(result.state == 0){
+				   if(result.data){
+					   alert("增加成功!");
+				   }else{
+					   alert("增加失败！");
+				   }
+				   location.reload();
+			   }else{
+				   $.session.set("errrorMessage", result.message);
+				   window.location.href = path + "/error.html";
+			   }
+		   }
+	   });
    }
    
    function clickSection(sectionId){

@@ -145,14 +145,22 @@ public class CommunityController {
 	
 	@RequestMapping("/addTopic.do")
 	@ResponseBody
-	public JsonResult<Boolean> addTopic(HttpServletRequest request){
+	@Transactional
+	public JsonResult<Boolean> addTopic(long userId, long sectionId, String topicName, String topicText){
 		try{
+			
+			SectionEntity section = sectionService.showSectionBySectionId(sectionId);
+			if(section == null) throw new Exception("板块错误！");
+			section.setTopicNum(section.getTopicNum() + 1);
+			sectionService.updateSection(section, sectionId);
+			
 			TopicEntity topic = new TopicEntity();
-			topic.setTopicName(request.getParameter("topicName"));
-			topic.setTopicText(request.getParameter("topicText"));
-			topic.setUserId(Long.parseLong(request.getParameter("userId")));
-			topic.setSectionId(Long.parseLong(request.getParameter("sectionId")));
+			topic.setTopicName(topicName);
+			topic.setTopicText(topicText);
+			topic.setUserId(userId);
+			topic.setSectionId(sectionId);
 			topicService.addTopic(topic);
+			
 			return new JsonResult<Boolean>(true, null);
 		}catch(Exception e){
 			e.printStackTrace();
@@ -203,6 +211,24 @@ public class CommunityController {
 			if(topic==null) throw new Exception("执行出错！");
 			topic.setReplyNum(topic.getReplyNum() + 1);
 			topicService.updateTopic(topic);
+			
+			return new JsonResult<Boolean>(true, null);
+		}catch(Exception e){
+			e.printStackTrace();
+			return new JsonResult<Boolean>(e.getMessage());
+		}
+	}
+	
+	@RequestMapping("/addSection.do")
+	@ResponseBody
+	public JsonResult<Boolean> addSection(String sectionName, String sectionIntroduce, long gameTypeId){
+		try{
+			SectionEntity section = new SectionEntity();
+			section.setGameType(gameTypeId);
+			section.setName(sectionName);
+			section.setIntroduce(sectionIntroduce);
+			
+			sectionService.addSection(section);
 			
 			return new JsonResult<Boolean>(true, null);
 		}catch(Exception e){

@@ -33,7 +33,7 @@
 		insert into section 
 		(name, introduce, topicNum, sectionManager, createTime, gameId, gameType)
 		values
-		(#{section.name}, #{section.introduce}, #{section.topicNum}, #{section.sectionManager}, #{section.createTime},
+		(#{section.name}, #{section.introduce}, #{section.topicNum}, #{section.sectionManager}, now(),
 		#{section.gameId}, #{section.gameType})
 	</insert>
 	
@@ -42,5 +42,10 @@
 		createTime=#{section.createTime}, gameId=#{section.gameId}, gameType=#{section.gameType}
 		where id=#{id}
 	</update>
+	
+	<select id="querySectionBySectionId" parameterType="Long" resultType="com.rain.gameCommunity.entity.SectionEntity">
+		select * from section where id=#{sectionId}
+	</select>
+	
 	
  </mapper>
