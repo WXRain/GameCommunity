@@ -18,6 +18,8 @@
 	}
 	var pageNum = getParam("page");
 	if(pageNum == null || pageNum == 0) pageNum = 1;
+	var tableLine = 5;
+	var isManager = $.session.get("isManager");
 </script>
 </head>
 <body>
@@ -34,13 +36,14 @@
 	<br/><br/>
 	<table width="100%" id="table">
 	<tr>
-	    <td width="25%">主题</td>
-	    <td width="25%"><center>介绍</center></td>
-	    <td width="25%">发布时间</td>
-	    <td width=25%>价格</td>
+	    <td width="20%">主题</td>
+	    <td width="20%"><center>介绍</center></td>
+	    <td width="20%">发布时间</td>
+	    <td width=20%>价格</td>
+	    <td width=20%>操作</td>
 	</tr>
 	<tr>
-	    <td colspan="4"><hr/></td>
+	    <td colspan="5"><hr/></td>
 	</tr>
 	</table>
 	
@@ -63,7 +66,7 @@
 			if(result.state == 0){
 				console.log(result.data);
 				createTable(result.data);
-				createPage(result.pagingData, 4);
+				createPage(result.pagingData, tableLine);
 			}else{
 				alert(result.message);
 			}
@@ -79,6 +82,18 @@
 		data: {"gameTypeId" : gameType},
 		success: function(result){
 			if(result.state == 0){
+				console.log(result);
+				
+				if(result.data.managers != null && result.data.managers.length > 0){
+					for(var i = 0; i < result.data.managers.length; i++){
+						
+						if(result.data.managers[i].id == $.session.get("userId")){
+							$(".delete").show();
+							break;
+						}
+					}
+				}
+				
 				$("#gameTypeName").text(result.data.typeName);
 				$("#introduce").text("介绍：" + result.data.introduce);
 				nowIndex = result.data.typeName;
@@ -91,7 +106,7 @@
 	
 	function createTable(data){
 		if(data == null || data.length <= 0){
-			$("#table").append("<tr><td colspan='4'><center>该板块无内容</center></td></tr>");
+			$("#table").append("<tr><td colspan=" + tableLine + "><center>该板块无内容</center></td></tr>");
 		}else{
 			for(var i = 0; i < data.length; i++){
 				$("#table").append("<tr><td><a href=javascript:void() onclick=showGame(" + data[i].id + ")>" + 
@@ -99,9 +114,37 @@
 						"<td><center>" + data[i].introduce + "</center></td>" + 
 						"<td>" + data[i].buildDate + "</td>" + 
 						"<td>" + (data[i].price * data[i].cutOff) + "</td>" +
-						"</tr><tr><td colspan='4'><hr/></td></tr>");
+						"<td><a href=javascript:void(0) class='delete' style='display:none' onclick=deleteGame(" + data[i].id + ")>删除</a>" + 
+						"</tr><tr><td colspan=" + tableLine + "><hr/></td></tr>");
 			}
 		}
+		console.log(isManager);
+		if(isManager == 1) $(".delete").show();
+		else $(".delete").hide();
+	}
+	
+	function deleteGame(gameId){
+		$.ajax({
+			url:"deleteGame.do",
+			method:"POST",
+			dataType:"JSON",
+			data:{
+				"gameId":gameId
+			},
+			success:function(result){
+				if(result.state == 0){
+					if(result.data){
+						alert("删除成功！");
+					}else{
+						alert("删除失败！");
+					}
+					location.reload();
+				}else{
+					$.session.set("errorMessage", result.message);
+					window.location.href = path + "/error.html";
+				}
+			}
+		});
 	}
 	
 	function showGame(gameId){

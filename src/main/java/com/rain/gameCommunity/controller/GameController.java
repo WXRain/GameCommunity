@@ -371,4 +371,16 @@ public class GameController {
 		}
 		
 	}
+	
+	@RequestMapping("/deleteGame.do")
+	@ResponseBody
+	public JsonResult<Boolean> deleteGame(long gameId){
+		try{
+			gameService.deleteGameByGameId(gameId);
+			return new JsonResult<Boolean>(true, null);
+		}catch(Exception e){
+			e.printStackTrace();
+			return new JsonResult<Boolean>(e.getMessage());
+		}
+	}
 }
