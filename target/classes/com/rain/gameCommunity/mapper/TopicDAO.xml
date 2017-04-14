@@ -10,7 +10,7 @@
 	</select>
 	
 	<select id="queryTopicsBySectionId" resultType="com.rain.gameCommunity.entity.TopicEntity">
-		select * from topic where sectionId = #{id} limit #{startLocation}, #{perPageNum}
+		select * from topic where sectionId = #{id} order by isTop desc, isFine desc, createTime desc limit #{startLocation}, #{perPageNum}
 	</select>
 	
 	<select id="queryTopicsByTopicId" parameterType="java.util.List" resultType="com.rain.gameCommunity.entity.TopicEntity">

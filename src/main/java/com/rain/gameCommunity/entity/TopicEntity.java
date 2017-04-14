@@ -41,17 +41,17 @@ public class TopicEntity implements Serializable {
 	private String lastReplyTime;
 
 	// 是否置顶
-	private boolean isTop;
+	private String isTop;
 
 	// 是否加精
-	private boolean isFine;
+	private String isFine;
 
 	public TopicEntity() {
 		super();
 	}
 
 	public TopicEntity(long id, long userId, long sectionId, int clickNum, int replyNum, String topicName,
-			String topicText, String createTime, String lastReplyTime, boolean isTop, boolean isFine) {
+			String topicText, String createTime, String lastReplyTime, String isTop, String isFine) {
 		super();
 		this.id = id;
 		this.userId = userId;
@@ -225,7 +225,7 @@ public class TopicEntity implements Serializable {
 	/**
 	 * @return the isTop
 	 */
-	public boolean isTop() {
+	public String getIsTop() {
 		return isTop;
 	}
 
@@ -233,14 +233,14 @@ public class TopicEntity implements Serializable {
 	 * @param isTop
 	 *            the isTop to set
 	 */
-	public void setTop(boolean isTop) {
+	public void setIsTop(String isTop) {
 		this.isTop = isTop;
 	}
 
 	/**
 	 * @return the isFine
 	 */
-	public boolean isFine() {
+	public String getIsFine() {
 		return isFine;
 	}
 
@@ -248,7 +248,7 @@ public class TopicEntity implements Serializable {
 	 * @param isFine
 	 *            the isFine to set
 	 */
-	public void setFine(boolean isFine) {
+	public void setIsFine(String isFine) {
 		this.isFine = isFine;
 	}
 

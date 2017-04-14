@@ -89,6 +89,8 @@
 						for(var i = 0; i < result.data.managers.length; i++){
 							if(result.data.managers[i].id == $.session.get("userId")){
 								$(".delete").show();
+								$(".addTop").show();
+								$(".addFine").show();
 								break;
 							}
 						}
@@ -129,19 +131,39 @@
 		   $("#table").append("<tr><td colspan=" + tableLine + "><center>该板块无内容</center></td></tr>");
 	   }else{
 		   for(var i = 0; i < data.length; i++){
+			   
+			   var isTop = data[i].isTop;
+			   var isFine = data[i].isFine;
+			   
+			   if(isTop == 0){
+				   isTop = " <a href=javascript:void(0) class='addTop' style='display:none' onclick=addTop(" + data[i].id + ")>置顶</a>";
+			   }else{
+				   isTop = " <a href=javascript:void(0) class='addTop' style='display:none' onclick=cancelTop(" + data[i].id + ")>取消置顶</a>";
+			   }
+			   
+			   if(isFine == 0){
+				   isFine = " <a href=javascript:void(0) class='addFine' style='display:none' onclick=addFine(" + data[i].id + ")>加精</a>";
+			   }else{
+				   isFine = " <a href=javascript:void(0) class='addFine' style='display:none' onclick=cancelFine(" + data[i].id + ")>取消加精</a>";
+			   }
+			   
 		   $("#table").append(
 					"<tr><td><a href=javascript:void() onclick=clickTopic("+ data[i].id +")>" + data[i].topicName + "</a></td>" + 
 					"<td>" + data[i].clickNum + "</td>" + 
 					"<td>" + data[i].createTime + "</td>" + 
 					"<td><a href=javascript:void() onclick=showUser("+
 							data[i].userId + ")>" + data[i].username + "</a></td>" +
-							"<td><a href=javascript:void(0) class='delete' style='display:none' onclick=deleteTopic(" + data[i].id + ")>删除</a>" +
-							"</tr><tr><td colspan=" + tableLine + "><hr/></td></tr>"
+							"<td><a href=javascript:void(0) class='delete' style='display:none' onclick=deleteTopic(" + data[i].id + ")>删除</a>" + 
+							isTop +
+							isFine +
+							"</td></tr><tr><td colspan=" + tableLine + "><hr/></td></tr>"
 				   );
 	   		}
 		   
 		   if(isManager == 1){
 			   $(".delete").show();
+			   $(".addTop").show();
+			   $(".addFine").show();
 		   }
 	   }
 	  
@@ -163,6 +185,102 @@
 					   alert("删除成功!");
 				   }else{
 					   alert("删除失败！");
+				   }
+				   location.reload();
+			   }else{
+				   $.session.set("errrorMessage", result.message);
+				   window.location.href = path + "/error.html";
+			   }
+		   }
+	   });
+   }
+   
+   function addTop(topicId){
+	   $.ajax({
+		   url:"addTop.do",
+		   method:"POST",
+		   dataType:"JSON",
+		   data:{
+			   "topicId":topicId
+		   },
+		   success:function(result){
+			   if(result.state == 0){
+				   if(result.data){
+					   alert("置顶成功!");
+				   }else{
+					   alert("置顶失败！");
+				   }
+				   location.reload();
+			   }else{
+				   $.session.set("errrorMessage", result.message);
+				   window.location.href = path + "/error.html";
+			   }
+		   }
+	   });
+   }
+   
+   function cancelTop(topicId){
+	   $.ajax({
+		   url:"cancelTop.do",
+		   method:"POST",
+		   dataType:"JSON",
+		   data:{
+			   "topicId":topicId
+		   },
+		   success:function(result){
+			   if(result.state == 0){
+				   if(result.data){
+					   alert("取消置顶成功!");
+				   }else{
+					   alert("取消置顶失败！");
+				   }
+				   location.reload();
+			   }else{
+				   $.session.set("errrorMessage", result.message);
+				   window.location.href = path + "/error.html";
+			   }
+		   }
+	   });
+   }
+   
+   function addFine(topicId){
+	   $.ajax({
+		   url:"addFine.do",
+		   method:"POST",
+		   dataType:"JSON",
+		   data:{
+			   "topicId":topicId
+		   },
+		   success:function(result){
+			   if(result.state == 0){
+				   if(result.data){
+					   alert("加精成功!");
+				   }else{
+					   alert("加精失败！");
+				   }
+				   location.reload();
+			   }else{
+				   $.session.set("errrorMessage", result.message);
+				   window.location.href = path + "/error.html";
+			   }
+		   }
+	   });
+   }
+   
+   function cancelFine(topicId){
+	   $.ajax({
+		   url:"cancelFine.do",
+		   method:"POST",
+		   dataType:"JSON",
+		   data:{
+			   "topicId":topicId
+		   },
+		   success:function(result){
+			   if(result.state == 0){
+				   if(result.data){
+					   alert("取消加精成功!");
+				   }else{
+					   alert("取消加精失败！");
 				   }
 				   location.reload();
 			   }else{

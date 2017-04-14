@@ -278,6 +278,62 @@ public class CommunityController {
 			return new JsonResult<Boolean>(e.getMessage());
 		}
 	}
+	
+	@RequestMapping("/addTop.do")
+	@ResponseBody
+	public JsonResult<Boolean> addTop(long topicId){
+		try{
+			TopicEntity topic = topicService.showTopicByTopicId(topicId);
+			topic.setIsTop("1");
+			topicService.updateTopic(topic);
+			return new JsonResult<Boolean>(true, null);
+		}catch(Exception e){
+			e.printStackTrace();
+			return new JsonResult<Boolean>(e.getMessage());
+		}
+	}
+	
+	@RequestMapping("/cancelTop.do")
+	@ResponseBody
+	public JsonResult<Boolean> cancelTop(long topicId){
+		try{
+			TopicEntity topic = topicService.showTopicByTopicId(topicId);
+			topic.setIsTop("0");
+			topicService.updateTopic(topic);
+			return new JsonResult<Boolean>(true, null);
+		}catch(Exception e){
+			e.printStackTrace();
+			return new JsonResult<Boolean>(e.getMessage());
+		}
+	}
+	
+	@RequestMapping("/addFine.do")
+	@ResponseBody
+	public JsonResult<Boolean> addFine(long topicId){
+		try{
+			TopicEntity topic = topicService.showTopicByTopicId(topicId);
+			topic.setIsFine("1");
+			topicService.updateTopic(topic);
+			return new JsonResult<Boolean>(true, null);
+		}catch(Exception e){
+			e.printStackTrace();
+			return new JsonResult<Boolean>(e.getMessage());
+		}
+	}
+	
+	@RequestMapping("/cancelFine.do")
+	@ResponseBody
+	public JsonResult<Boolean> cancelFine(long topicId){
+		try{
+			TopicEntity topic = topicService.showTopicByTopicId(topicId);
+			topic.setIsFine("0");
+			topicService.updateTopic(topic);
+			return new JsonResult<Boolean>(true, null);
+		}catch(Exception e){
+			e.printStackTrace();
+			return new JsonResult<Boolean>(e.getMessage());
+		}
+	}
 
 	public String getGameTypeName() {
 		return gameTypeName;
