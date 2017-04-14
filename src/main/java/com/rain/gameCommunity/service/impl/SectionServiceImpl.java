@@ -14,6 +14,7 @@ import com.rain.gameCommunity.entity.ReplyEntity;
 import com.rain.gameCommunity.entity.SectionEntity;
 import com.rain.gameCommunity.entity.TopicEntity;
 import com.rain.gameCommunity.entity.UserEntity;
+import com.rain.gameCommunity.service.ReplyService;
 import com.rain.gameCommunity.service.SectionService;
 import com.rain.gameCommunity.utils.PagingData;
 /**
@@ -35,6 +36,9 @@ public class SectionServiceImpl implements SectionService {
 	
 	@Autowired
 	private ReplyDAO replyDao;
+	
+	@Autowired
+	private ReplyService replyService;
 	
 
 	public List<SectionEntity> showAllSection() throws Exception {
@@ -136,7 +140,8 @@ public class SectionServiceImpl implements SectionService {
 				List<ReplyEntity> replies = replyDao.queryReplysByTopic(topic.getId());
 				if(replies != null && replies.size() > 0){
 					for(ReplyEntity reply : replies){
-						replyDao.deleteReplyByReplyId(reply.getId());
+						//replyDao.deleteReplyByReplyId(reply.getId());
+						replyService.deleteReplyByReplyId(reply.getId());
 					}
 				}
 				

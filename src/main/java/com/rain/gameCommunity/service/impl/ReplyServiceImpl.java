@@ -35,7 +35,7 @@ public class ReplyServiceImpl implements ReplyService {
 	@Transactional
 	public List<ReplyEntity> showReplysByTopicId(long topicId, PagingData pagingData) throws Exception {
 		
-		return setCommentByCommentId(replyDao.queryReplysByTopicId(topicId, (pagingData.getTotalPage() -1) * pagingData.getPerPageNum(),
+		return setCommentByCommentId(replyDao.queryReplysByTopicId(topicId, (pagingData.getCurrentPage() -1) * pagingData.getPerPageNum(),
 				pagingData.getPerPageNum()));
 	}
 

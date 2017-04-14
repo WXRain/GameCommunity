@@ -7,6 +7,7 @@ import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -272,7 +273,7 @@ public class GameController {
 	@RequestMapping("/uploadGame.do")
 	@ResponseBody
 	@Transactional
-	public JsonResult<Boolean> uploadGame(MultipartFile file, HttpServletRequest request){
+	public JsonResult<Boolean> uploadGame(MultipartFile file, HttpServletRequest request, HttpServletResponse response){
 		try{
 			SystemSupportEntity systemSupport = new SystemSupportEntity();
 			GameEntity game = new GameEntity();
@@ -363,7 +364,7 @@ public class GameController {
 				sectionService.updateSection(section, sectionId);
 				System.out.println("更新论坛板块数据成功！");
 			}
-			
+
 			return null;
 		}catch(Exception e){
 			e.printStackTrace();
