@@ -127,4 +127,12 @@ public class UserServiceImpl implements UserService {
 		
 		userDao.updateUserGames(userId, beforeGames);
 	}
+
+	/* (non-Javadoc)
+	 * @see com.rain.gameCommunity.service.UserService#showUserByUserId(long)
+	 */
+	@Override
+	public UserEntity showUserByUserId(long userId) throws Exception {
+		return userDao.queryOneUserByUserId(userId);
+	}
 }

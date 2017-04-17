@@ -48,4 +48,8 @@
 		update user set games = #{gameIds} where id = #{userId}
 	</update>
 	
+	<select id="queryOneUserByUserId" parameterType="Long" resultType="com.rain.gameCommunity.entity.UserEntity">
+		select * from user where id=#{userId}
+	</select>
+	
  </mapper>

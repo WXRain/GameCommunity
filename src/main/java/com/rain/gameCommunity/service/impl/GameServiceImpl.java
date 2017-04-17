@@ -68,6 +68,7 @@ public class GameServiceImpl implements GameService {
 	public GameEntity showGameById(String id) throws Exception {
 		long idLong = Long.parseLong(id);
 		GameEntity game = gameDao.queryGameById(idLong);
+		if(game == null) return game;
 		//取出section
 		List<SectionEntity> sections = sectionDao.querySectionByGameId(idLong);
 		

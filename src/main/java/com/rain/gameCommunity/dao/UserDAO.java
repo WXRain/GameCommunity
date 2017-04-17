@@ -25,4 +25,6 @@ public interface UserDAO {
 	//更新已经购买的游戏
 	public void updateUserGames(@Param("userId") long userId, @Param("gameIds") String gameIds);
 	
+	public UserEntity queryOneUserByUserId(@Param("userId") long userId);
+	
 }

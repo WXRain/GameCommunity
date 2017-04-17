@@ -25,4 +25,6 @@ public interface UserService {
 	
 	//更新用户已购游戏列表
 	public void updateUserGames(long userId, String gameIds) throws Exception;
+	
+	public UserEntity showUserByUserId(long userId) throws Exception;
 }

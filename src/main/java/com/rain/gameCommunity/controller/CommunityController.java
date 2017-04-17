@@ -62,6 +62,7 @@ public class CommunityController {
 			
 			gameTypes = gameTypeService.showGameTypesByPage(pagingData);
 		}catch(Exception e){
+			e.printStackTrace();
 			return new JsonResult<List<GameTypeEntity>>(e.getMessage());
 		}
 		return new JsonResult<List<GameTypeEntity>>(gameTypes, pagingData);
@@ -83,6 +84,7 @@ public class CommunityController {
 			List<SectionEntity> sections = sectionService.showSectionsByGameTypeId(gameTypeId, pagingData);
 			return new JsonResult<List<SectionEntity>>(sections, pagingData);
 		}catch(Exception e){
+			e.printStackTrace();
 			return new JsonResult<List<SectionEntity>>(e.getMessage());
 		}
 	}
@@ -94,6 +96,7 @@ public class CommunityController {
 			GameTypeEntity gameTypeEntity = gameTypeService.queryGameTypeById(Long.parseLong(gameTypeId));
 			return new JsonResult<GameTypeEntity>(gameTypeEntity, null);
 		}catch(Exception e){
+			e.printStackTrace();
 			return new JsonResult<GameTypeEntity>(e.getMessage());
 		}
 	}
@@ -114,6 +117,7 @@ public class CommunityController {
 			List<TopicEntity> topics = topicService.showTopicsBySectionId(sectionId, pagingData);
 			return new JsonResult<List<TopicEntity>>(topics, pagingData);
 		}catch(Exception e){
+			e.printStackTrace();
 			return new JsonResult<List<TopicEntity>>(e.getMessage());
 		}
 	}
@@ -127,6 +131,7 @@ public class CommunityController {
 			SectionEntity section = sectionService.showSectionsBySectionId(sectionId).get(0);
 			return new JsonResult<SectionEntity>(section, null);
 		}catch(Exception e){
+			e.printStackTrace();
 			return new JsonResult<SectionEntity>(e.getMessage());
 		}
 	}
@@ -145,6 +150,7 @@ public class CommunityController {
 			topicService.updateTopic(topic);
 			return new JsonResult<TopicEntity>(topic, null);
 		}catch(Exception e){
+			e.printStackTrace();
 			return new JsonResult<TopicEntity>(e.getMessage());
 		}
 	}

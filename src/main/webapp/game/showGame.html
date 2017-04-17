@@ -272,13 +272,43 @@ function downloadGame(gameId){
 					return;
 				}
 				downloadPath = data.path;
-				//window.location.href = path + downloadPath;
-				console.log(path + downloadPath);
+				//window.location.href = downloadPath;
+				console.log(downloadPath);
+				
+				checkDownload(downloadPath);
+				
 			}else{
 				alert(result.message);
 			}
 		}
 		
+	});
+}
+
+function checkDownload(downloadPath){
+	$.ajax({
+		url:"checkDownload.do",
+		method:"POST",
+		dataType:"JSON",
+		data:{
+			"gameId":gameId,
+			"userId":userId
+		},
+		success:function(result){
+			if(result.state == 0){
+				console.log(result);
+				if(result.data){
+					window.location.href = downloadPath;
+				}else{
+					$.session.set("errorMessage", "下载失败！没有通过验证！");
+					window.location.href = path + "/error.html";
+				}
+				
+			}else{
+				$.session.set("errorMessage", result.message);
+				window.location.href = path + "/error.html";
+			}
+		}
 	});
 }
 

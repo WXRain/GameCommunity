@@ -8,6 +8,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -100,6 +101,7 @@ public class GameController {
 		try {
 			game = gameService.showGameById(gameId);
 		} catch (Exception e) {
+			e.printStackTrace();
 			return new JsonResult<GameEntity>(e.getMessage());
 		}
 		
@@ -254,6 +256,7 @@ public class GameController {
 			GameTypeEntity gameTypeEntity = gameTypeService.queryGameTypeById(Long.parseLong(gameTypeId));
 			return new JsonResult<GameTypeEntity>(gameTypeEntity, null);
 		}catch(Exception e){
+			e.printStackTrace();
 			return new JsonResult<GameTypeEntity>(e.getMessage());
 		}
 	}
@@ -282,9 +285,11 @@ public class GameController {
 			
 			//处理上传的游戏文件
 			if(file.isEmpty()) throw new Exception("上传文件无效或者文件为空！");
-			String path = "/Users/wangxinyu/Documents/程序/GameCommunity/download/";
+			//String path = "/Users/wangxinyu/Documents/程序/GameCommunity/download/";
+			String path = request.getSession().getServletContext().getRealPath("download");
 			String fileName = file.getOriginalFilename(); //xxx.exe
-			path = path + request.getParameter("gameName") + "/" + request.getParameter("gameVersion") + "/";
+			fileName = fileName.replaceAll(" ", "");
+			path = path + "/" + request.getParameter("gameName") + "/" + request.getParameter("gameVersion") + "/";
 			System.out.println(path);
 			
 			File targetFile = new File(path, fileName);
@@ -299,7 +304,9 @@ public class GameController {
 				return new JsonResult<Boolean>(e.getMessage());
 			}
 			
-			game.setPath(path + fileName);
+			//game.setPath(path + fileName);
+			game.setPath("/gameCommunity/download/" + request.getParameter("gameName") + "/" + request.getParameter("gameVersion") + "/"
+					 + fileName);
 			game.setSize(GetPrintSize.getPrintSize(file.getSize()));
 			
 			
@@ -379,6 +386,35 @@ public class GameController {
 		try{
 			gameService.deleteGameByGameId(gameId);
 			return new JsonResult<Boolean>(true, null);
+		}catch(Exception e){
+			e.printStackTrace();
+			return new JsonResult<Boolean>(e.getMessage());
+		}
+	}
+	
+	@RequestMapping("/checkDownload.do")
+	@ResponseBody
+	public JsonResult<Boolean> checkDownload(HttpSession session, long gameId, long userId){
+		try{
+			
+			UserEntity user = userService.showUserByUserId(userId);
+			if(user == null){
+				throw new Exception("用户不存在!");
+			}
+			String games = user.getGames();
+			if(games == null || games.length() <= 0){
+				return new JsonResult<Boolean>(false, null);
+			}
+			games.replaceAll(" ", "");
+			String[] checkGames = games.split(",");
+			for(int i = 0; i < checkGames.length; i++){
+				System.out.println(checkGames[i] + " " + gameId);
+				if(checkGames[i].equals(gameId + "")){
+					return new JsonResult<Boolean>(true, null);
+				}
+			}
+			return new JsonResult<Boolean>(false, null);
+			
 		}catch(Exception e){
 			e.printStackTrace();
 			return new JsonResult<Boolean>(e.getMessage());
