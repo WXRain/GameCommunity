@@ -420,4 +420,32 @@ public class GameController {
 			return new JsonResult<Boolean>(e.getMessage());
 		}
 	}
+	
+	@RequestMapping("/modifyCutOff")
+	@ResponseBody
+	public JsonResult<Boolean> modifyCutOff(long gameId, double cutOff){
+		try{
+			GameEntity game = gameService.showGameById(gameId+"");
+			game.setCutOff(cutOff);
+			gameService.updateGameEntity(game);
+			return new JsonResult<Boolean>(true, null);
+		}catch(Exception e){
+			e.printStackTrace();
+			return new JsonResult<Boolean>(e.getMessage());
+		}
+	}
+	
+	@RequestMapping("/modifyPrice")
+	@ResponseBody
+	public JsonResult<Boolean> modifyPrice(long gameId, double price){
+		try{
+			GameEntity game = gameService.showGameById(gameId+"");
+			game.setPrice(price);
+			gameService.updateGameEntity(game);
+			return new JsonResult<Boolean>(true, null);
+		}catch(Exception e){
+			e.printStackTrace();
+			return new JsonResult<Boolean>(e.getMessage());
+		}
+	}
 }

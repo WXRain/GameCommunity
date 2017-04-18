@@ -20,6 +20,8 @@
 // 		window.location.href = path + "/error.html";
 		userId = -1;
 	}
+	
+	var isManager = $.session.get("isManager");
 </script>
 </head>
 <body>
@@ -56,9 +58,20 @@
 			<td id="system"></td>
 			<td id="note"></td>
 			<td id="version"></td>
+			<td id="cutOff"></td>
 		</tr>
 		<tr><td colspan='5'><hr/></td></tr>
 		
+	</table>
+	<table id="modifyTable" style="display:none" width=100%>
+	<tr>
+		<td align="right" width=50%><span id="modifyName"></span></td>
+		<td width=50%><input id="modifyResult" name="modifyResult"/></td>
+	</tr>
+	<tr>
+		<td align="right"><input type="button" value="提交" onclick="modify()" id="submitModify"/></td>
+		<td><input type="button" value="取消" onclick="cencelModify()"/></td>
+	</tr>
 	</table>
 	<br/><br/>
 	<center><h3>精选评论</h3></center>
@@ -78,6 +91,9 @@
 	var nowIndex;
 	$(function(){
 		if(userId == -1) return;
+		if(isManager == 1){
+			$(".modify").show();
+		}
 		$.ajax({
 			url:"addShoppingCartOrDownload.do",
 			method:"POST",
@@ -185,7 +201,7 @@ $.ajax({
 			$("#gameName").text("游戏名称：" + data.gameName);
 			$("#buildTime").text("游戏出版日期：" + data.buildDate);
 			$("#introduce").text("游戏介绍：" + data.introduce);
-			$("#price").text("游戏价格：¥" + data.price);
+			$("#price").text("游戏价格：¥" + data.price); $("#price").append(" <a href=javascript:void(0) onclick=modifyPrice() class='modify' style='display:none'>修改</a>");
 			$("#size").text("游戏大小：" + data.size);
 			
 			$("#cpu").text("处理器要求：" + data.systemSupport.cpu);
@@ -193,14 +209,18 @@ $.ajax({
 			$("#display").text("显示器要求：" + data.systemSupport.display);
 			$("#memoria").text("内存要求：" + data.systemSupport.memoria);
 			var network;
-			if(data.systemSupport.network) network="需要联网";
-			else network="无需联网";
+			if(data.systemSupport.network == 1) network="需要联网";
+			else if(data.systemSupport.network == 0) network="无需联网";
+			else network = "单机或者联网均可";
 			$("#network").text("网卡要求：" + network);
 			
 			$("#voice").text("声卡要求：" + data.systemSupport.voice);
 			$("#system").text("系统要求：" + data.systemSupport.system);
 			$("#note").text("注意事项：" + data.systemSupport.note);
 			$("#version").text("版本号：" + data.version);
+			$("#cutOff").text("折扣：" + data.cutOff); $("#cutOff").append(" <a href=javascript:void(0) onclick=modifyCutOff() class='modify' style='display:none'>修改</a>");
+			
+			
 			
 			if(data.comments == null || data.comments.length == 0){
 				$("#comments").append("<tr><td colspan='4'><center><h3>暂时没有评论！</h3></center></td></tr><tr><td colspan='4'><hr/></td></tr>")
@@ -232,9 +252,17 @@ function buildIndex(gameType, nowIndex){
 		data: {"gameTypeId" : gameType},
 		success: function(result){
 			if(result.state == 0){
+				console.log(result);
 				lastIndex = result.data.typeName;
 				$("#index").append("&nbsp;&nbsp;&nbsp;<a href=javascript:void(0) onclick=gameTypeIndex(" + gameType + ")>" + lastIndex + "</a>");
 				$("#index").append("&nbsp;&nbsp;&nbsp;>&nbsp;&nbsp;&nbsp;<a href=javascript:void(0) onclick=nowIndex()>" + nowIndex + "</a>");
+				
+				for(var i = 0; i < result.data.managers.length; i++){
+					if(result.data.managers[i].id == userId){
+						$(".modify").show();
+						break;
+					}
+				}
 				
 			}else{
 				alert(result.message);
@@ -328,6 +356,72 @@ function downloadAction(gameId){
 			}
 		}
 	});
+}
+
+function modifyCutOff(){
+	$("#modifyName").text("折扣：");
+	$("#submitModify").attr("onclick", "doModifyCutOff()");
+	$("#modifyTable").show();
+}
+
+function modifyPrice(){
+	$("#modifyName").text("价格：");
+	$("#submitModify").attr("onclick", "doModifyPrice()");
+	$("#modifyTable").show();
+}
+
+function doModifyCutOff(){
+	$.ajax({
+		url:"modifyCutOff.do",
+		method:"POST",
+		dataType:"JSON",
+		data:{
+			"gameId":gameId,
+			"cutOff":$("#modifyResult").val()
+		},
+		success:function(result){
+			if(result.state == 0){
+				if(result.data){
+					alert("修改成功！");
+				}else{
+					alert("修改失败！");
+				}
+				location.reload();
+			}else{
+				$.session.set("errorMessage", result.message);
+				window.location.href = path + "/error.html";
+			}
+		}
+	});
+}
+
+function doModifyPrice(){
+	$.ajax({
+		url:"modifyPrice.do",
+		method:"POST",
+		dataType:"JSON",
+		data:{
+			"gameId":gameId,
+			"price":$("#modifyResult").val()
+		},
+		success:function(result){
+			if(result.state == 0){
+				if(result.data){
+					alert("修改成功！");
+				}else{
+					alert("修改失败！");
+				}
+				location.reload();
+			}else{
+				$.session.set("errorMessage", result.message);
+				window.location.href = path + "/error.html";
+			}
+		}
+	});
+}
+
+function cancelModify(){
+	$("#modifyTable").hide();
 }
 </script>
 </body>
