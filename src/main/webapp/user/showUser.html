@@ -32,7 +32,7 @@
 		<td id="sex" width=25%></td>
 		<td id="level" width=25%></td>
 		<td id="exp" width=25%></td>
-		<td id="isManager" width=25%></td>
+		<td id="userId" width=25%></td>
 	</tr>
 	<tr><td colspan='4'><hr/></td></tr>
 	<tr><td colspan="4" id="userGames"></td></tr>
@@ -81,7 +81,8 @@
 			if(data.isManager == 1) manager="是";
 			else manager="否";
 			
-			$("#isManager").text("管理员：" + manager);
+			//$("#isManager").text("管理员：" + manager);
+			$("#userId").text("用户Id：" + data.id);
 			
 // 			var games = "";
 // 			if(data.games == "") games = "无"; 

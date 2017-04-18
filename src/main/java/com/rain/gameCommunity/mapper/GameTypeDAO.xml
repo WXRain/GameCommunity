@@ -30,7 +30,7 @@
 	</insert>
 	
 	<update id="updateGameType" parameterType="com.rain.gameCommunity.entity.GameTypeEntity">
-		update game_type set (typeName=#{gameType.typeName}, manager=#{gameType.manager}, introduce=#{gameType.introduce})
+		update game_type set typeName=#{gameType.typeName}, manager=#{gameType.manager}, introduce=#{gameType.introduce}
 		where id=#{gameType.id}
 	</update>
 	

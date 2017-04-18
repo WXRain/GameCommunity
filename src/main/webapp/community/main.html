@@ -53,6 +53,19 @@
 </tr>
 </table>
 
+<table width=100% id="updateManager" style="display:none">
+<tr>
+	<td width=50% align="right">管理员：</td>
+	<td width=10%><input id="updateManagerResult" name="updateManagerResult" type="text"/></td>
+	<td width=40%><span id="updateManagerMessage">只能填写用户数字id，多个管理员之间用“,”分隔，用户ID可以在用户主页查看</span></td>
+</tr>
+<tr>
+	<td align="right"><input type="button" onclick="doUpdateManager()" value="提交" id="submitUpdate"/></td>
+	<td><input type="button" onclick="cancelUpdateManager()" value="取消"/></td>
+	<td><input id="updateManagerId" style="display:none"/></td>
+</tr>
+</table>
+
 <script type="text/javascript">
 $(function(){
 	if(isManager == 1){
@@ -97,7 +110,8 @@ function createTable(data){
 			   
 			   var operation = "";
 			   if(isManager == 1){
-				   operation = "<a href=javascript:void(0) onclick=deleteGameType(" + data[i].id + ")>删除</a>";
+				   operation = "<a href=javascript:void(0) onclick=deleteGameType(" + data[i].id + ")>删除</a>" +
+				   " <a href=javascript:void(0) onclick=updateManager(" + data[i].id + ")>更新管理员</a>";
 			   }
 			   
 			$("#table").append("<tr><td><a href=javascript:void() onclick=clickGameType(" + data[i].id + ")>" + data[i].typeName + "</a></td>" +
@@ -177,6 +191,50 @@ function jumpToPage(page){
 
 function index(){
 	window.location.href = path + "/community/main.html";
+}
+
+function updateManager(gameTypeId){
+	$("#updateManagerId").val(gameTypeId);
+	$.ajax({
+		url: "showGameType.do",
+		method: "POST",
+		dataType: "JSON",
+		data: {"gameTypeId" : gameTypeId},
+		success: function(result){
+			if(result.state == 0){
+				$("#updateManagerResult").val(result.data.manager);
+			}else{
+				alert(result.message);
+			}
+		}
+	});
+	$("#submitUpdate").attr("onclick", "doUpdateManager(" + gameTypeId + ")");
+	$("#updateManager").show();
+}
+
+function doUpdateManager(gameTypeId){
+	$.ajax({
+		url:"../common/updateManager.do",
+		method:"POST",
+		dataType:"JSON",
+		data:{
+			"gameTypeId":gameTypeId,
+			"manager":$("#updateManagerResult").val()
+		},
+		success:function(result){
+			if(result.state == 0){
+				if(result.data){
+					alert("更新成功！");
+				}else{
+					alert("更新失败！");
+				}
+				location.reload();
+			}else{
+				$.session.set("errorMessage", result.message);
+				window.location.href = path + "/error.html";
+			}
+		}
+	});
 }
 
 </script>

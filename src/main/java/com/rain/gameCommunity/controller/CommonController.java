@@ -91,4 +91,19 @@ public class CommonController {
 			return new JsonResult<Boolean>(e.getMessage());
 		}
 	}
+	
+	@RequestMapping("/updateManager.do")
+	@ResponseBody
+	public JsonResult<Boolean> updateManager(long gameTypeId, String manager){
+		try{
+			GameTypeEntity gameType = gameTypeService.queryGameTypeById(gameTypeId);
+			gameType.setManager(manager);
+			System.out.println(gameType.getTypeName());
+			gameTypeService.updateGameType(gameType);
+			return new JsonResult<Boolean>(true, null);
+		}catch(Exception e){
+			e.printStackTrace();
+			return new JsonResult<Boolean>(e.getMessage());
+		}
+	}
 }
