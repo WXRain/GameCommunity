@@ -340,6 +340,20 @@ public class CommunityController {
 			return new JsonResult<Boolean>(e.getMessage());
 		}
 	}
+	
+	@RequestMapping("/updateSectionManager.do")
+	@ResponseBody
+	public JsonResult<Boolean> updateSectionManager(long sectionId, String manager){
+		try{
+			SectionEntity section = sectionService.showSectionBySectionId(sectionId);
+			section.setSectionManager(manager);
+			sectionService.updateSection(section, sectionId);
+			return new JsonResult<Boolean>(true, null);
+		}catch(Exception e){
+			e.printStackTrace();
+			return new JsonResult<Boolean>(e.getMessage());
+		}
+	}
 
 	public String getGameTypeName() {
 		return gameTypeName;

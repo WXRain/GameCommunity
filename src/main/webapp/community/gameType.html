@@ -60,6 +60,19 @@
    </tr>
    </table>
    
+<table width=100% id="updateManager" style="display:none">
+<tr>
+	<td width=50% align="right">管理员：</td>
+	<td width=10%><input id="updateManagerResult" name="updateManagerResult" type="text"/></td>
+	<td width=40%><span id="updateManagerMessage">只能填写用户数字id，多个管理员之间用“,”分隔，用户ID可以在用户主页查看</span></td>
+</tr>
+<tr>
+	<td align="right"><input type="button" onclick="doUpdateManager()" value="提交" id="submitUpdate"/></td>
+	<td><input type="button" onclick="cancelUpdateManager()" value="取消"/></td>
+	<td><input id="updateManagerId" style="display:none"/></td>
+</tr>
+</table>
+   
    <script type="text/javascript">
    $(function(){
 	   console.log(isManager);
@@ -100,6 +113,7 @@
 							if(result.data.managers[i].id == $.session.get("userId")){
 								$("#addSection").show();
 								$(".delete").show();
+								$(".updateManager").show();
 								break;
 							}
 						}
@@ -144,7 +158,8 @@
 					"<td>" + data[i].introduce + "</td>" + 
 					"<td>" + data[i].createTime + "</td>" + 
 					"<td>" + managers + "</td>" +
-					"<td><a href=javascript:void(0) class='delete' style='display:none' onclick=deleteSection(" + data[i].id + ")>删除</a></td>"+
+					"<td><a href=javascript:void(0) class='delete' style='display:none' onclick=deleteSection(" + data[i].id + ")>删除</a>"+
+					" <a href=javascript:void(0) class='updateManager' style='display:none' onclick=updateManager(" + data[i].id +")>更新管理员</a></td>"+
 					"</tr><tr><td colspan=" + tableLine + "><hr/></td></tr>"
 				);
 	   		}
@@ -235,6 +250,50 @@
    function jumpToGame(){
 	   window.location.href = path + "/game/showGameType.html?gameTypeId=" + gameTypeId;
    }
+   
+   function updateManager(sectionId){
+		$("#updateManagerId").val(gameTypeId);
+		$.ajax({
+			url: "showSection.do",
+			method: "POST",
+			dataType: "JSON",
+			data: {"sectionId" : sectionId},
+			success: function(result){
+				if(result.state == 0){
+					$("#updateManagerResult").val(result.data.sectionManager);
+				}else{
+					alert(result.message);
+				}
+			}
+		});
+		$("#submitUpdate").attr("onclick", "doUpdateManager(" + gameTypeId + ")");
+		$("#updateManager").show();
+	}
+
+	function doUpdateManager(sectionId){
+		$.ajax({
+			url:"updateSectionManager.do",
+			method:"POST",
+			dataType:"JSON",
+			data:{
+				"sectionId":gameTypeId,
+				"manager":$("#updateManagerResult").val()
+			},
+			success:function(result){
+				if(result.state == 0){
+					if(result.data){
+						alert("更新成功！");
+					}else{
+						alert("更新失败！");
+					}
+					location.reload();
+				}else{
+					$.session.set("errorMessage", result.message);
+					window.location.href = path + "/error.html";
+				}
+			}
+		});
+	}
    
    </script>
    
