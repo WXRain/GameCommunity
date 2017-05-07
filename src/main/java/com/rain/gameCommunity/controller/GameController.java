@@ -274,9 +274,9 @@ public class GameController {
 	}
 	
 	@RequestMapping("/uploadGame.do")
-	@ResponseBody
+//	@ResponseBody
 	@Transactional
-	public JsonResult<Boolean> uploadGame(MultipartFile file, HttpServletRequest request, HttpServletResponse response){
+	public String uploadGame(MultipartFile file, HttpServletRequest request, HttpServletResponse response){
 		try{
 			SystemSupportEntity systemSupport = new SystemSupportEntity();
 			GameEntity game = new GameEntity();
@@ -301,7 +301,7 @@ public class GameController {
 				file.transferTo(targetFile);
 			}catch(Exception e){
 				e.printStackTrace();
-				return new JsonResult<Boolean>(e.getMessage());
+				return "redirect: /gameCommunity/error.html";
 			}
 			
 			//game.setPath(path + fileName);
@@ -372,10 +372,12 @@ public class GameController {
 				System.out.println("更新论坛板块数据成功！");
 			}
 
-			return null;
+			//return null;
+			return "redirect: /gameCommunity/";
 		}catch(Exception e){
 			e.printStackTrace();
-			return new JsonResult<Boolean>(e.getMessage());
+			//return new JsonResult<Boolean>(e.getMessage());
+			return "redirect: /gameCommunity/error.html";
 		}
 		
 	}
@@ -408,7 +410,6 @@ public class GameController {
 			games.replaceAll(" ", "");
 			String[] checkGames = games.split(",");
 			for(int i = 0; i < checkGames.length; i++){
-				System.out.println(checkGames[i] + " " + gameId);
 				if(checkGames[i].equals(gameId + "")){
 					return new JsonResult<Boolean>(true, null);
 				}

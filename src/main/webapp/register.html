@@ -11,6 +11,7 @@
 </script>
 </head>
 <body>
+	<div><iframe align="center" width="100%" height="100" src="./top.html" frameborder="no" border="0" marginwidth="0" marginheight="0" scrolling="no"></iframe></div>
 	<form action="user/registerUser.do" method="POST" enctype="multipart/form-data">
 		<table>
 			<tr>
@@ -24,6 +25,27 @@
 				<td><span id="passwordMessage" class="message"></span></td>
 			</tr>
 			<tr>
+				<td>确认密码：</td>
+				<td><input type="password" id="confirmPassword" name="confirmPassword" onblur="checkConfirmPassword()"/></td>
+				<td><span id="confirmPasswordMessage" class="message"></span></td>
+			</tr>
+			<tr>
+				<td>性别：</td>
+				<td>
+					<select id="sex" name="sex">
+					  <option value = "-1">保密</option>
+					  <option value = "1">男</option>
+					  <option value = "0">女</option>
+					</select>
+				</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>介绍：</td>
+				<td><input type="text" id="introduce" name="introduce"/></td>
+				<td></td>
+			</tr>
+			<tr>
 				<td>选择头像：</td>
 				<td><input type="file" name="file" id="fileName" onblur="checkHead()"></td>
 				<td><span id="headMessage" class="message"></span>
@@ -32,7 +54,10 @@
 				<td><input type="button" value="注册" onclick="checkForm()"></input>
 				<input type="submit" style= "display:none" id="register"></input></td>
 				<td><input type="reset" value="重置"></input></td>
-				<td><a href="javascript:void()" id="jumpToLogin">跳转到主页面</a></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td colspan='2'><a href="javascript:void()" id="jumpToLogin">跳转到主页面</a></td>
 			</tr>
 		</table>
 	</form>
@@ -41,7 +66,7 @@
 	<script type="text/javascript">
 	
 		function checkForm(){
-			if(!checkUsername() || !checkPassword() || !checkHead()) 
+			if(!checkUsername() || !checkPassword() || !checkHead() || !checkConfirmPassword()) 
 				alert('不符合注册规则，请检查！');
 			else {
 				console.log("register......");
@@ -113,7 +138,7 @@
 		function registerUser(){
 			var username = $("#username").val();
 			var password = $("#passwords").val();
-			if(checkUsername() && checkPassword() && checkHead());
+			if(checkUsername() && checkPassword() && checkHead() && checkConfirmPassword());
 			else {
 				alert("不符合注册规则，请检查");
 				return false;
@@ -135,6 +160,18 @@
 					}
 				}
 			});
+		}
+		
+		function checkConfirmPassword(){
+			var confirmPassword = $("#confirmPassword").val();
+			var password = $("#passwords").val();
+			if(confirmPassword != password){
+				$("#confirmPasswordMessage").text("两次输入的密码不一致");
+				return false;
+			}else{
+				$("#confirmPasswordMessage").text("");
+				return true;
+			}
 		}
 	</script>
 </body>

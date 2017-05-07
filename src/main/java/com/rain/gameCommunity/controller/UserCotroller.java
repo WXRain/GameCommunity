@@ -6,6 +6,7 @@ import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -62,14 +63,16 @@ public class UserCotroller {
 	}
 	
 	@RequestMapping("/registerUser.do")
-	@ResponseBody
-	public JsonResult<UserEntity> registerUser(
-			MultipartFile file, HttpServletRequest request) throws Exception{
+	//@ResponseBody
+	public String registerUser(
+			MultipartFile file, HttpServletRequest request, HttpServletResponse response) throws Exception{
 		UserEntity user = new UserEntity();	
 		try{
 			System.out.println("注册账号中……");
 			user.setUsername(request.getParameter("username"));
 			user.setPasswords(request.getParameter("passwords"));
+			user.setSex(Integer.parseInt(request.getParameter("sex")));
+			user.setIntroduce(request.getParameter("introduce"));
 			user.setRegisterTime(new Date());
 			
 			if(!file.isEmpty()){
@@ -88,7 +91,8 @@ public class UserCotroller {
 				try{
 					file.transferTo(targetFile);
 				}catch(Exception e){
-					return new JsonResult<UserEntity>(e.getMessage());
+					//return new JsonResult<UserEntity>(e.getMessage());
+					return "redirect: /gameCommunity/error.html";
 				}
 				
 				user.setHead("/users/head/" + newFileName);
@@ -98,9 +102,12 @@ public class UserCotroller {
 			System.out.println("注册的账号是：" + user);
 			userService.addUser(user);
 			System.out.println("register success.");
-			return new JsonResult<UserEntity>(0, "注册成功", null, null);
+			//return new JsonResult<UserEntity>(0, "注册成功", null, null);
+			return "redirect: /gameCommunity/";
 		}catch(Exception e){
-			return new JsonResult<UserEntity>(e.toString());
+			//return new JsonResult<UserEntity>(e.toString());
+			request.getSession().setAttribute("errorMessage", e.getMessage());
+			return "redirect: /gameCommunity/error.html";
 		}
 	}
 	

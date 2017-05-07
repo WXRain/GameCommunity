@@ -11,6 +11,9 @@
 <script type="text/javascript">
 	var path = getRootPath(); 
 	var errorMessage = $.session.get("errorMessage");
+	if(errorMessage == null || errorMessage.length == 0){
+		errorMessage = "执行出错!";
+	}
 </script>
 </head>
 <body>
