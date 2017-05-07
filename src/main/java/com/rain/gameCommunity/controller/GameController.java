@@ -266,6 +266,13 @@ public class GameController {
 	public JsonResult<SystemSupportEntity> showSystemSupportById(long id){
 		try{
 			SystemSupportEntity systemSupport = systemSupportService.showSystemSupportById(id);
+			if(systemSupport.getNetwork().equals("1")){
+				systemSupport.setNetwork("true");
+			}else if(systemSupport.getNetwork().equals("0")){
+				systemSupport.setNetwork("false");
+			}else{
+				systemSupport.setNetwork("all");
+			}
 			return new JsonResult<SystemSupportEntity>(systemSupport, null);
 		}catch(Exception e){
 			e.printStackTrace();

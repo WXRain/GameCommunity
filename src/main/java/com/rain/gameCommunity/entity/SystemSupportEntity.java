@@ -119,7 +119,7 @@ public class SystemSupportEntity implements Serializable {
 	/**
 	 * @return the network
 	 */
-	public String isNetwork() {
+	public String getNetwork() {
 		return network;
 	}
 

@@ -198,7 +198,7 @@
 							$("#cpu").val(data.cpu).attr("readonly", "true");
 							$("#display").val(data.display).attr("readonly", "true");
 							$("#note").val(data.note).attr("readonly", "true");
-							$("#network").val("" + data.network);
+							$("#network").val("" + data.network).attr("disabled", "disabled");
 						}else{
 							alert(result.message);
 						}
@@ -213,6 +213,7 @@
 				$("#cpu").val("").removeAttr("readonly");
 				$("#display").val("").removeAttr("readonly");
 				$("#note").val("").removeAttr("readonly");
+				$("#network").removeAttr("disabled");
 			}
 		}
 		
