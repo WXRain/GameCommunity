@@ -49,6 +49,8 @@
 		<url-pattern>*.jpeg</url-pattern>
 		<url-pattern>*.gif</url-pattern>
 		<url-pattern>*.exe</url-pattern>
+		<url-pattern>*.css</url-pattern>
+		<url-pattern>*.map</url-pattern>
 	</servlet-mapping>
 
 </web-app>

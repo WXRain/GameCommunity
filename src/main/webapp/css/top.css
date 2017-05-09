@@ -1,0 +1,50 @@
+/*=======common==========*/
+.text-align-right {
+    text-align: right;
+}
+
+/*=======header-container==========*/
+.my-container {
+    height: 100px;
+    background-color: rgb(23, 26, 33);
+}
+
+.my-nav{
+    margin-top: 27px;
+    width:140px;
+}
+
+.second-part{
+    width:500px;
+}
+
+.my-nav .nav-item a{
+    color: rgb(150, 150, 150);
+}
+
+.my-nav .nav-item a:hover{
+    color: white;
+    text-decoration: none;
+}
+
+.my-nav .nav-item a:active{
+    color: rgb(150, 150, 150);
+    text-decoration: none;
+}
+
+.my-nav .nav-item a:visited{
+    color: whitesmoke;
+    text-decoration: none;
+}
+
+.my-nav .my-button{
+    color: red;
+}
+
+.login-label{
+    color: white;
+}
+
+.my-input{
+    width: 100px;
+}

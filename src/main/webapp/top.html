@@ -1,53 +1,188 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html>
-  <head>
-  	<script type="text/javascript" src="./script/jquery.min.js"></script>
-  	<script type="text/javascript" src="./script/jquerySession.js"></script>
-  	<script type="text/javascript" src="./script/getRootPath.js"></script>
-  	<script type="text/javascript" src="./script/getParam.js"></script>
-  	
-	<script type="text/javascript">
-		var path = getRootPath(); 
-		var pageNum = getParam("page");
-		if(pageNum == null || pageNum == 0) pageNum = 1;
-	</script>
-	<script type="text/javascript">
-	function nowTime(){
-		var today = new Date();
-		var year = today.getFullYear();
-		var month = today.getMonth() + 1;
-		var date = today.getDate();
-		var hour = today.getHours();
-		var minute = today.getMinutes();
-		var second = today.getSeconds();
-		
-		var weekday = 0;
-		switch(today.getDay()){
-			case 0:
-			weekday = "星期日";break;
-			case 1:
-			weekday = "星期一";break;
-			case 2:
-			weekday = "星期二";break;
-			case 3:
-			weekday = "星期三";break;
-			case 4:
-			weekday = "星期四";break;
-			case 5:
-			weekday = "星期五";break;
-			case 6:
-			weekday = "星期六";break;
-		}
-		document.getElementById("time").innerHTML = "" + year + "年" + month + "月"+ date + "日&nbsp" 
-												  + hour + ":" + minute + ":" + second + "&nbsp" 
-												  + weekday;
-		setTimeout("nowTime()", 1000);
-	}
-	</script>
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="./css/bootstrap.min.css">
+    <link rel="stylesheet" href="./css/top.css">
+    <script src="./script/vue.js"></script>
+    <script type="text/javascript" src="./script/jquery.min.js"></script>
+    <script src="./script/tether.min.js"></script>
+    <script src="./script/bootstrap.min.js"></script>
+    <script src="./script/jquerySession.js"></script>
+    <script src="./script/getRootPath.js"></script>
+    <script src="./script/getParam.js"></script>
+    <script>
+        var path = getRootPath();
+        var pageNum = getParam("page");
+        if(pageNum == null || pageNum == 0) pageNum = 1;
+    </script>
+    <title></title>
+</head>
+<body onload="nowTime()">
+<header>
+    <div class="container-fluid p-0 m-0 my-container">
+        <div class="row h-100">
+            <div class="my-nav">
+                <ul class="nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#" onclick="toGameIndex()">商店</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" onclick="toCommunityIndex()">论坛</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="second-part" id="login">
+                <form class="form-inline mt-4" id="login-table">
+                    <input type="text" class="form-control my-input" id="username" placeholder="用户名">
+                    <input type="password" class="form-control my-input" id="password" placeholder="密码">
+                    <button type="login" class="btn btn-default" onclick="login()">登录</button>
+                </form>
+            </div>
 
-  </head>
+            <div class="col-3 mt-4">
+                <span class="login-label" id="time"></span>
+            </div>
+
+            <div class="col-3">
+                <form class="form-inline mt-4" id="search">
+                    <input type="text" class="form-control my-input" id="nameCondition" placeholder="搜索内容">
+                    <button type="login" class="btn btn-default" onclick="search()">搜索</button>
+                </form>
+            </div>
+
+        </div>
+
+        <div class="row my-container justify-content-between">
+            <div class="col-3"></div>
+            <div class="col-3"></div>
+        </div>
+    </div>
+</header>
+
+<script>
+
+    function quit(){
+        $.session.clear();
+        //parent.location.replace(path);
+        parent.location.reload();
+    }
+
+    function login(){
+        var username = $("#username").val();
+        var password = $("#password").val();
+        var userdata = {
+            "username" : username,
+            "password" : password
+        }
+
+        $.ajax({
+            url: "user/checkUser.do",
+            method: "POST",
+            dataType: "JSON",
+            data: userdata,
+            success: function(result){
+                if(result.state == 0){
+                    //login pages
+                    $.session.set("username", result.data.username);
+                    $.session.set("userId", result.data.id);
+                    $.session.set("isManager", result.data.isManager);
+                    //window.location.href = path + "/top.html";
+                    parent.location.reload();
+                }else{
+                    alert(result.message);
+                }
+            }
+        });
+    }
+
+    function toCommunityIndex(){
+        parent.location.replace(path + "/community/main.html");
+    }
+
+    function toGameIndex(){
+        parent.location.replace(path + "/game/main.html");
+    }
+
+    function nowTime(){
+        var today = new Date();
+        var year = today.getFullYear();
+        var month = today.getMonth() + 1;
+        var date = today.getDate();
+        var hour = today.getHours();
+        var minute = today.getMinutes();
+        var second = today.getSeconds();
+
+        var weekday = 0;
+        switch(today.getDay()){
+            case 0:
+                weekday = "星期日";break;
+            case 1:
+                weekday = "星期一";break;
+            case 2:
+                weekday = "星期二";break;
+            case 3:
+                weekday = "星期三";break;
+            case 4:
+                weekday = "星期四";break;
+            case 5:
+                weekday = "星期五";break;
+            case 6:
+                weekday = "星期六";break;
+        }
+        document.getElementById("time").innerHTML = "" + year + "年" + month + "月"+ date + "日&nbsp"
+            + hour + ":" + minute + ":" + second + "&nbsp"
+            + weekday;
+        setTimeout("nowTime()", 1000);
+
+//    var test = new Vue({
+//        el:"#test",
+//        data:{message:"1234"},
+//        methods:{
+//            getData: function(){
+//                var options = {
+//                    type: 'GET',
+//                    //url: 'http://localhost:8080/admin/getDishCategory',
+//                };
+//                options.success = function (data) {
+//                    alert(data);
+//                    test.message = data;
+//                };
+//
+//                $.ajax(options);
+//            }
+//        }
+//    });
+    }
+
+    function search(){
+        var nameCondition = $("#nameCondition").val();
+        if(nameCondition == null || nameCondition.length == 0) {
+            alert("搜索内容不能为空！");
+            return;
+        }
+        $.session.set("nameCondition", nameCondition);
+        parent.location.replace(path + "/searchResult.html");
+    }
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+<!-- <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
   
-  <body onload="nowTime()">
+
   	<table border="0" cellpadding="0" cellspacing="0" width=100%>
 			<tr>
 				<td width=10%>
@@ -93,52 +228,6 @@
      		parent.location.reload();
      	}
      	
-     	function toCommunityIndex(){
-			parent.location.replace(path + "/community/main.html");
-		}
-     	
-     	function toGameIndex(){
-     		parent.location.replace(path + "/game/main.html");
-     	}
-     	
-     	function login(){
-     		var username = $("#username").val();
-    			var password = $("#password").val();
-    			var userdata = {
-    				"username" : username,
-    				"password" : password
-    		}
-    		
-    		$.ajax({
-    			url: "user/checkUser.do",
-    			method: "POST",
-    			dataType: "JSON",
-    			data: userdata,
-    			success: function(result){
-    				if(result.state == 0){
-    					//login pages
-    					$.session.set("username", result.data.username);
-    					$.session.set("userId", result.data.id);
-    					$.session.set("isManager", result.data.isManager);
-    					//window.location.href = path + "/top.html";
-    					parent.location.reload();
-    				}else{
-    					alert(result.message);
-    				}
-    			}
-    		});
-     	}
-     	
-     	function search(){
-     		var nameCondition = $("#nameCondition").val();
-     		if(nameCondition == null || nameCondition.length == 0) {
-     			alert("搜索内容不能为空！");
-     			return;
-     		}
-     		$.session.set("nameCondition", nameCondition);
-    			parent.location.replace(path + "/searchResult.html");
-     	}
-     	
      	function showUser(userId){
      		parent.location.replace(path + "/user/showUser.html?userId=" + userId);
      	}
@@ -172,3 +261,4 @@
      </script>
   </body>
 </html>
+ -->
