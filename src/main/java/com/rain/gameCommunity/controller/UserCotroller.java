@@ -77,7 +77,8 @@ public class UserCotroller {
 			
 			if(!file.isEmpty()){
 				//处理头像
-				String path = request.getSession().getServletContext().getRealPath("uploadFloder/users/head");
+//				String path = request.getSession().getServletContext().getRealPath("uploadFloder/users/head");
+				String path = request.getSession().getServletContext().getRealPath("img/user/head");
 				String filename = file.getOriginalFilename();//xxx.jpg
 				System.out.println(filename);
 				String[] names = filename.split("\\.");
@@ -95,8 +96,10 @@ public class UserCotroller {
 					return "redirect: /gameCommunity/error.html";
 				}
 				
-				user.setHead("/users/head/" + newFileName);
-				System.out.println("头像路径：" + request.getSession().getServletContext().getRealPath("uploadFloder/users/head/") + newFileName);
+				user.setHead("/img/user/head/" + newFileName);
+//				System.out.println("头像路径：" + request.getSession().getServletContext().getRealPath("uploadFloder/users/head/") + newFileName);
+				System.out.println("头像路径：" + request.getSession().getServletContext().getRealPath("img/user/head/") + newFileName);
+
 			}
 			
 			System.out.println("注册的账号是：" + user);
