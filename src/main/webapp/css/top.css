@@ -15,11 +15,11 @@
 }
 
 .second-part{
-    width:500px;
+    width:600px;
 }
 
 .my-nav .nav-item a{
-    color: rgb(150, 150, 150);
+    color: blue;
 }
 
 .my-nav .nav-item a:hover{
@@ -28,17 +28,8 @@
 }
 
 .my-nav .nav-item a:active{
-    color: rgb(150, 150, 150);
+    color: blue;
     text-decoration: none;
-}
-
-.my-nav .nav-item a:visited{
-    color: whitesmoke;
-    text-decoration: none;
-}
-
-.my-nav .my-button{
-    color: red;
 }
 
 .login-label{
@@ -47,4 +38,22 @@
 
 .my-input{
     width: 100px;
+}
+
+.time-div{
+    width:300px;
+    margin-top:35px;
+}
+
+.has-login{
+    color: blue;
+}
+
+.has-login:hover{
+    color: white;
+    text-decoration: none;
+}
+
+.show-user{
+    margin-top:35px;
 }

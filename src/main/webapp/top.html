@@ -37,11 +37,12 @@
                 <form class="form-inline mt-4" id="login-table">
                     <input type="text" class="form-control my-input" id="username" placeholder="用户名">
                     <input type="password" class="form-control my-input" id="password" placeholder="密码">
-                    <button type="login" class="btn btn-default" onclick="login()">登录</button>
+                    <button type="button" class="btn btn-default" onclick="login()">登录</button>
+                    <button type="button" class="btn btn-default" onclick="registerClick()">注册</button>
                 </form>
             </div>
 
-            <div class="col-3 mt-4">
+            <div class="time-div">
                 <span class="login-label" id="time"></span>
             </div>
 
@@ -62,6 +63,24 @@
 </header>
 
 <script>
+
+    $(function(){
+        var username = $.session.get("username");
+        if(username == null || username=="" || username.length == 0){
+
+        }else{
+            showUsername(username);
+        }
+    });
+
+    function showUsername(username){
+        $("#login").addClass("show-user");
+        $("#login").html("<span class='login-label'>欢迎您,</span>&nbsp;&nbsp;&nbsp;&nbsp;<a class='has-login' href=javascript:void() onclick=showUser(" + $.session.get("userId") +
+            ")>" + $.session.get("username") + "</a>");
+        $("#login").append("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;");
+        $("#login").append("<a class='has-login' href=javascript:void() onclick=showShoppingCart()>查看购物车</a>");
+        $("#login").append("&nbsp;&nbsp;&nbsp;&nbsp;<a class='has-login' href=javascript:void() onclick=quit()>退出</a>");
+    }
 
     function quit(){
         $.session.clear();
@@ -84,11 +103,9 @@
             data: userdata,
             success: function(result){
                 if(result.state == 0){
-                    //login pages
                     $.session.set("username", result.data.username);
                     $.session.set("userId", result.data.id);
                     $.session.set("isManager", result.data.isManager);
-                    //window.location.href = path + "/top.html";
                     parent.location.reload();
                 }else{
                     alert(result.message);
@@ -165,100 +182,40 @@
         $.session.set("nameCondition", nameCondition);
         parent.location.replace(path + "/searchResult.html");
     }
+
+    function registerClick(){
+        parent.location.replace("./register.html");
+    }
+
+    function showShoppingCart(){
+        var userId = $.session.get("userId");
+        if(userId == null || userId.length == 0){
+            $.session.set("errorMessage", "用户登录状态异常");
+            window.location.href = path + "error.html";
+            return;
+        }
+        $.ajax({
+            url:"pay/showGameShoppingCart.do",
+            method:"POST",
+            dataType:"JSON",
+            data:{"userId": userId},
+            success:function(result){
+                if(result.state == 0){
+                    if(result.data == null || result.data.length == 0){
+                        alert("购物车为空");
+                        return;
+                    }
+                    parent.location.replace(path + "/pay/showShoppingCart.html");
+                }else{
+                    alert(result.message);
+                }
+            }
+        });
+    }
+
+    function showUser(userId){
+        parent.location.replace(path + "/user/showUser.html?userId=" + userId);
+    }
 </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-<!-- <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html>
-
-  
-
-  	<table border="0" cellpadding="0" cellspacing="0" width=100%>
-			<tr>
-				<td width=10%>
-					<a href="javascript:void()" onclick=toCommunityIndex()>XX论坛</a>
-					<a href="javascript:void()" onclick=toGameIndex()>XX游戏</a>
-				<td id="loginOrRegister" width=50%></td>
-				<td width=20%><div id="time"></div></td>
-				<td width=5% id="quit"></td>
-				<td width=15% id="search"><input type="text" id="nameCondition"/>&nbsp;&nbsp;<input type="button" value="搜索" onclick="search()"/></td>
-			</tr>
-	</table>
-     <hr/>
-     <script type="text/javascript">
-     	var username = $.session.get("username");
-     	if(username == null || username=="" || username.length == 0){
-     		$("#loginOrRegister").append("<form method = 'post' style = 'display:inline'>"
-   		 								+"  用户名 "
-		 								+ "<input type='text' name=username id=username>"
-		 								+" 密码  "
-		 								+"<input type='password' name=password id=password>"
-										 +"<input type='button' onclick='login()' value=' 登录 '>"
-										 +"&nbsp;&nbsp;<a href='javascript:void()' onclick='registerClick()'>注册 </a>"
-										 +"</form>");
-     	}else{
-     		showUsername(username);
-     	}
-     	
-     	function showUsername(username){
-     		$("#loginOrRegister").append("欢迎您,  <a href=javascript:void() onclick=showUser(" + $.session.get("userId") +
-     					")>" + $.session.get("username") + "</a>");
-     		$("#loginOrRegister").append("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;");
-     		$("#loginOrRegister").append("<a href=javascript:void() onclick=showShoppingCart()>查看购物车</a>");
-     		$("#quit").append("<a href=javascript:void() onclick=quit()>退出</a>");
-     	}
-     	
-     	function registerClick(){
-     		parent.location.replace("./register.html");
-     	}
-     	
-     	function quit(){
-     		$.session.clear();
-     		//parent.location.replace(path);
-     		parent.location.reload();
-     	}
-     	
-     	function showUser(userId){
-     		parent.location.replace(path + "/user/showUser.html?userId=" + userId);
-     	}
-     	
-     	function showShoppingCart(){
-     		var userId = $.session.get("userId");
-     		if(userId == null || userId.length == 0){
-     			$.session.set("errorMessage", "用户登录状态异常");
-     			window.location.href = path + "error.html";
-     			return;
-     		}
-     		$.ajax({
-	    			url:"pay/showGameShoppingCart.do",
-	    			method:"POST",
-	    			dataType:"JSON",
-	    			data:{"userId": userId},
-	    			success:function(result){
-    					if(result.state == 0){
-    						if(result.data == null || result.data.length == 0){
-    							alert("购物车为空");
-    							return;
-    						}
-    						parent.location.replace(path + "/pay/showShoppingCart.html");
-    					}else{
-    						alert(result.message);
-    					} 
-    				}
-    			});
-     	}
-     	
-     </script>
-  </body>
-</html>
- -->
