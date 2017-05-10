@@ -11,11 +11,11 @@
 
 .my-nav{
     margin-top: 27px;
-    width:140px;
+    width:200px;
 }
 
 .second-part{
-    width:600px;
+    width:550px;
 }
 
 .my-nav .nav-item a{
@@ -51,6 +51,11 @@
 
 .has-login:hover{
     color: white;
+    text-decoration: none;
+}
+
+.has-login:active{
+    color: blue;
     text-decoration: none;
 }
 

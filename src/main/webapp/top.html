@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="./css/bootstrap.min.css">
     <link rel="stylesheet" href="./css/top.css">
     <script src="./script/vue.js"></script>
-    <script type="text/javascript" src="./script/jquery.min.js"></script>
+    <script src="./script/jquery.min.js"></script>
     <script src="./script/tether.min.js"></script>
     <script src="./script/bootstrap.min.js"></script>
     <script src="./script/jquerySession.js"></script>
@@ -26,6 +26,9 @@
             <div class="my-nav">
                 <ul class="nav">
                     <li class="nav-item">
+                        <a class="nav-link" href="#" onclick="toMainPage()">首页</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link active" href="#" onclick="toGameIndex()">商店</a>
                     </li>
                     <li class="nav-item">
@@ -38,7 +41,9 @@
                     <input type="text" class="form-control my-input" id="username" placeholder="用户名">
                     <input type="password" class="form-control my-input" id="password" placeholder="密码">
                     <button type="button" class="btn btn-default" onclick="login()">登录</button>
-                    <button type="button" class="btn btn-default" onclick="registerClick()">注册</button>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" onclick="registerClick()">注册</a>
+                    </li>
                 </form>
             </div>
 
@@ -120,6 +125,10 @@
 
     function toGameIndex(){
         parent.location.replace(path + "/game/main.html");
+    }
+
+    function toMainPage(){
+        parent.location.replace(path);
     }
 
     function nowTime(){
