@@ -162,6 +162,18 @@ public class GameController {
 		}
 	}
 	
+	@RequestMapping("/showLastestGame.do")
+	@ResponseBody
+	public JsonResult<List<GameEntity>> showLastestGame(){
+		try{
+			List<GameEntity> games = gameService.showLastestGames();
+			return new JsonResult<List<GameEntity>>(games, null);
+		}catch(Exception e){
+			e.printStackTrace();
+			return new JsonResult<List<GameEntity>>(e.getMessage());
+		}
+	}
+	
 	@RequestMapping("/getSectionByGameId.do")
 	@ResponseBody
 	public JsonResult<SectionEntity> getSectionByGameId(long gameId){

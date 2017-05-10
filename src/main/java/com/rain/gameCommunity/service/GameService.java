@@ -42,4 +42,6 @@ public interface GameService {
 	public void deleteGameByGameId(long gameId) throws Exception;
 	
 	public List<GameEntity> showGameByGameType(long gameType) throws Exception;
+	
+	public List<GameEntity> showLastestGames() throws Exception;
 }

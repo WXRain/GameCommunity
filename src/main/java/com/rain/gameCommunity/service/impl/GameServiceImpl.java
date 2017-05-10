@@ -157,4 +157,12 @@ public class GameServiceImpl implements GameService {
 		return gameDao.queryGamesByGameType(gameType);
 	}
 
+	/* (non-Javadoc)
+	 * @see com.rain.gameCommunity.service.GameService#showLastestGames()
+	 */
+	@Override
+	public List<GameEntity> showLastestGames() throws Exception {
+		return gameDao.queryLastestGames();
+	}
+
 }
