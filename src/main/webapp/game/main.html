@@ -1,70 +1,73 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>game main page</title>
-<script type="text/javascript" src="../script/jquery.min.js"></script>
-<script type="text/javascript" src="../script/jquerySession.js"></script>
-<script type="text/javascript" src="../script/getRootPath.js"></script>
-<script type="text/javascript" src="../script/getParam.js"></script>
-<script type="text/javascript" src="../script/utils.js"></script>
-<script type="text/javascript">
-	var path = getRootPath(); 
-	var pageNum = getParam("page");
-	if(pageNum == null || pageNum == 0) pageNum = 1;
-	var isManager = $.session.get("isManager");
-	var tableLine = 5;
-</script>
+	<meta charset="UTF-8">
+	<title>game main page</title>
+	<link rel="stylesheet" href="../css/bootstrap.min.css">
+	<link rel="stylesheet" href="../css/game_main.css">
+	<script type="text/javascript" src="../script/vue.js"></script>
+	<script type="text/javascript" src="../script/jquery.min.js"></script>
+	<script type="text/javascript" src="../script/tether.min.js"></script>
+	<script type="text/javascript" src="../script/bootstrap.min.js"></script>
+	<script type="text/javascript" src="../script/jquerySession.js"></script>
+	<script type="text/javascript" src="../script/getRootPath.js"></script>
+	<script type="text/javascript" src="../script/getParam.js"></script>
+	<script type="text/javascript" src="../script/utils.js"></script>
+	<script type="text/javascript">
+		var path = getRootPath();
+		var pageNum = getParam("page");
+		if(pageNum == null || pageNum == 0) pageNum = 1;
+		var isManager = $.session.get("isManager");
+		var tableLine = 5;
+	</script>
 </head>
 <body>
 <div><iframe align="center" width="100%" height="100" src="../top.html" frameborder="no" border="0" marginwidth="0" marginheight="0" scrolling="no"></iframe></div>
-<br/>
-<a href=javascript:void(0) onclick=index()>xx游戏</a>
-	<center><h2 id="title">游戏主页</h2><a href=javascript:void(0) onclick="addGameType()" id="addGameType" style="display:none">添加游戏类型</a></center><br/><br/>
-	
-	<table width="100%" id="table">
+<div class="my-container">
+	<a class="a-label mt-4" href=javascript:void(0) onclick=index()>xx游戏</a>
+		<center><h2 class="text-label mt-4" id="title">游戏主页</h2><a class="a-label" href=javascript:void(0) onclick="addGameType()" id="addGameType" style="display:none">添加游戏类型</a></center><br/><br/>
+
+		<table width="100%" id="table" class="table table-hover">
+		<tr>
+			<td class="text-label" width="20%">主题</td>
+			<td class="text-label" width="20%">介绍</td>
+			<td class="text-label" width="20%">创建时间</td>
+			<td class="text-label" width="20%">管理员</td>
+			<td class="text-label" width="20%">操作</td>
+		</tr>
+		</table>
+
+	<table width=100% id="addGameTypeTable" style="display:none">
 	<tr>
-	    <td width="20%">主题</td>
-	    <td width="20%">介绍</td>
-	    <td width="20%">创建时间</td>
-	    <td width="20%">管理员</td>
-	    <td width="20%">操作</td>
+		<td class="text-label" width=40% align="right">游戏类型名称：</td>
+		<td width=40%><input id="gameTypeName" name="gameTypeName" type="text"/></td>
+		<td width=20%><span id="gameTypeNameMessage" style="color:red"></span></td>
 	</tr>
 	<tr>
-	    <td colspan="5"><hr/></td>
+		<td class="text-label" align="right">游戏类型介绍：</td>
+		<td><input id="gameTypeIntroduce" name="gameTypeIntroduce" type="text"/></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td align="right"><input type="button" onclick="doAddGameType()" value="提交"/></td>
+		<td><input type="button" onclick="cancelAddGameType()" value="取消"/></td>
+		<td></td>
 	</tr>
 	</table>
 
-<table width=100% id="addGameTypeTable" style="display:none">
-<tr>
-	<td width=40% align="right">游戏类型名称：</td>
-	<td width=40%><input id="gameTypeName" name="gameTypeName" type="text"/></td>
-	<td width=20%><span id="gameTypeNameMessage" style="color:red"></span></td>
-</tr>
-<tr>
-	<td align="right">游戏类型介绍：</td>
-	<td><input id="gameTypeIntroduce" name="gameTypeIntroduce" type="text"/></td>
-	<td></td>
-</tr>
-<tr>
-	<td align="right"><input type="button" onclick="doAddGameType()" value="提交"/></td>
-	<td><input type="button" onclick="cancelAddGameType()" value="取消"/></td>
-	<td></td>
-</tr>
-</table>
-
-<table width=100% id="updateManager" style="display:none">
-<tr>
-	<td width=50% align="right">管理员：</td>
-	<td width=10%><input id="updateManagerResult" name="updateManagerResult" type="text"/></td>
-	<td width=40%><span id="updateManagerMessage">只能填写用户数字id，多个管理员之间用“,”分隔，用户ID可以在用户主页查看</span></td>
-</tr>
-<tr>
-	<td align="right"><input type="button" onclick="doUpdateManager()" value="提交" id="submitUpdate"/></td>
-	<td><input type="button" onclick="cancelUpdateManager()" value="取消"/></td>
-	<td><input id="updateManagerId" style="display:none"/></td>
-</tr>
-</table>
+	<table width=100% id="updateManager" style="display:none">
+	<tr>
+		<td class="text-label" width=50% align="right">管理员：</td>
+		<td width=10%><input id="updateManagerResult" name="updateManagerResult" type="text"/></td>
+		<td width=40%><span class="text-label" id="updateManagerMessage">只能填写用户数字id，多个管理员之间用“,”分隔，用户ID可以在用户主页查看</span></td>
+	</tr>
+	<tr>
+		<td align="right"><input type="button" onclick="doUpdateManager()" value="提交" id="submitUpdate"/></td>
+		<td><input type="button" onclick="cancelUpdateManager()" value="取消"/></td>
+		<td><input id="updateManagerId" style="display:none"/></td>
+	</tr>
+	</table>
+</div>
 	
 	<script type="text/javascript">
 	if(isManager == 1) $("#addGameType").show();
@@ -92,13 +95,13 @@
 	
 	function createTable(data){
 		if(data == null || data.length <= 0){
-			$("#table").append("<tr><td colspan=" + tableLine + "><center>该板块无内容</center></td></tr>");
+			$("#table").append("<tr><td class='text-label' colspan=" + tableLine + "><center>该板块无内容</center></td></tr>");
 		}else{
 			for(var i = 0; i < data.length; i++){
 				var managers = "";
 				if(data[i].managers != null && data[i].managers.length > 0){
 					   for(var j = 0; j < data[i].managers.length; j++){
-						   managers = managers + "<a href=javascript:void() onclick=showUser("+
+						   managers = managers + "<a class='a-label' href=javascript:void() onclick=showUser("+
 								   data[i].managers[j].id +")>" + data[i].managers[j].username + 
 								   "</a> , ";
 					   }
@@ -110,16 +113,16 @@
 				   
 				   var operation = "";
 				   if(isManager == 1){
-					   operation = "<a href=javascript:void(0) onclick=deleteGameType(" + data[i].id + ")>删除</a>" +
-					   			" <a href=javascript:void(0) onclick=updateManager(" + data[i].id + ")>更新管理员</a>";
+					   operation = "<a class='a-label' href=javascript:void(0) onclick=deleteGameType(" + data[i].id + ")>删除</a>" +
+					   			" <a class='a-label' href=javascript:void(0) onclick=updateManager(" + data[i].id + ")>更新管理员</a>";
 				   }
 				   
-				$("#table").append("<tr><td><a href=javascript:void() onclick=clickGameType("+data[i].id+")>"+data[i].typeName+"</a></td>"
-						+ "<td>" + data[i].introduce + "</td>"
-						+ "<td>" + data[i].createTimeString + "</td>"
+				$("#table").append("<tr><td><a class='a-label' href=javascript:void() onclick=clickGameType("+data[i].id+")>"+data[i].typeName+"</a></td>"
+						+ "<td class='text-label'>" + data[i].introduce + "</td>"
+						+ "<td class='text-label'>" + data[i].createTimeString + "</td>"
 						+ "<td>" + managers + "</td>"
-						+ "<td>" + operation + "</td>"
-						+ "</tr><tr><td colspan=" + tableLine + "><hr/></td></tr>");
+						+ "<td>" + operation + "</td></tr>");
+						//+ "</tr><tr><td colspan=" + tableLine + "><hr/></td></tr>");
 			}
 		}
 	}

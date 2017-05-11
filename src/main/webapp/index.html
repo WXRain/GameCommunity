@@ -36,13 +36,13 @@
 			        for(var i = 0; i < data.length; i++){
 			            var picturePath = "";
 			            if(data[i].picturePath == null || data[i].picturePath.length <= 0){
-			                picturePath = "./img/game/gameName/version/default.png";
+			                picturePath = "/img/game/gameName/version/default.png";
 						}else{
 			                picturePath = data[i].picturePath;
 						}
 			            $("#showGames").append('<div class="col-sm-6 col-md-3 mt-4 every-game">'+
                            '<div class="thumbnail">' +
-                            '<a href="#" class="thumbnail" onclick="jumpToGame(' + data[i].id + ')"><img src="' + picturePath + '" alt="gameImage"></a>' +
+                            '<a href="#" class="thumbnail" onclick="jumpToGame(' + data[i].id + ')"><img src=".' + picturePath + '" alt="gameImage"></a>' +
                             '<div class="caption">'+
                             '<h3 class="main-title text-label"><a class="a-label" href="#" onclick="jumpToGame(' + data[i].id +')">' + data[i].gameName + '</a></h3>'+
                         	'<p class="text-label">' + data[i].introduce + '</p>'+

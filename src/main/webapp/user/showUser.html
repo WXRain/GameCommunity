@@ -1,29 +1,33 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>User page</title>
-<script type="text/javascript" src="../script/jquery.min.js"></script>
-<script type="text/javascript" src="../script/jquerySession.js"></script>
-<script type="text/javascript" src="../script/getRootPath.js"></script>
-<script type="text/javascript" src="../script/getParam.js"></script>
-<script type="text/javascript" src="../script/utils.js"></script>
-<script type="text/javascript">
-	var path = getRootPath(); 
-	var userId = getParam("userId");
-	if(userId == null || userId.length == 0){
-		$.session.set("errorMessage", "用户参数错误");
-		 window.location.href= path + "/error.html";
-	}
-</script>
+	<meta charset="UTF-8">
+	<title>User page</title>
+	<link rel="stylesheet" href="../css/bootstrap.min.css">
+	<link rel="stylesheet" href="../css/showUser.css">
+	<script type="text/javascript" src="../script/vue.js"></script>
+	<script type="text/javascript" src="../script/jquery.min.js"></script>
+	<script type="text/javascript" src="../script/tether.min.js"></script>
+	<script type="text/javascript" src="../script/bootstrap.min.js"></script>
+	<script type="text/javascript" src="../script/jquerySession.js"></script>
+	<script type="text/javascript" src="../script/getRootPath.js"></script>
+	<script type="text/javascript" src="../script/getParam.js"></script>
+	<script type="text/javascript" src="../script/utils.js"></script>
+	<script type="text/javascript">
+		var path = getRootPath();
+		var userId = getParam("userId");
+		if(userId == null || userId.length == 0){
+			$.session.set("errorMessage", "用户参数错误");
+			 window.location.href= path + "/error.html";
+		}
+	</script>
 </head>
 <body>
 <div><iframe align="center" width="100%" height="100" src="../top.html" frameborder="no" border="0" marginwidth="0" marginheight="0" scrolling="no"></iframe></div>
-<br/>
 	<table id="table" width=100%>
 	<tr>
 		<td id="username" width=25%></td>
-		<td id="head" width=25%></td>
+		<td width=25%><img id="head" class="img-rounded user-head"></td>
 		<td id="introduce" width=25%></td>
 		<td id="registerTime" width=25%></td>
 	</tr>
@@ -64,7 +68,8 @@
 			}
 			
 			$("#username").text("用户名：" + data.username);
-			$("#head").text("头像：" + data.head);
+			//$("#head").text("头像：" + data.head);
+            $("#head").attr("src" , ".." + data.head);
 			$("#introduce").text("介绍：" + data.introduce);
 			$("#registerTime").text("注册时间：" + data.registerTimeString);
 			
