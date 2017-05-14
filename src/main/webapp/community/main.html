@@ -96,7 +96,7 @@ $(function(){
 
 function createTable(data){
 	if(data == null || data.length <= 0){
-		   $("#table").append("<tr><td colspan=" + tableLine + "><center>该板块无内容</center></td></tr>");
+		   $("#table").append("<tr><td class='text-label' colspan=" + tableLine + "><center>该板块无内容</center></td></tr>");
 	}else{
 		for(var i = 0; i < data.length; i++){
 			var managers = "";

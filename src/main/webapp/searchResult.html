@@ -3,11 +3,16 @@
 <head>
 <meta charset="UTF-8">
 <title>游戏帖子</title>
-<script type="text/javascript" src="./script/jquery.min.js"></script>
-<script type="text/javascript" src="./script/jquerySession.js"></script>
-<script type="text/javascript" src="./script/getRootPath.js"></script>
-<script type="text/javascript" src="./script/getParam.js"></script>
-<script type="text/javascript" src="./script/utils.js"></script>
+	<link rel="stylesheet" href="./css/bootstrap.min.css">
+	<link rel="stylesheet" href="./css/search-result.css">
+	<script type="text/javascript" src="./script/vue.js"></script>
+	<script type="text/javascript" src="./script/jquery.min.js"></script>
+	<script type="text/javascript" src="./script/tether.min.js"></script>
+	<script type="text/javascript" src="./script/bootstrap.min.js"></script>
+	<script type="text/javascript" src="./script/jquerySession.js"></script>
+	<script type="text/javascript" src="./script/getRootPath.js"></script>
+	<script type="text/javascript" src="./script/getParam.js"></script>
+	<script type="text/javascript" src="./script/utils.js"></script>
 
 <script type="text/javascript">
 	var path = getRootPath(); 
@@ -97,7 +102,7 @@
    
    function createGameTable(data){
 	   if(data == null || data.length <= 0){
-		   $("#table").append("<tr><td colspan='4'><center><h3>该板块无内容</h3></center></td></tr>");
+		   $("#table").append("<tr><td class='text-label' colspan='4'><center><h3>该板块无内容</h3></center></td></tr>");
 		}else{
 			for(var i = 0; i < data.length; i++){
 				$("#table").append("<tr><td><a href=javascript:void() onclick=showGame(" + data[i].id + ")>" + 
@@ -112,7 +117,7 @@
    
    function createCommunityTable(data){
 	   if(data == null || data.length <= 0){
-		   $("#table").append("<tr><td colspan='4'><center><h3>该板块无内容</h3></center></td></tr>");
+		   $("#table").append("<tr><td class='text-label' colspan='4'><center><h3>该板块无内容</h3></center></td></tr>");
 	   }else{
 		   for(var i = 0; i < data.length; i++){
 			   $("#table").append(

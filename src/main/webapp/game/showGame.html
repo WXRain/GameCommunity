@@ -1,90 +1,93 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>showGame</title>
-<script type="text/javascript" src="../script/jquery.min.js"></script>
-<script type="text/javascript" src="../script/jquerySession.js"></script>
-<script type="text/javascript" src="../script/getRootPath.js"></script>
-<script type="text/javascript" src="../script/getParam.js"></script>
-<script type="text/javascript">
-	var path = getRootPath(); 
-	var gameId = getParam("gameId");
-	if(gameId == null || gameId.length == 0){
-		$.session.set("errorMessage", "参数错误");
-		window.location.href = path + "/error.html";
-	}
-	var userId = $.session.get("userId");
-	if(userId == null || gameId.length == 0){
-// 		$.session.set("errorMessage", "登录状态错误！");
-// 		window.location.href = path + "/error.html";
-		userId = -1;
-	}
-	
-	var isManager = $.session.get("isManager");
-</script>
+	<meta charset="UTF-8">
+	<title>showGame</title>
+	<link rel="stylesheet" href="../css/bootstrap.min.css">
+	<link rel="stylesheet" href="../css/show-game.css">
+	<script type="text/javascript" src="../script/vue.js"></script>
+	<script type="text/javascript" src="../script/jquery.min.js"></script>
+	<script type="text/javascript" src="../script/tether.min.js"></script>
+	<script type="text/javascript" src="../script/bootstrap.min.js"></script>
+	<script type="text/javascript" src="../script/jquerySession.js"></script>
+	<script type="text/javascript" src="../script/getRootPath.js"></script>
+	<script type="text/javascript" src="../script/getParam.js"></script>
+	<script type="text/javascript" src="../script/utils.js"></script>
+	<script type="text/javascript">
+		var path = getRootPath();
+		var gameId = getParam("gameId");
+		if(gameId == null || gameId.length == 0){
+			$.session.set("errorMessage", "参数错误");
+			window.location.href = path + "/error.html";
+		}
+		var userId = $.session.get("userId");
+		if(userId == null || gameId.length == 0){
+	// 		$.session.set("errorMessage", "登录状态错误！");
+	// 		window.location.href = path + "/error.html";
+			userId = -1;
+		}
+
+		var isManager = $.session.get("isManager");
+	</script>
 </head>
 <body>
     <div><iframe align="center" width="100%" height="100" src="../top.html" frameborder="no" border="0" marginwidth="0" marginheight="0" scrolling="no"></iframe></div>
-    <span id="index"><a href=javascript:void(0) onclick=gameIndex()>xx游戏</a>&nbsp;&nbsp;&nbsp;></span>
-	<br/>
-	<span><center><h2 id="message"></h2></center></span>
-	<table width=100% id="table">
+    <div class="my-container">
+		<span id="index"><a class="a-label" href=javascript:void(0) onclick=gameIndex()>xx游戏</a>&nbsp;&nbsp;&nbsp;<span class="text-label"> > </span></span>
+		<br/>
+		<span><center><h2 id="message"></h2></center></span>
+		<table class="table table-hover mt-5" width=100% id="table">
+			<tr>
+				<td colspan='2'><center><a class="a-label" href=javascript:void(0) onclick=addBus() id="addBus">加入购物车</a></center></td>
+				<td colspan='3'><center><a class="a-label" href=javascript:void(0) onclick=jumpToCommunity() id="community">论坛</a></center></td>
+			</tr>
+
+			<tr>
+				<td class="text-label" id="gameName" width=20%></td>
+				<td class="text-label" id="buildTime" width=20%></td>
+				<td class="text-label" id="introduce" width=20%></td>
+				<td class="text-label" id="price" width=20%></td>
+				<td class="text-label" id="size" width=20%></td>
+			</tr>
+
+			<tr>
+				<td class="text-label" id="cpu"></td>
+				<td class="text-label" id="disk"></td>
+				<td class="text-label" id="display"></td>
+				<td class="text-label" id="memoria"></td>
+				<td class="text-label" id="network"></td>
+			</tr>
+
+			<tr>
+				<td class="text-label" id="voice"></td>
+				<td class="text-label" id="system"></td>
+				<td class="text-label" id="note"></td>
+				<td class="text-label" id="version"></td>
+				<td class="text-label" id="cutOff"></td>
+			</tr>
+
+		</table>
+		<table id="modifyTable" style="display:none" width=100%>
 		<tr>
-			<td colspan='2'><center><a href=javascript:void(0) onclick=addBus() id="addBus">加入购物车</a></center></td>
-			<td colspan='2'><center><a href=javascript:void(0) onclick=jumpToCommunity() id="community">论坛</a></center></td>
+			<td class="text-label" align="right" width=50%><span id="modifyName"></span></td>
+			<td width=50%><input class="form-control modify-input" id="modifyResult" name="modifyResult"/></td>
 		</tr>
-		<tr><td colspan='5'><hr/></td></tr>
 		<tr>
-			<td id="gameName" width=20%></td>
-			<td id="buildTime" width=20%></td>
-			<td id="introduce" width=20%></td>
-			<td id="price" width=20%></td>
-			<td id="size" width=20%></td>
+			<td align="right"><input class="btn btn-default" type="button" value="提交" onclick="modify()" id="submitModify"/></td>
+			<td><input class="btn btn-default" type="button" value="取消" onclick="cancelModify()"/></td>
 		</tr>
-		
-		<tr><td colspan='5'><hr/></td></tr>
+		</table>
+		<br/><br/>
+		<center><h3 class="text-label">精选评论</h3></center>
+		<table class="table table-hover" width=100% id="comments">
 		<tr>
-			<td id="cpu"></td>
-			<td id="disk"></td>
-			<td id="display"></td>
-			<td id="memoria"></td>
-			<td id="network"></td>
+			<td class="text-label" width=25%>发布者</td>
+			<td class="text-label" width=25%>发布时间</td>
+			<td class="text-label" width=25%>发布名</td>
+			<td class="text-label" width=25%>点击量</td>
 		</tr>
-		<tr><td colspan='5'><hr/></td></tr>
-		
-		<tr>
-			<td id="voice"></td>
-			<td id="system"></td>
-			<td id="note"></td>
-			<td id="version"></td>
-			<td id="cutOff"></td>
-		</tr>
-		<tr><td colspan='5'><hr/></td></tr>
-		
-	</table>
-	<table id="modifyTable" style="display:none" width=100%>
-	<tr>
-		<td align="right" width=50%><span id="modifyName"></span></td>
-		<td width=50%><input id="modifyResult" name="modifyResult"/></td>
-	</tr>
-	<tr>
-		<td align="right"><input type="button" value="提交" onclick="modify()" id="submitModify"/></td>
-		<td><input type="button" value="取消" onclick="cancelModify()"/></td>
-	</tr>
-	</table>
-	<br/><br/>
-	<center><h3>精选评论</h3></center>
-	<hr/>
-	<table width=100% id="comments">
-	<tr>
-		<td width=25%>发布者</td>
-		<td width=25%>发布时间</td>
-		<td width=25%>发布名</td>
-		<td width=25%>点击量</td>
-	</tr>
-	<tr><td colspan='4'><hr/></td></tr>
-	</table>
+		</table>
+	</div>
 
 <script type="text/javascript">
 	var gameType;
@@ -201,7 +204,7 @@ $.ajax({
 			$("#gameName").text("游戏名称：" + data.gameName);
 			$("#buildTime").text("游戏出版日期：" + data.buildDate);
 			$("#introduce").text("游戏介绍：" + data.introduce);
-			$("#price").text("游戏价格：¥" + data.price); $("#price").append(" <a href=javascript:void(0) onclick=modifyPrice() class='modify' style='display:none'>修改</a>");
+			$("#price").text("游戏价格：¥" + data.price); $("#price").append(" <a class='a-label modify' href=javascript:void(0) onclick=modifyPrice() style='display:none'>修改</a>");
 			$("#size").text("游戏大小：" + data.size);
 			
 			$("#cpu").text("处理器要求：" + data.systemSupport.cpu);
@@ -218,7 +221,7 @@ $.ajax({
 			$("#system").text("系统要求：" + data.systemSupport.system);
 			$("#note").text("注意事项：" + data.systemSupport.note);
 			$("#version").text("版本号：" + data.version);
-			$("#cutOff").text("折扣：" + data.cutOff); $("#cutOff").append(" <a href=javascript:void(0) onclick=modifyCutOff() class='modify' style='display:none'>修改</a>");
+			$("#cutOff").text("折扣：" + data.cutOff); $("#cutOff").append(" <a class='a-label modify' href=javascript:void(0) onclick=modifyCutOff() style='display:none'>修改</a>");
 			
 			
 			
@@ -228,11 +231,10 @@ $.ajax({
 				var comments = data.comments;
 				for(var i = 0; i < comments.length; i++){
 					$("#comments").append("<tr>"+
-							"<td><a href=" + path + "/user/showUser.html?userId=" + comments[i].userId + ">" + comments[i].username + "</a></td>"+
-							"<td>" + comments[i].createTime + "</td>" + 
-							"<td><a href=" + path + "/community/topic.html?topicId=" + comments[i].id + ">" + comments[i].topicName + "</a></td>" + 
-							"<td>" + comments[i].clickNum + "</td>" +
-							"</tr><td colspan='4'><hr/></td></tr>");
+							"<td><a class='a-label' href=" + path + "/user/showUser.html?userId=" + comments[i].userId + ">" + comments[i].username + "</a></td>"+
+							"<td class='text-label'>" + comments[i].createTime + "</td>" +
+							"<td><a class='a-label' href=" + path + "/community/topic.html?topicId=" + comments[i].id + ">" + comments[i].topicName + "</a></td>" +
+							"<td class='text-label'>" + comments[i].clickNum + "</td></tr>");
 				}
 			}
 			
@@ -254,8 +256,8 @@ function buildIndex(gameType, nowIndex){
 			if(result.state == 0){
 				console.log(result);
 				lastIndex = result.data.typeName;
-				$("#index").append("&nbsp;&nbsp;&nbsp;<a href=javascript:void(0) onclick=gameTypeIndex(" + gameType + ")>" + lastIndex + "</a>");
-				$("#index").append("&nbsp;&nbsp;&nbsp;>&nbsp;&nbsp;&nbsp;<a href=javascript:void(0) onclick=nowIndex()>" + nowIndex + "</a>");
+				$("#index").append("<span class='text-label'>&nbsp;&nbsp;&nbsp;</span><a class='a-label' href=javascript:void(0) onclick=gameTypeIndex(" + gameType + ")>" + lastIndex + "</a>");
+				$("#index").append("<span class='text-label'>&nbsp;&nbsp;&nbsp;>&nbsp;&nbsp;&nbsp;</span><a class='a-label' href=javascript:void(0) onclick=nowIndex()>" + nowIndex + "</a>");
 				
 				for(var i = 0; i < result.data.managers.length; i++){
 					if(result.data.managers[i].id == userId){

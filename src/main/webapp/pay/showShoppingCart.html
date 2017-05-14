@@ -3,11 +3,16 @@
 <head>
 <meta charset="UTF-8">
 <title>购物车</title>
-<script type="text/javascript" src="../script/jquery.min.js"></script>
-<script type="text/javascript" src="../script/jquerySession.js"></script>
-<script type="text/javascript" src="../script/getRootPath.js"></script>
-<script type="text/javascript" src="../script/getParam.js"></script>
-<script type="text/javascript" src="../script/utils.js"></script>
+	<link rel="stylesheet" href="../css/bootstrap.min.css">
+	<link rel="stylesheet" href="../css/show-shopping-cart.css">
+	<script type="text/javascript" src="../script/vue.js"></script>
+	<script type="text/javascript" src="../script/jquery.min.js"></script>
+	<script type="text/javascript" src="../script/tether.min.js"></script>
+	<script type="text/javascript" src="../script/bootstrap.min.js"></script>
+	<script type="text/javascript" src="../script/jquerySession.js"></script>
+	<script type="text/javascript" src="../script/getRootPath.js"></script>
+	<script type="text/javascript" src="../script/getParam.js"></script>
+	<script type="text/javascript" src="../script/utils.js"></script>
 
 <script type="text/javascript">
 	var path = getRootPath(); 
@@ -15,18 +20,17 @@
 </head>
 <body>
 <div><iframe align="center" width="100%" height="100" src="../top.html" frameborder="no" border="0" marginwidth="0" marginheight="0" scrolling="no"></iframe></div>
-
-<br/>
-	<table id="table" width=100%>
+<div class="my-container">
+	<table class="table table-hover" id="table" width=100%>
 	<tr>
-		<td id="gameName">游戏名</td>
-		<td id="price">价格</td>
-		<td id="cutOff">折扣</td>
-		<td id="finalPrice">最终价格</td>
-		<td id="operation">操作</td>
+		<td class="text-label" id="gameName">游戏名</td>
+		<td class="text-label" id="price">价格</td>
+		<td class="text-label" id="cutOff">折扣</td>
+		<td class="text-label" id="finalPrice">最终价格</td>
+		<td class="text-label" id="operation">操作</td>
 	</tr>
-	<tr><td colspan="5"><hr/></td></tr>
 	</table>
+</div>
 	
 	<script type="text/javascript">
 	var finalTotalPrice = 0;
@@ -59,20 +63,20 @@
 			return;
 		}
 		for(var i = 0; i < data.length; i++){
-			$("#table").append("<tr><td>" + data[i].gameName + "</td>" +
-					"<td>" + data[i].price + "</td>" +
-					"<td>" + data[i].cutOff + "</td>" + 
-					"<td>" + (data[i].price * data[i].cutOff) + "</td>" + 
-					"<td><a href=javascript:void() onclick=removeFromShoppingCart("+data[i].id +")>删除</a>" +
-					"</tr><tr><td colspan='5'><hr/></td></tr>");
+			$("#table").append("<tr><td class='text-label'>" + data[i].gameName + "</td>" +
+					"<td class='text-label'>" + data[i].price + "</td>" +
+					"<td class='text-label'>" + data[i].cutOff + "</td>" +
+					"<td class='text-label'>" + (data[i].price * data[i].cutOff) + "</td>" +
+					"<td><a class='a-label' href=javascript:void() onclick=removeFromShoppingCart("+data[i].id +")>删除</a>" +
+					"</tr>");
 			finalTotalPrice = finalTotalPrice + (data[i].price * data[i].cutOff);
 			totalPrice = totalPrice + data[i].price;
 			cutOffPrice = cutOffPrice + data[i].price - (data[i].price * data[i].cutOff);
 			shoppingCart = shoppingCart + data[i].id + ",";
 		}
 		console.log(shoppingCart);
-		$("#table").append("<tr><td>合计</td><td>" + totalPrice.toFixed(2) + "</td><td>" + cutOffPrice.toFixed(2) + "</td><td>"+finalTotalPrice.toFixed(2) + 
-				"</td><td><a href=javascript:void() onclick=pay(" + finalTotalPrice.toFixed(2) + ")>付款</a></td>");
+		$("#table").append("<tr><td class='text-label'>合计</td><td class='text-label'>" + totalPrice.toFixed(2) + "</td><td class='text-label'>" + cutOffPrice.toFixed(2) + "</td><td class='text-label'>"+finalTotalPrice.toFixed(2) +
+				"</td><td><a class='a-label' href=javascript:void() onclick=pay(" + finalTotalPrice.toFixed(2) + ")>付款</a></td>");
 		
 	}
 	

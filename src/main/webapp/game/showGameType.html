@@ -3,12 +3,16 @@
 <head>
 <meta charset="UTF-8">
 <title>游戏类型</title>
-<script type="text/javascript" src="../script/jquery.min.js"></script>
-<script type="text/javascript" src="../script/jquerySession.js"></script>
-<script type="text/javascript" src="../script/getRootPath.js"></script>
-<script type="text/javascript" src="../script/getParam.js"></script>
-<script type="text/javascript" src="../script/utils.js"></script>
-
+	<link rel="stylesheet" href="../css/bootstrap.min.css">
+	<link rel="stylesheet" href="../css/show-game-type.css">
+	<script type="text/javascript" src="../script/vue.js"></script>
+	<script type="text/javascript" src="../script/jquery.min.js"></script>
+	<script type="text/javascript" src="../script/tether.min.js"></script>
+	<script type="text/javascript" src="../script/bootstrap.min.js"></script>
+	<script type="text/javascript" src="../script/jquerySession.js"></script>
+	<script type="text/javascript" src="../script/getRootPath.js"></script>
+	<script type="text/javascript" src="../script/getParam.js"></script>
+	<script type="text/javascript" src="../script/utils.js"></script>
 <script type="text/javascript">
 	var path = getRootPath(); 
 	var gameType = getParam("gameTypeId");
@@ -22,30 +26,27 @@
 	var isManager = $.session.get("isManager");
 </script>
 </head>
-<body>
+<body onload="showGameType()">
 <div><iframe align="center" width="100%" height="100" src="../top.html" frameborder="no" border="0" marginwidth="0" marginheight="0" scrolling="no"></iframe></div>
-
-<br/>
-<span id="index"><a href=javascript:void(0) onclick="gameIndex()">xx游戏</a>&nbsp;&nbsp;&nbsp;></span>
+<div class="my-container">
+	<span id="index"><a class="a-label" href=javascript:void(0) onclick="gameIndex()">xx游戏</a>&nbsp;&nbsp;&nbsp;<span class="text-label"> > </span></span>
 <!-- 	<center><h2 id="title"></h2></center><br/><br/> -->
-	<center><h2 id="gameTypeName"></h2>
-			<a id="uploadGame" href="javascript:void(0)" onclick=uploadGame()>上传游戏</a></center>
+	<center><h2 class="text-label mt-5" id="gameTypeName"></h2>
+			<a class="upload-game a-label" id="uploadGame" href="javascript:void(0)" onclick=uploadGame() style="display:none">上传游戏</a></center>
 	<br/>
-	<div><center><h3 id="introduce"></h3></center></div>
-	<div><center><a href=javascript:void(0) onclick=jumpToCommunity()>点此查看论坛</a></center></div>
+	<div><center><h3 class="text-label" id="introduce"></h3></center></div>
+	<div><center><a class="a-label" href=javascript:void(0) onclick=jumpToCommunity()>点此查看论坛</a></center></div>
 	<br/><br/>
-	<table width="100%" id="table">
+	<table class="table table-hover" width="100%" id="table">
 	<tr>
-	    <td width="20%">主题</td>
-	    <td width="20%"><center>介绍</center></td>
-	    <td width="20%">发布时间</td>
-	    <td width=20%>价格</td>
-	    <td width=20%>操作</td>
-	</tr>
-	<tr>
-	    <td colspan="5"><hr/></td>
+	    <td class="text-label" width="20%">主题</td>
+	    <td class="text-label" width="20%"><center>介绍</center></td>
+	    <td class="text-label" width="20%">发布时间</td>
+	    <td class="text-label" width=20%>价格</td>
+	    <td class="text-label" width=20%>操作</td>
 	</tr>
 	</table>
+</div>
 	
 	
 	
@@ -74,53 +75,57 @@
 		
 		
 	});
-	
-	$.ajax({
-		url: "showGameType.do",
-		method: "POST",
-		dataType: "JSON",
-		data: {"gameTypeId" : gameType},
-		success: function(result){
-			if(result.state == 0){
-				console.log(result);
-				
-				if(result.data.managers != null && result.data.managers.length > 0){
-					for(var i = 0; i < result.data.managers.length; i++){
-						
-						if(result.data.managers[i].id == $.session.get("userId")){
-							$(".delete").show();
-							break;
+	function showGameType(){
+		$.ajax({
+			url: "showGameType.do",
+			method: "POST",
+			dataType: "JSON",
+			data: {"gameTypeId" : gameType},
+			success: function(result){
+				if(result.state == 0){
+					console.log(result);
+					
+					if(result.data.managers != null && result.data.managers.length > 0){
+						for(var i = 0; i < result.data.managers.length; i++){
+							
+							if(result.data.managers[i].id == $.session.get("userId")){
+								$(".delete").show();
+								$(".upload-game").show();
+								break;
+							}
 						}
 					}
+					
+					$("#gameTypeName").text(result.data.typeName);
+					$("#introduce").text("介绍：" + result.data.introduce);
+					nowIndex = result.data.typeName;
+					$("#index").append("&nbsp;&nbsp;&nbsp;<a class='a-label' href=javascript:void(0) onclick=gameTypeIndex()>" + nowIndex + "</a>");
+				}else{
+					alert(result.message);
 				}
-				
-				$("#gameTypeName").text(result.data.typeName);
-				$("#introduce").text("介绍：" + result.data.introduce);
-				nowIndex = result.data.typeName;
-				$("#index").append("&nbsp;&nbsp;&nbsp;<a href=javascript:void(0) onclick=gameTypeIndex()>" + nowIndex + "</a>");
-			}else{
-				alert(result.message);
 			}
-		}
-	});
+		});
+	}
+
 	
 	function createTable(data){
 		if(data == null || data.length <= 0){
-			$("#table").append("<tr><td colspan=" + tableLine + "><center>该板块无内容</center></td></tr>");
+			$("#table").append("<tr><td class='text-label' colspan=" + tableLine + "><center>该板块无内容</center></td></tr>");
 		}else{
 			for(var i = 0; i < data.length; i++){
-				$("#table").append("<tr><td><a href=javascript:void() onclick=showGame(" + data[i].id + ")>" + 
+				$("#table").append("<tr><td><a class='a-label' href=javascript:void() onclick=showGame(" + data[i].id + ")>" +
 						data[i].gameName + "</td>" +
-						"<td><center>" + data[i].introduce + "</center></td>" + 
-						"<td>" + data[i].buildDate + "</td>" + 
-						"<td>" + (data[i].price * data[i].cutOff) + "</td>" +
-						"<td><a href=javascript:void(0) class='delete' style='display:none' onclick=deleteGame(" + data[i].id + ")>删除</a>" + 
-						"</tr><tr><td colspan=" + tableLine + "><hr/></td></tr>");
+						"<td class='text-label'><center>" + data[i].introduce + "</center></td>" +
+						"<td class='text-label'>" + data[i].buildDate + "</td>" +
+						"<td class='text-label'>" + (data[i].price * data[i].cutOff) + "</td>" +
+						"<td><a class='a-label delete' href=javascript:void(0) style='display:none' onclick=deleteGame(" + data[i].id + ")>删除</a>");
 			}
 		}
 		console.log(isManager);
-		if(isManager == 1) $(".delete").show();
-		else $(".delete").hide();
+		if(isManager == 1) {
+			$(".delete").show();
+			$(".upload-game").show();
+		}
 	}
 	
 	function deleteGame(gameId){

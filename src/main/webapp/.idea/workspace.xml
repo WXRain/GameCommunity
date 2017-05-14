@@ -15,28 +15,111 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="main.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/game/main.html">
+      <file leaf-file-name="section.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/community/section.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="431">
-              <caret line="217" column="35" lean-forward="true" selection-start-line="217" selection-start-column="35" selection-end-line="217" selection-end-column="35" />
+            <state relative-caret-position="2340">
+              <caret line="156" column="59" lean-forward="true" selection-start-line="156" selection-start-column="59" selection-end-line="156" selection-end-column="59" />
+              <folding>
+                <element signature="e#1595#1601#0" expanded="true" />
+                <element signature="e#1665#1671#0" expanded="true" />
+                <element signature="e#1677#1683#0" expanded="true" />
+                <element signature="e#1779#1785#0" expanded="true" />
+                <element signature="e#1785#1791#0" expanded="true" />
+                <marker date="1494757601000" expanded="true" signature="4940:6713" ph="{...}" />
+                <marker date="1494757601000" expanded="true" signature="4982:5104" ph="{...}" />
+                <marker date="1494757601000" expanded="true" signature="5108:6694" ph="{...}" />
+                <marker date="1494757601000" expanded="true" signature="5151:6568" ph="{...}" />
+                <marker date="1494757601000" expanded="true" signature="5279:5420" ph="{...}" />
+                <marker date="1494757601000" expanded="true" signature="5355:5367" ph="..." />
+                <marker date="1494757601000" expanded="true" signature="5424:5570" ph="{...}" />
+                <marker date="1494757601000" expanded="true" signature="5500:5512" ph="..." />
+                <marker date="1494757601000" expanded="true" signature="5599:5743" ph="{...}" />
+                <marker date="1494757601000" expanded="true" signature="5677:5689" ph="..." />
+                <marker date="1494757601000" expanded="true" signature="5747:5924" ph="{...}" />
+                <marker date="1494757601000" expanded="true" signature="5825:5837" ph="..." />
+                <marker date="1494757601000" expanded="true" signature="6436:6448" ph="..." />
+                <marker date="1494757601000" expanded="true" signature="6598:6688" ph="{...}" />
+                <marker date="1494757601000" expanded="true" signature="6750:7206" ph="{...}" />
+                <marker date="1494757601000" expanded="true" signature="6763:7199" ph="{&quot;url&quot;: &quot;deleteTopic.do&quot;...}" />
+                <marker date="1494757601000" expanded="true" signature="6844:6876" ph="{&quot;topicId&quot;: topicId...}" />
+                <marker date="1494757601000" expanded="true" signature="6907:7193" ph="{...}" />
+                <marker date="1494757601000" expanded="true" signature="6936:7066" ph="{...}" />
+                <marker date="1494757601000" expanded="true" signature="6960:6994" ph="{...}" />
+                <marker date="1494757601000" expanded="true" signature="6998:7032" ph="{...}" />
+                <marker date="1494757601000" expanded="true" signature="7070:7186" ph="{...}" />
+                <marker date="1494757601000" expanded="true" signature="7238:7689" ph="{...}" />
+                <marker date="1494757601000" expanded="true" signature="7251:7682" ph="{&quot;url&quot;: &quot;addTop.do&quot;...}" />
+                <marker date="1494757601000" expanded="true" signature="7327:7359" ph="{&quot;topicId&quot;: topicId...}" />
+                <marker date="1494757601000" expanded="true" signature="7390:7676" ph="{...}" />
+                <marker date="1494757601000" expanded="true" signature="7419:7549" ph="{...}" />
+                <marker date="1494757601000" expanded="true" signature="7443:7477" ph="{...}" />
+                <marker date="1494757601000" expanded="true" signature="7481:7515" ph="{...}" />
+                <marker date="1494757601000" expanded="true" signature="7553:7669" ph="{...}" />
+                <marker date="1494757601000" expanded="true" signature="7724:8182" ph="{...}" />
+                <marker date="1494757601000" expanded="true" signature="7737:8175" ph="{&quot;url&quot;: &quot;cancelTop.do&quot;...}" />
+                <marker date="1494757601000" expanded="true" signature="7816:7848" ph="{&quot;topicId&quot;: topicId...}" />
+                <marker date="1494757601000" expanded="true" signature="7879:8169" ph="{...}" />
+                <marker date="1494757601000" expanded="true" signature="7908:8042" ph="{...}" />
+                <marker date="1494757601000" expanded="true" signature="7932:7968" ph="{...}" />
+                <marker date="1494757601000" expanded="true" signature="7972:8008" ph="{...}" />
+                <marker date="1494757601000" expanded="true" signature="8046:8162" ph="{...}" />
+                <marker date="1494757601000" expanded="true" signature="8215:8667" ph="{...}" />
+                <marker date="1494757601000" expanded="true" signature="8228:8660" ph="{&quot;url&quot;: &quot;addFine.do&quot;...}" />
+                <marker date="1494757601000" expanded="true" signature="8305:8337" ph="{&quot;topicId&quot;: topicId...}" />
+                <marker date="1494757601000" expanded="true" signature="8368:8654" ph="{...}" />
+                <marker date="1494757601000" expanded="true" signature="8397:8527" ph="{...}" />
+                <marker date="1494757601000" expanded="true" signature="8421:8455" ph="{...}" />
+                <marker date="1494757601000" expanded="true" signature="8459:8493" ph="{...}" />
+                <marker date="1494757601000" expanded="true" signature="8531:8647" ph="{...}" />
+                <marker date="1494757601000" expanded="true" signature="8703:9162" ph="{...}" />
+                <marker date="1494757601000" expanded="true" signature="8716:9155" ph="{&quot;url&quot;: &quot;cancelFine.do&quot;...}" />
+                <marker date="1494757601000" expanded="true" signature="8796:8828" ph="{&quot;topicId&quot;: topicId...}" />
+                <marker date="1494757601000" expanded="true" signature="8859:9149" ph="{...}" />
+                <marker date="1494757601000" expanded="true" signature="8888:9022" ph="{...}" />
+                <marker date="1494757601000" expanded="true" signature="8912:8948" ph="{...}" />
+                <marker date="1494757601000" expanded="true" signature="8952:8988" ph="{...}" />
+                <marker date="1494757601000" expanded="true" signature="9026:9142" ph="{...}" />
+                <marker date="1494757601000" expanded="true" signature="9198:9282" ph="{...}" />
+                <marker date="1494757601000" expanded="true" signature="9315:9379" ph="{...}" />
+                <marker date="1494757601000" expanded="true" signature="9421:9514" ph="{...}" />
+                <marker date="1494757601000" expanded="true" signature="9545:9635" ph="{...}" />
+                <marker date="1494757601000" expanded="true" signature="9670:9750" ph="{...}" />
+                <marker date="1494757601000" expanded="true" signature="9783:9891" ph="{...}" />
+                <marker date="1494757601000" expanded="true" signature="9927:10018" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="showGameType.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/game/showGameType.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="210">
+              <caret line="14" column="53" lean-forward="false" selection-start-line="14" selection-start-column="53" selection-end-line="14" selection-end-column="53" />
+              <folding>
+                <element signature="e#1475#1481#0" expanded="true" />
+                <marker date="1494757322000" expanded="true" signature="3548:3554" ph=" " />
+                <marker date="1494757322000" expanded="true" signature="3554:3560" ph=" " />
+                <marker date="1494757322000" expanded="true" signature="3560:3566" ph=" " />
+                <marker date="1494757322000" expanded="true" signature="4393:4405" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="showShoppingCart.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/pay/showShoppingCart.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="334">
+              <caret line="24" column="7" lean-forward="false" selection-start-line="24" selection-start-column="7" selection-end-line="24" selection-end-column="7" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="main.html" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/community/main.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="310">
-              <caret line="66" column="41" lean-forward="false" selection-start-line="66" selection-start-column="41" selection-end-line="66" selection-end-column="41" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="community_main.css" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/css/community_main.css">
+      <file leaf-file-name="show-shopping-cart.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/css/show-shopping-cart.css">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="405">
               <caret line="27" column="1" lean-forward="false" selection-start-line="27" selection-start-column="1" selection-end-line="27" selection-end-column="1" />
@@ -52,8 +135,12 @@
       <find>time</find>
       <find>t</find>
       <find>top</find>
-      <find>cancelupdate</find>
       <find>cancelUpdateManager</find>
+      <find>index</find>
+      <find>modifyName</find>
+      <find>cancelupdate</find>
+      <find>updateManager</find>
+      <find>hr</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -71,13 +158,29 @@
         <option value="$PROJECT_DIR$/css/register.css" />
         <option value="$PROJECT_DIR$/register.html" />
         <option value="$PROJECT_DIR$/index.html" />
-        <option value="$PROJECT_DIR$/css/game_main.css" />
-        <option value="$PROJECT_DIR$/script/utils.js" />
         <option value="$PROJECT_DIR$/user/showUser.html" />
         <option value="$PROJECT_DIR$/css/showUser.css" />
         <option value="$PROJECT_DIR$/game/main.html" />
         <option value="$PROJECT_DIR$/css/community_main.css" />
         <option value="$PROJECT_DIR$/community/main.html" />
+        <option value="$PROJECT_DIR$/community/addTopic.html" />
+        <option value="$PROJECT_DIR$/community/topic.html" />
+        <option value="$PROJECT_DIR$/game/uploadGame.html" />
+        <option value="$PROJECT_DIR$/pay/payResult.html" />
+        <option value="$PROJECT_DIR$/pay/pay.html" />
+        <option value="$PROJECT_DIR$/searchResult.html" />
+        <option value="$PROJECT_DIR$/css/show-game-type.css" />
+        <option value="$PROJECT_DIR$/css/show-game.css" />
+        <option value="$PROJECT_DIR$/game/showGame.html" />
+        <option value="$PROJECT_DIR$/css/game-type.css" />
+        <option value="$PROJECT_DIR$/community/gameType.html" />
+        <option value="$PROJECT_DIR$/css/game_main.css" />
+        <option value="$PROJECT_DIR$/css/section.css" />
+        <option value="$PROJECT_DIR$/community/section.html" />
+        <option value="$PROJECT_DIR$/game/showGameType.html" />
+        <option value="$PROJECT_DIR$/script/utils.js" />
+        <option value="$PROJECT_DIR$/css/show-shopping-cart.css" />
+        <option value="$PROJECT_DIR$/pay/showShoppingCart.html" />
       </list>
     </option>
   </component>
@@ -106,8 +209,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
       <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -145,6 +248,34 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="script" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="webapp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="webapp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pay" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="webapp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="webapp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="game" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -284,12 +415,14 @@
       <workItem from="1494467738850" duration="2918000" />
       <workItem from="1494479195913" duration="241000" />
       <workItem from="1494511860682" duration="165000" />
-      <workItem from="1494555747466" duration="824000" />
+      <workItem from="1494555747466" duration="925000" />
+      <workItem from="1494561090489" duration="741000" />
+      <workItem from="1494747409142" duration="4851000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="26031000" />
+    <option name="totallyTimeSpent" value="31724000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
@@ -298,12 +431,12 @@
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.13541667" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -324,6 +457,38 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/css/community_main.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="405">
+          <caret line="27" column="1" lean-forward="false" selection-start-line="27" selection-start-column="1" selection-end-line="27" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/game/main.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3255">
+          <caret line="217" column="35" lean-forward="true" selection-start-line="217" selection-start-column="35" selection-end-line="217" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/css/community_main.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="405">
+          <caret line="27" column="1" lean-forward="false" selection-start-line="27" selection-start-column="1" selection-end-line="27" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/community/main.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="990">
+          <caret line="66" column="41" lean-forward="false" selection-start-line="66" selection-start-column="41" selection-end-line="66" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/game/main.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -425,13 +590,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/searchResult.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/css/top.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
@@ -446,39 +604,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/register.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1350">
-          <caret line="90" column="15" lean-forward="false" selection-start-line="90" selection-start-column="15" selection-end-line="90" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/top.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="380">
-          <caret line="40" column="100" lean-forward="false" selection-start-line="40" selection-start-column="83" selection-end-line="40" selection-end-column="100" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/script/utils.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="23" column="1" lean-forward="true" selection-start-line="23" selection-start-column="1" selection-end-line="23" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/css/index.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="300">
           <caret line="20" column="12" lean-forward="true" selection-start-line="20" selection-start-column="12" selection-end-line="20" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="463">
-          <caret line="38" column="43" lean-forward="false" selection-start-line="38" selection-start-column="43" selection-end-line="38" selection-end-column="43" />
         </state>
       </provider>
     </entry>
@@ -489,6 +618,76 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/community/addTopic.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="10" column="68" lean-forward="false" selection-start-line="10" selection-start-column="68" selection-end-line="10" selection-end-column="68" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/community/topic.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="6" column="51" lean-forward="true" selection-start-line="6" selection-start-column="51" selection-end-line="6" selection-end-column="51" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/game/uploadGame.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="13" column="72" lean-forward="true" selection-start-line="13" selection-start-column="72" selection-end-line="13" selection-end-column="72" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pay/payResult.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="6" column="50" lean-forward="false" selection-start-line="6" selection-start-column="50" selection-end-line="6" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pay/pay.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="6" column="43" lean-forward="false" selection-start-line="6" selection-start-column="43" selection-end-line="6" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/searchResult.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="17" column="30" lean-forward="true" selection-start-line="17" selection-start-column="30" selection-end-line="17" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/register.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1350">
+          <caret line="90" column="15" lean-forward="false" selection-start-line="90" selection-start-column="15" selection-end-line="90" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="570">
+          <caret line="38" column="43" lean-forward="false" selection-start-line="38" selection-start-column="43" selection-end-line="38" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fileUpload.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/error.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/user/showUser.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="407">
@@ -496,15 +695,31 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/css/game_main.css">
+    <entry file="file://$PROJECT_DIR$/community/main.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="21" column="18" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="27" selection-end-column="1" />
+        <state relative-caret-position="420">
+          <caret line="93" column="7" lean-forward="true" selection-start-line="93" selection-start-column="7" selection-end-line="93" selection-end-column="7" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/css/community_main.css">
+    <entry file="file://$PROJECT_DIR$/game/main.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="264">
+          <caret line="217" column="35" lean-forward="false" selection-start-line="217" selection-start-column="35" selection-end-line="217" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/css/topic.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/css/show-game-type.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="405">
           <caret line="27" column="1" lean-forward="false" selection-start-line="27" selection-start-column="1" selection-end-line="27" selection-end-column="1" />
@@ -512,18 +727,213 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/game/main.html">
+    <entry file="file://$PROJECT_DIR$/css/show-game.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="431">
-          <caret line="217" column="35" lean-forward="true" selection-start-line="217" selection-start-column="35" selection-end-line="217" selection-end-column="35" />
+        <state relative-caret-position="465">
+          <caret line="31" column="1" lean-forward="true" selection-start-line="31" selection-start-column="1" selection-end-line="31" selection-end-column="1" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/community/main.html">
+    <entry file="file://$PROJECT_DIR$/top.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="310">
-          <caret line="66" column="41" lean-forward="false" selection-start-line="66" selection-start-column="41" selection-end-line="66" selection-end-column="41" />
+        <state relative-caret-position="464">
+          <caret line="40" column="58" lean-forward="false" selection-start-line="40" selection-start-column="46" selection-end-line="40" selection-end-column="58" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/game/showGame.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="368">
+          <caret line="38" column="44" lean-forward="false" selection-start-line="38" selection-start-column="44" selection-end-line="38" selection-end-column="44" />
+          <folding>
+            <element signature="e#1557#1563#0" expanded="true" />
+            <element signature="e#1563#1569#0" expanded="true" />
+            <element signature="e#1569#1575#0" expanded="true" />
+            <element signature="n#style#0;n#table#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <marker date="1494749613000" expanded="true" signature="6220:6232" ph="..." />
+            <marker date="1494749613000" expanded="true" signature="7090:7102" ph="..." />
+            <marker date="1494749613000" expanded="true" signature="8249:8255" ph=" " />
+            <marker date="1494749613000" expanded="true" signature="8255:8261" ph=" " />
+            <marker date="1494749613000" expanded="true" signature="8261:8267" ph=" " />
+            <marker date="1494749613000" expanded="true" signature="8431:8437" ph=" " />
+            <marker date="1494749613000" expanded="true" signature="8437:8443" ph=" " />
+            <marker date="1494749613000" expanded="true" signature="8443:8449" ph=" " />
+            <marker date="1494749613000" expanded="true" signature="8450:8456" ph=" " />
+            <marker date="1494749613000" expanded="true" signature="8456:8462" ph=" " />
+            <marker date="1494749613000" expanded="true" signature="8462:8468" ph=" " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/css/community_main.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="13" column="1" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="27" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/community/gameType.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="428">
+          <caret line="161" column="45" lean-forward="false" selection-start-line="161" selection-start-column="45" selection-end-line="161" selection-end-column="45" />
+          <folding>
+            <element signature="e#1476#1482#0" expanded="true" />
+            <element signature="e#1482#1488#0" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#td#2;n#tr#0;n#table#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#td#2;n#tr#1;n#table#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <marker date="1494757557000" expanded="true" signature="4952:4958" ph=" " />
+            <marker date="1494757557000" expanded="true" signature="4958:4964" ph=" " />
+            <marker date="1494757557000" expanded="true" signature="4964:4970" ph=" " />
+            <marker date="1494757557000" expanded="true" signature="6394:6406" ph="..." />
+            <marker date="1494757557000" expanded="true" signature="6530:6542" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/css/game-type.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="405">
+          <caret line="27" column="1" lean-forward="false" selection-start-line="27" selection-start-column="1" selection-end-line="27" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/css/section.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="450">
+          <caret line="30" column="14" lean-forward="false" selection-start-line="30" selection-start-column="14" selection-end-line="30" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/community/section.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2340">
+          <caret line="156" column="59" lean-forward="true" selection-start-line="156" selection-start-column="59" selection-end-line="156" selection-end-column="59" />
+          <folding>
+            <element signature="e#1595#1601#0" expanded="true" />
+            <element signature="e#1665#1671#0" expanded="true" />
+            <element signature="e#1677#1683#0" expanded="true" />
+            <element signature="e#1779#1785#0" expanded="true" />
+            <element signature="e#1785#1791#0" expanded="true" />
+            <marker date="1494757601000" expanded="true" signature="4940:6713" ph="{...}" />
+            <marker date="1494757601000" expanded="true" signature="4982:5104" ph="{...}" />
+            <marker date="1494757601000" expanded="true" signature="5108:6694" ph="{...}" />
+            <marker date="1494757601000" expanded="true" signature="5151:6568" ph="{...}" />
+            <marker date="1494757601000" expanded="true" signature="5279:5420" ph="{...}" />
+            <marker date="1494757601000" expanded="true" signature="5355:5367" ph="..." />
+            <marker date="1494757601000" expanded="true" signature="5424:5570" ph="{...}" />
+            <marker date="1494757601000" expanded="true" signature="5500:5512" ph="..." />
+            <marker date="1494757601000" expanded="true" signature="5599:5743" ph="{...}" />
+            <marker date="1494757601000" expanded="true" signature="5677:5689" ph="..." />
+            <marker date="1494757601000" expanded="true" signature="5747:5924" ph="{...}" />
+            <marker date="1494757601000" expanded="true" signature="5825:5837" ph="..." />
+            <marker date="1494757601000" expanded="true" signature="6436:6448" ph="..." />
+            <marker date="1494757601000" expanded="true" signature="6598:6688" ph="{...}" />
+            <marker date="1494757601000" expanded="true" signature="6750:7206" ph="{...}" />
+            <marker date="1494757601000" expanded="true" signature="6763:7199" ph="{&quot;url&quot;: &quot;deleteTopic.do&quot;...}" />
+            <marker date="1494757601000" expanded="true" signature="6844:6876" ph="{&quot;topicId&quot;: topicId...}" />
+            <marker date="1494757601000" expanded="true" signature="6907:7193" ph="{...}" />
+            <marker date="1494757601000" expanded="true" signature="6936:7066" ph="{...}" />
+            <marker date="1494757601000" expanded="true" signature="6960:6994" ph="{...}" />
+            <marker date="1494757601000" expanded="true" signature="6998:7032" ph="{...}" />
+            <marker date="1494757601000" expanded="true" signature="7070:7186" ph="{...}" />
+            <marker date="1494757601000" expanded="true" signature="7238:7689" ph="{...}" />
+            <marker date="1494757601000" expanded="true" signature="7251:7682" ph="{&quot;url&quot;: &quot;addTop.do&quot;...}" />
+            <marker date="1494757601000" expanded="true" signature="7327:7359" ph="{&quot;topicId&quot;: topicId...}" />
+            <marker date="1494757601000" expanded="true" signature="7390:7676" ph="{...}" />
+            <marker date="1494757601000" expanded="true" signature="7419:7549" ph="{...}" />
+            <marker date="1494757601000" expanded="true" signature="7443:7477" ph="{...}" />
+            <marker date="1494757601000" expanded="true" signature="7481:7515" ph="{...}" />
+            <marker date="1494757601000" expanded="true" signature="7553:7669" ph="{...}" />
+            <marker date="1494757601000" expanded="true" signature="7724:8182" ph="{...}" />
+            <marker date="1494757601000" expanded="true" signature="7737:8175" ph="{&quot;url&quot;: &quot;cancelTop.do&quot;...}" />
+            <marker date="1494757601000" expanded="true" signature="7816:7848" ph="{&quot;topicId&quot;: topicId...}" />
+            <marker date="1494757601000" expanded="true" signature="7879:8169" ph="{...}" />
+            <marker date="1494757601000" expanded="true" signature="7908:8042" ph="{...}" />
+            <marker date="1494757601000" expanded="true" signature="7932:7968" ph="{...}" />
+            <marker date="1494757601000" expanded="true" signature="7972:8008" ph="{...}" />
+            <marker date="1494757601000" expanded="true" signature="8046:8162" ph="{...}" />
+            <marker date="1494757601000" expanded="true" signature="8215:8667" ph="{...}" />
+            <marker date="1494757601000" expanded="true" signature="8228:8660" ph="{&quot;url&quot;: &quot;addFine.do&quot;...}" />
+            <marker date="1494757601000" expanded="true" signature="8305:8337" ph="{&quot;topicId&quot;: topicId...}" />
+            <marker date="1494757601000" expanded="true" signature="8368:8654" ph="{...}" />
+            <marker date="1494757601000" expanded="true" signature="8397:8527" ph="{...}" />
+            <marker date="1494757601000" expanded="true" signature="8421:8455" ph="{...}" />
+            <marker date="1494757601000" expanded="true" signature="8459:8493" ph="{...}" />
+            <marker date="1494757601000" expanded="true" signature="8531:8647" ph="{...}" />
+            <marker date="1494757601000" expanded="true" signature="8703:9162" ph="{...}" />
+            <marker date="1494757601000" expanded="true" signature="8716:9155" ph="{&quot;url&quot;: &quot;cancelFine.do&quot;...}" />
+            <marker date="1494757601000" expanded="true" signature="8796:8828" ph="{&quot;topicId&quot;: topicId...}" />
+            <marker date="1494757601000" expanded="true" signature="8859:9149" ph="{...}" />
+            <marker date="1494757601000" expanded="true" signature="8888:9022" ph="{...}" />
+            <marker date="1494757601000" expanded="true" signature="8912:8948" ph="{...}" />
+            <marker date="1494757601000" expanded="true" signature="8952:8988" ph="{...}" />
+            <marker date="1494757601000" expanded="true" signature="9026:9142" ph="{...}" />
+            <marker date="1494757601000" expanded="true" signature="9198:9282" ph="{...}" />
+            <marker date="1494757601000" expanded="true" signature="9315:9379" ph="{...}" />
+            <marker date="1494757601000" expanded="true" signature="9421:9514" ph="{...}" />
+            <marker date="1494757601000" expanded="true" signature="9545:9635" ph="{...}" />
+            <marker date="1494757601000" expanded="true" signature="9670:9750" ph="{...}" />
+            <marker date="1494757601000" expanded="true" signature="9783:9891" ph="{...}" />
+            <marker date="1494757601000" expanded="true" signature="9927:10018" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/script/utils.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="10" lean-forward="false" selection-start-line="4" selection-start-column="10" selection-end-line="4" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/game/showGameType.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="14" column="53" lean-forward="false" selection-start-line="14" selection-start-column="53" selection-end-line="14" selection-end-column="53" />
+          <folding>
+            <element signature="e#1475#1481#0" expanded="true" />
+            <marker date="1494757322000" expanded="true" signature="3548:3554" ph=" " />
+            <marker date="1494757322000" expanded="true" signature="3554:3560" ph=" " />
+            <marker date="1494757322000" expanded="true" signature="3560:3566" ph=" " />
+            <marker date="1494757322000" expanded="true" signature="4393:4405" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$APPLICATION_HOME_DIR$/lib/webstorm.jar!/resources/html5-schema/html5/tables.rnc">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="333">
+          <caret line="217" column="16" lean-forward="false" selection-start-line="217" selection-start-column="16" selection-end-line="217" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/css/game_main.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="405">
+          <caret line="27" column="1" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="27" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/css/show-shopping-cart.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="405">
+          <caret line="27" column="1" lean-forward="false" selection-start-line="27" selection-start-column="1" selection-end-line="27" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pay/showShoppingCart.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="334">
+          <caret line="24" column="7" lean-forward="false" selection-start-line="24" selection-start-column="7" selection-end-line="24" selection-end-column="7" />
           <folding />
         </state>
       </provider>

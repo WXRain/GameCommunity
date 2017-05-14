@@ -1,34 +1,39 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>游戏帖子</title>
-<script type="text/javascript" src="../script/jquery.min.js"></script>
-<script type="text/javascript" src="../script/jquerySession.js"></script>
-<script type="text/javascript" src="../script/getRootPath.js"></script>
-<script type="text/javascript" src="../script/getParam.js"></script>
-<script type="text/javascript" src="../script/utils.js"></script>
-<script type="text/javascript">
-	var path = getRootPath(); 
-	var topicId = getParam("topicId");
-	if(topicId == null || topicId.length == 0){
-		$.session.set("errorMessage", "参数错误！");
-		window.location.href = path + "/error.html";
-	}
-	var currentPage = getParam("page");
-	if(currentPage == null || currentPage.length == 0){
-		currentPage = 1;
-	}
-	
-	var replyForm = '<tr class="replyForm">'+
-    					'<td align="right">回复主题：</td>' +
-    					'<td><input id="replyName" name="replyName" type="text"/></td>' +
-    					'</tr><tr class="replyForm"><td align="right">回复内容：</td><td><input id="replyText" name="replyText" type="text"/></td>' +
-    					'</tr><tr class="replyForm"><td align="right"><input type="button" value="回复" onclick="submitReply()"/></td><td><input type="button" value="取消" onclick="cancelReply(this)"/></td>' +
-   					'</tr>';
-   					
-   	var isManager = $.session.get("userId");
-</script>
+	<meta charset="UTF-8">
+	<title>游戏帖子</title>
+	<link rel="stylesheet" href="../css/bootstrap.min.css">
+	<link rel="stylesheet" href="../css/topic.css">
+	<script type="text/javascript" src="../script/vue.js"></script>
+	<script type="text/javascript" src="../script/jquery.min.js"></script>
+	<script type="text/javascript" src="../script/tether.min.js"></script>
+	<script type="text/javascript" src="../script/bootstrap.min.js"></script>
+	<script type="text/javascript" src="../script/jquerySession.js"></script>
+	<script type="text/javascript" src="../script/getRootPath.js"></script>
+	<script type="text/javascript" src="../script/getParam.js"></script>
+	<script type="text/javascript" src="../script/utils.js"></script>
+	<script type="text/javascript">
+		var path = getRootPath();
+		var topicId = getParam("topicId");
+		if(topicId == null || topicId.length == 0){
+			$.session.set("errorMessage", "参数错误！");
+			window.location.href = path + "/error.html";
+		}
+		var currentPage = getParam("page");
+		if(currentPage == null || currentPage.length == 0){
+			currentPage = 1;
+		}
+
+		var replyForm = '<tr class="replyForm">'+
+							'<td align="right">回复主题：</td>' +
+							'<td><input id="replyName" name="replyName" type="text"/></td>' +
+							'</tr><tr class="replyForm"><td align="right">回复内容：</td><td><input id="replyText" name="replyText" type="text"/></td>' +
+							'</tr><tr class="replyForm"><td align="right"><input type="button" value="回复" onclick="submitReply()"/></td><td><input type="button" value="取消" onclick="cancelReply(this)"/></td>' +
+						'</tr>';
+
+		var isManager = $.session.get("userId");
+	</script>
 </head>
 <body>
 	<div><iframe align="center" width="100%" height="100" src="../top.html" frameborder="no" border="0" marginwidth="0" marginheight="0" scrolling="no"></iframe></div>

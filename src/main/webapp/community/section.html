@@ -1,52 +1,56 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>游戏帖子</title>
-<script type="text/javascript" src="../script/jquery.min.js"></script>
-<script type="text/javascript" src="../script/jquerySession.js"></script>
-<script type="text/javascript" src="../script/getRootPath.js"></script>
-<script type="text/javascript" src="../script/getParam.js"></script>
-<script type="text/javascript" src="../script/utils.js"></script>
+    <meta charset="UTF-8">
+    <title>游戏帖子</title>
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/section.css">
+    <script type="text/javascript" src="../script/vue.js"></script>
+    <script type="text/javascript" src="../script/jquery.min.js"></script>
+    <script type="text/javascript" src="../script/tether.min.js"></script>
+    <script type="text/javascript" src="../script/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../script/jquerySession.js"></script>
+    <script type="text/javascript" src="../script/getRootPath.js"></script>
+    <script type="text/javascript" src="../script/getParam.js"></script>
+    <script type="text/javascript" src="../script/utils.js"></script>
 
-<script type="text/javascript">
-	var path = getRootPath(); 
-	var pageNum = getParam("page");
-	if(pageNum == null || pageNum == 0) pageNum = 1;
-	var sectionId = getParam("sectionId");
-	if(sectionId == null || sectionId.length == 0){
-		$.session.set("errorMessage", "参数错误！");
-		window.location.href = path + "/error.html";
-	}
-	var isManager = $.session.get("isManager");
-	var tableLine = 5;
-</script>
+    <script type="text/javascript">
+        var path = getRootPath();
+        var pageNum = getParam("page");
+        if(pageNum == null || pageNum == 0) pageNum = 1;
+        var sectionId = getParam("sectionId");
+        if(sectionId == null || sectionId.length == 0){
+            $.session.set("errorMessage", "参数错误！");
+            window.location.href = path + "/error.html";
+        }
+        var isManager = $.session.get("isManager");
+        var tableLine = 5;
+    </script>
 </head>
 <body>
 	<div><iframe align="center" width="100%" height="100" src="../top.html" frameborder="no" border="0" marginwidth="0" marginheight="0" scrolling="no"></iframe></div>
-	<span id="communityIndex"><a href=javascript:void(0) onclick=communityIndex()>xx论坛</a>&nbsp;&nbsp;&nbsp;></span>
-	<span>&nbsp;&nbsp;&nbsp;<a href=javascript:void(0) onclick=gameTypeIndex() id="gameTypeIndex"></a>&nbsp;&nbsp;&nbsp;></span>
-	<span>&nbsp;&nbsp;&nbsp;<a href=javascript:void(0) onclick=sectionIndex() id="sectionIndex"></a></span>
-	<center><h2 id="sectionName"></h2></center><br/>
-	<div><center><h3 id="introduce"></h3></center></div>
-	<div>
-		<center><a id="jumpToGame" href=javascript:void(0)>点此跳转到游戏</a>
-		<a id="addTopic" href=javascript:void(0)>发布帖子</a></center>
-	</div>
-	<br/><br/>
-	<table width="100%" id="table">
-       <tr>
-           <td width="20%">主题名</td>
-           <td width="20%">点击量</td>
-           <td width="20%">创建时间</td>
-           <td width="20%">发帖人</td>
-           <td width="20%">操作</td>
-           
-       </tr>
-       <tr>
-           <td colspan="5"><hr/></td>
-       </tr>
-   </table>
+	<div class="my-container">
+        <span id="communityIndex"><a class="a-label" href=javascript:void(0) onclick=communityIndex()>xx论坛</a>&nbsp;&nbsp;&nbsp; <span class="text-label"> > </span></span>
+        <span>&nbsp;&nbsp;&nbsp;<a class="a-label" href=javascript:void(0) onclick=gameTypeIndex() id="gameTypeIndex"></a>&nbsp;&nbsp;&nbsp;<span class="text-label"> > </span></span>
+        <span>&nbsp;&nbsp;&nbsp;<a class="a-label" href=javascript:void(0) onclick=sectionIndex() id="sectionIndex"></a></span>
+        <center><h2 class="text-label" id="sectionName"></h2></center><br/>
+        <div><center><h3 class="text-label" id="introduce"></h3></center></div>
+        <div>
+            <center><a  class="a-label" id="jumpToGame" href=javascript:void(0)>点此跳转到游戏</a>
+            <a class="a-label" id="addTopic" href=javascript:void(0)>发布帖子</a></center>
+        </div>
+        <br/><br/>
+        <table class="table table-hover" width="100%" id="table">
+           <tr>
+               <td class="text-label" width="20%">主题名</td>
+               <td class="text-label" width="20%">点击量</td>
+               <td class="text-label" width="20%">创建时间</td>
+               <td class="text-label" width="20%">发帖人</td>
+               <td class="text-label" width="20%">操作</td>
+
+           </tr>
+        </table>
+    </div>
    
    <script type="text/javascript">
    $(function(){
@@ -128,35 +132,37 @@
    
    function createTable(data){
 	   if(data == null || data.length <= 0){
-		   $("#table").append("<tr><td colspan=" + tableLine + "><center>该板块无内容</center></td></tr>");
+		   $("#table").append("<tr><td class='text-label' colspan=" + tableLine + "><center>该板块无内容</center></td></tr>");
 	   }else{
 		   for(var i = 0; i < data.length; i++){
 			   
 			   var isTop = data[i].isTop;
 			   var isFine = data[i].isFine;
+			   var classType="";
 			   
 			   if(isTop == 0){
-				   isTop = " <a href=javascript:void(0) class='addTop' style='display:none' onclick=addTop(" + data[i].id + ")>置顶</a>";
+				   isTop = " <a href=javascript:void(0) class='addTop a-label' style='display:none' onclick=addTop(" + data[i].id + ")>置顶</a>";
 			   }else{
-				   isTop = " <a href=javascript:void(0) class='addTop' style='display:none' onclick=cancelTop(" + data[i].id + ")>取消置顶</a>";
+				   isTop = " <a href=javascript:void(0) class='addTop a-label' style='display:none' onclick=cancelTop(" + data[i].id + ")>取消置顶</a>";
 			   }
 			   
 			   if(isFine == 0){
-				   isFine = " <a href=javascript:void(0) class='addFine' style='display:none' onclick=addFine(" + data[i].id + ")>加精</a>";
+				   isFine = " <a href=javascript:void(0) class='addFine a-label' style='display:none' onclick=addFine(" + data[i].id + ")>加精</a>";
 			   }else{
-				   isFine = " <a href=javascript:void(0) class='addFine' style='display:none' onclick=cancelFine(" + data[i].id + ")>取消加精</a>";
+				   isFine = " <a href=javascript:void(0) class='addFine a-label' style='display:none' onclick=cancelFine(" + data[i].id + ")>取消加精</a>";
+				   classType = "-fine";
 			   }
 			   
 		   $("#table").append(
-					"<tr><td><a href=javascript:void() onclick=clickTopic("+ data[i].id +")>" + data[i].topicName + "</a></td>" + 
-					"<td>" + data[i].clickNum + "</td>" + 
-					"<td>" + data[i].createTime + "</td>" + 
-					"<td><a href=javascript:void() onclick=showUser("+
+					"<tr><td><a class='a-label" + classType + "' href=javascript:void() onclick=clickTopic("+ data[i].id +")>" + data[i].topicName + "</a></td>" +
+					"<td class='text-label'>" + data[i].clickNum + "</td>" +
+					"<td class='text-label'>" + data[i].createTime + "</td>" +
+					"<td><a class='a-label' href=javascript:void() onclick=showUser("+
 							data[i].userId + ")>" + data[i].username + "</a></td>" +
-							"<td><a href=javascript:void(0) class='delete' style='display:none' onclick=deleteTopic(" + data[i].id + ")>删除</a>" + 
+							"<td><a href=javascript:void(0) class='delete a-label' style='display:none' onclick=deleteTopic(" + data[i].id + ")>删除</a>" +
 							isTop +
 							isFine +
-							"</td></tr><tr><td colspan=" + tableLine + "><hr/></td></tr>"
+							"</td></tr>"
 				   );
 	   		}
 		   
