@@ -23,26 +23,26 @@
 </head>
 <body>
 <div><iframe align="center" width="100%" height="100" src="./top.html" frameborder="no" border="0" marginwidth="0" marginheight="0" scrolling="no"></iframe></div>
-<div>
-	<table id="index" width=100%>
-		<tr>
-			<td width=50%><center><a id="game" onclick=clickGame()>游戏</a></center></td>
-			<td widtrh=50%><center><a id="community" href=javascript:void() onclick=clickCommunity()>论坛</a></center></td>
-		</tr>
-		<tr><td colspan="2"><hr/></td></tr>
-	</table>
-</div>
+<div class="my-container">
+	<div>
+		<table class="table table-hover" id="index" width=100%>
+			<tr>
+				<td width=50%><center><a class="text-label" id="game" onclick=clickGame()>游戏</a></center></td>
+				<td widtrh=50%><center><a class="a-label" id="community" href=javascript:void(0); onclick=clickCommunity()>论坛</a></center></td>
+			</tr>
+		</table>
+	</div>
 
-<div>
-	<table id="table" width=100%>
-	<tr>
-		<td id="name" width=25%>游戏名</td>
-		<td id="introduce" width=25%>介绍</td>
-		<td id="createTime" width=25%>发布时间</td>
-		<td id="managers" width=25%>价格</td>
-	</tr>
-	<tr><td colspan='4'><hr/></td></tr>
-	</table>
+	<div>
+		<table class="table table-hover" id="table" width=100%>
+		<tr>
+			<td class="text-label" id="name" width=25%>游戏名</td>
+			<td class="text-label" id="introduce" width=25%>介绍</td>
+			<td class="text-label" id="createTime" width=25%>发布时间</td>
+			<td class="text-label" id="managers" width=25%>价格</td>
+		</tr>
+		</table>
+	</div>
 </div>
 
    <script type="text/javascript">
@@ -105,12 +105,12 @@
 		   $("#table").append("<tr><td class='text-label' colspan='4'><center><h3>该板块无内容</h3></center></td></tr>");
 		}else{
 			for(var i = 0; i < data.length; i++){
-				$("#table").append("<tr><td><a href=javascript:void() onclick=showGame(" + data[i].id + ")>" + 
+				$("#table").append("<tr><td><a class='a-label' href=javascript:void() onclick=showGame(" + data[i].id + ")>" +
 						data[i].gameName + "</td>" +
-						"<td><center>" + data[i].introduce + "</center></td>" + 
-						"<td>" + data[i].buildDate + "</td>" + 
-						"<td>" + (data[i].price * data[i].cutOff) + "</td>" +
-						"</tr><tr><td colspan='4'><hr/></td></tr>");
+						"<td class='text-label'><center>" + data[i].introduce + "</center></td>" +
+						"<td class='text-label'>" + data[i].buildDate + "</td>" +
+						"<td class='text-label'>" + (data[i].price * data[i].cutOff) + "</td>" +
+						"</tr>");
 			}
 		}
    }
@@ -121,10 +121,10 @@
 	   }else{
 		   for(var i = 0; i < data.length; i++){
 			   $("#table").append(
-					"<tr><td><a href=javascript:void() onclick=clickTopic("+ data[i].id +")>" + data[i].topicName + "</a></td>" + 
-					"<td>" + data[i].clickNum + "</td>" + 
-					"<td>" + data[i].createTime + "</td>" + 
-					"<td>" + data[i].username + "</td></tr><tr><td colspan='4'><hr/></td></tr>"
+					"<tr><td><a class='a-label' href=javascript:void() onclick=clickTopic("+ data[i].id +")>" + data[i].topicName + "</a></td>" +
+					"<td class='text-label'>" + data[i].clickNum + "</td>" +
+					"<td class='text-label'>" + data[i].createTime + "</td>" +
+					"<td class='text-label'>" + data[i].username + "</td></tr>"
 				);
 		   	}
 	   }
