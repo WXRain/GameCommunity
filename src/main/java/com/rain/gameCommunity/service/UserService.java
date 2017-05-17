@@ -27,4 +27,6 @@ public interface UserService {
 	public void updateUserGames(long userId, String gameIds) throws Exception;
 	
 	public UserEntity showUserByUserId(long userId) throws Exception;
+	
+	public void modifyUser(UserEntity user) throws Exception;
 }

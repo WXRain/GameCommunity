@@ -27,4 +27,6 @@ public interface UserDAO {
 	
 	public UserEntity queryOneUserByUserId(@Param("userId") long userId);
 	
+	public void updateUser(@Param("user") UserEntity user);
+	
 }

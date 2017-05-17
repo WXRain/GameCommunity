@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>修改信息</title>
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/modify-user.css">
+    <script type="text/javascript" src="../script/vue.js"></script>
+    <script type="text/javascript" src="../script/jquery.min.js"></script>
+    <script type="text/javascript" src="../script/tether.min.js"></script>
+    <script type="text/javascript" src="../script/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../script/jquerySession.js"></script>
+    <script type="text/javascript" src="../script/getParam.js"></script>
+    <script type="text/javascript" src="../script/getRootPath.js"></script>
+    <script type="text/javascript">
+        var path = getRootPath();
+        var userId = getParam("userId");
+        if(userId == null || userId.length == 0){
+	    		$.session.set("errorMessage", "参数错误!");
+	    		window.location.href = path + "/error.html";
+    		}
+        if(userId != $.session.get("userId")){
+        	$.session.set("errorMessage", "不能修改别人的数据!");
+    		window.location.href = path + "/error.html";
+        }
+    </script>
+</head>
+<body>
+<div><iframe align="center" width="100%" height="100" src="../top.html" frameborder="no" border="0" marginwidth="0" marginheight="0" scrolling="no"></iframe></div>
+<div class="my-container">
+
+    <form class="form-horizontal" action=".do" method="POST" enctype="multipart/form-data">
+
+        <div class="form-group">
+            <label for="username" class="col-sm-2 control-label text-label mt-4">用户名</label>
+            <div class="col-sm-6">
+                <input readonly="true" class="form-control" type="text" id="username" name="username"/>
+            </div>
+            <div class="col-sm-4">
+                <span id="usernameMessage" class="message"></span>
+            </div>
+        </div>
+
+		<div class="form-group">
+            <label for="passwords" class="col-sm-2 control-label text-label">原密码</label>
+            <div class="col-sm-6">
+                <input class="form-control" type="password" id="oldPassword" name="oldPassword" placeholder="原密码"/>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="passwords" class="col-sm-2 control-label text-label">更改后密码</label>
+            <div class="col-sm-6">
+                <input class="form-control" type="password" id="passwords" name="passwords" onblur="checkPassword()" placeholder="新密码"/>
+            </div>
+            <div class="col-sm-4">
+                <span id="passwordMessage" class="message"></span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="confirmPassword" class="col-sm-2 control-label text-label">确认密码</label>
+            <div class="col-sm-6">
+                <input class="form-control" type="password" id="confirmPassword" name="confirmPassword" onblur="checkConfirmPassword()" placeholder="确认密码"/>
+            </div>
+            <div class="col-sm-4">
+                <span id="confirmPasswordMessage" class="message"></span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="sex" class="col-sm-2 control-label text-label">性别</label>
+            <div class="col-sm-6">
+                <select id="sex" name="sex" class="form-control">
+                    <option value = "-1">保密</option>
+                    <option value = "1">男</option>
+                    <option value = "0">女</option>
+                </select>
+            </div>
+            <div class="col-sm-4"></div>
+        </div>
+
+        <div class="form-group">
+            <label for="introduce" class="col-sm-2 control-label text-label">介绍</label>
+            <div class="col-sm-6">
+                <input class="form-control" type="text" id="introduce" name="introduce" placeholder="介绍"/>
+            </div>
+            <div class="col-sm-4"></div>
+        </div>
+
+<!--         <div class="form-group"> -->
+<!--             <label for="fileName" class="col-sm-2 control-label text-label">选择头像</label> -->
+<!--             <div class="col-sm-6"> -->
+<!--                 <input type="file" name="file" id="fileName" onblur="checkHead()"> -->
+<!--             </div> -->
+<!--             <div class="col-sm-4"> -->
+<!--                 <span id="headMessage" class="message"></span> -->
+<!--             </div> -->
+<!--         </div> -->
+
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button type="button" class="btn btn-default" onclick="checkForm()">修改</button>
+                <button type="reset" class="btn btn-default">重置</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+
+<script type="text/javascript">
+
+    $.ajax({
+        url:"findUserByUserId.do",
+        method:"POST",
+        data:{
+        		"userId": userId
+        },
+        dataType:"JSON",
+        success:function(result){
+        		if(result.state == 0){
+        			var data = result.data;
+        			console.log(data);
+        			$("#username").val(data.username);
+        			$("#sex").val(data.sex);
+        			$("#introduce").val(data.introduce);
+        			$("#passwords").val(data.passwords);
+        			$("#confirmPassword").val(data.passwords);
+        		}else{
+        			$.session.set("errorMessage", "执行出错！");
+        			window.location.href = path + "error.html";
+        		}
+        }
+    });
+
+    function checkForm(){
+        if(!checkPassword() || !checkConfirmPassword())
+            alert('不符合规则，请检查！');
+        else {
+            console.log("register......");
+            modifyUser();
+        }
+
+
+    }
+
+    function checkPassword(){
+        var password = $("#passwords").val();
+        if(password == null || password.trim().length < 3 || password.trim().length >= 16){
+            $("#passwordMessage").text("密码规则为3-16位字母数字组合");
+            return false;
+        }else{
+            $("#passwordMessage").text("");
+            return true;
+        }
+    }
+
+    $(function(){
+        $(".message").css({color:"red"});
+        $("#jumpToLogin").attr("href", path);
+    });
+
+    function modifyUser(){
+        var username = $("#username").val();
+        var oldPassword = $("#oldPassword").val();
+        var password = $("#passwords").val();
+        var sex = $("#sex").val();
+        var introduce = $("#introduce").val();
+        if(checkPassword() && checkConfirmPassword());
+        else {
+            alert("不符合规则，请检查");
+            return false;
+        }
+
+        $.ajax({
+            url: "modifyUser.do",
+            method: "POST",
+            dataType: "JSON",
+            data: {
+                "userId":userId,
+            		"username":username,
+                "oldPassword":oldPassword,
+                "passwords":password,
+                "sex" : sex,
+                "introduce" : introduce
+            },
+            success: function(result){
+                if(result.state == 0){
+                		alert("修改成功！");
+                    window.location.href = path + "/index.html";
+                    $.session.clear();
+                }else{
+                    alert(result.message);
+                }
+            }
+        });
+    }
+
+    function checkConfirmPassword(){
+        var confirmPassword = $("#confirmPassword").val();
+        var password = $("#passwords").val();
+        if(confirmPassword != password){
+            $("#confirmPasswordMessage").text("两次输入的密码不一致");
+            return false;
+        }else{
+            $("#confirmPasswordMessage").text("");
+            return true;
+        }
+    }
+</script>
+</body>
+</html>

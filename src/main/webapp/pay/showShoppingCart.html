@@ -58,8 +58,8 @@
 	
 	function createTable(data){
 		if(data == null || data.length == 0){
-			$("#table").append("<tr><td colspan='5'><center><h2>购物车中暂无商品，去<a href="+ path + 
-			"/game/main.html>商店</a>逛逛？</h2></center></td></tr><tr><td colspan='5'><hr/></td></tr>");
+			$("#table").append("<tr><td colspan='5'><center><h2 class='text-label'>购物车中暂无商品，去<a class='a-label' href="+ path +
+			"/game/main.html>商店</a>逛逛？</h2></center></td></tr>");
 			return;
 		}
 		for(var i = 0; i < data.length; i++){

@@ -135,4 +135,13 @@ public class UserServiceImpl implements UserService {
 	public UserEntity showUserByUserId(long userId) throws Exception {
 		return userDao.queryOneUserByUserId(userId);
 	}
+
+	/* (non-Javadoc)
+	 * @see com.rain.gameCommunity.service.UserService#modifyUser(com.rain.gameCommunity.entity.UserEntity)
+	 */
+	@Override
+	public void modifyUser(UserEntity user) throws Exception {
+		
+		userDao.updateUser(user);
+	}
 }

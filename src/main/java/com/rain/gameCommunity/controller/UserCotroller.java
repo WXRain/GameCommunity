@@ -114,7 +114,7 @@ public class UserCotroller {
 		}
 	}
 	
-	@RequestMapping("/findUserByUserId")
+	@RequestMapping("/findUserByUserId.do")
 	@ResponseBody
 	public JsonResult<UserEntity> findUserByUserId(long userId){
 		try{
@@ -130,6 +130,34 @@ public class UserCotroller {
 			return new JsonResult<UserEntity>(user, null);
 		}catch(Exception e){
 			return new JsonResult<UserEntity>(e.getMessage());
+		}
+	}
+	
+	@RequestMapping("/modifyUser.do")
+	@ResponseBody
+	public JsonResult<Boolean> modifyUser(long userId, String username, String oldPassword, String passwords,
+			int sex, String introduce){
+		try{
+			List<Long> ids = new ArrayList<Long>();
+			ids.add(userId);
+			List<UserEntity> users = userService.queryUsersById(ids);
+			UserEntity user;
+			if(users != null && users.size() > 0){
+				user = users.get(0);
+			}else throw new Exception("没有找到用户！");
+			
+			if(!user.getPasswords().equals(oldPassword)) throw new Exception("原密码不正确！");
+			
+			user.setUsername(username);
+			user.setPasswords(passwords);
+			user.setSex(sex);
+			user.setIntroduce(introduce);
+			
+			userService.modifyUser(user);
+			return new JsonResult<Boolean>(true, null);
+			
+		}catch(Exception e){
+			return new JsonResult<Boolean>(e.getMessage());
 		}
 	}
 	

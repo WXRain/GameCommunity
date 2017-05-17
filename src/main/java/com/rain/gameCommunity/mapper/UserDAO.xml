@@ -52,4 +52,11 @@
 		select * from user where id=#{userId}
 	</select>
 	
+	<update id="updateUser" parameterType="com.rain.gameCommunity.entity.UserEntity">
+		update user set username=#{user.username},passwords=#{user.passwords},sex=#{user.sex},
+			levels=#{user.levels}, exp=#{user.exp}, isManager=#{user.isManager}, introduce=#{user.introduce},
+			head=#{user.head}, games=#{user.games}, registerTime=#{user.registerTime}
+		where id=#{user.id}
+	</update>
+	
  </mapper>
