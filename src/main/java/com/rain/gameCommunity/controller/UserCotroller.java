@@ -58,6 +58,7 @@ public class UserCotroller {
 				return new JsonResult<UserEntity>(1, "用户名已存在", null, null);
 			}
 		}catch(Exception e){
+			e.printStackTrace();
 			return new JsonResult<UserEntity>(e.getMessage());
 		}
 	}
@@ -109,6 +110,7 @@ public class UserCotroller {
 			return "redirect: /gameCommunity/";
 		}catch(Exception e){
 			//return new JsonResult<UserEntity>(e.toString());
+			e.printStackTrace();
 			request.getSession().setAttribute("errorMessage", e.getMessage());
 			return "redirect: /gameCommunity/error.html";
 		}
@@ -129,6 +131,7 @@ public class UserCotroller {
 			user.setRegisterTimeString(user.getSdf().format(user.getRegisterTime()));
 			return new JsonResult<UserEntity>(user, null);
 		}catch(Exception e){
+			e.printStackTrace();
 			return new JsonResult<UserEntity>(e.getMessage());
 		}
 	}
@@ -157,7 +160,59 @@ public class UserCotroller {
 			return new JsonResult<Boolean>(true, null);
 			
 		}catch(Exception e){
+			e.printStackTrace();
 			return new JsonResult<Boolean>(e.getMessage());
+		}
+	}
+	
+	@RequestMapping("/modifyUserHead.do")
+	public String modifyUserHead(
+			MultipartFile file, HttpServletRequest request, HttpServletResponse response){
+		try{
+			
+			long userId = Long.parseLong(request.getParameter("userId"));
+			System.out.println(userId);
+			List<Long> ids = new ArrayList<Long>();
+			ids.add(userId);
+			List<UserEntity> users = userService.queryUsersById(ids);
+			UserEntity user;
+			if(users != null && users.size() > 0){
+				user = users.get(0);
+			}else throw new Exception("没有找到用户！");
+			
+			if(!file.isEmpty()){
+				//处理头像
+//				String path = request.getSession().getServletContext().getRealPath("uploadFloder/users/head");
+				String path = request.getSession().getServletContext().getRealPath("img/user/head");
+				String filename = file.getOriginalFilename();//xxx.jpg
+				System.out.println(filename);
+				String[] names = filename.split("\\.");
+				String newFileName = new Date().getTime() + "." + names[names.length-1];
+				
+				File targetFile = new File(path, newFileName);
+				if(!targetFile.exists()){
+					targetFile.mkdirs();//不存在则新建目录
+				}
+				
+				try{
+					file.transferTo(targetFile);
+				}catch(Exception e){
+					//return new JsonResult<UserEntity>(e.getMessage());
+					return "redirect: /gameCommunity/error.html";
+				}
+				
+				user.setHead("/img/user/head/" + newFileName);
+//				System.out.println("头像路径：" + request.getSession().getServletContext().getRealPath("uploadFloder/users/head/") + newFileName);
+				System.out.println("头像路径：" + request.getSession().getServletContext().getRealPath("img/user/head/") + newFileName);
+			}
+			
+			userService.modifyUser(user);
+			
+			return "redirect: /gameCommunity/user/showUser.html?userId=" + userId;
+			
+		}catch(Exception e){
+			e.printStackTrace();
+			return "redirect: /gameCommunity/error.html";
 		}
 	}
 	

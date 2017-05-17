@@ -27,7 +27,8 @@
 <div class="my-container">
 	<table class="table table-hover" id="table" width=100%>
 		<tr id="modifyMyself" style="display: none">
-			<td colspan="4"><center><a class="a-label" onclick="modify()" href="javascript:void(0)">修改信息</a></center></td>
+			<td colspan="2"><center><a class="a-label" onclick="modify()" href="javascript:void(0)">修改信息</a></center></td>
+			<td colspan="2"><center><a class="a-label" onclick="showModifyHead()" href="javascript:void(0)">修改头像</a></center></td>
 		</tr>
 		<tr>
 			<td class="text-label" id="username" width=25%></td>
@@ -43,6 +44,24 @@
 		</tr>
 		<tr><td class="text-label" colspan="4" id="userGames"></td></tr>
 	</table>
+
+	<form style="display: none" id="modifyTable" class="form-horizontal" action="modifyUserHead.do" method="POST" enctype="multipart/form-data">
+		<input hidden name="userId" id="id"/>
+
+		<div class="form-group">
+			<label for="fileName" class="col-sm-2 control-label text-label">选择头像</label>
+			<div class="col-sm-6">
+				<input type="file" name="file" id="fileName" onblur="checkHead()">
+			</div>
+			<div class="col-sm-4">
+				<span id="headMessage" class="message"></span>
+			</div>
+		</div>
+
+		<input type="button" onclick="modifyHead()" value="修改"/>
+		<input style="display:none" type="submit" id="submitHead"/>
+		<input type="button" onclick="cancelModifyHead()" id="cancelModify" value="取消"/>
+	</form>
 	
 	<script type="text/javascript">
 		$.ajax({
@@ -63,6 +82,18 @@
 
 		if(userId == $.session.get("userId")){
 		    $("#modifyMyself").show();
+		}
+
+		function showModifyHead(){
+		    $("#modifyTable").show();
+		}
+
+		function cancelModifyHead(){
+            $("#modifyTable").hide();
+		}
+
+		function modifyHead(){
+		    $("#submitHead").click();
 		}
 		
 		function createTable(data){
@@ -93,6 +124,8 @@
 			
 			//$("#isManager").text("管理员：" + manager);
 			$("#userId").text("用户Id：" + data.id);
+
+            $("#id").val(data.id);
 			
 // 			var games = "";
 // 			if(data.games == "") games = "无"; 
@@ -113,6 +146,24 @@
 			
 			
 		}
+
+        function checkHead(){
+            var fileName = $("#fileName").val();
+            if(fileName == null || fileName.length == 0){
+                $("#headMessage").text("");
+                return true;
+            }
+            if(!fileName.endsWith(".jpg") && !fileName.endsWith(".bmp")
+                && !fileName.endsWith(".jpeg") && !fileName.endsWith(".png")
+                && !fileName.endsWith(".gif")){
+                $("#headMessage").text("文件格式错误，请检查！");
+                return false;
+            }else{
+                $("#headMessage").text("");
+                return true;
+            }
+            return true;
+        }
 		
 		function showGame(gameId){
 			window.location.href = path + "/game/showGame.html?gameId=" + gameId;
