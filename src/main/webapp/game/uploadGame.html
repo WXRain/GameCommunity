@@ -25,118 +25,120 @@
 </head>
 <body>
 <div><iframe align="center" width="100%" height="100" src="../top.html" frameborder="no" border="0" marginwidth="0" marginheight="0" scrolling="no"></iframe></div>
-	<span id="index">
-		<a href=javascript:void(0) onclick=gameIndex()>xx游戏</a>&nbsp;&nbsp;&nbsp;>&nbsp;&nbsp;&nbsp;
-		<a href=javascript:void(0) onclick=gameTypeIndex() id=gameTypeIndex></a>&nbsp;&nbsp;&nbsp;>&nbsp;&nbsp;&nbsp;
-		<a href=javascript:void(0) onclick=uploadGameIndex()>上传游戏</a>
-	</span>
-	<form action="uploadGame.do" method="POST" enctype="multipart/form-data">
-	<table width=100% id=table>
-	<tr>
-		<td width=45%>游戏类型：</td>
-		<td width=45%><input readonly="true" id="gameTypeName" value=""/></td>
-		<td width=10%><input name="gameTypeId" id="gameTypeId"/></td>
-	</tr>
-	<tr>
-		<td>游戏名称：</td>
-		<td><input id="gameName" value="" name="gameName"/></td>
-		<td><span id="gameNameMessage"></span></td>
-	</tr>
-	<tr>
-		<td>游戏价格：</td>
-		<td><input id="gamePrice" value="" name="gamePrice"/></td>
-		<td><span id="gamePriceMessage"></span></td>
-	</tr>
-	<tr>
-		<td>游戏版本号：</td>
-		<td><input id="gameVersion" value="" name="gameVersion"/></td>
-		<td><span id="gameVersionMessage"></span></td>
-	</tr>
-	<tr>
-		<td>游戏系统要求：</td>
-		<td><select id="systemSupport" onblur=showOrHideTable() name="systemSupport">
-			<option value="-1">重新定义</option>
-		</select></td>
-	</tr>
-	<tr>
-		<td>系统支持名称：</td>
-		<td><input id="systemSupportName" name="systemSupportName"/></td>
-		<td><span id="systemSupportNameMessage"></span></td>
-	</tr>
-	<tr>
-		<td>内存：</td>
-		<td><input id="memoria" name="memoria"></input></td>
-		<td><span id="memoriaMessage"></span></td>
-	</tr>
-	<tr>
-		<td>系统：</td>
-		<td><input id="system" name="system"/></td>
-		<td><span id="systemMessage"></span></td>
-	</tr>
-	<tr>
-		<td>磁盘：</td>
-		<td><input id="disk" name="disk"/></td>
-		<td><span id="diskMessage"></span></td>
-	</tr>
-	<tr>
-		<td>声卡：</td>
-		<td><input id="voice" name="voice"/></td>
-		<td><span id="voiceMessage"></span></td>
-	</tr>
-	<tr>
-		<td>CPU：</td>
-		<td><input id="cpu" name="cpu"/></td>
-		<td><span id="cpuMessage"></span></td>
-	</tr>
-	<tr>
-		<td>显卡：</td>
-		<td><input id="display" name="display"/></td>
-		<td><span id="displayMessage"></span></td>
-	</tr>
-	<tr>
-		<td>网络：</td>
-		<td><select id="network" name="network">
-			<option value="true">是</option>
-			<option value="false">否</option>
-			<option value="all">都可</option>
-		</select></td>
-	</tr>
-	<tr>
-		<td>注意：</td>
-		<td><input id="note" name="note"/></td>
-		<td><span id="noteMessage"></span></td>
-	</tr>
-	<tr>
-		<td>游戏介绍：</td>
-		<td><input id="introduce" name="introduce"/></td>
-		<td><span id="introduceMessage"></span></td>
-	</tr>
-	<tr>
-		<td>同时创建论坛板块：</td>
-		<td><input type="checkbox" id="createSection" name="createSection" checked onblur="checkBoxIsChecked()"/></td>
-		<td><span id="createSectionMessage"></span></td>
-	</tr>
-	<tr class="section">
-		<td>论坛名：</td>
-		<td><input id="sectionName" name="sectionName"/></td>
-		<td><span id="sectionNameMessage"></span></td>
-	</tr>
-	<tr class="section">
-	<td>论坛介绍：</td>
-	<td><input id="sectionIntroduce" name="sectionIntroduce"/></td>
-	<td><span id="sectionIntroduceMessage"></span></td>
-	</tr>
-	<tr>
-		<td>选择程序：</td>
-		<td><input type="file" name="file" id="fileName" onblur="checkProgram()"></td>
-		<td><span id="fileMessage"></span></td>
-	</tr>
-	<tr>
-		<td><input type="submit" value="上传"/></td>
-		<td><input type="reset"/></td>
-	</tr>
-	</table>
-	</form>
+<div class="my-container">
+		<span id="index">
+			<a class="a-label" href=javascript:void(0) onclick=gameIndex()>xx游戏</a>&nbsp;&nbsp;&nbsp;<span class="text-label"> > </span>&nbsp;&nbsp;&nbsp;
+			<a class="a-label" href=javascript:void(0) onclick=gameTypeIndex() id=gameTypeIndex></a>&nbsp;&nbsp;&nbsp;<span class="text-label"> > </span>&nbsp;&nbsp;&nbsp;
+			<a class="a-label" href=javascript:void(0) onclick=uploadGameIndex()>上传游戏</a>
+		</span>
+		<form action="uploadGame.do" method="POST" enctype="multipart/form-data">
+		<table width=100% id=table>
+		<tr>
+			<td class="text-label" width=45%>游戏类型：</td>
+			<td width=45%><input class="form-control my-input" readonly="true" id="gameTypeName" value=""/></td>
+			<td width=10%><input name="gameTypeId" id="gameTypeId"/></td>
+		</tr>
+		<tr>
+			<td class="text-label">游戏名称：</td>
+			<td><input class="form-control my-input" id="gameName" value="" name="gameName"/></td>
+			<td><span id="gameNameMessage"></span></td>
+		</tr>
+		<tr>
+			<td class="text-label">游戏价格：</td>
+			<td><input class="form-control my-input" id="gamePrice" value="" name="gamePrice"/></td>
+			<td><span id="gamePriceMessage"></span></td>
+		</tr>
+		<tr>
+			<td class="text-label">游戏版本号：</td>
+			<td><input class="form-control my-input" id="gameVersion" value="" name="gameVersion"/></td>
+			<td><span id="gameVersionMessage"></span></td>
+		</tr>
+		<tr>
+			<td class="text-label">游戏系统要求：</td>
+			<td><select id="systemSupport" onblur=showOrHideTable() name="systemSupport">
+				<option value="-1">重新定义</option>
+			</select></td>
+		</tr>
+		<tr>
+			<td class="text-label">系统支持名称：</td>
+			<td><input class="form-control my-input" id="systemSupportName" name="systemSupportName"/></td>
+			<td><span id="systemSupportNameMessage"></span></td>
+		</tr>
+		<tr>
+			<td class="text-label">内存：</td>
+			<td><input class="form-control my-input" id="memoria" name="memoria"></input></td>
+			<td><span id="memoriaMessage"></span></td>
+		</tr>
+		<tr>
+			<td class="text-label">系统：</td>
+			<td><input class="form-control my-input" id="system" name="system"/></td>
+			<td><span id="systemMessage"></span></td>
+		</tr>
+		<tr>
+			<td class="text-label">磁盘：</td>
+			<td><input class="form-control my-input" id="disk" name="disk"/></td>
+			<td><span id="diskMessage"></span></td>
+		</tr>
+		<tr>
+			<td class="text-label">声卡：</td>
+			<td><input class="form-control my-input" id="voice" name="voice"/></td>
+			<td><span id="voiceMessage"></span></td>
+		</tr>
+		<tr>
+			<td class="text-label">CPU：</td>
+			<td><input class="form-control my-input" id="cpu" name="cpu"/></td>
+			<td><span id="cpuMessage"></span></td>
+		</tr>
+		<tr>
+			<td class="text-label">显卡：</td>
+			<td><input class="form-control my-input" id="display" name="display"/></td>
+			<td><span id="displayMessage"></span></td>
+		</tr>
+		<tr>
+			<td class="text-label">网络：</td>
+			<td><select id="network" name="network">
+				<option value="true">是</option>
+				<option value="false">否</option>
+				<option value="all">都可</option>
+			</select></td>
+		</tr>
+		<tr>
+			<td class="text-label">注意：</td>
+			<td><input class="form-control my-input" id="note" name="note"/></td>
+			<td><span id="noteMessage"></span></td>
+		</tr>
+		<tr>
+			<td class="text-label">游戏介绍：</td>
+			<td><input class="form-control my-input" id="introduce" name="introduce"/></td>
+			<td><span id="introduceMessage"></span></td>
+		</tr>
+		<tr>
+			<td class="text-label">同时创建论坛板块：</td>
+			<td><input type="checkbox" id="createSection" name="createSection" checked onblur="checkBoxIsChecked()"/></td>
+			<td><span id="createSectionMessage"></span></td>
+		</tr>
+		<tr class="section">
+			<td class="text-label">论坛名：</td>
+			<td><input class="form-control my-input" id="sectionName" name="sectionName"/></td>
+			<td><span id="sectionNameMessage"></span></td>
+		</tr>
+		<tr class="section">
+		<td class="text-label">论坛介绍：</td>
+		<td><input  class="form-control my-input"id="sectionIntroduce" name="sectionIntroduce"/></td>
+		<td><span id="sectionIntroduceMessage"></span></td>
+		</tr>
+		<tr>
+			<td class="text-label">选择程序：</td>
+			<td><input type="file" name="file" id="fileName" onblur="checkProgram()"></td>
+			<td><span id="fileMessage"></span></td>
+		</tr>
+		<tr>
+			<td><input class="btn btn-default" type="submit" value="上传"/></td>
+			<td><input class="btn btn-default" type="reset"/></td>
+		</tr>
+		</table>
+		</form>
+	</div>
 	
 	<script type="text/javascript">
 		$(function(){
@@ -229,7 +231,11 @@
 			$(".section").hide();
 		}
 	}
-	
+
+	function checkProgram(){
+
+	}
+
 	function gameIndex(){
 		window.location.href = path + "/game/main.html";
 	}
