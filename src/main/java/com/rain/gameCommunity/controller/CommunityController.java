@@ -10,10 +10,12 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.rain.gameCommunity.entity.GameEntity;
 import com.rain.gameCommunity.entity.GameTypeEntity;
 import com.rain.gameCommunity.entity.ReplyEntity;
 import com.rain.gameCommunity.entity.SectionEntity;
 import com.rain.gameCommunity.entity.TopicEntity;
+import com.rain.gameCommunity.service.GameService;
 import com.rain.gameCommunity.service.GameTypeService;
 import com.rain.gameCommunity.service.ReplyService;
 import com.rain.gameCommunity.service.SectionService;
@@ -31,6 +33,9 @@ import com.rain.gameCommunity.utils.PagingData;
 @RequestMapping("/community")
 public class CommunityController {
 
+	@Autowired
+	private GameService gameService;
+	
 	@Autowired
 	private GameTypeService gameTypeService;
 	
@@ -363,6 +368,55 @@ public class CommunityController {
 			if(section != null){
 				throw new Exception("板块名重复！");
 			}
+			return new JsonResult<Boolean>(true, null);
+		}catch(Exception e){
+			e.printStackTrace();
+			return new JsonResult<Boolean>(e.getMessage());
+		}
+	}
+	
+	@RequestMapping("/checkBindGameName.do")
+	@ResponseBody
+	public JsonResult<Boolean> checkBindGameName(long sectionId, String gameName){
+		try{
+			GameEntity game = gameService.showGameByGameName(gameName);
+			
+			if(game == null){
+				throw new Exception("游戏不存在");
+			}
+			
+			if(game.getSectionId() != 0){
+				throw new Exception("游戏已经绑定板块");
+			}
+			return new JsonResult<Boolean>(true, null);
+		}catch(Exception e){
+			e.printStackTrace();
+			return new JsonResult<Boolean>(e.getMessage());
+		}
+	}
+	
+	@RequestMapping("/doBindGame.do")
+	@ResponseBody
+	@Transactional
+	public JsonResult<Boolean> doBindGame(long sectionId, String gameName){
+		try{
+			GameEntity game = gameService.showGameByGameName(gameName);
+			
+			if(game == null){
+				throw new Exception("游戏不存在");
+			}
+			
+			if(game.getSectionId() != 0){
+				throw new Exception("游戏已经绑定板块");
+			}
+			
+			game.setSectionId(sectionId);
+			SectionEntity section = sectionService.showSectionBySectionId(sectionId);
+			section.setGameId(game.getId());
+			
+			gameService.updateGameEntity(game);
+			sectionService.updateSection(section, section.getId());
+			
 			return new JsonResult<Boolean>(true, null);
 		}catch(Exception e){
 			e.printStackTrace();

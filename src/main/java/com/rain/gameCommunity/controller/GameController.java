@@ -528,4 +528,51 @@ public class GameController {
 			return new JsonResult<Boolean>(e.getMessage());
 		}
 	}
+	
+	@RequestMapping("/checkBindSectionName.do")
+	@ResponseBody
+	public JsonResult<Boolean> checkBindSectionName(long gameTypeId, long gameId, String sectionName){
+		try{
+			SectionEntity section = sectionService.showSectionBySectionName(gameTypeId, sectionName);
+			if(section == null){
+				throw new Exception("板块不存在");
+			}
+			if(section.getGameId()!=0){
+				throw new Exception("该板块已经绑定游戏");
+			}
+			return new JsonResult<Boolean>(true, null);
+		}catch(Exception e){
+			e.printStackTrace();
+			return new JsonResult<Boolean>(e.getMessage());
+		}
+	}
+	
+	@RequestMapping("/doBindSection.do")
+	@ResponseBody
+	@Transactional
+	public JsonResult<Boolean> doBindSection(long gameTypeId, long gameId, String sectionName){
+		try{
+			SectionEntity section = sectionService.showSectionBySectionName(gameTypeId, sectionName);
+			if(section == null){
+				throw new Exception("板块不存在");
+			}
+			if(section.getGameId()!=0){
+				throw new Exception("该板块已经绑定游戏");
+			}
+			
+			GameEntity game = gameService.showGameById(gameId + "");
+			
+			game.setSectionId(section.getId());
+			section.setGameId(gameId);
+			
+			gameService.updateGameEntity(game);
+			sectionService.updateSection(section, section.getId());
+			
+			return new JsonResult<Boolean>(true, null);
+			
+		}catch(Exception e){
+			e.printStackTrace();
+			return new JsonResult<Boolean>(e.getMessage());
+		}
+	}
 }

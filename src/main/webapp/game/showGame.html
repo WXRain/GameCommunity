@@ -42,7 +42,7 @@
 			</tr>
 			<tr>
 				<td colspan='2'><center><a class="a-label" href=javascript:void(0) onclick=addBus() id="addBus">加入购物车</a></center></td>
-				<td colspan='2'><center><a class="a-label" href=javascript:void(0) onclick=jumpToCommunity() id="community">论坛</a></center></td>
+				<td colspan='2' id="community"><center><a class="a-label" href=javascript:void(0) onclick=jumpToCommunity() >论坛</a></center></td>
 				<td colspan='1'><center><a style="display: none" class="a-label modify" href=javascript:void(0) onclick=uploadGameImg() id="uploadGameImage">上传封面</a></center></td>
 			</tr>
 
@@ -98,6 +98,19 @@
 			<input style="display:none" type="submit" id="submitGameImg"/>
 			<input type="button" onclick="cancelModifyGameImg()" id="cancelModifyImg" value="取消"/>
 		</form>
+
+		<table width=100% id="bindSectionTable" style="display:none">
+			<tr>
+				<td class="text-label" width=50% align="right">绑定板块名称：</td>
+				<td width=10%><input id="bindSectionName" name="bindSectionName" type="text" onblur="checkBindSectionName()"/></td>
+				<td width=40%><span class="message" id="bindSectionNameMessage"></span></td>
+			</tr>
+			<tr>
+				<td align="right"><input type="button" onclick="doBindSection()" value="提交" id="submitUpdate"/></td>
+				<td><input type="button" onclick="cancelBindSection()" value="取消"/></td>
+				<td></td>
+			</tr>
+		</table>
 
 		<br/><br/>
 		<center><h3 class="text-label">精选评论</h3></center>
@@ -230,8 +243,14 @@ $.ajax({
 				window.location.href = path + "/error.html";
 				return;
 			}
-			
+
+			gameType = data.gameType;
+
 			buildIndex(data.gameType, data.gameName);
+
+			if(data.sectionId == null || data.sectionId == 0){
+			    $("#community").html("<center><a class='a-label modify' style='display:none;' href=javascript:void(0) onclick=bindSection() >绑定论坛</a></center>");
+			}
 
 			var picturePath = data.picturePath;
 			if(picturePath == null || picturePath.length <= 0)
@@ -481,6 +500,65 @@ function doModifyPrice(){
 function cancelModify(){
 	$("#modifyTable").hide();
 }
+
+function bindSection(){
+    $("#bindSectionTable").show();
+}
+
+function cancelBindSection(){
+    $("#bindSectionTable").hide();
+}
+
+function checkBindSectionName(){
+    var sectionName = $("#bindSectionName").val();
+
+	$.ajax({
+		url:"checkBindSectionName.do",
+		method:"POST",
+		dataType:"JSON",
+		data:{
+		    "gameTypeId":gameType,
+		    "gameId":gameId,
+            "sectionName":sectionName
+		},
+		success:function(result){
+		    if(result.state == 0){
+
+			}else{
+                $("#bindSectionNameMessage").text(result.message);
+                return false;
+			}
+		}
+	});
+
+    $("#bindSectionNameMessage").text("");
+    return true;
+}
+
+function doBindSection(){
+    if(!checkBindSectionName()){
+        return false;
+	}
+
+	$.ajax({
+		url:"doBindSection.do",
+		method:"POST",
+		dataType:"JSON",
+		data:{
+			"gameTypeId":gameType,
+			"gameId":gameId,
+			"sectionName":$("#bindSectionName").val()
+		},
+		success:function(result){
+		    if(result.state == 0){
+		        window.location.reload();
+			}else{
+		        alert(result.message);
+			}
+		}
+	});
+}
+
 </script>
 </body>
 </html>

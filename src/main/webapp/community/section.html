@@ -36,9 +36,22 @@
         <center><h2 class="text-label" id="sectionName"></h2></center><br/>
         <div><center><h3 class="text-label" id="introduce"></h3></center></div>
         <div>
-            <center><a  class="a-label" id="jumpToGame" href=javascript:void(0)>点此跳转到游戏</a>
-            <a class="a-label" id="addTopic" href=javascript:void(0)>发布帖子</a></center>
+            <span id="game"><center><a class="a-label" id="jumpToGame" href=javascript:void(0)>点此跳转到游戏</a></center></span>
+            <center><a class="a-label" id="addTopic" href=javascript:void(0)>发布帖子</a></center>
         </div>
+
+        <table width=100% id="bindGameTable" style="display:none">
+            <tr>
+                <td class="text-label" width=50% align="right">绑定游戏名称：</td>
+                <td width=10%><input id="bindGameName" name="bindGameName" type="text" onblur="checkBindGameName()"/></td>
+                <td width=40%><span class="message" id="bindGameNameMessage"></span></td>
+            </tr>
+            <tr>
+                <td align="right"><input type="button" onclick="doBindGame()" value="提交" id="submitUpdate"/></td>
+                <td><input type="button" onclick="cancelBindGame()" value="取消"/></td>
+                <td></td>
+            </tr>
+        </table>
         <br/><br/>
         <table class="table table-hover" width="100%" id="table">
            <tr>
@@ -89,12 +102,18 @@
 					$("#sectionIndex").text(result.data.name);
 					$("#sectionName").text(result.data.name);
 					$("#introduce").text("介绍：" + result.data.introduce);
+
+					if(result.data.gameId == null || result.data.gameId == 0){
+					    $("#game").html("<center><a class='a-label modify' href=javascript:void(0) onclick='bindGame()'>点此绑定游戏</a></center>");
+                    }
+
 					if(result.data.managers != null && result.data.managers.length > 0){
 						for(var i = 0; i < result.data.managers.length; i++){
 							if(result.data.managers[i].id == $.session.get("userId")){
 								$(".delete").show();
 								$(".addTop").show();
 								$(".addFine").show();
+								$(".modify").show();
 								break;
 							}
 						}
@@ -170,6 +189,7 @@
 			   $(".delete").show();
 			   $(".addTop").show();
 			   $(".addFine").show();
+			   $(".modify").show();
 		   }
 	   }
 	  
@@ -324,6 +344,64 @@
    function addTopic(sectionId){
 	   window.location.href = path + "/community/addTopic.html?sectionId=" + sectionId;
    }
+
+   function bindGame(){
+       $("#bindGameTable").show();
+   }
+
+   function cancelBindGame(){
+       $("#bindGameTable").hide();
+   }
+
+   function checkBindGameName(){
+       var gameName = $("#bindGameName").val();
+       if(gameName == null || gameName.length <= 0){
+           $("#bindGameNameMessage").text("绑定游戏名不能为空");
+           return false;
+       }
+
+       $.ajax({
+           url:"checkBindGameName.do",
+           method:"POST",
+           dataType:"JSON",
+           data:{
+               "sectionId":sectionId,
+               "gameName":gameName
+           },
+           success:function(result){
+               if(result.state == 0){
+
+               }else{
+                   $("#bindGameNameMessage").text(result.message);
+                   return false;
+               }
+           }
+       });
+
+       $("#bindGameNameMessage").text("");
+       return true;
+   }
+
+   function doBindGame(){
+       $.ajax({
+           url:"doBindGame.do",
+           method:"POST",
+           dataType:"JSON",
+           data:{
+               "sectionId":sectionId,
+               "gameName":$("#bindGameName").val()
+           },
+           success:function(result){
+               if(result.state == 0){
+                   window.location.reload();
+               }else{
+                   alert(result.message);
+                   return false;
+               }
+           }
+       });
+   }
+
    </script>
    
 </body>
