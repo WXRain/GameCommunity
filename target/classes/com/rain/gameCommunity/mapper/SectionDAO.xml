@@ -55,5 +55,9 @@
 		select * from section where gameType=#{gameTypeId}
 	</select>
 	
+	<select id="querySectionBySectionName" resultType="com.rain.gameCommunity.entity.SectionEntity">
+		select * from section where name=#{sectionName} and gameType=#{gameTypeId}
+	</select>
+	
 	
  </mapper>

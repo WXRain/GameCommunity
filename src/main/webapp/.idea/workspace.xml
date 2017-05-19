@@ -15,56 +15,18 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="showGame.html" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/game/showGame.html">
+      <file leaf-file-name="gameType.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/community/gameType.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="504">
-              <caret line="36" column="13" lean-forward="true" selection-start-line="36" selection-start-column="13" selection-end-line="36" selection-end-column="13" />
+            <state relative-caret-position="420">
+              <caret line="341" column="63" lean-forward="true" selection-start-line="341" selection-start-column="63" selection-end-line="341" selection-end-column="63" />
               <folding>
-                <element signature="n#style#0;n#a#0;n#center#0;n#td#2;n#tr#1;n#table#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#form#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <marker date="1495170711000" expanded="true" signature="7661:7673" ph="..." />
-                <marker date="1495170711000" expanded="true" signature="8531:8543" ph="..." />
-                <marker date="1495170711000" expanded="true" signature="9709:9715" ph=" " />
-                <marker date="1495170711000" expanded="true" signature="9715:9721" ph=" " />
-                <marker date="1495170711000" expanded="true" signature="9721:9727" ph=" " />
-                <marker date="1495170711000" expanded="true" signature="9891:9897" ph=" " />
-                <marker date="1495170711000" expanded="true" signature="9897:9903" ph=" " />
-                <marker date="1495170711000" expanded="true" signature="9903:9909" ph=" " />
-                <marker date="1495170711000" expanded="true" signature="9910:9916" ph=" " />
-                <marker date="1495170711000" expanded="true" signature="9916:9922" ph=" " />
-                <marker date="1495170711000" expanded="true" signature="9922:9928" ph=" " />
+                <marker date="1495195530000" expanded="true" signature="5013:5019" ph=" " />
+                <marker date="1495195530000" expanded="true" signature="5019:5025" ph=" " />
+                <marker date="1495195530000" expanded="true" signature="5025:5031" ph=" " />
+                <marker date="1495195530000" expanded="true" signature="6455:6467" ph="..." />
+                <marker date="1495195530000" expanded="true" signature="6591:6603" ph="..." />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="show-game.css" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/css/show-game.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="525">
-              <caret line="35" column="14" lean-forward="false" selection-start-line="35" selection-start-column="14" selection-end-line="35" selection-end-column="14" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="showUser.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/user/showUser.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="433">
-              <caret line="104" column="12" lean-forward="true" selection-start-line="104" selection-start-column="12" selection-end-line="104" selection-end-column="12" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="show-user.css" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/css/show-user.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="45">
-              <caret line="3" column="1" lean-forward="true" selection-start-line="3" selection-start-column="1" selection-end-line="3" selection-end-column="1" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -86,6 +48,11 @@
       <find>hr/</find>
       <find>game-img</find>
       <find>暂</find>
+      <find>checkGameTypeName</find>
+      <find>doUpdateManager</find>
+      <find>addSection</find>
+      <find>addsectionintroduce</find>
+      <find>addSectionIntroduce</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -102,13 +69,11 @@
         <option value="$PROJECT_DIR$/css/register.css" />
         <option value="$PROJECT_DIR$/register.html" />
         <option value="$PROJECT_DIR$/index.html" />
-        <option value="$PROJECT_DIR$/game/main.html" />
         <option value="$PROJECT_DIR$/css/community_main.css" />
         <option value="$PROJECT_DIR$/pay/payResult.html" />
         <option value="$PROJECT_DIR$/pay/pay.html" />
         <option value="$PROJECT_DIR$/css/show-game-type.css" />
         <option value="$PROJECT_DIR$/css/game-type.css" />
-        <option value="$PROJECT_DIR$/community/gameType.html" />
         <option value="$PROJECT_DIR$/css/game_main.css" />
         <option value="$PROJECT_DIR$/css/section.css" />
         <option value="$PROJECT_DIR$/community/section.html" />
@@ -126,14 +91,16 @@
         <option value="$PROJECT_DIR$/user/modifyUser.html" />
         <option value="$PROJECT_DIR$/user/showUser.html" />
         <option value="$PROJECT_DIR$/css/show-user.css" />
-        <option value="$PROJECT_DIR$/css/upload-game.css" />
         <option value="$PROJECT_DIR$/css/add-topic.css" />
-        <option value="$PROJECT_DIR$/game/uploadGame.html" />
         <option value="$PROJECT_DIR$/community/addTopic.html" />
-        <option value="$PROJECT_DIR$/community/main.html" />
         <option value="$PROJECT_DIR$/css/top.css" />
         <option value="$PROJECT_DIR$/css/show-game.css" />
         <option value="$PROJECT_DIR$/game/showGame.html" />
+        <option value="$PROJECT_DIR$/css/upload-game.css" />
+        <option value="$PROJECT_DIR$/game/main.html" />
+        <option value="$PROJECT_DIR$/community/main.html" />
+        <option value="$PROJECT_DIR$/game/uploadGame.html" />
+        <option value="$PROJECT_DIR$/community/gameType.html" />
       </list>
     </option>
   </component>
@@ -438,12 +405,12 @@
       <workItem from="1494812442781" duration="797000" />
       <workItem from="1494985607091" duration="7791000" />
       <workItem from="1495120915558" duration="1736000" />
-      <workItem from="1495159559355" duration="2905000" />
+      <workItem from="1495159559355" duration="8494000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="45056000" />
+    <option name="totallyTimeSpent" value="50645000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
@@ -452,6 +419,7 @@
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.13541667" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32942554" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -463,7 +431,6 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -590,13 +557,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/game/main.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="264">
-          <caret line="217" column="35" lean-forward="false" selection-start-line="217" selection-start-column="35" selection-end-line="217" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/css/show-game-type.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="405">
@@ -608,13 +568,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="195">
           <caret line="13" column="1" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="27" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/community/gameType.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="428">
-          <caret line="161" column="45" lean-forward="false" selection-start-line="161" selection-start-column="45" selection-end-line="161" selection-end-column="45" />
         </state>
       </provider>
     </entry>
@@ -719,13 +672,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/register.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2430">
-          <caret line="162" column="45" lean-forward="false" selection-start-line="162" selection-start-column="45" selection-end-line="162" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/css/topic.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="405">
@@ -737,13 +683,16 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="15">
           <caret line="35" column="13" lean-forward="false" selection-start-line="35" selection-start-column="13" selection-end-line="35" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/css/upload-game.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="25" column="12" lean-forward="true" selection-start-line="25" selection-start-column="12" selection-end-line="25" selection-end-column="12" />
+          <folding>
+            <element signature="e#2003#2009#0" expanded="false" />
+            <element signature="e#2009#2015#0" expanded="false" />
+            <element signature="e#2183#2189#0" expanded="false" />
+            <element signature="e#2354#2360#0" expanded="false" />
+            <element signature="e#2366#2372#0" expanded="false" />
+            <marker date="1495000316000" expanded="true" signature="4616:4637" ph="..." />
+            <marker date="1495000316000" expanded="true" signature="4839:4860" ph="..." />
+            <marker date="1495000316000" expanded="true" signature="5949:5961" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -759,14 +708,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="624">
           <caret line="58" column="18" lean-forward="false" selection-start-line="58" selection-start-column="18" selection-end-line="58" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/community/main.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="417">
-          <caret line="180" column="36" lean-forward="false" selection-start-line="180" selection-start-column="36" selection-end-line="180" selection-end-column="36" />
           <folding />
         </state>
       </provider>
@@ -788,20 +729,6 @@
         <state relative-caret-position="90">
           <caret line="6" column="17" lean-forward="true" selection-start-line="6" selection-start-column="10" selection-end-line="6" selection-end-column="17" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/game/uploadGame.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="136" column="45" lean-forward="false" selection-start-line="136" selection-start-column="45" selection-end-line="136" selection-end-column="45" />
-          <folding>
-            <element signature="e#1316#1322#0" expanded="true" />
-            <element signature="e#1322#1328#0" expanded="true" />
-            <element signature="e#1363#1369#0" expanded="true" />
-            <element signature="e#1375#1381#0" expanded="true" />
-            <element signature="e#1526#1532#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -831,8 +758,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/game/showGame.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="504">
-          <caret line="36" column="13" lean-forward="true" selection-start-line="36" selection-start-column="13" selection-end-line="36" selection-end-column="13" />
+        <state relative-caret-position="421">
+          <caret line="114" column="17" lean-forward="true" selection-start-line="114" selection-start-column="17" selection-end-line="114" selection-end-column="17" />
           <folding>
             <element signature="n#style#0;n#a#0;n#center#0;n#td#2;n#tr#1;n#table#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#form#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -847,6 +774,66 @@
             <marker date="1495170711000" expanded="true" signature="9910:9916" ph=" " />
             <marker date="1495170711000" expanded="true" signature="9916:9922" ph=" " />
             <marker date="1495170711000" expanded="true" signature="9922:9928" ph=" " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/register.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="532">
+          <caret line="122" column="24" lean-forward="true" selection-start-line="108" selection-start-column="12" selection-end-line="122" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/css/upload-game.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="510">
+          <caret line="34" column="14" lean-forward="false" selection-start-line="34" selection-start-column="14" selection-end-line="34" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/community/main.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="324">
+          <caret line="134" column="5" lean-forward="false" selection-start-line="134" selection-start-column="5" selection-end-line="134" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/game/main.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="388">
+          <caret line="169" column="9" lean-forward="false" selection-start-line="169" selection-start-column="9" selection-end-line="169" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/game/uploadGame.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4260">
+          <caret line="284" column="13" lean-forward="false" selection-start-line="284" selection-start-column="13" selection-end-line="284" selection-end-column="13" />
+          <folding>
+            <element signature="e#1316#1322#0" expanded="true" />
+            <element signature="e#1322#1328#0" expanded="true" />
+            <element signature="e#1363#1369#0" expanded="true" />
+            <element signature="e#1375#1381#0" expanded="true" />
+            <element signature="e#1526#1532#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/community/gameType.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="420">
+          <caret line="341" column="63" lean-forward="true" selection-start-line="341" selection-start-column="63" selection-end-line="341" selection-end-column="63" />
+          <folding>
+            <marker date="1495195530000" expanded="true" signature="5013:5019" ph=" " />
+            <marker date="1495195530000" expanded="true" signature="5019:5025" ph=" " />
+            <marker date="1495195530000" expanded="true" signature="5025:5031" ph=" " />
+            <marker date="1495195530000" expanded="true" signature="6455:6467" ph="..." />
+            <marker date="1495195530000" expanded="true" signature="6591:6603" ph="..." />
           </folding>
         </state>
       </provider>

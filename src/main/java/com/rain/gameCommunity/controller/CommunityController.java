@@ -354,6 +354,21 @@ public class CommunityController {
 			return new JsonResult<Boolean>(e.getMessage());
 		}
 	}
+	
+	@RequestMapping("/checkOnlySection.do")
+	@ResponseBody
+	public JsonResult<Boolean> checkOnlySection(long gameTypeId, String sectionName){
+		try{
+			SectionEntity section = sectionService.showSectionBySectionName(gameTypeId, sectionName);
+			if(section != null){
+				throw new Exception("板块名重复！");
+			}
+			return new JsonResult<Boolean>(true, null);
+		}catch(Exception e){
+			e.printStackTrace();
+			return new JsonResult<Boolean>(e.getMessage());
+		}
+	}
 
 	public String getGameTypeName() {
 		return gameTypeName;

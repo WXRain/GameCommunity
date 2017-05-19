@@ -22,7 +22,7 @@
 	}
 	var pageNum = getParam("page");
 	if(pageNum == null || pageNum == 0) pageNum = 1;
-	var tableLine = 5;
+	var tableLine = 6;
 	var isManager = $.session.get("isManager");
 </script>
 </head>
@@ -42,8 +42,9 @@
 	    <td class="text-label" width="20%">主题</td>
 	    <td class="text-label" width="20%"><center>介绍</center></td>
 	    <td class="text-label" width="20%">发布时间</td>
+	    <td class="text-label" width="10%">下载量</td>
 	    <td class="text-label" width=20%>价格</td>
-	    <td class="text-label" width=20%>操作</td>
+	    <td class="text-label" width=10%>操作</td>
 	</tr>
 	</table>
 </div>
@@ -117,6 +118,7 @@
 						data[i].gameName + "</td>" +
 						"<td class='text-label'><center>" + data[i].introduce + "</center></td>" +
 						"<td class='text-label'>" + data[i].buildDate + "</td>" +
+						"<td class='text-label'><center>" + data[i].downloadNum + "<center></td>" +
 						"<td class='text-label'>" + (data[i].price * data[i].cutOff) + "</td>" +
 						"<td><a class='a-label delete' href=javascript:void(0) style='display:none' onclick=deleteGame(" + data[i].id + ")>删除</a>");
 			}

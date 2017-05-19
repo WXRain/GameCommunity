@@ -106,4 +106,20 @@ public class CommonController {
 			return new JsonResult<Boolean>(e.getMessage());
 		}
 	}
+	
+	@RequestMapping("/checkOnlyGameType.do")
+	@ResponseBody
+	public JsonResult<Boolean> checkOnlyGameType(String gameTypeName){
+		try{
+			GameTypeEntity gameType = gameTypeService.queryGameTypeByName(gameTypeName);
+			if(gameType != null){
+				throw new Exception("游戏类型重复！");
+			}
+			return new JsonResult<Boolean>(true, null);
+			
+		}catch(Exception e){
+			e.printStackTrace();
+			return new JsonResult<Boolean>(e.getMessage());
+		}
+	}
 }

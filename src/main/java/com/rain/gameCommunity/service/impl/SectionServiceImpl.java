@@ -160,4 +160,12 @@ public class SectionServiceImpl implements SectionService {
 		return sectionDao.querySectionsByGameType(gameTypeId);
 	}
 
+	/* (non-Javadoc)
+	 * @see com.rain.gameCommunity.service.SectionService#showSectionBySectionName(java.lang.String)
+	 */
+	@Override
+	public SectionEntity showSectionBySectionName(long gameTypeId, String sectionName) throws Exception {
+		return sectionDao.querySectionBySectionName(gameTypeId, sectionName);
+	}
+
 }

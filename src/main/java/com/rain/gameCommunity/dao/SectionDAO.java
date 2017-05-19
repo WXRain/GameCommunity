@@ -36,4 +36,6 @@ public interface SectionDAO {
 	public void deleteSectionBySectionId(@Param("sectionId") long sectionId);
 	
 	public List<SectionEntity> querySectionsByGameType(@Param("gameTypeId") long gameTypeid);
+	
+	public SectionEntity querySectionBySectionName(@Param("gameTypeId") long gameTypeId, @Param("sectionName") String sectionName);
 }

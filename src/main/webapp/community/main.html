@@ -47,7 +47,7 @@
 	<tr>
 		<td class="text-label" align="right">游戏类型介绍：</td>
 		<td><input id="gameTypeIntroduce" name="gameTypeIntroduce" type="text" onblur="checkGameTypeIntroduce()"/></td>
-		<td></td>
+		<td><span id="gameTypeIntroduceMessage" style="color:red"></span></td>
 	</tr>
 	<tr>
 		<td align="right"><input type="button" onclick="doAddGameType()" value="提交"/></td>
@@ -130,6 +130,9 @@ function createTable(data){
 }
 
 function doAddGameType(){
+    if(!checkGameTypeName() || !checkGameTypeIntroduce()){
+        return;
+    }
 	$.ajax({
 		url:"../common/addGameType.do",
 		method:"POST",
@@ -180,18 +183,37 @@ function deleteGameType(gameTypeId){
 function checkGameTypeName(){
     var gameTypeName = $("#gameTypeName").val();
     if(gameTypeName == null || gameTypeName.length <= 0){
-        alert("游戏类型名称不能为空！");
+        $("#gameTypeNameMessage").text("游戏类型名称不能为空！");
         return false;
 	}
+
+	$.ajax({
+		url:"../common/checkOnlyGameType.do",
+		method:"POST",
+		dataType:"JSON",
+		data:{
+		    "gameTypeName":gameTypeName
+		},
+		success:function(result){
+		    if(result.state == 0){
+
+			}else{
+		        $("#gameTypeNameMessage").text(result.message);
+		        return false;
+			}
+		}
+	});
+    $("#gameTypeNameMessage").text("");
 	return true;
 }
 
 function checkGameTypeIntroduce(){
     var gameTypeIntroduce = $("#gameTypeIntroduce").val();
     if(gameTypeIntroduce == null || gameTypeIntroduce.length <= 0){
-        alert("游戏类型介绍不能为空！");
+        $("#gameTypeIntroduceMessage").text("游戏类型介绍不能为空！");
         return false;
 	}
+    $("#gameTypeIntroduceMessage").text("");
 	return true;
 }
 
@@ -239,10 +261,6 @@ function updateManager(gameTypeId){
 }
 
 function doUpdateManager(gameTypeId){
-
-    if(!checkGameTypeName() || !checkGameTypeIntroduce()){
-        return;
-	}
 
 	$.ajax({
 		url:"../common/updateManager.do",

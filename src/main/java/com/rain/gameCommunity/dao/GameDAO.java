@@ -41,5 +41,7 @@ public interface GameDAO {
 	public void deleteGameByGameId(@Param("gameId") long gameId);
 	
 	public List<GameEntity> queryLastestGames();
+	
+	public GameEntity queryGameByGameName(@Param("gameName") String gameName);
 
 }

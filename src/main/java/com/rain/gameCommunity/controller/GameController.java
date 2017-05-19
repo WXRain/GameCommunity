@@ -513,4 +513,19 @@ public class GameController {
 			return "redirect: /gameCommunity/error.html";
 		}
 	}
+	
+	@RequestMapping("/checkOnlyGameName.do")
+	@ResponseBody
+	public JsonResult<Boolean> checkOnlyGameName(String gameName){
+		try{
+			GameEntity game = gameService.showGameByGameName(gameName);
+			if(game != null){
+				throw new Exception("游戏名重复！");
+			}
+			return new JsonResult<Boolean>(true, null);
+		}catch(Exception e){
+			e.printStackTrace();
+			return new JsonResult<Boolean>(e.getMessage());
+		}
+	}
 }

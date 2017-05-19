@@ -48,12 +48,12 @@
 	   <table id="addSectionTable" width=100% style="display:none">
 	   <tr>
 			<td class="text-label" width=40% align="right">板块名：</td>
-			<td width=40%><input id="addSectionName"/></td>
+			<td width=40%><input id="addSectionName" onblur="checkSectionName()"/></td>
 			<td width=20%><span id="addSectionNameMessage" style="color:red"></span></td>
 	   </tr>
 	   <tr>
 			<td class="text-label" width=40% align="right">介绍：</td>
-			<td width=40%><input id="addSectionIntroduce"/></td>
+			<td width=40%><input id="addSectionIntroduce" onblur="checkSectionIntroduce()"/></td>
 			<td width=20%><span id="addSectionIntroduceMessage" style="color:red"></span></td>
 	   </tr>
 	   <tr>
@@ -187,6 +187,11 @@
 
 
    function addSection(){
+
+       if(!checkSectionName() || !checkSectionIntroduce()){
+           return false;
+	   }
+
 	   $.ajax({
 		   url:"addSection.do",
 		   method:"POST",
@@ -302,6 +307,45 @@
 				}
 			}
 		});
+	}
+
+	function checkSectionName(){
+	    var sectionName = $("#addSectionName").val();
+	    if(sectionName == null || sectionName.length <= 0){
+	        $("#addSectionNameMessage").text("板块名不能为空！");
+	        return false;
+		}
+
+		$.ajax({
+			url:"checkOnlySection.do",
+			method:"POST",
+			dataType:"JSON",
+			data:{
+			    "sectionName":sectionName,
+				"gameTypeId":gameTypeId
+			},
+			success:function(result){
+			    if(result.state == 0){
+
+				}else{
+			        $("#addSectionNameMessage").text(result.message);
+			        return false;
+				}
+			}
+		});
+
+        $("#addSectionNameMessage").text("");
+        return true;
+	}
+
+	function checkSectionIntroduce(){
+	    var sectionIntroduce = $("#addSectionIntroduce").val();
+	    if(sectionIntroduce == null || sectionIntroduce.length <= 0){
+	        $("#addSectionIntroduceMessage").text("板块介绍不能为空！");
+	        return false;
+		}
+        $("#addSectionIntroduceMessage").text("");
+		return true;
 	}
    
    </script>

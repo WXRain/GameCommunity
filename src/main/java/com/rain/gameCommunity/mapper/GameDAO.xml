@@ -140,4 +140,8 @@
 		delete from game where id=#{gameId}
 	</delete>
 	
+	<select id="queryGameByGameName" parameterType="String" resultType="com.rain.gameCommunity.entity.GameEntity">
+		select * from game where gameName=#{gameName}
+	</select>
+	
  </mapper>

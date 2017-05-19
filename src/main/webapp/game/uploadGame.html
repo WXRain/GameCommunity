@@ -40,18 +40,18 @@
 		</tr>
 		<tr>
 			<td class="text-label">游戏名称：</td>
-			<td><input class="form-control my-input" id="gameName" value="" name="gameName"/></td>
-			<td><span id="gameNameMessage"></span></td>
+			<td><input class="form-control my-input" id="gameName" value="" name="gameName" onblur="checkGameName()"/></td>
+			<td><span class="message" id="gameNameMessage"></span></td>
 		</tr>
 		<tr>
 			<td class="text-label">游戏价格：</td>
-			<td><input class="form-control my-input" id="gamePrice" value="" name="gamePrice"/></td>
-			<td><span id="gamePriceMessage"></span></td>
+			<td><input class="form-control my-input" id="gamePrice" value="" name="gamePrice" onblur="checkGamePrice()"/></td>
+			<td><span class="message" id="gamePriceMessage"></span></td>
 		</tr>
 		<tr>
 			<td class="text-label">游戏版本号：</td>
-			<td><input class="form-control my-input" id="gameVersion" value="" name="gameVersion"/></td>
-			<td><span id="gameVersionMessage"></span></td>
+			<td><input class="form-control my-input" id="gameVersion" value="" name="gameVersion" onblur="checkGameVersion()"/></td>
+			<td><span class="message" id="gameVersionMessage"></span></td>
 		</tr>
 		<tr>
 			<td class="text-label">游戏系统要求：</td>
@@ -61,38 +61,38 @@
 		</tr>
 		<tr>
 			<td class="text-label">系统支持名称：</td>
-			<td><input class="form-control my-input" id="systemSupportName" name="systemSupportName"/></td>
-			<td><span id="systemSupportNameMessage"></span></td>
+			<td><input class="form-control my-input" id="systemSupportName" name="systemSupportName" onblur="checkSystemSupport()"/></td>
+			<td><span class="message" id="systemSupportNameMessage"></span></td>
 		</tr>
 		<tr>
 			<td class="text-label">内存：</td>
 			<td><input class="form-control my-input" id="memoria" name="memoria"></input></td>
-			<td><span id="memoriaMessage"></span></td>
+			<td><span class="message" id="memoriaMessage"></span></td>
 		</tr>
 		<tr>
 			<td class="text-label">系统：</td>
 			<td><input class="form-control my-input" id="system" name="system"/></td>
-			<td><span id="systemMessage"></span></td>
+			<td><span class="message" id="systemMessage"></span></td>
 		</tr>
 		<tr>
 			<td class="text-label">磁盘：</td>
 			<td><input class="form-control my-input" id="disk" name="disk"/></td>
-			<td><span id="diskMessage"></span></td>
+			<td><span class="message" id="diskMessage"></span></td>
 		</tr>
 		<tr>
 			<td class="text-label">声卡：</td>
 			<td><input class="form-control my-input" id="voice" name="voice"/></td>
-			<td><span id="voiceMessage"></span></td>
+			<td><span class="message" id="voiceMessage"></span></td>
 		</tr>
 		<tr>
 			<td class="text-label">CPU：</td>
 			<td><input class="form-control my-input" id="cpu" name="cpu"/></td>
-			<td><span id="cpuMessage"></span></td>
+			<td><span class="message" id="cpuMessage"></span></td>
 		</tr>
 		<tr>
 			<td class="text-label">显卡：</td>
 			<td><input class="form-control my-input" id="display" name="display"/></td>
-			<td><span id="displayMessage"></span></td>
+			<td><span class="message" id="displayMessage"></span></td>
 		</tr>
 		<tr>
 			<td class="text-label">网络：</td>
@@ -105,35 +105,36 @@
 		<tr>
 			<td class="text-label">注意：</td>
 			<td><input class="form-control my-input" id="note" name="note"/></td>
-			<td><span id="noteMessage"></span></td>
+			<td><span class="message" id="noteMessage"></span></td>
 		</tr>
 		<tr>
 			<td class="text-label">游戏介绍：</td>
 			<td><input class="form-control my-input" id="introduce" name="introduce"/></td>
-			<td><span id="introduceMessage"></span></td>
+			<td><span class="message" id="introduceMessage"></span></td>
 		</tr>
 		<tr>
 			<td class="text-label">同时创建论坛板块：</td>
 			<td><input type="checkbox" id="createSection" name="createSection" checked onblur="checkBoxIsChecked()"/></td>
-			<td><span id="createSectionMessage"></span></td>
+			<td><span class="message" id="createSectionMessage"></span></td>
 		</tr>
 		<tr class="section">
 			<td class="text-label">论坛名：</td>
-			<td><input class="form-control my-input" id="sectionName" name="sectionName"/></td>
-			<td><span id="sectionNameMessage"></span></td>
+			<td><input class="form-control my-input" id="sectionName" name="sectionName" onblur="checkSectionName()"/></td>
+			<td><span class="message" id="sectionNameMessage"></span></td>
 		</tr>
 		<tr class="section">
 		<td class="text-label">论坛介绍：</td>
-		<td><input  class="form-control my-input"id="sectionIntroduce" name="sectionIntroduce"/></td>
-		<td><span id="sectionIntroduceMessage"></span></td>
+		<td><input  class="form-control my-input"id="sectionIntroduce" name="sectionIntroduce" onblur="checkSectionIntroduce()"/></td>
+		<td><span class="message" id="sectionIntroduceMessage"></span></td>
 		</tr>
 		<tr>
 			<td class="text-label">选择程序：</td>
 			<td><input type="file" name="file" id="fileName" onblur="checkProgram()"></td>
-			<td><span id="fileMessage"></span></td>
+			<td><span class="message" id="fileMessage"></span></td>
 		</tr>
 		<tr>
-			<td><input class="btn btn-default" type="submit" value="上传"/></td>
+			<td><input type="button" class="btn btn-default" onclick="doUploadGame()"value="上传" /></td>
+			<input hidden class="btn btn-default" type="submit" id="realDoUploadGame"/>
 			<td><input class="btn btn-default" type="reset"/></td>
 		</tr>
 		</table>
@@ -233,7 +234,19 @@
 	}
 
 	function checkProgram(){
-
+        var fileName = $("#fileName").val();
+        if(fileName == null || fileName.length == 0){
+            $("#fileMessage").text("文件不能为空");
+            return false;
+        }
+        if(!fileName.endsWith(".exe")){
+            $("#fileMessage").text("文件格式错误，请检查！");
+            return false;
+        }else{
+            $("#fileMessage").text("");
+            return true;
+        }
+        return true;
 	}
 
 	function gameIndex(){
@@ -246,6 +259,101 @@
 	
 	function uploadGameIndex(){
 		window.location.href = path + "/game/uploadGame.html?gameTypeId=" + gameTypeId;
+	}
+
+	function checkSystemSupport(){
+
+	    var systemSupportName = $("#systemSupportName").val();
+	    if(systemSupportName == null || systemSupportName.length <= 0){
+	        $("#systemSupportNameMessage").text("必填项");
+            return false;
+		}
+		$("#systemSupportNameMessage").text("");
+	    return true;
+	}
+
+	function checkSectionName(){
+	    var sectionName = $("#sectionName").val();
+	    if(sectionName == null || sectionName.length <= 0){
+	        $("#sectionNameMessage").text("必填项");
+	        return false;
+		}
+        $("#sectionNameMessage").text("");
+	    return true;
+	}
+
+	function checkSectionIntroduce(){
+	    var sectionIntroduce = $("#sectionIntroduce").val();
+	    if(sectionIntroduce == null || sectionIntroduce.length <= 0){
+	        $("#sectionIntroduceMessage").text("必填项");
+	        return false;
+		}
+        $("#sectionIntroduceMessage").text("");
+	    return true;
+	}
+
+	function checkGameName(){
+	    var gameName = $("#gameName").val();
+	    if(gameName == null || gameName.length <= 0){
+	        $("#gameNameMessage").text("不能为空！");
+	        return false;
+		}
+
+	    $.ajax({
+	    		url:"checkOnlyGameName.do",
+	    		method:"POST",
+	    		dataType:"JSON",
+	    		data:{
+	    			"gameName":gameName
+	    		},
+	    		success:function(result){
+	    			if(result.state == 0){
+
+	    			}else{
+	    				$("#gameNameMessage").text(result.message);
+	    				return false;
+	    			}
+	    		}
+	    });
+
+
+        $("#gameNameMessage").text("");
+	    return true;
+	}
+
+	function checkGamePrice(){
+        var gamePrice = $("#gamePrice").val();
+        if(gamePrice == null || gamePrice.length <= 0){
+            $("#gamePriceMessage").text("不能为空！");
+            return false;
+        }
+        $("#gamePriceMessage").text("");
+        return true;
+	}
+
+	function checkGameVersion(){
+        var gameVersion = $("#gameVersion").val();
+        if(gameVersion == null || gameVersion.length <= 0){
+            $("#gameVersionMessage").text("不能为空！");
+            return false;
+        }
+        $("#gameVersionMessage").text("");
+        return true;
+	}
+
+	function doUploadGame(){
+
+	    if(!checkGameName() || !checkGamePrice() || !checkGameVersion() || !checkSystemSupport() || !checkProgram()){
+	        return false;
+		}
+
+        if($("#createSection").is(":checked")){
+            if(!checkSectionName() || !checkSectionIntroduce()){
+                return false;
+			}
+        }
+
+	    $("#realDoUploadGame").click();
 	}
 	</script>
 </body>

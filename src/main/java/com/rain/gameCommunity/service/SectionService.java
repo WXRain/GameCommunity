@@ -34,4 +34,6 @@ public interface SectionService {
 	public void deleteSectionBySectionId(long sectionId) throws Exception;
 	
 	public List<SectionEntity> showSectionsByGameTypeId(long gameTypeId) throws Exception;
+	
+	public SectionEntity showSectionBySectionName(long gameTypeId, String sectionName) throws Exception;
 }
