@@ -19,7 +19,8 @@
 }
 
 .my-nav .nav-item a{
-    color: blue;
+    //color: blue;
+    color:#66c0f4
 }
 
 .my-nav .nav-item a:hover{
@@ -28,7 +29,7 @@
 }
 
 .my-nav .nav-item a:active{
-    color: blue;
+    color: #66c0f4;
     text-decoration: none;
 }
 
@@ -46,7 +47,7 @@
 }
 
 .has-login{
-    color: blue;
+    color: #66c0f4;
 }
 
 .has-login:hover{
@@ -55,7 +56,7 @@
 }
 
 .has-login:active{
-    color: blue;
+    color: #66c0f4;
     text-decoration: none;
 }
 

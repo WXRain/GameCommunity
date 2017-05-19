@@ -38,9 +38,12 @@
 		<span><center><h2 id="message"></h2></center></span>
 		<table class="table table-hover mt-5" width=100% id="table">
 			<tr>
+				<td colspan="5"><center><img id="gameImg" class="img-rounded game-img"></center></td>
+			</tr>
+			<tr>
 				<td colspan='2'><center><a class="a-label" href=javascript:void(0) onclick=addBus() id="addBus">加入购物车</a></center></td>
 				<td colspan='2'><center><a class="a-label" href=javascript:void(0) onclick=jumpToCommunity() id="community">论坛</a></center></td>
-				<td colspan='1'><center><a class="a-label" href=javascript:void(0) onclick=uploadGameImg() id="uploadGameImage">上传封面</a></center></td>
+				<td colspan='1'><center><a style="display: none" class="a-label modify" href=javascript:void(0) onclick=uploadGameImg() id="uploadGameImage">上传封面</a></center></td>
 			</tr>
 
 			<tr>
@@ -78,6 +81,24 @@
 			<td><input class="btn btn-default" type="button" value="取消" onclick="cancelModify()"/></td>
 		</tr>
 		</table>
+
+		<form style="display: none" id="modifyImg" class="form-horizontal" action="modifyGameImg.do" method="POST" enctype="multipart/form-data">
+			<input hidden name="gameId" id="id"/>
+
+			<div class="form-group">
+				<label for="fileName" class="col-sm-2 control-label text-label">选择封面</label>
+				<div class="col-sm-6">
+					<input type="file" name="file" id="fileName" onblur="checkGameImg()">
+				</div>
+				<div class="col-sm-4">
+					<span id="headMessage" class="message"></span>
+				</div>
+			</div>
+			<input type="button" onclick="modifyGameImg()" value="修改"/>
+			<input style="display:none" type="submit" id="submitGameImg"/>
+			<input type="button" onclick="cancelModifyGameImg()" id="cancelModifyImg" value="取消"/>
+		</form>
+
 		<br/><br/>
 		<center><h3 class="text-label">精选评论</h3></center>
 		<table class="table table-hover" width=100% id="comments">
@@ -123,8 +144,18 @@
 		});
 	});
 	
-	
-	
+	function cancelModifyGameImg(){
+	    $("#modifyImg").hide();
+	}
+
+	function uploadGameImg(){
+	    $("#modifyImg").show();
+	}
+
+	function modifyGameImg(){
+	    $("#id").val(gameId);
+	    $("#submitGameImg").click();
+	}
 
 function addBus(){
 	var userId = $.session.get("userId");
@@ -201,6 +232,12 @@ $.ajax({
 			}
 			
 			buildIndex(data.gameType, data.gameName);
+
+			var picturePath = data.picturePath;
+			if(picturePath == null || picturePath.length <= 0)
+			    picturePath = "/img/game/gameName/version/default.png";
+
+            $("#gameImg").attr("src" , ".." + picturePath);
 			
 			$("#gameName").text("游戏名称：" + data.gameName);
 			$("#buildTime").text("游戏出版日期：" + data.buildDate);
@@ -227,7 +264,7 @@ $.ajax({
 			
 			
 			if(data.comments == null || data.comments.length == 0){
-				$("#comments").append("<tr><td colspan='4'><center><h3>暂时没有评论！</h3></center></td></tr><tr><td colspan='4'><hr/></td></tr>")
+				$("#comments").append("<tr><td colspan='4'><center><h3 class='text-label'>暂时没有评论！</h3></center></td></tr><tr><td colspan='4'><hr/></td></tr>")
 			}else{
 				var comments = data.comments;
 				for(var i = 0; i < comments.length; i++){
@@ -422,6 +459,24 @@ function doModifyPrice(){
 		}
 	});
 }
+
+    function checkGameImg(){
+        var fileName = $("#fileName").val();
+        if(fileName == null || fileName.length == 0){
+            $("#headMessage").text("");
+            return true;
+        }
+        if(!fileName.endsWith(".jpg") && !fileName.endsWith(".bmp")
+            && !fileName.endsWith(".jpeg") && !fileName.endsWith(".png")
+            && !fileName.endsWith(".gif")){
+            $("#headMessage").text("文件格式错误，请检查！");
+            return false;
+        }else{
+            $("#headMessage").text("");
+            return true;
+        }
+        return true;
+    }
 
 function cancelModify(){
 	$("#modifyTable").hide();

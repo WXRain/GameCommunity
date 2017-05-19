@@ -119,7 +119,8 @@
 			version=#{game.version},
 			path=#{game.path},
 			sectionId=#{game.sectionId},
-			downloadNum=#{game.downloadNum}
+			downloadNum=#{game.downloadNum},
+			picturePath=#{game.picturePath}
 			where id=#{game.id}
 	</update>
 	

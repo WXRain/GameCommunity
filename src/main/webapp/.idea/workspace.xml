@@ -15,61 +15,55 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="uploadGame.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/game/uploadGame.html">
+      <file leaf-file-name="showGame.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/game/showGame.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="343">
-              <caret line="136" column="45" lean-forward="false" selection-start-line="136" selection-start-column="45" selection-end-line="136" selection-end-column="45" />
+            <state relative-caret-position="504">
+              <caret line="36" column="13" lean-forward="true" selection-start-line="36" selection-start-column="13" selection-end-line="36" selection-end-column="13" />
               <folding>
-                <element signature="e#1316#1322#0" expanded="true" />
-                <element signature="e#1322#1328#0" expanded="true" />
-                <element signature="e#1363#1369#0" expanded="true" />
-                <element signature="e#1375#1381#0" expanded="true" />
-                <element signature="e#1526#1532#0" expanded="true" />
+                <element signature="n#style#0;n#a#0;n#center#0;n#td#2;n#tr#1;n#table#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#form#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <marker date="1495170711000" expanded="true" signature="7661:7673" ph="..." />
+                <marker date="1495170711000" expanded="true" signature="8531:8543" ph="..." />
+                <marker date="1495170711000" expanded="true" signature="9709:9715" ph=" " />
+                <marker date="1495170711000" expanded="true" signature="9715:9721" ph=" " />
+                <marker date="1495170711000" expanded="true" signature="9721:9727" ph=" " />
+                <marker date="1495170711000" expanded="true" signature="9891:9897" ph=" " />
+                <marker date="1495170711000" expanded="true" signature="9897:9903" ph=" " />
+                <marker date="1495170711000" expanded="true" signature="9903:9909" ph=" " />
+                <marker date="1495170711000" expanded="true" signature="9910:9916" ph=" " />
+                <marker date="1495170711000" expanded="true" signature="9916:9922" ph=" " />
+                <marker date="1495170711000" expanded="true" signature="9922:9928" ph=" " />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="game_main.css" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/css/game_main.css">
+      <file leaf-file-name="show-game.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/css/show-game.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="405">
-              <caret line="27" column="1" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="27" selection-end-column="1" />
+            <state relative-caret-position="525">
+              <caret line="35" column="14" lean-forward="false" selection-start-line="35" selection-start-column="14" selection-end-line="35" selection-end-column="14" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="addTopic.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/community/addTopic.html">
+      <file leaf-file-name="showUser.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/user/showUser.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="372">
-              <caret line="111" column="30" lean-forward="false" selection-start-line="111" selection-start-column="30" selection-end-line="111" selection-end-column="30" />
-              <folding>
-                <element signature="e#1551#1557#0" expanded="true" />
-                <element signature="e#1691#1697#0" expanded="true" />
-                <element signature="e#1830#1836#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="main.html" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/community/main.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="417">
-              <caret line="180" column="36" lean-forward="true" selection-start-line="180" selection-start-column="36" selection-end-line="180" selection-end-column="36" />
+            <state relative-caret-position="433">
+              <caret line="104" column="12" lean-forward="true" selection-start-line="104" selection-start-column="12" selection-end-line="104" selection-end-column="12" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="add-topic.css" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/css/add-topic.css">
+      <file leaf-file-name="show-user.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/css/show-user.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="405">
-              <caret line="27" column="1" lean-forward="false" selection-start-line="27" selection-start-column="1" selection-end-line="27" selection-end-column="1" />
+            <state relative-caret-position="45">
+              <caret line="3" column="1" lean-forward="true" selection-start-line="3" selection-start-column="1" selection-end-line="3" selection-end-column="1" />
               <folding />
             </state>
           </provider>
@@ -90,6 +84,8 @@
       <find>hr</find>
       <find>checkuser</find>
       <find>hr/</find>
+      <find>game-img</find>
+      <find>暂</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -101,7 +97,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/css/top.css" />
         <option value="$PROJECT_DIR$/top.html" />
         <option value="$PROJECT_DIR$/css/index.css" />
         <option value="$PROJECT_DIR$/css/register.css" />
@@ -112,8 +107,6 @@
         <option value="$PROJECT_DIR$/pay/payResult.html" />
         <option value="$PROJECT_DIR$/pay/pay.html" />
         <option value="$PROJECT_DIR$/css/show-game-type.css" />
-        <option value="$PROJECT_DIR$/css/show-game.css" />
-        <option value="$PROJECT_DIR$/game/showGame.html" />
         <option value="$PROJECT_DIR$/css/game-type.css" />
         <option value="$PROJECT_DIR$/community/gameType.html" />
         <option value="$PROJECT_DIR$/css/game_main.css" />
@@ -138,6 +131,9 @@
         <option value="$PROJECT_DIR$/game/uploadGame.html" />
         <option value="$PROJECT_DIR$/community/addTopic.html" />
         <option value="$PROJECT_DIR$/community/main.html" />
+        <option value="$PROJECT_DIR$/css/top.css" />
+        <option value="$PROJECT_DIR$/css/show-game.css" />
+        <option value="$PROJECT_DIR$/game/showGame.html" />
       </list>
     </option>
   </component>
@@ -230,6 +226,64 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="img" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="webapp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="webapp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="img" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="game" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="webapp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="webapp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="img" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="game" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="dontstarve" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="1.6.5" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="webapp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="webapp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="game" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -264,8 +318,8 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
       <pane id="Scratches" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -384,11 +438,12 @@
       <workItem from="1494812442781" duration="797000" />
       <workItem from="1494985607091" duration="7791000" />
       <workItem from="1495120915558" duration="1736000" />
+      <workItem from="1495159559355" duration="2905000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="42151000" />
+    <option name="totallyTimeSpent" value="45056000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
@@ -549,20 +604,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/css/show-game.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="465">
-          <caret line="31" column="1" lean-forward="true" selection-start-line="31" selection-start-column="1" selection-end-line="31" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/game/showGame.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="368">
-          <caret line="38" column="44" lean-forward="false" selection-start-line="38" selection-start-column="44" selection-end-line="38" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/css/community_main.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="195">
@@ -616,13 +657,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="15">
           <caret line="14" column="53" lean-forward="false" selection-start-line="14" selection-start-column="53" selection-end-line="14" selection-end-column="53" />
-          <folding>
-            <element signature="e#1475#1481#0" expanded="false" />
-            <marker date="1494757322000" expanded="true" signature="3548:3554" ph=" " />
-            <marker date="1494757322000" expanded="true" signature="3554:3560" ph=" " />
-            <marker date="1494757322000" expanded="true" signature="3560:3566" ph=" " />
-            <marker date="1494757322000" expanded="true" signature="4393:4405" ph="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -630,25 +664,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="15">
           <caret line="156" column="59" lean-forward="false" selection-start-line="156" selection-start-column="59" selection-end-line="156" selection-end-column="59" />
-          <folding>
-            <element signature="e#1595#1601#0" expanded="false" />
-            <element signature="e#1665#1671#0" expanded="false" />
-            <element signature="e#1677#1683#0" expanded="false" />
-            <element signature="e#1779#1785#0" expanded="false" />
-            <element signature="e#1785#1791#0" expanded="false" />
-            <marker date="1494757601000" expanded="true" signature="5355:5367" ph="..." />
-            <marker date="1494757601000" expanded="true" signature="5500:5512" ph="..." />
-            <marker date="1494757601000" expanded="true" signature="5677:5689" ph="..." />
-            <marker date="1494757601000" expanded="true" signature="5825:5837" ph="..." />
-            <marker date="1494757601000" expanded="true" signature="6436:6448" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/css/top.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="17" column="13" lean-forward="false" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
         </state>
       </provider>
     </entry>
@@ -708,27 +723,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2430">
           <caret line="162" column="45" lean-forward="false" selection-start-line="162" selection-start-column="45" selection-end-line="162" selection-end-column="45" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/user/showUser.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1425">
-          <caret line="95" column="37" lean-forward="false" selection-start-line="95" selection-start-column="37" selection-end-line="95" selection-end-column="37" />
-          <folding>
-            <element signature="n#style#0;n#tr#0;n#table#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#form#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#input#2;n#form#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/css/show-user.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="540">
-          <caret line="36" column="1" lean-forward="false" selection-start-line="36" selection-start-column="1" selection-end-line="36" selection-end-column="1" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -736,7 +730,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="405">
           <caret line="27" column="1" lean-forward="false" selection-start-line="27" selection-start-column="1" selection-end-line="27" selection-end-column="1" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -744,24 +737,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="15">
           <caret line="35" column="13" lean-forward="false" selection-start-line="35" selection-start-column="13" selection-end-line="35" selection-end-column="13" />
-          <folding>
-            <element signature="e#2003#2009#0" expanded="true" />
-            <element signature="e#2009#2015#0" expanded="true" />
-            <element signature="e#2183#2189#0" expanded="true" />
-            <element signature="e#2354#2360#0" expanded="true" />
-            <element signature="e#2366#2372#0" expanded="true" />
-            <marker date="1495000316000" expanded="true" signature="4616:4637" ph="..." />
-            <marker date="1495000316000" expanded="true" signature="4839:4860" ph="..." />
-            <marker date="1495000316000" expanded="true" signature="5949:5961" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/css/game_main.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="405">
-          <caret line="27" column="1" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="27" selection-end-column="1" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -769,7 +744,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="375">
           <caret line="25" column="12" lean-forward="true" selection-start-line="25" selection-start-column="12" selection-end-line="25" selection-end-column="12" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -781,9 +755,45 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/css/top.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="624">
+          <caret line="58" column="18" lean-forward="false" selection-start-line="58" selection-start-column="18" selection-end-line="58" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/community/main.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="417">
+          <caret line="180" column="36" lean-forward="false" selection-start-line="180" selection-start-column="36" selection-end-line="180" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/community/addTopic.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="111" column="30" lean-forward="false" selection-start-line="111" selection-start-column="30" selection-end-line="111" selection-end-column="30" />
+          <folding>
+            <element signature="e#1551#1557#0" expanded="false" />
+            <element signature="e#1691#1697#0" expanded="false" />
+            <element signature="e#1830#1836#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/css/game_main.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="6" column="17" lean-forward="true" selection-start-line="6" selection-start-column="10" selection-end-line="6" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/game/uploadGame.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="343">
+        <state relative-caret-position="15">
           <caret line="136" column="45" lean-forward="false" selection-start-line="136" selection-start-column="45" selection-end-line="136" selection-end-column="45" />
           <folding>
             <element signature="e#1316#1322#0" expanded="true" />
@@ -795,23 +805,49 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/community/addTopic.html">
+    <entry file="file://$PROJECT_DIR$/css/show-user.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="372">
-          <caret line="111" column="30" lean-forward="false" selection-start-line="111" selection-start-column="30" selection-end-line="111" selection-end-column="30" />
-          <folding>
-            <element signature="e#1551#1557#0" expanded="true" />
-            <element signature="e#1691#1697#0" expanded="true" />
-            <element signature="e#1830#1836#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="45">
+          <caret line="3" column="1" lean-forward="true" selection-start-line="3" selection-start-column="1" selection-end-line="3" selection-end-column="1" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/community/main.html">
+    <entry file="file://$PROJECT_DIR$/css/show-game.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="417">
-          <caret line="180" column="36" lean-forward="true" selection-start-line="180" selection-start-column="36" selection-end-line="180" selection-end-column="36" />
+        <state relative-caret-position="525">
+          <caret line="35" column="14" lean-forward="false" selection-start-line="35" selection-start-column="14" selection-end-line="35" selection-end-column="14" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/user/showUser.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="433">
+          <caret line="104" column="12" lean-forward="true" selection-start-line="104" selection-start-column="12" selection-end-line="104" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/game/showGame.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="504">
+          <caret line="36" column="13" lean-forward="true" selection-start-line="36" selection-start-column="13" selection-end-line="36" selection-end-column="13" />
+          <folding>
+            <element signature="n#style#0;n#a#0;n#center#0;n#td#2;n#tr#1;n#table#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#form#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <marker date="1495170711000" expanded="true" signature="7661:7673" ph="..." />
+            <marker date="1495170711000" expanded="true" signature="8531:8543" ph="..." />
+            <marker date="1495170711000" expanded="true" signature="9709:9715" ph=" " />
+            <marker date="1495170711000" expanded="true" signature="9715:9721" ph=" " />
+            <marker date="1495170711000" expanded="true" signature="9721:9727" ph=" " />
+            <marker date="1495170711000" expanded="true" signature="9891:9897" ph=" " />
+            <marker date="1495170711000" expanded="true" signature="9897:9903" ph=" " />
+            <marker date="1495170711000" expanded="true" signature="9903:9909" ph=" " />
+            <marker date="1495170711000" expanded="true" signature="9910:9916" ph=" " />
+            <marker date="1495170711000" expanded="true" signature="9916:9922" ph=" " />
+            <marker date="1495170711000" expanded="true" signature="9922:9928" ph=" " />
+          </folding>
         </state>
       </provider>
     </entry>

@@ -441,7 +441,7 @@ public class GameController {
 		}
 	}
 	
-	@RequestMapping("/modifyCutOff")
+	@RequestMapping("/modifyCutOff.do")
 	@ResponseBody
 	public JsonResult<Boolean> modifyCutOff(long gameId, double cutOff){
 		try{
@@ -455,7 +455,7 @@ public class GameController {
 		}
 	}
 	
-	@RequestMapping("/modifyPrice")
+	@RequestMapping("/modifyPrice.do")
 	@ResponseBody
 	public JsonResult<Boolean> modifyPrice(long gameId, double price){
 		try{
@@ -466,6 +466,51 @@ public class GameController {
 		}catch(Exception e){
 			e.printStackTrace();
 			return new JsonResult<Boolean>(e.getMessage());
+		}
+	}
+	
+	@RequestMapping("/modifyGameImg.do")
+	public String modifyGameImg(MultipartFile file, HttpServletRequest request, HttpServletResponse response){
+		try{
+			
+			long gameId = Long.parseLong(request.getParameter("gameId"));
+			GameEntity game = gameService.showGameById(gameId + "");
+			
+			if(!file.isEmpty()){
+				//处理头像
+//				String path = request.getSession().getServletContext().getRealPath("uploadFloder/users/head");
+				String path = request.getSession().getServletContext().getRealPath("img/game/" + game.getGameName() + "/"
+						+ game.getVersion());
+				String filename = file.getOriginalFilename();//xxx.jpg
+				System.out.println(filename);
+				String[] names = filename.split("\\.");
+				String newFileName = new Date().getTime() + "." + names[names.length-1];
+				
+				File targetFile = new File(path, newFileName);
+				if(!targetFile.exists()){
+					targetFile.mkdirs();//不存在则新建目录
+				}
+				
+				try{
+					file.transferTo(targetFile);
+				}catch(Exception e){
+					//return new JsonResult<UserEntity>(e.getMessage());
+					return "redirect: /gameCommunity/error.html";
+				}
+				
+				game.setPicturePath("/img/game/" + game.getGameName() + "/" + game.getVersion() + "/" + newFileName);
+//				System.out.println("头像路径：" + request.getSession().getServletContext().getRealPath("uploadFloder/users/head/") + newFileName);
+				System.out.println("头像路径：" + request.getSession().getServletContext().getRealPath("img/game/" + game.getGameName() + "/" + game.getVersion() + "/") + newFileName);
+
+			}
+			
+			
+			gameService.updateGameEntity(game);
+			
+			return "redirect: /gameCommunity";
+		}catch(Exception e){
+			e.printStackTrace();
+			return "redirect: /gameCommunity/error.html";
 		}
 	}
 }
