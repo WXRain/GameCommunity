@@ -41,7 +41,8 @@
 				<td colspan="5"><center><img id="gameImg" class="img-rounded game-img"></center></td>
 			</tr>
 			<tr>
-				<td colspan='2'><center><a class="a-label" href=javascript:void(0) onclick=addBus() id="addBus">加入购物车</a></center></td>
+				<td colspan='1'><center><a style="display: none" class="a-label modify" href=javascript:void(0) onclick=doUpdateGame() id="updateGame">更新游戏</a></center></td>
+				<td colspan='1'><center><a class="a-label" href=javascript:void(0) onclick=addBus() id="addBus">加入购物车</a></center></td>
 				<td colspan='2' id="community"><center><a class="a-label" href=javascript:void(0) onclick=jumpToCommunity() >论坛</a></center></td>
 				<td colspan='1'><center><a style="display: none" class="a-label modify" href=javascript:void(0) onclick=uploadGameImg() id="uploadGameImage">上传封面</a></center></td>
 			</tr>
@@ -336,6 +337,10 @@ function buildIndex(gameType, nowIndex){
 
 function gameIndex(){
 	window.location.href = path + "/game/main.html";
+}
+
+function doUpdateGame(){
+    window.location.href = path + "/game/updateGame.html?gameId=" + gameId + "&gameTypeId=" + gameType;
 }
 
 function gameTypeIndex(gameType){

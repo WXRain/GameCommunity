@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>游戏类型</title>
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/update-game.css">
+    <script type="text/javascript" src="../script/vue.js"></script>
+    <script type="text/javascript" src="../script/jquery.min.js"></script>
+    <script type="text/javascript" src="../script/tether.min.js"></script>
+    <script type="text/javascript" src="../script/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../script/jquerySession.js"></script>
+    <script type="text/javascript" src="../script/getRootPath.js"></script>
+    <script type="text/javascript" src="../script/getParam.js"></script>
+    <script type="text/javascript" src="../script/utils.js"></script>
+
+    <script type="text/javascript">
+        var path = getRootPath();
+        var gameId = getParam("gameId");
+        if(gameId == null || gameId.length == 0){
+            $.session.set("errorMessage", "参数错误");
+            window.location.href = path + "/error.html";
+        }
+        var userId = $.session.get("userId");
+        if(userId == null || gameId.length == 0){
+            // 		$.session.set("errorMessage", "登录状态错误！");
+            // 		window.location.href = path + "/error.html";
+            userId = -1;
+        }
+        var gameTypeId = getParam("gameTypeId");
+        if(gameTypeId == null || gameTypeId.length == 0){
+            $.session.set("errorMessage", "参数错误！");
+            window.location.href = path + "/error.html";
+        }
+
+        var isManager = $.session.get("isManager");
+    </script>
+</head>
+<body>
+<div><iframe align="center" width="100%" height="100" src="../top.html" frameborder="no" border="0" marginwidth="0" marginheight="0" scrolling="no"></iframe></div>
+<div class="my-container">
+		<span id="index">
+			<a class="a-label" href=javascript:void(0) onclick=gameIndex()>xx游戏</a>&nbsp;&nbsp;&nbsp;<span class="text-label"> > </span>&nbsp;&nbsp;&nbsp;
+			<a class="a-label" href=javascript:void(0) onclick=gameTypeIndex() id=gameTypeIndex></a>&nbsp;&nbsp;&nbsp;<span class="text-label"> > </span>&nbsp;&nbsp;&nbsp;
+			<a class="a-label" href=javascript:void(0) onclick=uploadGameIndex()>上传游戏</a>
+		</span>
+    <form action="updateGame.do" method="POST" enctype="multipart/form-data">
+        <table width=100% id=table>
+            <tr>
+                <td class="text-label" width=45%>游戏类型：</td>
+                <td width=45%><input class="form-control my-input" readonly="true" id="gameTypeName" value=""/></td>
+                <td width=10%><input name="gameTypeId" id="gameTypeId"/></td>
+            </tr>
+            <tr>
+                <td class="text-label">游戏名称：</td>
+                <td><input readonly="true" class="form-control my-input" id="gameName" value="" name="gameName"/></td>
+                <td><input name="gameId" id="gameId"/></td>
+            </tr>
+            <tr>
+                <td class="text-label">游戏价格：</td>
+                <td><input class="form-control my-input" id="gamePrice" value="" name="gamePrice" onblur="checkGamePrice()"/></td>
+                <td><span class="message" id="gamePriceMessage"></span></td>
+            </tr>
+            <tr>
+                <td class="text-label">游戏版本号：</td>
+                <td><input class="form-control my-input" id="gameVersion" value="" name="gameVersion" onblur="checkGameVersion()"/></td>
+                <td><span class="message" id="gameVersionMessage"></span></td>
+            </tr>
+            <tr>
+                <td class="text-label">游戏系统要求：</td>
+                <td><select id="systemSupport" onblur=showOrHideTable() name="systemSupport">
+                    <option value="-1">重新定义</option>
+                </select></td>
+            </tr>
+            <tr>
+                <td class="text-label">系统支持名称：</td>
+                <td><input class="form-control my-input" id="systemSupportName" name="systemSupportName" onblur="checkSystemSupport()"/></td>
+                <td><span class="message" id="systemSupportNameMessage"></span></td>
+            </tr>
+            <tr>
+                <td class="text-label">内存：</td>
+                <td><input class="form-control my-input" id="memoria" name="memoria"></input></td>
+                <td><span class="message" id="memoriaMessage"></span></td>
+            </tr>
+            <tr>
+                <td class="text-label">系统：</td>
+                <td><input class="form-control my-input" id="system" name="system"/></td>
+                <td><span class="message" id="systemMessage"></span></td>
+            </tr>
+            <tr>
+                <td class="text-label">磁盘：</td>
+                <td><input class="form-control my-input" id="disk" name="disk"/></td>
+                <td><span class="message" id="diskMessage"></span></td>
+            </tr>
+            <tr>
+                <td class="text-label">声卡：</td>
+                <td><input class="form-control my-input" id="voice" name="voice"/></td>
+                <td><span class="message" id="voiceMessage"></span></td>
+            </tr>
+            <tr>
+                <td class="text-label">CPU：</td>
+                <td><input class="form-control my-input" id="cpu" name="cpu"/></td>
+                <td><span class="message" id="cpuMessage"></span></td>
+            </tr>
+            <tr>
+                <td class="text-label">显卡：</td>
+                <td><input class="form-control my-input" id="display" name="display"/></td>
+                <td><span class="message" id="displayMessage"></span></td>
+            </tr>
+            <tr>
+                <td class="text-label">网络：</td>
+                <td><select id="network" name="network">
+                    <option value="true">是</option>
+                    <option value="false">否</option>
+                    <option value="all">都可</option>
+                </select></td>
+            </tr>
+            <tr>
+                <td class="text-label">注意：</td>
+                <td><input class="form-control my-input" id="note" name="note"/></td>
+                <td><span class="message" id="noteMessage"></span></td>
+            </tr>
+            <tr>
+                <td class="text-label">游戏介绍：</td>
+                <td><input class="form-control my-input" id="introduce" name="introduce"/></td>
+                <td><span class="message" id="introduceMessage"></span></td>
+            </tr>
+            <tr>
+                <td class="text-label">选择程序：</td>
+                <td><input type="file" name="file" id="fileName" onblur="checkProgram()"></td>
+                <td><span class="message" id="fileMessage"></span></td>
+            </tr>
+            <tr>
+                <td><input type="button" class="btn btn-default" onclick="doUploadGame()"value="上传" /></td>
+                <input hidden class="btn btn-default" type="submit" id="realDoUploadGame"/>
+                <td><input class="btn btn-default" type="reset"/></td>
+            </tr>
+        </table>
+    </form>
+</div>
+
+<script type="text/javascript">
+    var quanxian = false;
+    var oldVersion;
+    if(isManager == 1) quanxian = true;
+    $(function(){
+        $("#table tr").each(function(){
+            $(this).find("td:first").attr("align", "right");
+        });
+        $("#gameTypeId").val(gameTypeId).hide();
+        $.ajax({
+            url:"showGameType.do",
+            method:"POST",
+            dataType:"JSON",
+            data:{
+                "gameTypeId":gameTypeId
+            },
+            success:function(result){
+                if(result.state == 0){
+
+                    if(result.data.managers != null){
+                        for(var i = 0; i < result.data.managers.length; i++){
+                            if(result.data.managers[i].id == userId){
+                                quanxian = true;
+                                break;
+                            }
+                        }
+                    }
+
+                    if(!quanxian){
+                        $.session.set("errorMessage", "没有权限访问此页面");
+                        window.location.href = path + "/error.html";
+                    }
+
+                    $("#gameTypeName").attr("value", result.data.typeName);
+                    $("#gameTypeIndex").text(result.data.typeName);
+                }else{
+                    alert(result.message);
+                }
+            }
+        });
+
+        $.ajax({
+            url:"showAllSystemSupport.do",
+            method:"POST",
+            dataType:"JSON",
+            data:{
+
+            },
+            success:function(result){
+                if(result.state == 0){
+                    var data = result.data;
+                    if(data == null || data.length == 0) return;
+                    for(var i = 0; i < data.length; i++){
+                        $("#systemSupport").append("<option value=" + data[i].id + ">" + data[i].systemName + "</option>");
+                    }
+                }else{
+                    alert(result.message);
+                }
+            }
+        });
+
+        $.ajax({
+            url:"showGame.do",
+            method:"POST",
+            dataType:"JSON",
+            data:{
+                "gameId":gameId
+            },
+            success:function(result){
+                if(result.state == 0){
+                    var data = result.data;
+                    if(data == null || data.length == 0) {
+                        $.session.set("errorMessage", "没有找到游戏");
+                        window.location.href = path + "/error.html";
+                    }
+                    console.log(data);
+                    $("#gameId").val(data.id);
+                    $("#gameName").val(data.gameName);
+                    oldVersion = data.version;
+
+
+                }else{
+                    alert(result.message);
+                }
+            }
+        });
+    });
+
+    function showOrHideTable(){
+        if($("#systemSupport").val() != -1){
+            $.ajax({
+                url:"showSystemSupportById.do",
+                method:"POST",
+                dataType:"JSON",
+                data:{
+                    "id":$("#systemSupport").val()
+                },
+                success:function(result){
+                    if(result.state == 0){
+                        var data = result.data;
+                        console.log(data);
+                        $("#systemSupportName").val(data.systemName).attr("readonly", "true");
+                        $("#memoria").val(data.memoria).attr("readonly", "true");
+                        $("#system").val(data.system).attr("readonly", "true");
+                        $("#disk").val(data.disk).attr("readonly", "true");
+                        $("#voice").val(data.voice).attr("readonly", "true");
+                        $("#cpu").val(data.cpu).attr("readonly", "true");
+                        $("#display").val(data.display).attr("readonly", "true");
+                        $("#note").val(data.note).attr("readonly", "true");
+                        $("#network").val("" + data.network).attr("disabled", "disabled");
+                    }else{
+                        alert(result.message);
+                    }
+                }
+            });
+        }else{
+            $("#systemSupportName").val("").removeAttr("readonly");
+            $("#memoria").val("").removeAttr("readonly");
+            $("#system").val("").removeAttr("readonly");
+            $("#disk").val("").removeAttr("readonly");
+            $("#voice").val("").removeAttr("readonly");
+            $("#cpu").val("").removeAttr("readonly");
+            $("#display").val("").removeAttr("readonly");
+            $("#note").val("").removeAttr("readonly");
+            $("#network").removeAttr("disabled");
+        }
+    }
+
+
+    function checkProgram(){
+        var fileName = $("#fileName").val();
+        if(fileName == null || fileName.length == 0){
+            $("#fileMessage").text("文件不能为空");
+            return false;
+        }
+        if(!fileName.endsWith(".exe")){
+            $("#fileMessage").text("文件格式错误，请检查！");
+            return false;
+        }else{
+            $("#fileMessage").text("");
+            return true;
+        }
+        return true;
+    }
+
+    function gameIndex(){
+        window.location.href = path + "/game/main.html";
+    }
+
+    function gameTypeIndex(){
+        window.location.href = path + "/game/showGameType.html?gameTypeId=" + gameTypeId;
+    }
+
+    function uploadGameIndex(){
+        window.location.href = path + "/game/uploadGame.html?gameTypeId=" + gameTypeId;
+    }
+
+    function checkSystemSupport(){
+
+        var systemSupportName = $("#systemSupportName").val();
+        if(systemSupportName == null || systemSupportName.length <= 0){
+            $("#systemSupportNameMessage").text("必填项");
+            return false;
+        }
+        $("#systemSupportNameMessage").text("");
+        return true;
+    }
+
+
+    function checkGamePrice(){
+        var gamePrice = $("#gamePrice").val();
+        if(gamePrice == null || gamePrice.length <= 0){
+            $("#gamePriceMessage").text("不能为空！");
+            return false;
+        }
+        $("#gamePriceMessage").text("");
+        return true;
+    }
+
+    function checkGameVersion(){
+        var gameVersion = $("#gameVersion").val();
+        if(gameVersion == null || gameVersion.length <= 0){
+            $("#gameVersionMessage").text("不能为空！");
+            return false;
+        }
+
+        if(gameVersion <= oldVersion){
+            $("#gameVersionMessage").text("版本号不能小于等于上一次的版本号");
+            return false;
+        }
+
+        $("#gameVersionMessage").text("");
+        return true;
+    }
+
+    function doUploadGame(){
+
+        if(!checkGamePrice() || !checkGameVersion() || !checkSystemSupport() || !checkProgram()){
+            return false;
+        }
+
+        $("#realDoUploadGame").click();
+    }
+</script>
+</body>
+</html>

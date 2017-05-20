@@ -575,4 +575,77 @@ public class GameController {
 			return new JsonResult<Boolean>(e.getMessage());
 		}
 	}
+	
+	@RequestMapping("/updateGame.do")
+	public String updateGame(MultipartFile file, HttpServletRequest request, HttpServletResponse response){
+		try{
+			SystemSupportEntity systemSupport = new SystemSupportEntity();
+			GameEntity game = gameService.showGameById(request.getParameter("gameId"));
+			
+			//处理上传的游戏文件
+			if(file.isEmpty()) throw new Exception("上传文件无效或者文件为空！");
+			//String path = "/Users/wangxinyu/Documents/程序/GameCommunity/download/";
+			String path = request.getSession().getServletContext().getRealPath("download");
+			String fileName = file.getOriginalFilename(); //xxx.exe
+			fileName = fileName.replaceAll(" ", "");
+			path = path + "/" + request.getParameter("gameName") + "/" + request.getParameter("gameVersion") + "/";
+			System.out.println(path);
+			
+			File targetFile = new File(path, fileName);
+			if(!targetFile.exists()){
+				targetFile.mkdirs();//不存在则新建目录
+			}
+			
+			try{
+				file.transferTo(targetFile);
+			}catch(Exception e){
+				e.printStackTrace();
+				return "redirect: /gameCommunity/error.html";
+			}
+			
+			//game.setPath(path + fileName);
+			game.setPath("/gameCommunity/download/" + request.getParameter("gameName") + "/" + request.getParameter("gameVersion") + "/"
+					 + fileName);
+			game.setSize(GetPrintSize.getPrintSize(file.getSize()));
+			
+			long systemSupportId = Long.parseLong(request.getParameter("systemSupport"));
+			//用现有的系统支持
+			if(systemSupportId != -1){
+				game.setSystemTypeNum(systemSupportId);
+			}else{
+				systemSupport.setSystemName(request.getParameter("systemSupportName"));
+				systemSupport.setMemoria(request.getParameter("memoria"));
+				systemSupport.setDisk(request.getParameter("disk"));
+				systemSupport.setDisplay(request.getParameter("display"));
+				systemSupport.setNote(request.getParameter("note"));
+				String network = request.getParameter("network");
+				if("true".equals(network)) network = "1";
+				else if("fale".equals(network)) network = "0";
+				else network = "-1";
+				systemSupport.setNetwork(network);
+				systemSupport.setSystem(request.getParameter("system"));
+				systemSupport.setCpu(request.getParameter("cpu"));
+				systemSupport.setVoice(request.getParameter("voice"));
+				
+				//将新定义的系统支持插入数据库
+				systemSupportService.addSystemSupport(systemSupport);
+				game.setSystemTypeNum(systemSupport.getId());
+				log.debug("加入系统支持数据库成功！");
+			}
+			
+			game.setGameType(Long.parseLong(request.getParameter("gameTypeId")));
+			game.setBuildDate(game.getSdf().format(new Date()));
+			game.setVersion(request.getParameter("gameVersion"));
+			game.setGameName(request.getParameter("gameName"));
+			game.setPrice(Double.parseDouble(request.getParameter("gamePrice")));
+			game.setIntroduce(request.getParameter("introduce"));
+			
+			gameService.updateGameEntity(game);
+			
+			return "redirect: /gameCommunity/";
+		}catch(Exception e){
+			e.printStackTrace();
+			return "redirect: /gameCommunity/error.html";
+		}
+	}
 }
