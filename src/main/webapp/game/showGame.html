@@ -280,7 +280,9 @@ $.ajax({
 			$("#version").text("版本号：" + data.version);
 			$("#cutOff").text("折扣：" + data.cutOff); $("#cutOff").append(" <a class='a-label modify' href=javascript:void(0) onclick=modifyCutOff() style='display:none'>修改</a>");
 			
-			
+			if(isManager == 1){
+				$(".modify").show();
+			}
 			
 			if(data.comments == null || data.comments.length == 0){
 				$("#comments").append("<tr><td colspan='4'><center><h3 class='text-label'>暂时没有评论！</h3></center></td></tr><tr><td colspan='4'><hr/></td></tr>")
@@ -315,13 +317,15 @@ function buildIndex(gameType, nowIndex){
 				lastIndex = result.data.typeName;
 				$("#index").append("<span class='text-label'>&nbsp;&nbsp;&nbsp;</span><a class='a-label' href=javascript:void(0) onclick=gameTypeIndex(" + gameType + ")>" + lastIndex + "</a>");
 				$("#index").append("<span class='text-label'>&nbsp;&nbsp;&nbsp;>&nbsp;&nbsp;&nbsp;</span><a class='a-label' href=javascript:void(0) onclick=nowIndex()>" + nowIndex + "</a>");
-				
-				for(var i = 0; i < result.data.managers.length; i++){
-					if(result.data.managers[i].id == userId){
-						$(".modify").show();
-						break;
+				if(result.data.managers != null){
+					for(var i = 0; i < result.data.managers.length; i++){
+						if(result.data.managers[i].id == userId){
+							$(".modify").show();
+							break;
+						}
 					}
 				}
+				
 				
 			}else{
 				alert(result.message);

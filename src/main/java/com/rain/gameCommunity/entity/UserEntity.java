@@ -32,10 +32,10 @@ public class UserEntity implements Serializable {
 	private int sex = -1;
 
 	// 等级
-	private int levels = 0;
+	private int levels = 1;
 
 	// 经验
-	private int exp = 0;
+	private int exp = 1;
 
 	// 是否是管理员
 	private int isManager = 0;

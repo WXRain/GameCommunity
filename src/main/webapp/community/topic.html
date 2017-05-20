@@ -27,8 +27,8 @@
 
 		var replyForm = '<tr class="replyForm">'+
 							'<td class="text-label" align="right">回复主题：</td>' +
-							'<td><input id="replyName" name="replyName" type="text"/></td>' +
-							'</tr><tr class="replyForm"><td class="text-label" align="right">回复内容：</td><td><input id="replyText" name="replyText" type="text"/></td>' +
+							'<td><input id="replyName" name="replyName" type="text" onblur="checkReplyName()"/></td>' +
+							'</tr><tr class="replyForm"><td class="text-label" align="right">回复内容：</td><td><input id="replyText" name="replyText" type="text" onblur="checkReplyText()"/></td>' +
 							'</tr><tr class="replyForm"><td align="right"><input type="button" value="回复" onclick="submitReply()"/></td><td><input type="button" value="取消" onclick="cancelReply(this)"/></td>' +
 						'</tr>';
 
@@ -154,7 +154,7 @@
 		  buildSectionIndex(data.sectionId);
 		  
 		  $("#topicTitle").text(data.topicName);
-		  $("#username").append("<a href=javascript:void() onclick=showUser(" + data.userId + ")>" + data.username + "</a>");
+		  $("#username").append("<a class='a-label' href=javascript:void() onclick=showUser(" + data.userId + ")>" + data.username + "</a>");
 		  $("#createTime").append(data.createTime);
 		  $("#text").text(data.topicText);
 	   }
@@ -272,6 +272,11 @@
    }
    
    function submitReply(){
+	   
+	   if(!checkReplyName() || !checkReplyText()){
+		   return false;
+	   }
+	   
 	   var replyCommentId = $("#replyCommentId").val();
 	   var isReplyComment;
 	   if(replyCommentId == null || replyCommentId.length == 0){
@@ -335,6 +340,24 @@
    
    function jumpToPage(page){
 	   window.location.href = path + "/community/topic.html?topicId=" + topicId + "&page=" + page;
+   }
+   
+   function checkReplyName(){
+	   var replyName = $("#replyName").val();
+	   if(replyName == null || replyName.length <= 0){
+		   alert("回复主题不能为空");
+		   return false;
+	   }
+	   return true;
+   }
+   
+   function checkReplyText(){
+	   var replyText = $("#replyText").val();
+	   if(replyText == null || replyText.length <= 0){
+		   alert("回复内容不能为空");
+		   return false;
+	   }
+	   return true;
    }
    
    </script>
