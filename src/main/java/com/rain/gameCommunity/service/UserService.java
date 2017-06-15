@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Component;
 
+import com.rain.gameCommunity.entity.OrderEntity;
 import com.rain.gameCommunity.entity.UserEntity;
 /**
  * 
@@ -29,4 +30,6 @@ public interface UserService {
 	public UserEntity showUserByUserId(long userId) throws Exception;
 	
 	public void modifyUser(UserEntity user) throws Exception;
+	
+	public List<OrderEntity> showOrdersByUserId(long userId) throws Exception;
 }

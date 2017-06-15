@@ -7,8 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.rain.gameCommunity.dao.GameDAO;
+import com.rain.gameCommunity.dao.OrderDAO;
 import com.rain.gameCommunity.dao.UserDAO;
 import com.rain.gameCommunity.entity.GameEntity;
+import com.rain.gameCommunity.entity.OrderEntity;
 import com.rain.gameCommunity.entity.UserEntity;
 import com.rain.gameCommunity.exception.UserNotExitException;
 import com.rain.gameCommunity.exception.UserPasswordNotCorrectException;
@@ -27,6 +29,9 @@ public class UserServiceImpl implements UserService {
 
 	@Autowired
 	GameDAO gameDao;
+	
+	@Autowired
+	OrderDAO orderDao;
 
 	@Override
 	public List<UserEntity> showAllUsers() throws Exception {
@@ -143,5 +148,13 @@ public class UserServiceImpl implements UserService {
 	public void modifyUser(UserEntity user) throws Exception {
 		
 		userDao.updateUser(user);
+	}
+
+	/* (non-Javadoc)
+	 * @see com.rain.gameCommunity.service.UserService#showOrdersByUserId(long)
+	 */
+	@Override
+	public List<OrderEntity> showOrdersByUserId(long userId) throws Exception {
+		return orderDao.findOrdersByUserId(userId);
 	}
 }

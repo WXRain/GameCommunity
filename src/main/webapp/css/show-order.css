@@ -1,0 +1,32 @@
+.my-container{
+    background-color: #18425f;
+    height:900px;
+}
+
+.a-label{
+    color:#66c0f4;
+    text-decoration: none;
+}
+
+.a-label:hover{
+    color:white;
+    text-decoration: none;
+}
+
+.a-label:active{
+    color:#66c0f4;
+    text-decoration: none;
+}
+
+.a-label:visited{
+    color:#66c0f4;
+    text-decoration: none;
+}
+
+.text-label{
+    color:whitesmoke;
+}
+
+.message{
+    color:red;
+}

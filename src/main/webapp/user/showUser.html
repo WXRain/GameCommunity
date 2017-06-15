@@ -27,7 +27,8 @@
 <div class="my-container">
 	<table class="table table-hover" id="table" width=100%>
 		<tr id="modifyMyself" style="display: none">
-			<td colspan="2"><center><a class="a-label" onclick="modify()" href="javascript:void(0)">修改信息</a></center></td>
+			<td><center><a class="a-label" onclick="modify()" href="javascript:void(0)">修改信息</a></center></td>
+			<td><center><a class="a-label" onclick="showOrder()" href="javascript:void(0)">查看订单</a></center></td>
 			<td colspan="2"><center><a class="a-label" onclick="showModifyHead()" href="javascript:void(0)">修改头像</a></center></td>
 		</tr>
 		<tr>
@@ -177,8 +178,13 @@
 			}
 		    window.location.href = path + "/user/modifyUser.html?userId=" + modifyUserId;
 		}
+
+		function showOrder(){
+		    window.location.href = path + "/user/showOrder.html?userId=" + userId;
+		}
 		
 		
 	</script>
+</div>
 </body>
 </html>

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.rain.gameCommunity.entity.OrderEntity;
 import com.rain.gameCommunity.entity.UserEntity;
 import com.rain.gameCommunity.service.GameService;
 import com.rain.gameCommunity.service.UserService;
@@ -213,6 +214,18 @@ public class UserCotroller {
 		}catch(Exception e){
 			e.printStackTrace();
 			return "redirect: /gameCommunity/error.html";
+		}
+	}
+	
+	@RequestMapping("/showOrdersByUserId.do")
+	@ResponseBody
+	public JsonResult<List<OrderEntity>> showOrdersByUserId(long userId){
+		try{
+			List<OrderEntity> orders = userService.showOrdersByUserId(userId);
+			return new JsonResult<List<OrderEntity>>(orders, null);
+		}catch(Exception e){
+			e.printStackTrace();
+			return new JsonResult<List<OrderEntity>>(e.getMessage());
 		}
 	}
 	

@@ -7,4 +7,8 @@
 		order_copy (userId, createTime, payTime, money, gameIds) 
 		values (#{order.userId}, #{order.createTime}, #{order.payTime}, #{order.money}, #{order.gameIds})
 	</insert>
+	
+	<select id="findOrdersByUserId" resultType="com.rain.gameCommunity.entity.OrderEntity" parameterType="Long">
+		select * from order_copy where userId=#{userId}
+	</select>
  </mapper>
