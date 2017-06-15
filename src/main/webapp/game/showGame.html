@@ -75,7 +75,9 @@
 		<table id="modifyTable" style="display:none" width=100%>
 		<tr>
 			<td class="text-label" align="right" width=50%><span id="modifyName"></span></td>
-			<td width=50%><input class="form-control modify-input" id="modifyResult" name="modifyResult"/></td>
+			<td width=50%><input class="form-control modify-input" id="modifyResult" name="modifyResult"/>
+				<span class="message" id="modifyMessage"></span>
+			</td>
 		</tr>
 		<tr>
 			<td align="right"><input class="btn btn-default" type="button" value="提交" onclick="modify()" id="submitModify"/></td>
@@ -429,6 +431,7 @@ function downloadAction(gameId){
 function modifyCutOff(){
 	$("#modifyName").text("折扣：");
 	$("#submitModify").attr("onclick", "doModifyCutOff()");
+	$("#modifyResult").attr("onblur", "checkCutOff()");
 	$("#modifyTable").show();
 }
 
@@ -438,7 +441,22 @@ function modifyPrice(){
 	$("#modifyTable").show();
 }
 
+function checkCutOff(){
+	var cutOff = $("#modifyResult").val();
+	if(cutOff > 1){
+		$("#modifyMessage").text("折扣不能大于1");
+		return false;
+	}
+	$("#modifyMessage").text("");
+	return true;
+}
+
 function doModifyCutOff(){
+	
+	if(!checkCutOff()){
+		return false;
+	}
+	
 	$.ajax({
 		url:"modifyCutOff.do",
 		method:"POST",

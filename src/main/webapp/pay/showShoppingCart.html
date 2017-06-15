@@ -66,7 +66,7 @@
 			$("#table").append("<tr><td class='text-label'>" + data[i].gameName + "</td>" +
 					"<td class='text-label'>" + data[i].price + "</td>" +
 					"<td class='text-label'>" + data[i].cutOff + "</td>" +
-					"<td class='text-label'>" + (data[i].price * data[i].cutOff) + "</td>" +
+					"<td class='text-label'>" + (data[i].price * data[i].cutOff).toFixed(2) + "</td>" +
 					"<td><a class='a-label' href=javascript:void() onclick=removeFromShoppingCart("+data[i].id +")>删除</a>" +
 					"</tr>");
 			finalTotalPrice = finalTotalPrice + (data[i].price * data[i].cutOff);

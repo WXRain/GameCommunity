@@ -18,8 +18,50 @@
       <file leaf-file-name="showUser.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/user/showUser.html">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
             <state relative-caret-position="2541">
               <caret line="182" column="82" lean-forward="false" selection-start-line="182" selection-start-column="82" selection-end-line="182" selection-end-column="82" />
+=======
+            <state relative-caret-position="4905">
+              <caret line="327" column="17" lean-forward="false" selection-start-line="320" selection-start-column="16" selection-end-line="327" selection-end-column="17" />
+              <folding>
+                <element signature="n#style#0;n#a#0;n#center#0;n#td#0;n#tr#1;n#table#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#a#0;n#center#0;n#td#3;n#tr#1;n#table#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#form#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#table#2;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <marker date="1495261087000" expanded="true" signature="8028:8041" ph="..." />
+                <marker date="1495261087000" expanded="true" signature="8635:8647" ph="..." />
+                <marker date="1495261087000" expanded="true" signature="9505:9517" ph="..." />
+                <marker date="1495261087000" expanded="true" signature="10732:10738" ph=" " />
+                <marker date="1495261087000" expanded="true" signature="10738:10744" ph=" " />
+                <marker date="1495261087000" expanded="true" signature="10744:10750" ph=" " />
+                <marker date="1495261087000" expanded="true" signature="10914:10920" ph=" " />
+                <marker date="1495261087000" expanded="true" signature="10920:10926" ph=" " />
+                <marker date="1495261087000" expanded="true" signature="10926:10932" ph=" " />
+                <marker date="1495261087000" expanded="true" signature="10933:10939" ph=" " />
+                <marker date="1495261087000" expanded="true" signature="10939:10945" ph=" " />
+                <marker date="1495261087000" expanded="true" signature="10945:10951" ph=" " />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="uploadGame.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/game/uploadGame.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="330">
+              <caret line="22" column="5" lean-forward="false" selection-start-line="18" selection-start-column="4" selection-end-line="22" selection-end-column="5" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="updateGame.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/game/updateGame.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="180">
+              <caret line="12" column="75" lean-forward="true" selection-start-line="12" selection-start-column="75" selection-end-line="12" selection-end-column="75" />
+>>>>>>> origin/master
               <folding />
             </state>
           </provider>
@@ -142,8 +184,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -186,6 +226,8 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scratches" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -305,13 +347,22 @@
       <workItem from="1494985607091" duration="7791000" />
       <workItem from="1495120915558" duration="1736000" />
       <workItem from="1495159559355" duration="12959000" />
+<<<<<<< HEAD
       <workItem from="1495259456480" duration="3409000" />
       <workItem from="1497487196416" duration="659000" />
+=======
+      <workItem from="1495259456480" duration="3516000" />
+      <workItem from="1495278060560" duration="286000" />
+>>>>>>> origin/master
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
+<<<<<<< HEAD
     <option name="totallyTimeSpent" value="59178000" />
+=======
+    <option name="totallyTimeSpent" value="58912000" />
+>>>>>>> origin/master
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
@@ -320,10 +371,17 @@
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.13541667" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32942554" sideWeight="0.50277776" order="7" side_tool="true" content_ui="tabs" />
+<<<<<<< HEAD
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+=======
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+>>>>>>> origin/master
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -655,7 +713,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/game/showGame.html">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="15">
+=======
+        <state relative-caret-position="4905">
+>>>>>>> origin/master
           <caret line="327" column="17" lean-forward="false" selection-start-line="320" selection-start-column="16" selection-end-line="327" selection-end-column="17" />
           <folding>
             <element signature="n#style#0;n#a#0;n#center#0;n#td#0;n#tr#1;n#table#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -668,8 +730,13 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/css/show-order.css">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="465">
           <caret line="31" column="1" lean-forward="false" selection-start-line="31" selection-start-column="1" selection-end-line="31" selection-end-column="1" />
+=======
+        <state relative-caret-position="330">
+          <caret line="22" column="5" lean-forward="false" selection-start-line="18" selection-start-column="4" selection-end-line="22" selection-end-column="5" />
+>>>>>>> origin/master
           <folding />
         </state>
       </provider>
@@ -692,8 +759,13 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/user/showOrder.html">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="505">
           <caret line="40" column="32" lean-forward="true" selection-start-line="40" selection-start-column="32" selection-end-line="40" selection-end-column="32" />
+=======
+        <state relative-caret-position="180">
+          <caret line="12" column="75" lean-forward="true" selection-start-line="12" selection-start-column="75" selection-end-line="12" selection-end-column="75" />
+>>>>>>> origin/master
           <folding />
         </state>
       </provider>
